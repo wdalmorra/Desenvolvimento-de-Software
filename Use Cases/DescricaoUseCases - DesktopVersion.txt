@@ -4,11 +4,11 @@ Informar Gastos do Mês
 
 Visualizar Gastos de um Determinado Mês
 
-	O usuário terá a opção de visualizar as informações de gastos de meses anteriores. O mês a ser visualizado deve ser selecionado e então as informações serão exibidas na tela, junto com as opções de alterar ou exportar os dados.
+	O usuário terá a opção de visualizar as informações de gastos de meses anteriores. O mês a ser visualizado é selecionado e então as informações serão exibidas na tela, junto com as opções de alterar ou exportar os dados.
 
 Alterar Gastos de um Determinado Mês
 
-	O usuário terá a opção de escolher o mês a ser alterado os dados. Durante a altereção, o usuário terá a opção de exportar o arquivo, salvar os dados e/ou cancelar as alterações feitas. (A etapa de alteração dos dados é análoga a etapa de preenchimento, o que difere entre ambas é que durante a alteração, alguns dados lá estarão preenchidos)*.
+	Será apresentado um formulário com os dados preenchidos, onde o usuário terá a opção de alterá-los. Durante a altereção, o usuário terá a opção de exportar o arquivo, salvar os dados e/ou cancelar as alterações feitas.
 
 Exportar Dados para Arquivo
 
@@ -17,3 +17,7 @@ Exportar Dados para Arquivo
 Gerar Relatório Local de Gastos
 
 	O usuário terá a opção de gerar um relatório geral, com gráficos mostrando os gastos de cada mês para cada categoria ou gerar um relatório de um determinado mês, mostrando a porcentagem de gastos para cada categoria.
+
+Selecionar Mês
+
+	O usuário deve selecionar o mês de sua escolha que esteja presente em uma lista de meses salvos no sistema.
