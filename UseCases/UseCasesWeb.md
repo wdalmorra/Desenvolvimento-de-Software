@@ -1,32 +1,32 @@
-# DescriÁ„o detalhada dos casos de uso
+# Descri√ß√£o detalhada dos casos de uso
 
 ## Sistema web
 
-### Cadastrar usu·rio 
+### Cadastrar usu√°rio 
 
-A funcionalidade de cadastro abre um formulario para o preenchimento dos dados do usu·rio. ApÛs o preenchimento do formul·rio, o sistema deve verificar se os dados s„o v·lidos. Se os dados s„o validos, deve ser cadastrado o usu·rio na base de dados, caso contr·rio, o usu·rio volta para o formulario.
+A funcionalidade de cadastro abre um formulario para o preenchimento dos dados do usu√°rio. Ap√≥s o preenchimento do formul√°rio, o sistema deve verificar se os dados s√£o v√°lidos. Se os dados s√£o validos, deve ser cadastrado o usu√°rio na base de dados, caso contr√°rio, o usu√°rio volta para o formulario.
 
 ### Submeter arquivo de gastos
 
-Usu·rio escolhe o arquivo do perÌodo desejado e faz o upload do mesmo.
+Usu√°rio escolhe o arquivo do per√≠odo desejado e faz o upload do mesmo.
 
 ### Gerenciar conta
 
-O usu·rio entra em uma tela onde pode atualizar seus dados cadastrais ou deletar sua conta.
-O administrador entra em uma tela onde pode pode alterar os dados de qualquer usu·rio ou deletar sua conta.
+O usu√°rio entra em uma tela onde pode atualizar seus dados cadastrais ou deletar sua conta.
+O administrador entra em uma tela onde pode alterar os dados de qualquer usu√°rio ou deletar sua conta.
 
-### Escolher usu·rio
+### Escolher usu√°rio
 
-Para atualizar as informaÁıes cadastrais de um usu·rio (ou deletar a conta), o administrador deve antes escolher a conta que ser· gerenciada (o que È feito em uma etapa anterior ao caso 'Gerenciar Conta').
+Para atualizar as informa√ß√µes cadastrais de um usu√°rio (ou deletar a conta), o administrador deve antes escolher a conta que ser√° gerenciada (o que √© feito em uma etapa anterior ao caso 'Gerenciar Conta').
 
-### Gerar relatÛrio
+### Gerar relat√≥rio
 
-O usu·rio pode visualizar o relatorio estatÌstico global sobre os gastos de todos usu·rios, os quais s„o atualizados diariamente.
+O usu√°rio pode visualizar o relatorio estat√≠stico global sobre os gastos de todos usu√°rios, os quais s√£o atualizados diariamente.
 
-### Visualizar submissıes
+### Visualizar submiss√µes
 
-O usu·rio pode visualizar todos os arquivos de gastos submetidos.
+O usu√°rio pode visualizar todos os arquivos de gastos submetidos.
 
-### Fazer Download das submissıes
+### Fazer Download das submiss√µes
 
-O usu·rio poder· fazer download dos arquivos de gastos. Assim, ele poder· atualizar seu desktop caso tenha perdido seus dados locais. 
+O usu√°rio poder√° fazer download dos arquivos de gastos. Assim, ele poder√° atualizar seu desktop caso tenha perdido seus dados locais. 
