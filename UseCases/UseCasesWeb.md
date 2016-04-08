@@ -2,35 +2,31 @@
 
 ## Sistema web
 
-### Cadastrar usuário 
+### Cadastrar usuário
 
-A funcionalidade de cadastro abre um formulario para o preenchimento dos dados do usuário. Após o preenchimento do formulário, o sistema deve verificar se os dados são válidos. Se os dados são validos, deve ser cadastrado o usuário na base de dados, caso contrário, o usuário volta para o formulario.
+A tela de login do sistema terá uma opção para cadastrar-se caso não possua cadastro ainda. Para cadastrar-se o usuário deve preencher um formulário informando dados pessoais, tais como, nome completo, data de nascimento, cpf, email, nome de usuário, password, entre outras. A partir de então o usuário terá acesso ao sistema através de seu nome de usuário e password.
 
 ### Submeter arquivo de gastos e receitas
 
-Usuário escolhe o arquivo do período desejado e faz o upload do mesmo.
+O usuário deve selecionar o mês de submissão correspondente ao mês dos dados que será submetido. Feito isso, deverá escolher o arquivo que deseja submeter através de uma interface gráfica para percorrer o sistema de arquivos do sistema operacional. Escolhido o arquivo, o usuário deve pressionar o botão Enviar, então o arquivo estará submetido. Pode-se submeter mais de um arquivo para um mesmo mês, ficando salvo sempre o último arquivo submetido para aquele mês, sendo s outros deletados do sistema.
 
 ### Gerenciar conta
 
-O usuário entra em uma tela onde pode atualizar seus dados cadastrais ou deletar sua conta.
+O usuário terá a opção de entrar nas configurações de conta, podendo alterar seus dados pessoais a qualquer momento. O único dado cuja alteração não é possível de ser realizada é o nome de usuário do sistema. Para alterar o password, será necessário a inserção do password antigo.
 
 ### Gerenciar contas
 
-O administrador entra em uma tela onde pode alterar os dados de qualquer usuário ou deletar sua conta.
-
-
-### Escolher usuário
-
-É escolhido um usuário e assim o administrador pode fazer o gerenciamento da conta de um usuário em específico. 
+O administrador terá a opção de buscar um usuário específico entre as contas de usuários existentes e deletar a conta do usuário caso julgue necessário.
 
 ### Gerar relatório
 
-O usuário pode visualizar o relatorio estatístico global sobre os gastos de todos usuários, os quais são atualizados diariamente. Nestes relatórios podem cosntar relação entre gastos em determinada categoria comparados com faixas de receitas (assim é possivel ver, quanto as pessoas que tem uma receita entre R$ 1000,00 e R$ 1500,00 , gastam em gasolina ou cerveja). Além disso ofereceremos um relatório que mostra a relação de idade com as receitas, e também relacionando a idade com as categorias de gastos.  
+O usuário poderá solicitar um relatório de despesas e receita de um determinado mês. Só poderar solicitar tal ação após ter submetido seus dados do mês correspondente ao relatório. O relatório deverá conter dados estatísticos baseado nas informações fornecidas por todos os usuários que submeteram naquele mês. O relatório mostrará ao usuário gráficos comparando o seu próprio gasto em determinada categoria, por exemplo, gasolina, alimentação, etc., com o gastos de outros usuários na mesma categoria. O usuário poderá filtrar o relatório para montar o gráfico com informacões específicas, como o gasto de usuários de uma determinada idade ou renda, em uma determinada categoria.
+
 
 ### Visualizar submissões
 
-O usuário pode visualizar todos os arquivos de gastos submetidos.
+O usuário poderá visualizar as submissões já feitas no sistema. Para tal, o usuário deverá selecionar o mês, dentre os cadastrados, que deseja visualizar.
 
 ### Fazer Download das submissões
 
-O usuário poderá fazer download dos arquivos de gastos. Assim, ele poderá atualizar seu desktop caso tenha perdido seus dados locais. 
+O usuário poderá fazer download dos arquivos de gastos. Assim, ele poderá atualizar seu desktop caso tenha perdido seus dados locais.
