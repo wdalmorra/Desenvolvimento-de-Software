@@ -8,7 +8,7 @@ A tela de login do sistema terá uma opção para cadastrar-se, caso o usuário 
 
 ### Submeter arquivo de gastos e receitas
 
-O usuário deve selecionar o mês de submissão correspondente ao mês dos dados que serão submetidos. Feito isso, deverá escolher o arquivo que deseja submeter através de uma interface gráfica para percorrer o sistema de arquivos do sistema operacional. Escolhido o arquivo, o usuário deve pressionar o botão Enviar, então o arquivo estará submetido. Pode-se submeter mais de um arquivo para um mesmo mês, ficando salvo sempre o último arquivo submetido para aquele mês, sendo os outros deletados do sistema.
+O usuário deverá escolher o arquivo que deseja submeter através de uma interface gráfica para percorrer o sistema de arquivos do sistema operacional. Escolhido o arquivo, o usuário deve pressionar o botão Enviar, então o arquivo estará submetido. Pode-se submeter mais de um arquivo para um mesmo mês, ficando salvo sempre o último arquivo submetido para aquele mês, sendo os outros deletados do sistema.
 
 ### Gerenciar conta
 
