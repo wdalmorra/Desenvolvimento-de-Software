@@ -9,9 +9,17 @@ package model;
  *
  * @author William
  */
-abstract class Movimentacao {
+public abstract class Movimentacao {
     
     private int valor;
+    
+    public Movimentacao() {
+        this.valor = 0;
+    }
+    
+    public Movimentacao(int valor) {
+        this.valor = valor;
+    }
     
     public int getValor(){
         return this.valor;

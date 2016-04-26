@@ -10,5 +10,5 @@ package model;
  * @author William
  */
 public enum CategoriaReceita {
-    CATEGORIA1, CATEGORIA2;
+    DEFAULT, RECEITA1, RECEITA2;
 }

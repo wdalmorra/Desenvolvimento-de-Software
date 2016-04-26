@@ -9,6 +9,25 @@ package model;
  *
  * @author Thainan
  */
-public class Receita {
+public class Receita extends Movimentacao {
     
+    private CategoriaReceita categoria;
+    
+    public Receita() {
+        super();
+        this.categoria = CategoriaReceita.DEFAULT;
+    }
+    
+    public Receita(CategoriaReceita cat, int valor) {
+        super(valor);
+        this.categoria = cat;
+    }
+    
+    public CategoriaReceita getCategoria(){
+        return this.categoria;
+    }
+    
+    public void setCategoria(CategoriaReceita cat){
+        this.categoria = cat;
+    }
 }

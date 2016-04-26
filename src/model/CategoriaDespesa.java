@@ -10,5 +10,5 @@ package model;
  * @author William
  */
 public enum CategoriaDespesa {
-    EXEMPLO1, EXEMPLO2;
+    DEFAULT, DESPESA1, DESPESA2;
 }

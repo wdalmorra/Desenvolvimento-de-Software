@@ -13,6 +13,16 @@ public class Despesa extends Movimentacao {
     
     private CategoriaDespesa categoria;
     
+    public Despesa() {
+        super();
+        this.categoria = CategoriaDespesa.DEFAULT;
+    }
+    
+    public Despesa(CategoriaDespesa cat, int valor) {
+        super(valor);
+        this.categoria = cat;
+    }
+    
     public CategoriaDespesa getCategoria(){
         return this.categoria;
     }
