@@ -65,7 +65,8 @@ public class APISistemaDesktop {
     public void exportaMes(Date mes, String dir){
         for (DadosMes dm : dadosMes){
             if (dm.getMes().equals(mes)) {
-                conversor.converteParaXML(dm, dir);
+                //TODO
+//                conversor.converteParaXML(dm, dir);
             }
         }
     }
@@ -78,7 +79,8 @@ public class APISistemaDesktop {
     public void salvaMes(Date mes){
         for (DadosMes dm : dadosMes){
             if (dm.getMes().equals(mes)) {
-                conversor.converteParaXML(dm);
+                //TODO
+//                conversor.converteParaXML(dm);
             }
         }
     }
