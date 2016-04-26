@@ -16,6 +16,16 @@ public class DadosMes {
     private Date date;
     private ArrayList<Movimentacao> movimentacoes;
     
+    public DadosMes() {
+        this.date = new Date();
+        this.movimentacoes = new ArrayList<>();
+    }
+    
+    public DadosMes(Date date) {
+        this.date = date;
+        this.movimentacoes = new ArrayList<>();
+    }
+    
     public Date getMes(){
         return this.date;
     }
@@ -28,7 +38,4 @@ public class DadosMes {
     public void addMovimentacao(Movimentacao m){
         movimentacoes.add(m);
     }
-    
-    
-    
 }
