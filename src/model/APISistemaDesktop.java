@@ -19,7 +19,19 @@ public class APISistemaDesktop {
     
     
     public static void main(String[] args) {
-        // TODO code application logic here
+        APISistemaDesktop sisDesk = new APISistemaDesktop();
+        DadosMes dm = new DadosMes();
+        dm.setDate(new Date(2016,04,26));
+        Despesa d = new Despesa();
+        d.setValor(15);
+        d.setCategoria(CategoriaDespesa.DESPESA1);
+        dm.addMovimentacao(d);
+        Receita r = new Receita(CategoriaReceita.RECEITA1,30);
+        dm.addMovimentacao(r);
+        sisDesk.criaMes(dm);
+        
+        System.out.println(sisDesk.visualizaMes(new Date(2016,04,26)).getMovimentacoes().get(0).getValor());
+        System.out.println(sisDesk.visualizaMes(new Date(2016,04,26)).getMovimentacoes().get(1).getValor());
     }
     
     /*
@@ -65,7 +77,7 @@ public class APISistemaDesktop {
     public void exportaMes(Date mes, String dir){
         for (DadosMes dm : dadosMes){
             if (dm.getMes().equals(mes)) {
-                conversor.converteParaXML(dm, dir);
+//                conversor.converteParaXML(dm, dir);
             }
         }
     }
@@ -78,7 +90,7 @@ public class APISistemaDesktop {
     public void salvaMes(Date mes){
         for (DadosMes dm : dadosMes){
             if (dm.getMes().equals(mes)) {
-                conversor.converteParaXML(dm);
+//                conversor.converteParaXML(dm);
             }
         }
     }
