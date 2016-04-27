@@ -6,7 +6,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
@@ -14,7 +13,7 @@ import java.util.GregorianCalendar;
  * @author William
  */
 public class DadosMes {
-    private Calendar date;
+    private GregorianCalendar date;
     private ArrayList<Movimentacao> movimentacoes;
     
     DadosMes(){
@@ -22,16 +21,16 @@ public class DadosMes {
         movimentacoes = new ArrayList<>();
     }
     
-    DadosMes(Calendar c){
+    DadosMes(GregorianCalendar c){
         date = c;
         movimentacoes = new ArrayList<>();
     }
     
     
-    public Calendar getMes(){
+    public GregorianCalendar getMes(){
         return this.date;
     }
-    public void setDate(Calendar c){
+    public void setDate(GregorianCalendar c){
         this.date = c;
     }
     public ArrayList<Movimentacao> getMovimentacoes(){

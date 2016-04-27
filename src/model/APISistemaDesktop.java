@@ -6,7 +6,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Observable;
 
@@ -35,7 +34,7 @@ public class APISistemaDesktop extends Observable{
         System.out.println(sisDesk.visualizaMes(new GregorianCalendar(2016,04,26)).getMovimentacoes().get(0).getValor());
         System.out.println(sisDesk.visualizaMes(new GregorianCalendar(2016,04,26)).getMovimentacoes().get(1).getValor());
         
-        CategoriaDespesa.valueOf(CategoriaDespesa.class, "DEFAULT");
+        System.out.println(new GregorianCalendar(2016,04,27).get(GregorianCalendar.YEAR));
         
     }
 
@@ -64,7 +63,7 @@ public class APISistemaDesktop extends Observable{
     public void addMovimentacao(GregorianCalendar mes, Movimentacao mov){
         
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
+            if (comparaMeses(dm.getMes(),mes)) {
                 dm.addMovimentacao(mov);
                 notifyObservers();
                 break;
@@ -78,10 +77,12 @@ public class APISistemaDesktop extends Observable{
     */
     public void removeMovimentacao(GregorianCalendar mes, Movimentacao mov) {
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
+            if (comparaMeses(dm.getMes(),mes)) {
+                
                 dm.getMovimentacoes().remove(mov);
                 notifyObservers();
                 break;
+            
             }
         }
     }
@@ -94,7 +95,7 @@ public class APISistemaDesktop extends Observable{
     public DadosMes visualizaMes(GregorianCalendar mes){
         
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
+            if (comparaMeses(dm.getMes(),mes)) {
                 return dm;
             }
         }
@@ -109,7 +110,7 @@ public class APISistemaDesktop extends Observable{
     */
     public void exportaMes(GregorianCalendar mes, String dir){
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
+            if (comparaMeses(dm.getMes(),mes)) {
 //                conversor.converteParaXML(dm, dir);
                 break;
             }
@@ -123,7 +124,7 @@ public class APISistemaDesktop extends Observable{
     */
     public void salvaMes(GregorianCalendar mes){
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
+            if (comparaMeses(dm.getMes(),mes)) {
 //                conversor.converteParaXML(dm);
                 break;
             }
@@ -137,7 +138,7 @@ public class APISistemaDesktop extends Observable{
     */
     public void deletaMes(GregorianCalendar mes){
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
+            if (comparaMeses(dm.getMes(),mes)) {
                 this.deletaArquivo(mes);
                 dadosMes.remove(dm);
                 break;
@@ -166,5 +167,10 @@ public class APISistemaDesktop extends Observable{
     */
     public ArrayList<DadosMes> geraRelatorio(){
         return null;
+    }
+    
+    private boolean comparaMeses(GregorianCalendar a, GregorianCalendar b){
+        return (a.get(GregorianCalendar.YEAR) == b.get(GregorianCalendar.YEAR))
+                && (a.get(GregorianCalendar.MONTH) == b.get(GregorianCalendar.MONTH));
     }
 }
