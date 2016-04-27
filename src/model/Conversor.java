@@ -15,7 +15,18 @@ import java.io.*;
  * @author Thainan
  */
 public class Conversor {
-    private String defaultPath;
+    
+    static Conversor singleton;
+    static String defaultSavePath = ".";
+    
+    public static Conversor getInstance() {
+        if (singleton == null) {
+            singleton = new Conversor(defaultSavePath);
+        }
+        return singleton;
+    }
+    
+    private String currentSavePath;
     
     public String toXML(DadosMes dadosMes) {
         return "";
@@ -25,12 +36,12 @@ public class Conversor {
         return null;
     }
     
-    public Conversor() {
-        this.defaultPath = ".";
+    private Conversor() {
+        this.currentSavePath = ".";
     }
     
-    public Conversor(String defaultPath) {
-        this.defaultPath = defaultPath;
+    private Conversor(String savePath) {
+        this.currentSavePath = savePath;
     }
     
     public void converteParaXML(DadosMes dadosMes) {

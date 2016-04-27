@@ -47,7 +47,7 @@ public class ConversorTest {
     public void testToXML() {
         System.out.println("toXML");
         DadosMes dadosMes = null;
-        Conversor instance = new Conversor();
+        Conversor instance = Conversor.getInstance();
         String expResult = "";
         String result = instance.toXML(dadosMes);
         assertEquals(expResult, result);
@@ -61,7 +61,7 @@ public class ConversorTest {
     public void testFromXML() {
         System.out.println("fromXML");
         String path = "test/resources/teste-01.xml";
-        Conversor instance = new Conversor();
+        Conversor instance = Conversor.getInstance();
         
         Comparator<Movimentacao> c = new Comparator<Movimentacao> () {
             @Override

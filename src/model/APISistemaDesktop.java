@@ -46,7 +46,7 @@ public class APISistemaDesktop extends Observable{
 
     public APISistemaDesktop(){
         dadosMes = new ArrayList<>();
-        conversor = new Conversor();
+        conversor = Conversor.getInstance();
     }
 
     /*
