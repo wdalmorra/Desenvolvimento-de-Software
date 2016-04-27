@@ -21,7 +21,32 @@ public class APIController implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        view.novoMes();
+        System.out.println(e.getActionCommand());
+        switch(e.getActionCommand()) {
+            case "NOVO MÊS":
+                view.novoMes();
+                break;
+            case "ABRIR MÊS":
+                break;
+            case "RELATÓRIO GRÁFICO":
+                break;
+            case "SOBRE":
+                break;
+            case "SAIR":
+                view.fechar();
+                break;
+            case "Submeter":
+                break;
+            case "Voltar":
+                view.voltar();
+                break;
+            case "Salvar":
+                break;
+            case "Exportar":
+                break;
+            default:
+                break;
+        }
     }
     
     public void criaMes() {

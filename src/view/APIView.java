@@ -5,15 +5,9 @@
  */
 package view;
 
-//import controller.APIController;
 import java.awt.event.ActionListener;
 
-/**
- *
- * @author Thainan
- */
 public class APIView {
-//    private APIController controlador;
     private ViewMenu vm;
     private ViewNovoMes vnm;
     
@@ -27,10 +21,22 @@ public class APIView {
     }
     
     public void novoMes() {
+        this.vnm.pack();
         this.vnm.setVisible(true);
+        this.vm.setVisible(false);
+    }
+    
+    public void fechar() {
+        System.exit(0);
+    }
+    
+    public void voltar() {
+        this.vnm.dispose();
+        this.vm.setVisible(true);
     }
     
     public void addController(ActionListener controller) {
         this.vm.addController(controller);
+        this.vnm.addController(controller);
     }
 }

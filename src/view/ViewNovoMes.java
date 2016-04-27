@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Eliezer
@@ -17,6 +19,13 @@ public class ViewNovoMes extends javax.swing.JFrame {
     public ViewNovoMes() {
         initComponents();
     }
+    
+    public void addController(ActionListener c) {
+        novoMes_Voltar.addActionListener(c);
+        novoMes_Submeter.addActionListener(c);
+        novoMes_Salvar.addActionListener(c);
+        novoMes_Exportar.addActionListener(c);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,24 +37,24 @@ public class ViewNovoMes extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox<>();
-        NovoMes_Mes_texto = new javax.swing.JLabel();
+        novoMes_Mes_texto = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        NovoMes_Despesa_Check = new javax.swing.JRadioButton();
-        NovoMes_Receita_Check = new javax.swing.JRadioButton();
+        novoMes_Despesa_Check = new javax.swing.JRadioButton();
+        novoMes_Receita_Check = new javax.swing.JRadioButton();
         jComboBox3 = new javax.swing.JComboBox<>();
-        NovoMes_ValorItem = new javax.swing.JFormattedTextField();
-        NovoMes_Submeter = new javax.swing.JButton();
-        NovoMes_Voltar = new javax.swing.JButton();
-        NovoMes_Salvar = new javax.swing.JButton();
-        NovoMes_Exportar = new javax.swing.JButton();
+        novoMes_ValorItem = new javax.swing.JFormattedTextField();
+        novoMes_Submeter = new javax.swing.JButton();
+        novoMes_Voltar = new javax.swing.JButton();
+        novoMes_Salvar = new javax.swing.JButton();
+        novoMes_Exportar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        NovoMes_Mes_texto.setText("Mês");
+        novoMes_Mes_texto.setText("Mês");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -56,27 +65,27 @@ public class ViewNovoMes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        NovoMes_Despesa_Check.setText("Despesa");
+        novoMes_Despesa_Check.setText("Despesa");
 
-        NovoMes_Receita_Check.setText("Receita");
+        novoMes_Receita_Check.setText("Receita");
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        NovoMes_ValorItem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-        NovoMes_ValorItem.setText("Valor Item");
+        novoMes_ValorItem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        novoMes_ValorItem.setText("Valor Item");
 
-        NovoMes_Submeter.setText("Submeter");
+        novoMes_Submeter.setText("Submeter");
 
-        NovoMes_Voltar.setText("Voltar");
-        NovoMes_Voltar.addActionListener(new java.awt.event.ActionListener() {
+        novoMes_Voltar.setText("Voltar");
+        novoMes_Voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NovoMes_VoltarActionPerformed(evt);
+                novoMes_VoltarActionPerformed(evt);
             }
         });
 
-        NovoMes_Salvar.setText("Salvar");
+        novoMes_Salvar.setText("Salvar");
 
-        NovoMes_Exportar.setText("Exportar");
+        novoMes_Exportar.setText("Exportar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,9 +97,9 @@ public class ViewNovoMes extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(NovoMes_Salvar)
+                                .addComponent(novoMes_Salvar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(NovoMes_Exportar))
+                                .addComponent(novoMes_Exportar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,19 +108,19 @@ public class ViewNovoMes extends javax.swing.JFrame {
                                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(46, 46, 46)
-                                        .addComponent(NovoMes_ValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(novoMes_ValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(60, 60, 60)
-                                        .addComponent(NovoMes_Submeter))
+                                        .addComponent(novoMes_Submeter))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(NovoMes_Despesa_Check, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(novoMes_Despesa_Check, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)))
                         .addContainerGap(25, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(NovoMes_Mes_texto, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(novoMes_Mes_texto, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -119,8 +128,8 @@ public class ViewNovoMes extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(NovoMes_Voltar)
-                                    .addComponent(NovoMes_Receita_Check))))
+                                    .addComponent(novoMes_Voltar)
+                                    .addComponent(novoMes_Receita_Check))))
                         .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
@@ -129,34 +138,34 @@ public class ViewNovoMes extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NovoMes_Mes_texto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(novoMes_Mes_texto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NovoMes_Despesa_Check)
-                            .addComponent(NovoMes_Receita_Check))
+                            .addComponent(novoMes_Despesa_Check)
+                            .addComponent(novoMes_Receita_Check))
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(NovoMes_ValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(novoMes_ValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(NovoMes_Submeter)
+                        .addComponent(novoMes_Submeter)
                         .addGap(43, 43, 43))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NovoMes_Salvar)
-                    .addComponent(NovoMes_Voltar)
-                    .addComponent(NovoMes_Exportar))
+                    .addComponent(novoMes_Salvar)
+                    .addComponent(novoMes_Voltar)
+                    .addComponent(novoMes_Exportar))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        NovoMes_Mes_texto.getAccessibleContext().setAccessibleName("Mes");
-        NovoMes_Voltar.getAccessibleContext().setAccessibleDescription("");
+        novoMes_Mes_texto.getAccessibleContext().setAccessibleName("Mes");
+        novoMes_Voltar.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -165,9 +174,9 @@ public class ViewNovoMes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-    private void NovoMes_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoMes_VoltarActionPerformed
+    private void novoMes_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoMes_VoltarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NovoMes_VoltarActionPerformed
+    }//GEN-LAST:event_novoMes_VoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,18 +214,18 @@ public class ViewNovoMes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton NovoMes_Despesa_Check;
-    private javax.swing.JButton NovoMes_Exportar;
-    private javax.swing.JLabel NovoMes_Mes_texto;
-    private javax.swing.JRadioButton NovoMes_Receita_Check;
-    private javax.swing.JButton NovoMes_Salvar;
-    private javax.swing.JButton NovoMes_Submeter;
-    private javax.swing.JFormattedTextField NovoMes_ValorItem;
-    private javax.swing.JButton NovoMes_Voltar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton novoMes_Despesa_Check;
+    private javax.swing.JButton novoMes_Exportar;
+    private javax.swing.JLabel novoMes_Mes_texto;
+    private javax.swing.JRadioButton novoMes_Receita_Check;
+    private javax.swing.JButton novoMes_Salvar;
+    private javax.swing.JButton novoMes_Submeter;
+    private javax.swing.JFormattedTextField novoMes_ValorItem;
+    private javax.swing.JButton novoMes_Voltar;
     // End of variables declaration//GEN-END:variables
 }
