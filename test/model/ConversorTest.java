@@ -46,11 +46,15 @@ public class ConversorTest {
     @Test
     public void testToXML() {
         System.out.println("toXML");
-        DadosMes dadosMes = null;
+        DadosMes dadosMes = new DadosMes();
+        Movimentacao m1 = new Receita(CategoriaReceita.RECEITA1, 500);
+        Movimentacao m2 = new Despesa(CategoriaDespesa.DESPESA2, 313);
+        dadosMes.addMovimentacao(m1);
+        dadosMes.addMovimentacao(m2);
         Conversor instance = Conversor.getInstance();
         String expResult = "";
-        String result = instance.toXML(dadosMes);
-        assertEquals(expResult, result);
+        instance.converteParaXML(dadosMes, "test/resources/teste-01.out.xml");
+//        assertEquals(expResult, result);
             //fail("The test case is a prototype.");
     }
 
@@ -60,7 +64,7 @@ public class ConversorTest {
     @Test
     public void testFromXML() {
         System.out.println("fromXML");
-        String path = "test/resources/teste-01.xml";
+        String path = "test/resources/teste-01.in.xml";
         Conversor instance = Conversor.getInstance();
         
         Comparator<Movimentacao> c = new Comparator<Movimentacao> () {

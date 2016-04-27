@@ -7,7 +7,11 @@ package model;
 
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.*;
+import javax.xml.transform.stream.*;
 import java.io.*;
+import java.util.*;
 
 
 /**
@@ -16,6 +20,7 @@ import java.io.*;
  */
 public class Conversor {
     
+    // Métodos e atributos da classe, para implementar o padrão singleton
     static Conversor singleton;
     static String defaultSavePath = ".";
     
@@ -26,15 +31,8 @@ public class Conversor {
         return singleton;
     }
     
+    // Atributos e métodos do objeto Conversor
     private String currentSavePath;
-    
-    public String toXML(DadosMes dadosMes) {
-        return "";
-    }
-    
-    public DadosMes fromXML(String xml) {
-        return null;
-    }
     
     private Conversor() {
         this.currentSavePath = ".";
@@ -45,9 +43,57 @@ public class Conversor {
     }
     
     public void converteParaXML(DadosMes dadosMes) {
+        converteParaXML(dadosMes, currentSavePath);
     }
     
     public void converteParaXML(DadosMes dadosMes, String path) {
+        
+        try {
+            // Prepara o documento
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.newDocument();
+            
+            // Elemento raiz
+            Element financasElement = doc.createElement("financas");
+            doc.appendChild(financasElement);
+            
+            // Elemento dadosMes
+            Element dadosMesElement = doc.createElement("dadosMes");
+            dadosMesElement.setAttribute("mes","janeiro");
+            dadosMesElement.setAttribute("ano", "2001");
+            financasElement.appendChild(dadosMesElement);
+            
+            // Preenche o dadosMes com as movimentacoes
+            ArrayList<Movimentacao> movimentacoes = dadosMes.getMovimentacoes();
+            
+            for (Movimentacao m : movimentacoes) {
+                Element mElement = doc.createElement("movimentacao");
+                mElement.setAttribute("valor", Integer.toString(m.getValor()));
+                
+                if (m instanceof Receita) {
+                    CategoriaReceita c = ((Receita) m).getCategoria();
+                    mElement.setAttribute("categoria", CategoriaReceita.categoriaToString(c));
+                } else if (m instanceof Despesa) {
+                    CategoriaDespesa d = ((Despesa) m).getCategoria();
+                    mElement.setAttribute("categoria", CategoriaDespesa.categoriaToString(d));
+                } else {
+                    mElement.setAttribute("categoria", "DEFAULT");
+                }
+                dadosMesElement.appendChild(mElement);
+            }
+            
+            // Cria o arquivo
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult fileResult = new StreamResult(new File(path));
+            transformer.transform(source, fileResult);
+            
+        } catch (Exception e) {
+                System.out.println("Erro na escrita do arquivo " + path);
+        }
+        
     }
     
     public DadosMes converteParaDadosMes(String path) {
@@ -85,7 +131,7 @@ public class Conversor {
                         throw new Exception();
                     }
                 }
-
+                
         } catch (Exception e) {
                 System.out.println("Erro na leitura do arquivo " + path);
         }
