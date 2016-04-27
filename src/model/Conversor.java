@@ -75,9 +75,11 @@ public class Conversor {
                 mElement.setAttribute("valor", Integer.toString(m.getValor()));
                 
                 if (m instanceof Receita) {
+                    mElement.setAttribute("tipo", "receita");
                     CategoriaReceita c = ((Receita) m).getCategoria();
                     mElement.setAttribute("categoria", CategoriaReceita.categoriaToString(c));
                 } else if (m instanceof Despesa) {
+                    mElement.setAttribute("tipo", "despesa");
                     CategoriaDespesa d = ((Despesa) m).getCategoria();
                     mElement.setAttribute("categoria", CategoriaDespesa.categoriaToString(d));
                 } else {
