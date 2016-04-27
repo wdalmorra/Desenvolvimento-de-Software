@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Eliezer
@@ -16,6 +18,10 @@ public class ViewMenu extends javax.swing.JFrame {
      */
     public ViewMenu() {
         initComponents();
+    }
+    
+    public void addController(ActionListener c) {
+        // TODO: colocar o que quer que deveria ter aqui
     }
 
     /**
