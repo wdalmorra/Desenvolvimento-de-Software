@@ -6,7 +6,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Observable;
 
 /**
@@ -22,7 +22,7 @@ public class APISistemaDesktop extends Observable{
     public static void main(String[] args) {
         APISistemaDesktop sisDesk = new APISistemaDesktop();
         DadosMes dm = new DadosMes();
-        dm.setDate(new Date(2016,04,26));
+        dm.setDate(new GregorianCalendar(2016,04,26));
         Despesa d = new Despesa();
         d.setValor(15);
         d.setCategoria(CategoriaDespesa.DESPESA1);
@@ -31,10 +31,10 @@ public class APISistemaDesktop extends Observable{
         dm.addMovimentacao(r);
         sisDesk.criaMes(dm);
         
-        System.out.println(sisDesk.visualizaMes(new Date(2016,04,26)).getMovimentacoes().get(0).getValor());
-        System.out.println(sisDesk.visualizaMes(new Date(2016,04,26)).getMovimentacoes().get(1).getValor());
+        System.out.println(sisDesk.visualizaMes(new GregorianCalendar(2016,04,26)).getMovimentacoes().get(0).getValor());
+        System.out.println(sisDesk.visualizaMes(new GregorianCalendar(2016,04,26)).getMovimentacoes().get(1).getValor());
         
-        CategoriaDespesa.valueOf(CategoriaDespesa.class, "DEFAULT");
+        System.out.println(new GregorianCalendar(2016,04,27).get(GregorianCalendar.YEAR));
         
     }
 
@@ -43,7 +43,6 @@ public class APISistemaDesktop extends Observable{
         Inicializa o array de dadosMes vazio
         Inicializa o conversor a ser utilizado para salvar os dados em XML
     */
-
     public APISistemaDesktop(){
         dadosMes = new ArrayList<>();
         conversor = Conversor.getInstance();
@@ -60,10 +59,10 @@ public class APISistemaDesktop extends Observable{
         addMovimentacao adiciona uma movimentacao a um determinado mes.
         Observer nota essa modificacao e eh notificado.
     */
-    public void addMovimentacao(Date mes, Movimentacao mov){
+    public void addMovimentacao(GregorianCalendar mes, Movimentacao mov){
         
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
+            if (comparaMeses(dm.getMes(),mes)) {
                 dm.addMovimentacao(mov);
                 notifyObservers();
                 break;
@@ -75,12 +74,14 @@ public class APISistemaDesktop extends Observable{
         addMovimentacao remove uma movimentacao a um determinado mes.
         Observer nota essa modificacao e eh notificado.
     */
-    public void removeMovimentacao(Date mes, Movimentacao mov) {
+    public void removeMovimentacao(GregorianCalendar mes, Movimentacao mov) {
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
+            if (comparaMeses(dm.getMes(),mes)) {
+                
                 dm.getMovimentacoes().remove(mov);
                 notifyObservers();
                 break;
+            
             }
         }
     }
@@ -90,10 +91,10 @@ public class APISistemaDesktop extends Observable{
         para a interface para ser mostrado ao usuario
         retorna null caso o mes nao exista 
     */
-    public DadosMes visualizaMes(Date mes){
+    public DadosMes visualizaMes(GregorianCalendar mes){
         
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
+            if (comparaMeses(dm.getMes(),mes)) {
                 return dm;
             }
         }
@@ -106,10 +107,10 @@ public class APISistemaDesktop extends Observable{
         para converter os dados para XML e o arquivo é salvo no dir recebido por
         parametro.
     */
-    public void exportaMes(Date mes, String dir){
+    public void exportaMes(GregorianCalendar mes, String dir){
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
-//                conversor.converteParaXML(dm, dir);
+            if (comparaMeses(dm.getMes(),mes)) {
+                conversor.converteParaXML(dm, dir);
                 break;
             }
         }
@@ -120,10 +121,10 @@ public class APISistemaDesktop extends Observable{
         para converter os dados para XML e o arquivo é salvo no dir padrao de
         backup dos dados.
     */
-    public void salvaMes(Date mes){
+    public void salvaMes(GregorianCalendar mes){
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
-//                conversor.converteParaXML(dm);
+            if (comparaMeses(dm.getMes(),mes)) {
+                conversor.converteParaXML(dm);
                 break;
             }
         }
@@ -134,9 +135,9 @@ public class APISistemaDesktop extends Observable{
         junto o arquivo correspondente, caso o usuario deseje apagar aqueles
         dados da máquina.
     */
-    public void deletaMes(Date mes){
+    public void deletaMes(GregorianCalendar mes){
         for (DadosMes dm : dadosMes){
-            if (dm.getMes().equals(mes)) {
+            if (comparaMeses(dm.getMes(),mes)) {
                 this.deletaArquivo(mes);
                 dadosMes.remove(dm);
                 break;
@@ -147,7 +148,7 @@ public class APISistemaDesktop extends Observable{
     /*
         deletaArquivo exclui o arquivo correspondente ao mes selecionado.
     */
-    public void deletaArquivo(Date mes){
+    public void deletaArquivo(GregorianCalendar mes){
         
     }
 
@@ -165,5 +166,14 @@ public class APISistemaDesktop extends Observable{
     */
     public ArrayList<DadosMes> geraRelatorio(){
         return null;
+    }
+    
+    /*
+        comparaMeses simplesmente verifica se dadas duas datas, os meses e anos
+        sao iguais
+    */
+    private boolean comparaMeses(GregorianCalendar a, GregorianCalendar b){
+        return (a.get(GregorianCalendar.YEAR) == b.get(GregorianCalendar.YEAR))
+                && (a.get(GregorianCalendar.MONTH) == b.get(GregorianCalendar.MONTH));
     }
 }
