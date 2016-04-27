@@ -7,7 +7,13 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.GregorianCalendar;
 import model.APISistemaDesktop;
+import model.CategoriaDespesa;
+import model.CategoriaReceita;
+import model.Despesa;
+import model.Movimentacao;
+import model.Receita;
 import view.APIView;
 
 public class APIController implements ActionListener {
@@ -36,6 +42,21 @@ public class APIController implements ActionListener {
                 view.fechar();
                 break;
             case "Submeter":
+//                Movimentacao mov;
+//                int valor = view.getValor();
+//                int ano = view.getAno();
+//                int mes = view.getMes();
+//                String cat = view.getCategoria();
+//                String tipo = view.getDouR(); 
+//                GregorianCalendar date = new GregorianCalendar(ano, mes, 1);
+//                if(tipo == "D") {
+//                    CategoriaDespesa cd = CategoriaDespesa.stringToCategoria(cat.toUpperCase());
+//                    mov = new Despesa(cd, valor);
+//                } else {
+//                    CategoriaReceita cr = CategoriaReceita.stringToCategoria(cat.toUpperCase());
+//                    mov = new Receita(cr, valor);
+//                }
+//                sistema.addMovimentacao(date, mov);
                 break;
             case "Voltar":
                 view.voltar();
