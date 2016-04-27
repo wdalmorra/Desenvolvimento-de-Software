@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <financas>
-	<dadosmes mes="janeiro" ano="2006">
+	<dadosmes mes="01" ano="2006">
 		<movimentacao tipo="receita" valor="500" categoria="RECEITA1"/>
 		<movimentacao tipo="despesa" valor="313" categoria="DESPESA2"/>
 	</dadosmes>

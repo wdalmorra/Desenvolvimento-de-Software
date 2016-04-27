@@ -46,14 +46,15 @@ public class ConversorTest {
     @Test
     public void testToXML() {
         System.out.println("toXML");
-        DadosMes dadosMes = new DadosMes();
+        
+        DadosMes testCase = new DadosMes();
         Movimentacao m1 = new Receita(CategoriaReceita.RECEITA1, 500);
         Movimentacao m2 = new Despesa(CategoriaDespesa.DESPESA2, 313);
-        dadosMes.addMovimentacao(m1);
-        dadosMes.addMovimentacao(m2);
+        testCase.addMovimentacao(m1);
+        testCase.addMovimentacao(m2);
         Conversor instance = Conversor.getInstance();
-        String expResult = "";
-        instance.converteParaXML(dadosMes, "test/resources/teste-01.out.xml");
+        instance.converteParaXML(testCase, "test/resources/teste-01.out.xml");
+        DadosMes result = instance.converteParaDadosMes("test/resources/teste-01.out.xml");
 //        assertEquals(expResult, result);
             //fail("The test case is a prototype.");
     }

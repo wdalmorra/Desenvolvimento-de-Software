@@ -118,7 +118,14 @@ public class Conversor {
                 }
 
                 Element dadosMes = (Element) dadosMensais.item(0);
+                int mes = Integer.parseInt(dadosMes.getAttribute("mes"));
+                int ano = Integer.parseInt(dadosMes.getAttribute("ano"));
                 NodeList movimentacoes = dadosMes.getElementsByTagName("movimentacao");
+                
+                GregorianCalendar date = new GregorianCalendar(ano, mes, 1);
+                // Dia primeiro porque soh interessa o mes e o ano, os dados sao
+                // mensais
+                retval.setDate(date);
                 
                 // Não, não aceita foreach.
                 for (int i = 0; i < movimentacoes.getLength(); i++) {
@@ -128,9 +135,11 @@ public class Conversor {
                     String tipo = movimentacao.getAttribute("tipo");
                     
                     if (tipo.equals("receita")) {
-                        retval.addMovimentacao(new Receita(CategoriaReceita.DEFAULT, valor));
+                        CategoriaReceita c = CategoriaReceita.stringToCategoria(categoria);
+                        retval.addMovimentacao(new Receita(c, valor));
                     } else if (tipo.equals("despesa")) {
-                        retval.addMovimentacao(new Despesa(CategoriaDespesa.DEFAULT, valor));
+                        CategoriaDespesa c = CategoriaDespesa.stringToCategoria(categoria);
+                        retval.addMovimentacao(new Despesa(c, valor));
                     } else {
                         retval = null;
                         throw new Exception();
