@@ -32,7 +32,7 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro" }));
