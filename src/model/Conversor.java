@@ -60,8 +60,11 @@ public class Conversor {
             
             // Elemento dadosMes
             Element dadosMesElement = doc.createElement("dadosMes");
-            dadosMesElement.setAttribute("mes","janeiro");
-            dadosMesElement.setAttribute("ano", "2001");
+            GregorianCalendar date = dadosMes.getMes();
+            int mes = date.get(GregorianCalendar.MONTH);
+            int ano = date.get(GregorianCalendar.YEAR);
+            dadosMesElement.setAttribute("mes",Integer.toString(mes));
+            dadosMesElement.setAttribute("ano",Integer.toString(ano));
             financasElement.appendChild(dadosMesElement);
             
             // Preenche o dadosMes com as movimentacoes
