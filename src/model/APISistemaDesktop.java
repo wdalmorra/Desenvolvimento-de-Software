@@ -43,7 +43,6 @@ public class APISistemaDesktop extends Observable{
         Inicializa o array de dadosMes vazio
         Inicializa o conversor a ser utilizado para salvar os dados em XML
     */
-
     public APISistemaDesktop(){
         dadosMes = new ArrayList<>();
         conversor = Conversor.getInstance();
@@ -111,7 +110,7 @@ public class APISistemaDesktop extends Observable{
     public void exportaMes(GregorianCalendar mes, String dir){
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
-//                conversor.converteParaXML(dm, dir);
+                conversor.converteParaXML(dm, dir);
                 break;
             }
         }
@@ -125,7 +124,7 @@ public class APISistemaDesktop extends Observable{
     public void salvaMes(GregorianCalendar mes){
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
-//                conversor.converteParaXML(dm);
+                conversor.converteParaXML(dm);
                 break;
             }
         }
@@ -169,6 +168,10 @@ public class APISistemaDesktop extends Observable{
         return null;
     }
     
+    /*
+        comparaMeses simplesmente verifica se dadas duas datas, os meses e anos
+        sao iguais
+    */
     private boolean comparaMeses(GregorianCalendar a, GregorianCalendar b){
         return (a.get(GregorianCalendar.YEAR) == b.get(GregorianCalendar.YEAR))
                 && (a.get(GregorianCalendar.MONTH) == b.get(GregorianCalendar.MONTH));
