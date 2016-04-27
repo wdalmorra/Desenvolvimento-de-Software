@@ -11,4 +11,13 @@ package model;
  */
 public enum CategoriaReceita {
     DEFAULT, RECEITA1, RECEITA2;
+    
+    static public String categoriaToString(CategoriaReceita cat){
+        return cat.toString();
+    }
+    
+    static public CategoriaReceita stringToCategoria(String s){
+        return CategoriaReceita.valueOf(s);
+    }
+    
 }

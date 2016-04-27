@@ -33,6 +33,9 @@ public class APISistemaDesktop extends Observable{
         
         System.out.println(sisDesk.visualizaMes(new Date(2016,04,26)).getMovimentacoes().get(0).getValor());
         System.out.println(sisDesk.visualizaMes(new Date(2016,04,26)).getMovimentacoes().get(1).getValor());
+        
+        CategoriaDespesa.valueOf(CategoriaDespesa.class, "DEFAULT");
+        
     }
 
     /*
