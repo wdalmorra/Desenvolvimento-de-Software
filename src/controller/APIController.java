@@ -31,6 +31,7 @@ public class APIController implements ActionListener {
         switch(e.getActionCommand()) {
             case "NOVO MÊS":
                 view.novoMes();
+                this.criaMes();
                 break;
             case "ABRIR MÊS":
                 break;
@@ -42,26 +43,13 @@ public class APIController implements ActionListener {
                 view.fechar();
                 break;
             case "Submeter":
-//                Movimentacao mov;
-//                int valor = view.getValor();
-//                int ano = view.getAno();
-//                int mes = view.getMes();
-//                String cat = view.getCategoria();
-//                String tipo = view.getDouR(); 
-//                GregorianCalendar date = new GregorianCalendar(ano, mes, 1);
-//                if(tipo == "D") {
-//                    CategoriaDespesa cd = CategoriaDespesa.stringToCategoria(cat.toUpperCase());
-//                    mov = new Despesa(cd, valor);
-//                } else {
-//                    CategoriaReceita cr = CategoriaReceita.stringToCategoria(cat.toUpperCase());
-//                    mov = new Receita(cr, valor);
-//                }
-//                sistema.addMovimentacao(date, mov);
+                this.submeteMovimentacao();
                 break;
             case "Voltar":
                 view.voltar();
                 break;
             case "Salvar":
+                this.salvaMes();
                 break;
             case "Exportar":
                 break;
@@ -71,11 +59,11 @@ public class APIController implements ActionListener {
     }
     
     public void criaMes() {
-        //sistema.criaMes();
+        sistema.criaMes(this.getDate());
     }
     
     public void salvaMes() {
-        //sistema.salvaMes(this.dados);
+        sistema.salvaMes(this.getDate());
     } 
     
     public void exportaMes(String dir) {
@@ -88,5 +76,21 @@ public class APIController implements ActionListener {
     
     public void addView(APIView view) {
         this.view = view;
+    }
+    
+    private void submeteMovimentacao() {
+//        int valor = view.getValor();
+//        String cat = view.getCategoria();
+//        String tipo = view.getDouR();
+//        GregorianCalendar date = this.getDate();
+//        sistema.addMovimentacao(valor, cat, tipo, date);
+    }
+    
+    private GregorianCalendar getDate() {
+//        int ano = view.getAno();
+//        int mes = view.getMes();
+//        GregorianCalendar date = new GregorianCalendar(ano, mes, 1);
+//        return date;
+        return null;
     }
 }

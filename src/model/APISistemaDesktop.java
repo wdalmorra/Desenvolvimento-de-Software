@@ -20,21 +20,7 @@ public class APISistemaDesktop extends Observable{
     
     
     public static void main(String[] args) {
-        APISistemaDesktop sisDesk = new APISistemaDesktop();
-        DadosMes dm = new DadosMes();
-        dm.setDate(new GregorianCalendar(2016,04,26));
-        Despesa d = new Despesa();
-        d.setValor(15);
-        d.setCategoria(CategoriaDespesa.DESPESA1);
-        dm.addMovimentacao(d);
-        Receita r = new Receita(CategoriaReceita.RECEITA1,30);
-        dm.addMovimentacao(r);
-        sisDesk.criaMes(dm);
         
-        System.out.println(sisDesk.visualizaMes(new GregorianCalendar(2016,04,26)).getMovimentacoes().get(0).getValor());
-        System.out.println(sisDesk.visualizaMes(new GregorianCalendar(2016,04,26)).getMovimentacoes().get(1).getValor());
-        
-        System.out.println(new GregorianCalendar(2016,04,27).get(GregorianCalendar.YEAR));
         
     }
 
@@ -51,7 +37,9 @@ public class APISistemaDesktop extends Observable{
     /*
         criaMes é responsavel por adicionar um novo mes com dados ao sistema.
     */
-    public void criaMes(DadosMes dMes){
+    public void criaMes(GregorianCalendar gc){
+        DadosMes dMes = new DadosMes();
+        dMes.setDate(gc);
         dadosMes.add(dMes);
     }
     
@@ -59,8 +47,10 @@ public class APISistemaDesktop extends Observable{
         addMovimentacao adiciona uma movimentacao a um determinado mes.
         Observer nota essa modificacao e eh notificado.
     */
-    public void addMovimentacao(GregorianCalendar mes, Movimentacao mov){
-        
+    public void addMovimentacao(int valor, String cat, String tipo, GregorianCalendar mes){
+        Movimentacao mov = (tipo.equals("D")) ? 
+            new Despesa(CategoriaDespesa.stringToCategoria(cat.toUpperCase()), valor) :
+            new Receita(CategoriaReceita.stringToCategoria(cat.toUpperCase()), valor);
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
                 dm.addMovimentacao(mov);
@@ -77,7 +67,6 @@ public class APISistemaDesktop extends Observable{
     public void removeMovimentacao(GregorianCalendar mes, Movimentacao mov) {
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
-                
                 dm.getMovimentacoes().remove(mov);
                 notifyObservers();
                 break;
