@@ -25,7 +25,7 @@ public class APIView implements Observer{
         this.vnm = new ViewNovoMes();
         this.vmp = new ViewMenuPopUp();
     }
-    
+
     public void menu() {
         this.vm.setVisible(true);
     }
@@ -82,7 +82,7 @@ public class APIView implements Observer{
     
     public int getValor() {
         String valor = this.vnm.getValor();
-        String valorComCentavos = valor.replaceFirst("[.]", "");
+        String valorComCentavos = valor.replaceFirst("[.,]", "");
         
         if(isInteger(valorComCentavos)) {
             return Integer.parseInt(valorComCentavos);
@@ -99,6 +99,10 @@ public class APIView implements Observer{
     
     public String getDouR() {
         return this.vnm.getDouR();
+    }
+    
+    public void removeCatComboBox(String cat, String tipo){
+        this.vnm.removeCatCombobox(cat, tipo);
     }
     
     public boolean isInteger(String valor) {

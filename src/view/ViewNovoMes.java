@@ -14,6 +14,7 @@ import model.CategoriaDespesa;
 import model.CategoriaReceita;
 import model.Movimentacao;
 import model.Calendario;
+import model.Receita;
 
 /**
  *
@@ -21,7 +22,10 @@ import model.Calendario;
  */
 public class ViewNovoMes extends javax.swing.JFrame {
 
-    private ButtonGroup group;
+    
+    DefaultComboBoxModel receitaModel;
+    DefaultComboBoxModel despesaModel;
+    
     
     /**
      * Creates new form ViewNovoMes
@@ -90,26 +94,36 @@ public class ViewNovoMes extends javax.swing.JFrame {
         }
         
         jList1.setModel(modelList);
+        
     }
     
     public void popularComDespesas() {
-        menuCategoria.setModel( new DefaultComboBoxModel<>(CategoriaDespesa.values()));
+        menuCategoria.setModel(despesaModel);
     }
     
     public void popularComReceitas() {
-        menuCategoria.setModel( new DefaultComboBoxModel<>(CategoriaReceita.values()));
+        menuCategoria.setModel(receitaModel);
     }
     
-    private void myInitComponents() {  
-        if (novoMesReceitaCheck.isSelected()){
-            menuCategoria.setModel( new DefaultComboBoxModel<>(CategoriaReceita.values()));
-        } else {
-            menuCategoria.setModel( new DefaultComboBoxModel<>(CategoriaDespesa.values()));
-        }
+    private void myInitComponents() {
+        receitaModel = new DefaultComboBoxModel<>(CategoriaReceita.values());
+        despesaModel = new DefaultComboBoxModel<>(CategoriaDespesa.values());
         
-        jList1.setModel(new DefaultListModel());   
+        menuCategoria.setModel(novoMesReceitaCheck.isSelected() ? receitaModel : despesaModel);
+        
+        
+        jList1.setModel(new DefaultListModel());
     }
 
+    public void removeCatCombobox(String cat, String tipo){
+        
+        if (tipo == "D") {
+            despesaModel.removeElement(CategoriaDespesa.stringToCategoria(cat));
+        } else {
+            receitaModel.removeElement(CategoriaReceita.stringToCategoria(cat));
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

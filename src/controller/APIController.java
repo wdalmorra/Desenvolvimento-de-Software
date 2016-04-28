@@ -97,6 +97,10 @@ public class APIController implements ActionListener {
             String tipo = view.getDouR();
             GregorianCalendar date = this.getDate();
             sistema.addMovimentacao(valor, cat, tipo, date);
+            
+            this.view.removeCatComboBox(cat, tipo);
+            
+            
         }
     }
     
