@@ -6,7 +6,10 @@
 package view;
 
 import java.awt.event.ActionListener;
-import model.Calendario;
+import javax.swing.ButtonGroup;
+import model.CategoriaDespesa;
+import model.CategoriaReceita;
+//import model.Calendario;
 
 /**
  *
@@ -14,11 +17,14 @@ import model.Calendario;
  */
 public class ViewNovoMes extends javax.swing.JFrame {
 
+    ButtonGroup group;
+    
     /**
      * Creates new form ViewNovoMes
      */
     public ViewNovoMes() {
         initComponents();
+        myInitComponents();
     }
     
     public void addController(ActionListener c) {
@@ -39,7 +45,8 @@ public class ViewNovoMes extends javax.swing.JFrame {
         String mes;
         mes = labelMes.getText();
         
-        return Calendario.mesToInt(mes);
+//        return Calendario.mesToInt(mes);
+        return 0;
     }
     
     public String getValor() {
@@ -64,6 +71,24 @@ public class ViewNovoMes extends javax.swing.JFrame {
     public void setAno(String a) {
         labelAno.setText(a);
     }
+    
+    private void myInitComponents(){
+        
+        novoMesReceitaCheck.setActionCommand("Receita");
+        novoMesDespesaCheck.setActionCommand("Despesa");
+        
+        group = new ButtonGroup();
+        group.add(novoMesReceitaCheck);
+        group.add(novoMesDespesaCheck);
+        if (group.getSelection().getActionCommand().equals("Receita")){
+            menuCategoria.setModel( new javax.swing.DefaultComboBoxModel<CategoriaReceita>(CategoriaReceita.values()));
+        } else {
+            menuCategoria.setModel( new javax.swing.DefaultComboBoxModel<CategoriaDespesa>(CategoriaDespesa.values()));
+        }
+
+//        menuCategoria.setModel(javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4"));
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,10 +101,10 @@ public class ViewNovoMes extends javax.swing.JFrame {
 
         novoMesMesTexto = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<String>();
         novoMesDespesaCheck = new javax.swing.JRadioButton();
         novoMesReceitaCheck = new javax.swing.JRadioButton();
-        menuCategoria = new javax.swing.JComboBox<>();
+        menuCategoria = new javax.swing.JComboBox();
         novoMesSubmeter = new javax.swing.JButton();
         novoMesVoltar = new javax.swing.JButton();
         novoMesSalvar = new javax.swing.JButton();
@@ -95,10 +120,10 @@ public class ViewNovoMes extends javax.swing.JFrame {
 
         novoMesMesTexto.setText("Mês");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(jList1);
 
@@ -107,7 +132,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
 
         novoMesReceitaCheck.setText("Receita");
 
-        menuCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        menuCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         novoMesSubmeter.setText("Submeter");
 
@@ -124,7 +149,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
 
         labelMes.setText("Mes");
 
-        labelAno.setText("Ano");
+        labelAno.setText("2016");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,7 +245,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAno;
     private javax.swing.JLabel labelMes;
-    private javax.swing.JComboBox<String> menuCategoria;
+    private javax.swing.JComboBox menuCategoria;
     private javax.swing.JRadioButton novoMesDespesaCheck;
     private javax.swing.JButton novoMesExportar;
     private javax.swing.JLabel novoMesMesTexto;
