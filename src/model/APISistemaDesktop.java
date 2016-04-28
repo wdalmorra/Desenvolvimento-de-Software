@@ -54,7 +54,9 @@ public class APISistemaDesktop extends Observable{
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
                 dm.addMovimentacao(mov);
-                notifyObservers();
+                System.out.println(this.countObservers());
+                this.setChanged();
+                this.notifyObservers(dm.getMovimentacoes());
                 break;
             }
         }        
@@ -68,7 +70,7 @@ public class APISistemaDesktop extends Observable{
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
                 dm.getMovimentacoes().remove(mov);
-                notifyObservers();
+                this.notifyObservers(dm.getMovimentacoes());
                 break;
             
             }

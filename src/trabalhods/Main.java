@@ -23,8 +23,9 @@ public class Main {
         APISistemaDesktop sistema;
         
         controlador = new APIController();
-        view = new APIView();
         sistema = new APISistemaDesktop();
+        view = new APIView();
+        sistema.addObserver(view);
         
         controlador.addModel(sistema);
         controlador.addView(view);

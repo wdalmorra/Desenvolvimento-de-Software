@@ -30,4 +30,8 @@ public class Receita extends Movimentacao {
     public void setCategoria(CategoriaReceita cat){
         this.categoria = cat;
     }
+    @Override
+    public String toString(){
+        return CategoriaReceita.categoriaToString(categoria) +" R$:"+ String.valueOf(this.getValor());
+    }
 }

@@ -6,10 +6,15 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.APISistemaDesktop;
+import model.Movimentacao;
 
-public class APIView {
+public class APIView implements Observer{
     private ViewMenu vm;
     private ViewNovoMes vnm;
     private ViewMenuPopUp vmp;
@@ -99,5 +104,12 @@ public class APIView {
     
     void mostraMensagemDeErro(JFrame f, String mensagem){
         JOptionPane.showMessageDialog(f, mensagem);
+    }
+
+    @Override
+    public void update(Observable sis, Object ob) {
+        if (sis instanceof APISistemaDesktop) {
+            this.vnm.setModelList((ArrayList<Movimentacao>)ob);
+        }
     }
 }

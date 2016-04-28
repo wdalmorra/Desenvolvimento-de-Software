@@ -28,5 +28,4 @@ public abstract class Movimentacao {
     public void setValor(int v){
         this.valor = v;
     }
-    
 }

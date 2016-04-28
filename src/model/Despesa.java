@@ -30,4 +30,9 @@ public class Despesa extends Movimentacao {
     public void setCategoria(CategoriaDespesa cat){
         this.categoria = cat;
     }
+    
+    @Override
+    public String toString(){
+        return CategoriaDespesa.categoriaToString(categoria) +" R$:"+ String.valueOf(this.getValor());
+    }
 }
