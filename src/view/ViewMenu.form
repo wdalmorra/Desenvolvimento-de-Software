@@ -61,21 +61,25 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="NOVO M&#xca;S"/>
+        <Property name="actionCommand" type="java.lang.String" value="menuNovoMes"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="text" type="java.lang.String" value="ABRIR M&#xca;S"/>
+        <Property name="actionCommand" type="java.lang.String" value="menuAbrirMes"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
         <Property name="text" type="java.lang.String" value="RELAT&#xd3;RIO GR&#xc1;FICO"/>
+        <Property name="actionCommand" type="java.lang.String" value="menuRelatorio"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
         <Property name="text" type="java.lang.String" value="SOBRE"/>
+        <Property name="actionCommand" type="java.lang.String" value="menuSobre"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -90,6 +94,7 @@
     <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
         <Property name="text" type="java.lang.String" value="SAIR"/>
+        <Property name="actionCommand" type="java.lang.String" value="menuSair"/>
       </Properties>
     </Component>
   </SubComponents>

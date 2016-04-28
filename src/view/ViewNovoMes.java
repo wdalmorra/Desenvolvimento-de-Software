@@ -8,12 +8,12 @@ package view;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import model.CategoriaDespesa;
 import model.CategoriaReceita;
-import model.Despesa;
 import model.Movimentacao;
-//import model.Calendario;
+import model.Calendario;
 
 /**
  *
@@ -36,6 +36,8 @@ public class ViewNovoMes extends javax.swing.JFrame {
         novoMesSubmeter.addActionListener(c);
         novoMesSalvar.addActionListener(c);
         novoMesExportar.addActionListener(c);
+        novoMesDespesaCheck.addActionListener(c);
+        novoMesReceitaCheck.addActionListener(c);
     }
     
     public int getAno() {
@@ -49,8 +51,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
         String mes;
         mes = labelMes.getText();
         
-//        return Calendario.mesToInt(mes);
-        return 0;
+        return Calendario.mesToInt(mes);
     }
     
     public String getValor() {
@@ -81,8 +82,8 @@ public class ViewNovoMes extends javax.swing.JFrame {
     }
     
     public void setModelList(ArrayList<Movimentacao> movs) {
-        javax.swing.DefaultListModel<Movimentacao> modelList = 
-                new javax.swing.DefaultListModel<Movimentacao>();
+        DefaultListModel<Movimentacao> modelList = 
+                new DefaultListModel<>();
         
         for(Movimentacao m : movs) {
             modelList.addElement(m);
@@ -91,22 +92,22 @@ public class ViewNovoMes extends javax.swing.JFrame {
         jList1.setModel(modelList);
     }
     
-    private void myInitComponents(){
-        
-        novoMesReceitaCheck.setActionCommand("Receita");
-        novoMesDespesaCheck.setActionCommand("Despesa");
-        
-        group = new ButtonGroup();
-        group.add(novoMesReceitaCheck);
-        group.add(novoMesDespesaCheck);
-        if (group.getSelection().getActionCommand().equals("Receita")){
-            menuCategoria.setModel( new javax.swing.DefaultComboBoxModel<CategoriaReceita>(CategoriaReceita.values()));
+    public void popularComDespesas() {
+        menuCategoria.setModel( new DefaultComboBoxModel<>(CategoriaDespesa.values()));
+    }
+    
+    public void popularComReceitas() {
+        menuCategoria.setModel( new DefaultComboBoxModel<>(CategoriaReceita.values()));
+    }
+    
+    private void myInitComponents() {  
+        if (novoMesReceitaCheck.isSelected()){
+            menuCategoria.setModel( new DefaultComboBoxModel<>(CategoriaReceita.values()));
         } else {
-            menuCategoria.setModel( new javax.swing.DefaultComboBoxModel<CategoriaDespesa>(CategoriaDespesa.values()));
+            menuCategoria.setModel( new DefaultComboBoxModel<>(CategoriaDespesa.values()));
         }
         
-        jList1.setModel(new DefaultListModel());
-        
+        jList1.setModel(new DefaultListModel());   
     }
 
     /**
@@ -118,9 +119,10 @@ public class ViewNovoMes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        groupDeR = new javax.swing.ButtonGroup();
         novoMesMesTexto = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<Movimentacao>();
+        jList1 = new javax.swing.JList<>();
         novoMesDespesaCheck = new javax.swing.JRadioButton();
         novoMesReceitaCheck = new javax.swing.JRadioButton();
         menuCategoria = new javax.swing.JComboBox();
@@ -139,27 +141,30 @@ public class ViewNovoMes extends javax.swing.JFrame {
 
         novoMesMesTexto.setText("Mês");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
+        groupDeR.add(novoMesDespesaCheck);
         novoMesDespesaCheck.setSelected(true);
         novoMesDespesaCheck.setText("Despesa");
+        novoMesDespesaCheck.setActionCommand("despesaCheckBox");
 
+        groupDeR.add(novoMesReceitaCheck);
         novoMesReceitaCheck.setText("Receita");
+        novoMesReceitaCheck.setActionCommand("receitaCheckBox");
 
         menuCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         novoMesSubmeter.setText("Submeter");
+        novoMesSubmeter.setActionCommand("novoMesSubmeter");
 
         novoMesVoltar.setText("Voltar");
+        novoMesVoltar.setActionCommand("novoMesVoltar");
 
         novoMesSalvar.setText("Salvar");
+        novoMesSalvar.setActionCommand("novoMesSalvar");
 
         novoMesExportar.setText("Exportar");
+        novoMesExportar.setActionCommand("novoMesExportar");
 
         jLabel1.setText("R$");
 
@@ -259,6 +264,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup groupDeR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<Movimentacao> jList1;
     private javax.swing.JScrollPane jScrollPane1;

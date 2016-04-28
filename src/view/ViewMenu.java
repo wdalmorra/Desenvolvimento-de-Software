@@ -47,18 +47,23 @@ public class ViewMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("NOVO MÊS");
+        jButton1.setActionCommand("menuNovoMes");
 
         jButton2.setText("ABRIR MÊS");
+        jButton2.setActionCommand("menuAbrirMes");
 
         jButton3.setText("RELATÓRIO GRÁFICO");
+        jButton3.setActionCommand("menuRelatorio");
 
         jButton4.setText("SOBRE");
+        jButton4.setActionCommand("menuSobre");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MENU");
 
         jButton5.setText("SAIR");
+        jButton5.setActionCommand("menuSair");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

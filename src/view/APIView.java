@@ -57,6 +57,14 @@ public class APIView implements Observer{
         this.vmp.dispose();
     }
     
+    public void popularComDespesas() {
+        this.vnm.popularComDespesas();
+    }
+    
+    public void popularComReceitas() {
+        this.vnm.popularComReceitas();
+    }
+    
     public void addController(ActionListener c) {
         this.vm.addController(c);
         this.vnm.addController(c);
@@ -78,7 +86,7 @@ public class APIView implements Observer{
         if(isInteger(valorComCentavos)) {
             return Integer.parseInt(valorComCentavos);
         } else {
-            this.mostraMensagemDeErro(vnm, "Por favor, insira um valor inteiro.");
+            this.mostraMensagemDeErro(this.vnm, "Por favor, insira um valor inteiro.");
         }
         
         return -1;
