@@ -5,6 +5,10 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
+import javax.swing.DefaultComboBoxModel;
+import model.Calendario;
+
 /**
  *
  * @author Eliezer
@@ -17,6 +21,24 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
     public ViewMenuPopUp() {
         initComponents();
     }
+    
+    public void addController(ActionListener c) {
+        popupOk.addActionListener(c);
+        popupCancelar.addActionListener(c);
+    }
+    
+    public void popularMenus() {
+        cbMes.setModel(new DefaultComboBoxModel(Calendario.listaMes));
+        cbAno.setModel(new DefaultComboBoxModel(Calendario.listaAno));
+    }
+    
+    public String getMesPopup() {
+        return (String)cbMes.getSelectedItem();
+    }
+    
+    public String getAnoPopup() {
+        return (String)cbAno.getSelectedItem();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,25 +49,28 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cbMes = new javax.swing.JComboBox<>();
+        cbAno = new javax.swing.JComboBox<>();
+        popupOk = new javax.swing.JButton();
+        popupCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro" }));
+        cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2016" }));
+        cbAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2016" }));
 
-        jButton1.setText("OK");
+        popupOk.setText("OK");
+        popupOk.setActionCommand("popupOk");
+        popupOk.setName(""); // NOI18N
 
-        jButton2.setText("CANCELAR");
+        popupCancelar.setText("CANCELAR");
+        popupCancelar.setActionCommand("popupCancelar");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Selecione Mês e ano.");
+        jLabel1.setText("Selecione Mês e Ano.");
         jLabel1.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -61,17 +86,17 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(popupOk, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jButton2))
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(popupCancelar))
+                            .addComponent(cbAno, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -81,14 +106,16 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(popupOk)
+                    .addComponent(popupCancelar))
                 .addGap(11, 11, 11))
         );
+
+        popupOk.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -129,10 +156,10 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> cbAno;
+    private javax.swing.JComboBox<String> cbMes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton popupCancelar;
+    private javax.swing.JButton popupOk;
     // End of variables declaration//GEN-END:variables
 }

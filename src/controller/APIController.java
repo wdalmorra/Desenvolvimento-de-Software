@@ -27,11 +27,10 @@ public class APIController implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(e.getActionCommand());
+        System.out.println(e.paramString());
         switch(e.getActionCommand()) {
             case "NOVO MÊS":
-                view.novoMes();
-                this.criaMes();
+                view.abrePopup();                
                 break;
             case "ABRIR MÊS":
                 break;
@@ -52,6 +51,13 @@ public class APIController implements ActionListener {
                 this.salvaMes();
                 break;
             case "Exportar":
+                break;
+            case "popupOk":
+                view.novoMes();
+                this.criaMes();
+                break;
+            case "popupCancelar":
+                view.popupCancelar();
                 break;
             default:
                 break;
@@ -79,18 +85,17 @@ public class APIController implements ActionListener {
     }
     
     private void submeteMovimentacao() {
-//        int valor = view.getValor();
-//        String cat = view.getCategoria();
-//        String tipo = view.getDouR();
-//        GregorianCalendar date = this.getDate();
-//        sistema.addMovimentacao(valor, cat, tipo, date);
+        int valor = view.getValor();
+        String cat = view.getCategoria();
+        String tipo = view.getDouR();
+        GregorianCalendar date = this.getDate();
+        sistema.addMovimentacao(valor, cat, tipo, date);
     }
     
     private GregorianCalendar getDate() {
-//        int ano = view.getAno();
-//        int mes = view.getMes();
-//        GregorianCalendar date = new GregorianCalendar(ano, mes, 1);
-//        return date;
-        return null;
+        int ano = view.getAno();
+        int mes = view.getMes();
+        GregorianCalendar date = new GregorianCalendar(ano, mes, 1);
+        return date;
     }
 }
