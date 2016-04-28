@@ -43,7 +43,17 @@ public class Conversor {
     }
     
     public void converteParaXML(DadosMes dadosMes) {
-        converteParaXML(dadosMes, currentSavePath);
+        
+        String mes = Integer.toString(
+                dadosMes.getMes().get(GregorianCalendar.MONTH)
+        );
+        
+        String ano = Integer.toString(
+                dadosMes.getMes().get(GregorianCalendar.YEAR)
+        );
+        
+        converteParaXML(dadosMes, currentSavePath + "/" + "dados_m" + mes + "_a" + ano + ".xml");
+        
     }
     
     public void converteParaXML(DadosMes dadosMes, String path) {

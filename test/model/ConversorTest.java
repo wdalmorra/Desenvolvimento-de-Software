@@ -43,8 +43,8 @@ public class ConversorTest {
      * Test of toXML method, of class Conversor.
      */
     @Test
-    public void testBoth() {
-        System.out.println("toXML");
+    public void testSpecificPath() {
+        System.out.println("specificPath");
         
         // Prepara o caso de teste
         DadosMes testCase = new DadosMes();
@@ -57,6 +57,64 @@ public class ConversorTest {
         Conversor instance = Conversor.getInstance();
         instance.converteParaXML(testCase, "test/resources/teste-01.out.xml");
         DadosMes dmResult = instance.converteParaDadosMes("test/resources/teste-01.out.xml");
+        
+        // Pega os conteudos do caso de teste e do resultado
+        ArrayList<Movimentacao> result = dmResult.getMovimentacoes();
+        ArrayList<Movimentacao> expectedResult = testCase.getMovimentacoes();
+        
+        // Confiro contra o que eu espero no XML
+        if (result.size() != expectedResult.size()) {
+            fail("Numero de movimentacoes incorreto");
+        }
+        
+        // Preciso que o resultado das movimentações esteja em uma ordem
+        // determinística. Ordeno as movimentações por valor.
+        Comparator<Movimentacao> c = new Comparator<Movimentacao> () {
+            @Override
+            public int compare(Movimentacao m1, Movimentacao m2) {
+                return (m1.getValor() - m2.getValor());
+            }
+        };
+        Collections.sort(result, c);
+        Collections.sort(expectedResult, c);
+        
+        for (int i = 0; i < 2; i++) {
+            // Testa o valor
+            Movimentacao er = expectedResult.get(i);
+            Movimentacao r = result.get(i);
+            assertEquals(er.getValor(), r.getValor());
+            
+            // Testa categorias
+            if (er instanceof Receita) {
+                if (r instanceof Receita)
+                    assertEquals(((Receita) r).getCategoria(), ((Receita) er).getCategoria());
+                else
+                    fail("Expected: Receita");
+            } else {
+                if (r instanceof Despesa)
+                    assertEquals(((Despesa) r).getCategoria(), ((Despesa) er).getCategoria());
+                else
+                    fail("Expected: Despesa");
+            }
+        }
+    }
+    
+    
+    @Test
+    public void testDefaultPath() {
+        System.out.println("defaultPath");
+        
+        // Prepara o caso de teste
+        DadosMes testCase = new DadosMes(new GregorianCalendar(1993, 8, 1));
+        Movimentacao m1 = new Receita(CategoriaReceita.RECEITA1, 500);
+        Movimentacao m2 = new Despesa(CategoriaDespesa.DESPESA2, 313);
+        testCase.addMovimentacao(m1);
+        testCase.addMovimentacao(m2);
+        
+        // Exporta o caso de teste e importa de volta
+        Conversor instance = Conversor.getInstance();
+        instance.converteParaXML(testCase);
+        DadosMes dmResult = instance.converteParaDadosMes("./dados_m8_a1993.xml");
         
         // Pega os conteudos do caso de teste e do resultado
         ArrayList<Movimentacao> result = dmResult.getMovimentacoes();
