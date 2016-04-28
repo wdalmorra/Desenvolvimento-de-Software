@@ -51,10 +51,57 @@ public class APISistemaDesktop extends Observable{
         Movimentacao mov = (tipo.equals("D")) ? 
             new Despesa(CategoriaDespesa.stringToCategoria(cat.toUpperCase()), valor) :
             new Receita(CategoriaReceita.stringToCategoria(cat.toUpperCase()), valor);
+        boolean alt = false;
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
-                dm.addMovimentacao(mov);
-                System.out.println(this.countObservers());
+                for (Movimentacao m: dm.getMovimentacoes()) {
+                    if (m instanceof Receita) {
+                        if (CategoriaReceita.categoriaToString(((Receita)m).getCategoria()).equals(cat)) {
+                            m.setValor(m.getValor()+ valor);
+                            alt = true;
+                            break;
+                        }
+                    } else {
+                        if (CategoriaDespesa.categoriaToString(((Despesa)m).getCategoria()).equals(cat)) {
+                            m.setValor(m.getValor()+ valor);
+                            alt = true;
+                            break;
+                        }
+                    }
+                }
+                if (!alt) {
+                    dm.addMovimentacao(mov);
+                }
+                this.setChanged();
+                this.notifyObservers(dm.getMovimentacoes());
+                break;
+            }
+        }        
+    }
+    
+    /* 
+        alteraMovimentacao altera uma movimentacao a um determinado mes.
+        Observer nota essa modificacao e eh notificado.
+    */
+    public void alteraMovimentacao(int valor, String cat, String tipo, GregorianCalendar mes){
+        Movimentacao mov = (tipo.equals("D")) ? 
+            new Despesa(CategoriaDespesa.stringToCategoria(cat.toUpperCase()), valor) :
+            new Receita(CategoriaReceita.stringToCategoria(cat.toUpperCase()), valor);
+        for (DadosMes dm : dadosMes){
+            if (comparaMeses(dm.getMes(),mes)) {
+                for (Movimentacao m: dm.getMovimentacoes()) {
+                    if (m instanceof Receita) {
+                        if (CategoriaReceita.categoriaToString(((Receita)m).getCategoria()).equals(cat)) {
+                            m.setValor(valor);
+                            break;
+                        }
+                    } else {
+                        if (CategoriaDespesa.categoriaToString(((Despesa)m).getCategoria()).equals(cat)) {
+                            m.setValor(valor);
+                            break;
+                        }
+                    }
+                }
                 this.setChanged();
                 this.notifyObservers(dm.getMovimentacoes());
                 break;
@@ -70,6 +117,7 @@ public class APISistemaDesktop extends Observable{
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
                 dm.getMovimentacoes().remove(mov);
+                this.setChanged();
                 this.notifyObservers(dm.getMovimentacoes());
                 break;
             

@@ -82,7 +82,7 @@ public class APIView implements Observer{
     
     public int getValor() {
         String valor = this.vnm.getValor();
-        String valorComCentavos = valor.replaceFirst("[.,]", "");
+        String valorComCentavos = valor.replaceAll("[.,]", "");
         
         if(isInteger(valorComCentavos)) {
             return Integer.parseInt(valorComCentavos);
@@ -93,6 +93,7 @@ public class APIView implements Observer{
         return -1;
     }
     
+    
     public String getCategoria() {
         return this.vnm.getCategoria();
     }
@@ -101,8 +102,22 @@ public class APIView implements Observer{
         return this.vnm.getDouR();
     }
     
-    public void removeCatComboBox(String cat, String tipo){
-        this.vnm.removeCatCombobox(cat, tipo);
+    public void setAlterando(boolean b){
+        this.vnm.setAlterando(b);
+    }
+    
+    public void cancelarAlteracao(){
+        this.vnm.setAlterando(false);
+    }
+    
+//    public void removeCatComboBox(String cat, String tipo){
+//        this.vnm.removeCatCombobox(cat, tipo);
+//    }
+    
+    public void modificaMovimentacao(Movimentacao m){
+//        System.out.println(m);
+        this.vnm.modificaMovimentacao(m);
+        
     }
     
     public boolean isInteger(String valor) {

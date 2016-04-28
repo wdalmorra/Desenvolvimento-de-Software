@@ -8,6 +8,10 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
+import javax.swing.JList;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import model.APISistemaDesktop;
 import model.CategoriaDespesa;
 import model.CategoriaReceita;
@@ -16,13 +20,34 @@ import model.Movimentacao;
 import model.Receita;
 import view.APIView;
 
-public class APIController implements ActionListener {
+public class APIController implements ActionListener, ListSelectionListener{
     private APIView view;
     private APISistemaDesktop sistema;
     
     public APIController(){
         this.sistema = null;
         this.view = null;
+    }
+    
+     @Override
+    public void valueChanged(ListSelectionEvent lse) {
+        JList lsm = (JList) lse.getSource();
+         
+         if (lsm.getSelectedValue() == null) {
+             return;
+         }
+        
+        this.view.modificaMovimentacao((Movimentacao) lsm.getSelectedValue());
+        
+        
+         if (((Movimentacao)lsm.getSelectedValue()) instanceof Receita) {
+             this.view.popularComReceitas();
+         } else {
+             this.view.popularComDespesas();
+         }
+         
+         view.setAlterando(true);
+        
     }
     
     @Override
@@ -42,7 +67,7 @@ public class APIController implements ActionListener {
                 view.fechar();
                 break;
             case "novoMesSubmeter":
-                this.submeteMovimentacao();
+                this.submeteMovimentacao(true);
                 break;
             case "novoMesVoltar":
                 view.voltar();
@@ -65,6 +90,15 @@ public class APIController implements ActionListener {
             case "receitaCheckBox":
                 view.popularComReceitas();
                 break;
+            case "novoMesCancelar":
+                view.cancelarAlteracao();
+                break;
+            case "novoMesAlterar":
+                
+                this.submeteMovimentacao(false);
+                view.setAlterando(false);
+                
+                break;    
             default:
                 break;
         }
@@ -90,17 +124,17 @@ public class APIController implements ActionListener {
         this.view = view;
     }
     
-    private void submeteMovimentacao() {
+    private void submeteMovimentacao(boolean novaSub) {
         int valor = view.getValor();
         if(valor >= 0) {
             String cat = view.getCategoria();
             String tipo = view.getDouR();
             GregorianCalendar date = this.getDate();
-            sistema.addMovimentacao(valor, cat, tipo, date);
-            
-            this.view.removeCatComboBox(cat, tipo);
-            
-            
+            if (novaSub) {
+                sistema.addMovimentacao(valor, cat, tipo, date);
+            } else {
+                sistema.alteraMovimentacao(valor, cat, tipo, date);
+            }
         }
     }
     
