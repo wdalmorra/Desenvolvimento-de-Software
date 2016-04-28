@@ -43,8 +43,8 @@ public class ConversorTest {
      * Test of toXML method, of class Conversor.
      */
     @Test
-    public void testSpecificPath() {
-        System.out.println("specificPath");
+    public void testBothSpecificPath() {
+        System.out.println("exporta-importa, path informado");
         
         // Prepara o caso de teste
         DadosMes testCase = new DadosMes();
@@ -101,8 +101,8 @@ public class ConversorTest {
     
     
     @Test
-    public void testDefaultPath() {
-        System.out.println("defaultPath");
+    public void testBothDefaultPath() {
+        System.out.println("exporta-importa, path padrao");
         
         // Prepara o caso de teste
         DadosMes testCase = new DadosMes(new GregorianCalendar(1993, 8, 1));
@@ -114,7 +114,7 @@ public class ConversorTest {
         // Exporta o caso de teste e importa de volta
         Conversor instance = Conversor.getInstance();
         instance.converteParaXML(testCase);
-        DadosMes dmResult = instance.converteParaDadosMes("./dados_m8_a1993.xml");
+        DadosMes dmResult = instance.converteParaDadosMes(new GregorianCalendar(1993, 8, 1));
         
         // Pega os conteudos do caso de teste e do resultado
         ArrayList<Movimentacao> result = dmResult.getMovimentacoes();
@@ -161,8 +161,8 @@ public class ConversorTest {
      * Test of fromXML method, of class Conversor.
      */
     @Test
-    public void testFromXML() {
-        System.out.println("fromXML");
+    public void testImportSpecificPath() {
+        System.out.println("importa, path informado");
         String path = "test/resources/teste-01.in.xml";
         Conversor instance = Conversor.getInstance();
         

@@ -111,6 +111,12 @@ public class Conversor {
         
     }
     
+    public DadosMes converteParaDadosMes(GregorianCalendar c) {
+        String mes = Integer.toString(c.get(GregorianCalendar.MONTH));
+        String ano = Integer.toString(c.get(GregorianCalendar.YEAR));
+        return converteParaDadosMes(currentSavePath + "/" + "dados_m" + mes + "_a" + ano + ".xml");
+    }
+    
     public DadosMes converteParaDadosMes(String path) {
         
         DadosMes retval = new DadosMes();
