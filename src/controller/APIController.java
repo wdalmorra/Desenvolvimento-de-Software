@@ -77,6 +77,15 @@ public class APIController implements ActionListener, ListSelectionListener{
                 break;
             case "novoMesExportar":
                 break;
+            case "novoMesDeletar":
+              break;
+            case "novoMesCancelar":
+                view.cancelarAlteracao();
+                break;
+            case "novoMesAlterar":
+                this.submeteMovimentacao(false);
+                view.setAlterando(false);
+                break;    
             case "popupOk":
                 view.novoMes();
                 this.criaMes();
@@ -90,15 +99,7 @@ public class APIController implements ActionListener, ListSelectionListener{
             case "receitaCheckBox":
                 view.popularComReceitas();
                 break;
-            case "novoMesCancelar":
-                view.cancelarAlteracao();
-                break;
-            case "novoMesAlterar":
-                
-                this.submeteMovimentacao(false);
-                view.setAlterando(false);
-                
-                break;    
+           
             default:
                 break;
         }
