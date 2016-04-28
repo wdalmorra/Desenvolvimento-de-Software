@@ -33,31 +33,32 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="novoMes_Salvar" min="-2" max="-2" attributes="0"/>
+                              <Component id="novoMesSalvar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="novoMes_Exportar" min="-2" max="-2" attributes="0"/>
+                              <Component id="novoMesExportar" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane1" min="-2" pref="149" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="jComboBox3" min="-2" pref="140" max="-2" attributes="0"/>
+                                      <Component id="menuCategoria" min="-2" pref="140" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                      <Component id="novoMes_Submeter" min="-2" max="-2" attributes="0"/>
+                                      <Component id="novoMesSubmeter" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="novoMes_Despesa_Check" min="-2" pref="79" max="-2" attributes="0"/>
+                                          <Component id="novoMesDespesaCheck" min="-2" pref="79" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                               <Component id="jLabel1" min="-2" pref="18" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jFormattedTextField1" min="-2" pref="102" max="-2" attributes="0"/>
+                                              <Component id="textValor" min="-2" pref="102" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="labelAno" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -68,18 +69,17 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="novoMes_Mes_texto" min="-2" pref="84" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jComboBox2" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="novoMesMesTexto" min="-2" pref="84" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="labelMes" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="novoMes_Voltar" min="-2" max="-2" attributes="0"/>
-                                  <Component id="novoMes_Receita_Check" min="-2" max="-2" attributes="0"/>
+                                  <Component id="novoMesVoltar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="novoMesReceitaCheck" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -94,26 +94,26 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jComboBox1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="novoMes_Mes_texto" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="jComboBox2" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="novoMesMesTexto" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="labelMes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelAno" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="novoMes_Despesa_Check" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="novoMes_Receita_Check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="novoMesDespesaCheck" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="novoMesReceitaCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jComboBox3" min="-2" max="-2" attributes="0"/>
+                      <Component id="menuCategoria" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="jFormattedTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textValor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="novoMes_Submeter" min="-2" max="-2" attributes="0"/>
+                      <Component id="novoMesSubmeter" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -123,9 +123,9 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="novoMes_Salvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="novoMes_Voltar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="novoMes_Exportar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="novoMesSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="novoMesVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="novoMesExportar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
@@ -133,33 +133,13 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Janeiro&quot; })" type="code"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="novoMes_Mes_texto">
+    <Component class="javax.swing.JLabel" name="novoMesMesTexto">
       <Properties>
         <Property name="text" type="java.lang.String" value="M&#xea;s"/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Mes"/>
       </AccessibilityProperties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox2">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;2016&quot;,&quot;2015&quot; })" type="code"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -186,17 +166,18 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JRadioButton" name="novoMes_Despesa_Check">
+    <Component class="javax.swing.JRadioButton" name="novoMesDespesaCheck">
       <Properties>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Despesa"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="novoMes_Receita_Check">
+    <Component class="javax.swing.JRadioButton" name="novoMesReceitaCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="Receita"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox3">
+    <Component class="javax.swing.JComboBox" name="menuCategoria">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -211,28 +192,25 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="novoMes_Submeter">
+    <Component class="javax.swing.JButton" name="novoMesSubmeter">
       <Properties>
         <Property name="text" type="java.lang.String" value="Submeter"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="novoMes_Voltar">
+    <Component class="javax.swing.JButton" name="novoMesVoltar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Voltar"/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novoMes_VoltarActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="novoMes_Salvar">
+    <Component class="javax.swing.JButton" name="novoMesSalvar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="novoMes_Exportar">
+    <Component class="javax.swing.JButton" name="novoMesExportar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Exportar"/>
       </Properties>
@@ -242,12 +220,22 @@
         <Property name="text" type="java.lang.String" value="R$"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+    <Component class="javax.swing.JFormattedTextField" name="textValor">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
           <Format format="##,##0.00" subtype="-1" type="4"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelMes">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mes"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelAno">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ano"/>
       </Properties>
     </Component>
   </SubComponents>
