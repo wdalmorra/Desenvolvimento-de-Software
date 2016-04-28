@@ -45,6 +45,8 @@ public class ViewMenu extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(200, 250));
 
         jButton1.setText("NOVO MÊS");
         jButton1.setActionCommand("menuNovoMes");
