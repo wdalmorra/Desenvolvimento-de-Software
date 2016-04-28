@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import model.APISistemaDesktop;
 import model.Movimentacao;
 
+
 public class APIView implements Observer{
     private ViewMenu vm;
     private ViewNovoMes vnm;
