@@ -63,7 +63,9 @@ public class ViewNovoMes extends javax.swing.JFrame {
         
         return Calendario.mesToInt(mes);
     }
-    
+    public Movimentacao movimentacaoAtual() {
+        return movimentacaoAtual;
+    }
     public String getValor() {
         return textValor.getText();
     }
@@ -148,7 +150,8 @@ public class ViewNovoMes extends javax.swing.JFrame {
     }
     
     public void modificaMovimentacao(Movimentacao m){
-                
+        movimentacaoAtual=m;
+        
         textValor.setText(String.valueOf(m.getValor()));
         
         if (m instanceof Receita) {
@@ -340,7 +343,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private Movimentacao movimentacaoAtual;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup groupDeR;
     private javax.swing.JLabel jLabel1;

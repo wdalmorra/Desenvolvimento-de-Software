@@ -128,7 +128,7 @@ public class APIController implements ActionListener, ListSelectionListener{
     }
     
     private void removeMovimentacao() { 
-       //  sistema.removeMovimentacao();
+        this.sistema.removeMovimentacao(new GregorianCalendar(view.getAno(), view.getMes(), 1),view.movimentacaoAtual() );
     }
     
     private void submeteMovimentacao(boolean novaSub) {

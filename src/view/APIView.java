@@ -94,6 +94,10 @@ public class APIView implements Observer{
         return -1;
     }
     
+    public Movimentacao movimentacaoAtual() {
+        return this.vnm.movimentacaoAtual();
+    }
+    
     
     public String getCategoria() {
         return this.vnm.getCategoria();
@@ -121,7 +125,6 @@ public class APIView implements Observer{
         this.vnm.modificaMovimentacao(m);
         
     }
-    
     public boolean isInteger(String valor) {
         try {
             Integer.parseInt(valor);
