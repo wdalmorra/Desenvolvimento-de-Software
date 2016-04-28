@@ -78,6 +78,8 @@ public class APIController implements ActionListener, ListSelectionListener{
             case "novoMesExportar":
                 break;
             case "novoMesDeletar":
+                this.removeMovimentacao();
+                view.setAlterando(false);
               break;
             case "novoMesCancelar":
                 view.cancelarAlteracao();
@@ -123,6 +125,10 @@ public class APIController implements ActionListener, ListSelectionListener{
     
     public void addView(APIView view) {
         this.view = view;
+    }
+    
+    private void removeMovimentacao() { 
+       //  sistema.removeMovimentacao();
     }
     
     private void submeteMovimentacao(boolean novaSub) {

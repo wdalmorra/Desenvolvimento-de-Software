@@ -265,6 +265,7 @@
     <Component class="javax.swing.JButton" name="novoMesDeletar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Deletar"/>
+        <Property name="actionCommand" type="java.lang.String" value="novoMesDeletar"/>
       </Properties>
     </Component>
   </SubComponents>

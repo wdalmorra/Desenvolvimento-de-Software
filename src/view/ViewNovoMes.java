@@ -248,6 +248,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
         novoMesCancelar.setActionCommand("novoMesCancelar");
 
         novoMesDeletar.setText("Deletar");
+        novoMesDeletar.setActionCommand("novoMesDeletar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
