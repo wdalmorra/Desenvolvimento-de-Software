@@ -174,7 +174,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
         groupDeR = new javax.swing.ButtonGroup();
         novoMesMesLabelFixa = new javax.swing.JLabel();
         novoMesListaScroll = new javax.swing.JScrollPane();
-        novoMesLista = new javax.swing.JList<>();
+        novoMesLista = new javax.swing.JList<Movimentacao>();
         novoMesDespesaCheck = new javax.swing.JRadioButton();
         novoMesReceitaCheck = new javax.swing.JRadioButton();
         novoMesCategoriaCb = new javax.swing.JComboBox();
