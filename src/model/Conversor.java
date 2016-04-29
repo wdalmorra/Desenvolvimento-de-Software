@@ -17,7 +17,7 @@ import java.util.*;
 
 /**
  *
- * @author Thainan
+ * @author lxavier
  */
 public class Conversor {
     
@@ -25,6 +25,13 @@ public class Conversor {
     private static Conversor singleton;
     private static String caminhoPadrao = ".";
     
+    /**
+     * Retorna uma instancia (singleton) de um objeto Conversor (xml <-> DadosMes).
+     * <p>
+     * O metodo eh thread safe.
+     * 
+     * @return referencia para um Conversor
+     */
     public static synchronized Conversor getInstance() {
         if (singleton == null) {
             singleton = new Conversor(caminhoPadrao);
@@ -32,17 +39,45 @@ public class Conversor {
         return singleton;
     }
     
-    // Atributos e métodos do objeto Conversor
+    
+    /**
+     * Caminho padrao assumido para leitura/escrita dos arquivos XML
+     * caso nenhum caminho seja fornecido
+     */
     private String caminhoBase;
     
+    
+    /**
+     * Construtor privado.
+     * <p>
+     * Assume um caminho base padrao, definido quando da implementacao da classe.
+     */
     private Conversor() {
         this.caminhoBase = ".";
     }
     
+    
+    /**
+     * Construtor privado.
+     * 
+     * @param caminhoBase Pasta em que os arquivos .xml serao lidos ou salvos
+     * caso nenhum outro caminho seja especificado
+     */
     private Conversor(String caminhoBase) {
         this.caminhoBase = caminhoBase;
     }
     
+    
+    /**
+     * Monta uma representacao em arvore para um documento XML a partir da
+     * estrutura de dados mensais de receita e despesa fornecida.
+     * 
+     * @param dadosMes Estrutura modelando um vetor de despesas e receitas
+     * que deve ser convertida em XML
+     * @return representacao em arvore, de acordo com o Java DOM, para o
+     * documento XML correspondente ao parametro <code>dadosMes</code>
+     * @throws ParserConfigurationException 
+     */
     private Document montaArvoreXML(DadosMes dadosMes) 
             throws ParserConfigurationException 
     {
@@ -92,6 +127,17 @@ public class Conversor {
         return documentoXML;
     }
     
+    
+    /**
+     * Monta uma estrutura DadosMes a partir de uma representacao em arvore de
+     * documento XML com despesas e receitas.
+     * 
+     * @param arvoreXML Representacao em arvore, de acordo com o Java DOM,
+     * para um arquivo XML de despesas e receitas
+     * @return Estrutura de dados <code>DadosMes</code> correspondente ao
+     * XML recebido como parametro
+     * @throws Exception 
+     */
     private DadosMes parserArvoreXML(Document arvoreXML) throws Exception {
         
         DadosMes dadosMes = new DadosMes();
@@ -134,6 +180,17 @@ public class Conversor {
         return dadosMes;
     }
     
+    
+    /**
+     * Cria e preenche um arquivo .xml no sistema de arquvios local a partir
+     * de um DOM representando um arquivo XML.
+     * 
+     * @param arvoreXML Arvore DOM representando um arquivo XML com dados
+     * de despesas e receitas
+     * @param caminho Nome do arquivo a ser gravado, apropriadamente qualificado
+     * com o diretorio onde o arquivo devera ser salvo.
+     * @throws TransformerException 
+     */
     private void gravaArquivoXML(Document arvoreXML, String caminho)
             throws TransformerException 
     {
@@ -145,6 +202,18 @@ public class Conversor {
         transformer.transform(fonte, fileResult);
     }
     
+    
+    /**
+     * Le um arquivo .xml do sistema de arquivos local,
+     * cria e preenche uma arvore DOM representando esse arquivo.
+     * 
+     * @param caminho Nome do arquivo a ser lido, apropriadamente qualificado
+     * com sua localizacao
+     * @return Arvore DOM representando o arquivo XML lido
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException 
+     */
     private Document leArquivoXML(String caminho)
             throws ParserConfigurationException, SAXException, IOException
     {
@@ -153,6 +222,14 @@ public class Conversor {
         return builder.parse(new File(caminho));
     }
     
+    
+    /**
+     * Cria e preenche um arquivo .xml a partir de uma estrutura de dados
+     * com despesas e receitas.
+     * 
+     * @param dadosMes Estrutura modelando um vetor de despesas e receitas
+     * que deve ser convertida em XML
+     */
     public void converteParaXML(DadosMes dadosMes) {
         // Monta o caminho do arquivo a partir dos padroes e do mes submetido
         GregorianCalendar infoData = dadosMes.getMes();
@@ -168,6 +245,15 @@ public class Conversor {
         converteParaXML(dadosMes, caminho);
     }
     
+    
+    /**
+     * Cria e preenche um arquivo .xml a partir de uma estrutura de dados
+     * com despesas e receitas.
+     * 
+     * @param dadosMes Estrutura modelando um vetor de despesas e receitas
+     * que deve ser convertida em XML
+     * @param caminho Localizacao para o arquivo .xml criado
+     */
     public void converteParaXML(DadosMes dadosMes, String caminho) {
         try {
             Document doc = montaArvoreXML(dadosMes);
@@ -177,6 +263,21 @@ public class Conversor {
         }
     }
     
+    
+    /**
+     * Cria e preenche uma estrutura de dados DadosMes a partir de informacoes
+     * extraidas de um .xml lido do sistema de arquivos local. Le o xml
+     * do caminho padrao e determina o nome do arquivo a partir da data
+     * fornecida como parametro.
+     * 
+     * @param infoData Mes e ano para recuperacao das informacoes de despesas
+     * e receitas, fornecidos por meio de um <code>GregorianCalendar</code>.
+     * Quaisquer informacoes alem de ano e mes sao ignoradas.
+     * O arquivo .xml eh buscado no caminho padrao.
+     * @return Estrutura de dados <code>DadosMes</code> representando o
+     * arquivo lido, em caso de sucesso na leitura. <code>null</code> em
+     * caso de falha na leitura.
+     */
     public DadosMes converteParaDadosMes(GregorianCalendar infoData) {
         String caminho = 
                 caminhoBase +
@@ -188,6 +289,18 @@ public class Conversor {
         return converteParaDadosMes(caminho);
     }
     
+    
+    /**
+     * Cria e preenche uma estrutura de dados DadosMes a partir de informacoes
+     * extraidas de um .xml lido do sistema de arquivos local. Le o xml
+     * a partir de um caminho fornecido na chamada da funcao.
+     * 
+     * @param caminho Nome e caminho relativo ou absoluto do arquivo a partir 
+     * do qual as informacoes devem ser extraidas.
+     * @return Estrutura de dados <code>DadosMes</code> representando o
+     * arquivo lido, em caso de sucesso na leitura. <code>null</code> em
+     * caso de falha na leitura.
+     */
     public DadosMes converteParaDadosMes(String caminho) {
         
         DadosMes retval = null;
