@@ -27,17 +27,21 @@ public class APIView implements Observer{
     }
 
     public void menu() {
+        this.vm.pack();
+        this.vm.setLocationRelativeTo(null);
         this.vm.setVisible(true);
     }
     
     public void abrePopup() {
         this.vmp.pack();
+        this.vmp.setLocationRelativeTo(null);
         this.vmp.popularMenus();
         this.vmp.setVisible(true);
     }
     
     public void novoMes() {
         this.vnm.pack();
+        this.vnm.setLocationRelativeTo(null);
         this.vnm.setMes(this.vmp.getMesPopup());
         this.vnm.setAno(this.vmp.getAnoPopup());
         this.vnm.setVisible(true);
