@@ -28,16 +28,16 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
     }
     
     public void popularMenus() {
-        cbMes.setModel(new DefaultComboBoxModel(Calendario.listaMes));
-        cbAno.setModel(new DefaultComboBoxModel(Calendario.listaAno));
+        popupMesCb.setModel(new DefaultComboBoxModel(Calendario.listaMes));
+        popupAnoCb.setModel(new DefaultComboBoxModel(Calendario.listaAno));
     }
     
     public String getMesPopup() {
-        return (String)cbMes.getSelectedItem();
+        return (String)popupMesCb.getSelectedItem();
     }
     
     public String getAnoPopup() {
-        return (String)cbAno.getSelectedItem();
+        return (String)popupAnoCb.getSelectedItem();
     }
 
     /**
@@ -49,18 +49,18 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cbMes = new javax.swing.JComboBox<>();
-        cbAno = new javax.swing.JComboBox<>();
+        popupMesCb = new javax.swing.JComboBox<>();
+        popupAnoCb = new javax.swing.JComboBox<>();
         popupOk = new javax.swing.JButton();
         popupCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        popupSelecioneLabel = new javax.swing.JLabel();
 
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 
-        cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro" }));
+        popupMesCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro" }));
 
-        cbAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2016" }));
+        popupAnoCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2016" }));
 
         popupOk.setText("OK");
         popupOk.setActionCommand("popupOk");
@@ -69,9 +69,9 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
         popupCancelar.setText("CANCELAR");
         popupCancelar.setActionCommand("popupCancelar");
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Selecione Mês e Ano.");
-        jLabel1.setToolTipText("");
+        popupSelecioneLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        popupSelecioneLabel.setText("Selecione Mês e Ano.");
+        popupSelecioneLabel.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,12 +81,12 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(popupSelecioneLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(popupMesCb, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
@@ -96,18 +96,18 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(popupCancelar))
-                            .addComponent(cbAno, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(popupAnoCb, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addComponent(popupSelecioneLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbAno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(popupMesCb, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(popupAnoCb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(popupOk)
@@ -122,10 +122,10 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbAno;
-    private javax.swing.JComboBox<String> cbMes;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> popupAnoCb;
     private javax.swing.JButton popupCancelar;
+    private javax.swing.JComboBox<String> popupMesCb;
     private javax.swing.JButton popupOk;
+    private javax.swing.JLabel popupSelecioneLabel;
     // End of variables declaration//GEN-END:variables
 }

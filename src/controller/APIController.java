@@ -9,13 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
 import javax.swing.JList;
-import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import model.APISistemaDesktop;
-import model.CategoriaDespesa;
-import model.CategoriaReceita;
-import model.Despesa;
 import model.Movimentacao;
 import model.Receita;
 import view.APIView;
@@ -33,73 +29,87 @@ public class APIController implements ActionListener, ListSelectionListener{
     public void valueChanged(ListSelectionEvent lse) {
         JList lsm = (JList) lse.getSource();
          
-         if (lsm.getSelectedValue() == null) {
-             return;
-         }
+        if (lsm.getSelectedValue() == null) {
+            return;
+        }
         
         this.view.modificaMovimentacao((Movimentacao) lsm.getSelectedValue());
         
-        
-         if (((Movimentacao)lsm.getSelectedValue()) instanceof Receita) {
-             this.view.popularComReceitas();
-         } else {
-             this.view.popularComDespesas();
-         }
+        if (((Movimentacao)lsm.getSelectedValue()) instanceof Receita) {
+            this.view.popularComReceitas();
+        } else {
+            this.view.popularComDespesas();
+        }
          
-         view.setAlterando(true);
-        
+        this.view.setAlterando(true);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println(e.paramString());
+        
         switch(e.getActionCommand()) {
             case "menuNovoMes":
-                view.abrePopup();                
+                this.view.abrePopup();                
                 break;
+                
             case "menuAbrirMes":
                 break;
+                
             case "menuRelatorio":
                 break;
+                
             case "menuSobre":
                 break;
+                
             case "menuSair":
-                view.fechar();
+                this.view.fechar();
                 break;
+                
             case "novoMesSubmeter":
                 this.submeteMovimentacao(true);
                 break;
+                
             case "novoMesVoltar":
-                view.voltar();
+                this.view.voltar();
                 break;
+                
             case "novoMesSalvar":
                 this.salvaMes();
                 break;
+                
             case "novoMesExportar":
                 break;
+                
             case "novoMesDeletar":
                 this.removeMovimentacao();
-                view.setAlterando(false);
-              break;
-            case "novoMesCancelar":
-                view.cancelarAlteracao();
+                this.view.setAlterando(false);
                 break;
+                
+            case "novoMesCancelar":
+                this.view.cancelarAlteracao();
+                break;
+                
             case "novoMesAlterar":
                 this.submeteMovimentacao(false);
-                view.setAlterando(false);
-                break;    
+                this.view.setAlterando(false);
+                break;
+                
             case "popupOk":
-                view.novoMes();
+                this.view.novoMes();
                 this.criaMes();
                 break;
+                
             case "popupCancelar":
-                view.popupCancelar();
+                this.view.popupCancelar();
                 break;
+                
             case "despesaCheckBox":
-                view.popularComDespesas();
+                this.view.popularComDespesas();
                 break;
+                
             case "receitaCheckBox":
-                view.popularComReceitas();
+                this.view.popularComReceitas();
                 break;
            
             default:
@@ -108,11 +118,11 @@ public class APIController implements ActionListener, ListSelectionListener{
     }
     
     public void criaMes() {
-        sistema.criaMes(this.getDate());
+        this.sistema.criaMes(this.getDate());
     }
     
     public void salvaMes() {
-        sistema.salvaMes(this.getDate());
+        this.sistema.salvaMes(this.getDate());
     } 
     
     public void exportaMes(String dir) {
@@ -128,27 +138,28 @@ public class APIController implements ActionListener, ListSelectionListener{
     }
     
     private void removeMovimentacao() { 
-        this.sistema.removeMovimentacao(new GregorianCalendar(view.getAno(), view.getMes(), 1),view.movimentacaoAtual() );
+        this.sistema.removeMovimentacao(this.getDate(),view.movimentacaoAtual());
     }
     
     private void submeteMovimentacao(boolean novaSub) {
-        int valor = view.getValor();
+        int valor = this.view.getValor();
+        
         if(valor >= 0) {
-            String cat = view.getCategoria();
-            String tipo = view.getDouR();
+            String cat = this.view.getCategoria();
+            String tipo = this.view.getDouR();
             GregorianCalendar date = this.getDate();
+            
             if (novaSub) {
-                sistema.addMovimentacao(valor, cat, tipo, date);
+                this.sistema.addMovimentacao(valor, cat, tipo, date);
             } else {
-                sistema.alteraMovimentacao(valor, cat, tipo, date);
+                this.sistema.alteraMovimentacao(valor, cat, tipo, date);
             }
         }
     }
     
     private GregorianCalendar getDate() {
-        int ano = view.getAno();
-        int mes = view.getMes();
-        System.out.println("Mes "+ mes);
+        int ano = this.view.getAno();
+        int mes = this.view.getMes();
         GregorianCalendar date = new GregorianCalendar(ano, mes, 1);
         return date;
     }

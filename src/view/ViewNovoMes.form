@@ -41,59 +41,62 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="novoMesMesTexto" min="-2" pref="84" max="-2" attributes="0"/>
+                      <Component id="novoMesMesLabelFixa" min="-2" pref="84" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelMes" min="-2" max="-2" attributes="0"/>
+                      <Component id="novoMesMesLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="novoMesListaScroll" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="novoMesSalvar" pref="64" max="32767" attributes="0"/>
+                              <Component id="novoMesSalvar" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="novoMesExportar" pref="76" max="32767" attributes="0"/>
+                              <Component id="novoMesExportar" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="novoMesVoltar" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="labelAno" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="novoMesDespesaCheck" min="-2" pref="79" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="novoMesReceitaCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="novoMesDeletar" min="-2" pref="73" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="novoMesSubmeter" min="-2" pref="57" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                          <Component id="novoMesCancelar" min="-2" pref="75" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="menuCategoria" min="-2" pref="132" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel1" min="-2" pref="18" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textValor" min="-2" pref="104" max="-2" attributes="0"/>
+                              <Component id="novoMesVoltar" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="novoMesAnoLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="novoMesDespesaCheck" min="-2" pref="79" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="novoMesReceitaCheck" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="novoMesSubmeter" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="novoMesCancelar" min="-2" pref="87" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="novoMesCategoriaCb" min="-2" pref="132" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Component id="novoMesRsLabel" min="-2" pref="18" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="novoMesValorText" min="-2" pref="104" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="novoMesDeletar" min="-2" pref="81" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -104,12 +107,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="novoMesMesTexto" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                          <Component id="labelMes" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelAno" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="novoMesMesLabelFixa" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                          <Component id="novoMesMesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="novoMesAnoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <Component id="novoMesListaScroll" pref="206" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
@@ -117,20 +120,21 @@
                           <Component id="novoMesDespesaCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="novoMesReceitaCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="menuCategoria" min="-2" pref="20" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="novoMesCategoriaCb" min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textValor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="novoMesValorText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="novoMesRsLabel" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="novoMesSubmeter" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="novoMesCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="novoMesSubmeter" max="32767" attributes="0"/>
+                          <Component id="novoMesCancelar" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="novoMesDeletar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -145,7 +149,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="novoMesMesTexto">
+    <Component class="javax.swing.JLabel" name="novoMesMesLabelFixa">
       <Properties>
         <Property name="text" type="java.lang.String" value="M&#xea;s"/>
       </Properties>
@@ -153,7 +157,7 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Mes"/>
       </AccessibilityProperties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="novoMesListaScroll">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
@@ -191,7 +195,7 @@
         <Property name="actionCommand" type="java.lang.String" value="receitaCheckBox"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="menuCategoria">
+    <Component class="javax.swing.JComboBox" name="novoMesCategoriaCb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -233,12 +237,12 @@
         <Property name="actionCommand" type="java.lang.String" value="novoMesExportar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="novoMesRsLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="R$"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="textValor">
+    <Component class="javax.swing.JFormattedTextField" name="novoMesValorText">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
           <Format format="##,##0.00" subtype="-1" type="4"/>
@@ -246,12 +250,12 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelMes">
+    <Component class="javax.swing.JLabel" name="novoMesMesLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Mes"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelAno">
+    <Component class="javax.swing.JLabel" name="novoMesAnoLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="2016"/>
       </Properties>

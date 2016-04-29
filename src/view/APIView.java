@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import model.APISistemaDesktop;
 import model.Movimentacao;
@@ -95,7 +94,7 @@ public class APIView implements Observer{
     }
     
     public Movimentacao movimentacaoAtual() {
-        return this.vnm.movimentacaoAtual();
+        return this.vnm.getMovimentacaoAtual();
     }
     
     
@@ -115,13 +114,7 @@ public class APIView implements Observer{
         this.vnm.setAlterando(false);
     }
     
-   
-//    public void removeCatComboBox(String cat, String tipo){
-//        this.vnm.removeCatCombobox(cat, tipo);
-//    }
-    
     public void modificaMovimentacao(Movimentacao m){
-//        System.out.println(m);
         this.vnm.modificaMovimentacao(m);
         
     }
