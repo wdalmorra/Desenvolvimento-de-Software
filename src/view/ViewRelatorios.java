@@ -16,6 +16,8 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 import org.jfree.util.Rotation;
@@ -32,8 +34,10 @@ public class ViewRelatorios extends javax.swing.JFrame {
        
         initComponents();
        
-        geraChart();
-     
+        
+        
+        geraPieChart(7);
+        geraBarChart();
        
         
          
@@ -51,16 +55,22 @@ public class ViewRelatorios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        viewRelatorio_Pie = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        viewRelatorio_Bar = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        viewRelatorio_BarChart = new javax.swing.JLayeredPane();
         jPanel2 = new javax.swing.JPanel();
         jComboBox4 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
+        viewRelatorio_PieChart = new javax.swing.JLayeredPane();
+
+        viewRelatorio_Pie.setLayout(new java.awt.BorderLayout());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,17 +82,26 @@ public class ViewRelatorios extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
 
-        jPanel3.setBackground(getBackground());
+        viewRelatorio_Bar.setBackground(getBackground());
+        viewRelatorio_Bar.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
+        viewRelatorio_BarChart.setLayout(new java.awt.BorderLayout());
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(viewRelatorio_BarChart)
+                .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 135, Short.MAX_VALUE)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(viewRelatorio_BarChart)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -99,12 +118,15 @@ public class ViewRelatorios extends javax.swing.JFrame {
                                 .addGap(46, 46, 46)
                                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 36, Short.MAX_VALUE))
+                        .addGap(0, 46, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(10, 10, 10)
+                                .addComponent(viewRelatorio_Bar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,8 +138,10 @@ public class ViewRelatorios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewRelatorio_Bar, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -129,17 +153,22 @@ public class ViewRelatorios extends javax.swing.JFrame {
 
         jButton2.setText("jButton2");
 
+        viewRelatorio_PieChart.setLayout(new java.awt.BorderLayout());
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(220, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 220, Short.MAX_VALUE))
+                    .addComponent(viewRelatorio_PieChart))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -147,7 +176,9 @@ public class ViewRelatorios extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(viewRelatorio_PieChart, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addContainerGap())
         );
@@ -221,8 +252,12 @@ public class ViewRelatorios extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel viewRelatorio_Bar;
+    private javax.swing.JLayeredPane viewRelatorio_BarChart;
+    private javax.swing.JPanel viewRelatorio_Pie;
+    private javax.swing.JLayeredPane viewRelatorio_PieChart;
     // End of variables declaration//GEN-END:variables
 
 
@@ -231,8 +266,20 @@ public class ViewRelatorios extends javax.swing.JFrame {
 /**
      * Creates a sample dataset 
      */
-
-    private  PieDataset createDataset() {
+    
+    //Adicionei o int mes para passar o mes dos dados.
+                                        
+    private  PieDataset createPieDataset(int mes) {
+        
+        
+        //Exemplo da minha ideia
+        
+        //For (categorias)
+        // result.setValue(categoria[i].getName(), bd.GetGastosComida(mes));
+        
+        //Creio que essa funcao vai ser utilizada pelo controlador... Nao sei se este modo vai se encaixar bem na arquitetura...
+        
+        
         DefaultPieDataset result = new DefaultPieDataset();
         result.setValue("Gasolina", 290);
         result.setValue("Festas", 1500);
@@ -242,19 +289,73 @@ public class ViewRelatorios extends javax.swing.JFrame {
         
     }
     
-    public void geraChart(){
-    
-       PieDataset dataset = createDataset();
+    public void geraPieChart(int mes){
+        
+        PieDataset dataset = createPieDataset(mes);
         JFreeChart chart = createChart("Relatorio", dataset);  
         ChartPanel chartPanel = new ChartPanel(chart);
-       
-        chartPanel.setSize(315,125);
+        chartPanel.setPreferredSize(new java.awt.Dimension( 339, 117) );        
+        //chartPanel.setSize(315,125);
         
-        jPanel3.removeAll();
-        jPanel3.add(chartPanel, BorderLayout.CENTER);
-        jPanel3.validate();
+        viewRelatorio_PieChart.removeAll();
+        viewRelatorio_PieChart.add(chartPanel, BorderLayout.CENTER);
+        viewRelatorio_PieChart.validate();
 
 }
+    
+        public void geraBarChart(){
+    
+      JFreeChart barChart = ChartFactory.createBarChart(
+         "Relatorio Por Mes",           
+         "",            
+         "Julho",            
+         createBarDataset(),          
+         org.jfree.chart.plot.PlotOrientation.VERTICAL,           
+         true, true, false);
+      
+      
+        ChartPanel chartPanel = new ChartPanel( barChart );        
+        chartPanel.setPreferredSize(new java.awt.Dimension( 339, 117) );        
+     
+       
+        //chartPanel.setSize(315,125);
+        
+        viewRelatorio_BarChart.removeAll();
+        viewRelatorio_BarChart.add(chartPanel, BorderLayout.CENTER);
+        viewRelatorio_BarChart.validate();
+
+}
+        
+        private CategoryDataset createBarDataset( )
+   {
+      final String Comida = "Comida";        
+      final String Xuxus = "Xuxus";        
+      final String STecla = "Santa Tecla";        
+      final String Baiuca = "Baiuca";        
+      final String Receita = "Receita";        
+      final String Despesa = "Despesa";    
+      final DefaultCategoryDataset dataset = 
+      new DefaultCategoryDataset( );  
+
+        dataset.addValue( 111.0 , Comida , Despesa );      
+       // dataset.addValue( 200.0 , Comida , Receita );    
+     //   dataset.addValue( 3.0 , fiat , userrating );        
+        //dataset.addValue( 5.0 , fiat , millage ); 
+       // dataset.addValue( 5.0 , fiat , safety );           
+
+        dataset.addValue( 52.0 , Xuxus , Despesa );  
+        dataset.addValue( 52.0 , Xuxus , Receita );        
+        //dataset.addValue( 6.0 , audi , userrating );       
+        //dataset.addValue( 10.0 , audi , millage );        
+       // dataset.addValue( 4.0 , audi , safety );
+
+        dataset.addValue( 400.0 , STecla , Receita );        
+        //dataset.addValue( 2.0 , ford , userrating );        
+        //dataset.addValue( 3.0 , ford , millage );        
+        //dataset.addValue( 6.0 , ford , safety );               
+
+      return dataset; 
+   }
     
 /**
      * Creates a chart
