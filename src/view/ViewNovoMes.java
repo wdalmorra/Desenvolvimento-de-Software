@@ -110,11 +110,24 @@ public class ViewNovoMes extends javax.swing.JFrame {
     
     public void limpaSelecao(){
         novoMesLista.clearSelection();
-        novoMesValorText.setText("");
+        this.limpaValor();
     }
     
     public void limpaLista() {
         modelList.removeAllElements();
+    }
+    
+    public void limpaValor() {
+        novoMesValorText.setText("");
+    }
+    
+    public void limpaInfos() {
+        novoMesDespesaCheck.setSelected(true);
+        novoMesReceitaCheck.setSelected(false);
+        
+        novoMesCategoriaCb.setSelectedIndex(0);
+        
+        this.limpaValor();
     }
     
     private void myInitComponents() {

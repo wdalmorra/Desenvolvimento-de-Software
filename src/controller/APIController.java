@@ -97,8 +97,8 @@ public class APIController implements ActionListener, ListSelectionListener{
                 break;
                 
             case "popupOk":
-                this.view.abreMes();
-                this.verificaSeCriaOuAbreMes(this.getDate(),
+                this.view.atualizaInfoMes();
+                this.criaOuAbreMes(this.getDate(),
                         this.view.getCommand());
                 break;
                 
@@ -136,22 +136,23 @@ public class APIController implements ActionListener, ListSelectionListener{
     }
     
     public boolean mesExiste(GregorianCalendar mes) {
-        return !this.visualizaMes(mes);
+        return this.visualizaMes(mes);
     }
     
-    public void verificaSeCriaOuAbreMes(GregorianCalendar mes, String command) {
+    public void criaOuAbreMes(GregorianCalendar mes, String command) {
         if(command.equals("menuNovoMes")) {
-            if(!mesExiste(mes)) {
-                this.criaMes();
-            } else {
+            if(mesExiste(mes)) {
                 this.view.notificaErro("popup", "Mês já existe.\n"
                         + "Use a opção ABRIR MÊS.");
-                this.view.voltar();
+            } else {
+                this.view.mostraMes();
+                this.criaMes();
             }
         } else {
-            if(!mesExiste(mes)) {
+            if(mesExiste(mes)) {
+                this.view.mostraMes();
+            } else {
                 this.view.notificaErro("popup", "Mês não existente.");
-                this.view.voltar();
             }
         }
     }
@@ -182,6 +183,8 @@ public class APIController implements ActionListener, ListSelectionListener{
                 this.sistema.alteraMovimentacao(valor, cat, tipo, date);
             }
         }
+        
+        this.view.limpaValor();
     }
     
     private GregorianCalendar getDate() {

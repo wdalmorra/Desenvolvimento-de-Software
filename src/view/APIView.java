@@ -40,14 +40,17 @@ public class APIView implements Observer{
         this.vmp.setVisible(true);
     }
     
-    public void abreMes() {
+    public void atualizaInfoMes() {
         this.vnm.pack();
         this.vnm.setLocationRelativeTo(null);
         this.vnm.setMes(this.vmp.getMesPopup());
-        this.vnm.setAno(this.vmp.getAnoPopup());
+        this.vnm.setAno(this.vmp.getAnoPopup());       
+    }
+    
+    public void mostraMes() {
         this.vnm.setVisible(true);
         this.vmp.dispose();
-        this.vm.setVisible(false);        
+        this.vm.setVisible(false); 
     }
     
     public void fechar() {
@@ -56,6 +59,7 @@ public class APIView implements Observer{
     
     public void voltar() {
         this.vnm.limpaLista();
+        this.vnm.limpaInfos();
         this.vnm.dispose();
         this.vm.setVisible(true);
     }
@@ -97,6 +101,10 @@ public class APIView implements Observer{
         }
         
         return -1;
+    }
+    
+    public void limpaValor() {
+        this.vnm.limpaValor();
     }
     
     public Movimentacao movimentacaoAtual() {
