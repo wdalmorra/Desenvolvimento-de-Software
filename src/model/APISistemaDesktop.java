@@ -56,13 +56,13 @@ public class APISistemaDesktop extends Observable{
             if (comparaMeses(dm.getMes(),mes)) {
                 for (Movimentacao m: dm.getMovimentacoes()) {
                     if (m instanceof Receita) {
-                        if (CategoriaReceita.categoriaToString(((Receita)m).getCategoria()).equals(cat)) {
+                        if (CategoriaReceita.categoriaToString(((Receita)m).getCategoria()).equals(cat) &&  tipo.equals("R")) {
                             m.setValor(m.getValor()+ valor);
                             alt = true;
                             break;
                         }
                     } else {
-                        if (CategoriaDespesa.categoriaToString(((Despesa)m).getCategoria()).equals(cat)) {
+                        if (CategoriaDespesa.categoriaToString(((Despesa)m).getCategoria()).equals(cat) &&  tipo.equals("D")) {
                             m.setValor(m.getValor()+ valor);
                             alt = true;
                             break;
@@ -137,11 +137,11 @@ public class APISistemaDesktop extends Observable{
                
                notifyObservers(dm.getMovimentacoes());
                
-               return false;
+               return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     /*
