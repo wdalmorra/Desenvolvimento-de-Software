@@ -32,14 +32,15 @@ public class APIView implements Observer{
         this.vm.setVisible(true);
     }
     
-    public void abrePopup() {
+    public void abrePopup(String comm) {
         this.vmp.pack();
         this.vmp.setLocationRelativeTo(null);
+        this.vmp.setCommand(comm);
         this.vmp.popularMenus();
         this.vmp.setVisible(true);
     }
     
-    public void novoMes() {
+    public void abreMes() {
         this.vnm.pack();
         this.vnm.setLocationRelativeTo(null);
         this.vnm.setMes(this.vmp.getMesPopup());
@@ -54,6 +55,7 @@ public class APIView implements Observer{
     }
     
     public void voltar() {
+        this.vnm.limpaLista();
         this.vnm.dispose();
         this.vm.setVisible(true);
     }
@@ -110,6 +112,10 @@ public class APIView implements Observer{
         return this.vnm.getDouR();
     }
     
+    public String getCommand() {
+        return this.vmp.getCommand();
+    }
+    
     public void setAlterando(boolean b){
         this.vnm.setAlterando(b);
     }
@@ -132,8 +138,24 @@ public class APIView implements Observer{
         }
     }
     
-    void mostraMensagemDeErro(JFrame f, String mensagem){
-        JOptionPane.showMessageDialog(f, mensagem);
+    public void notificaErro(String frame, String msg) {
+        switch(frame) {
+            case "menu":
+                this.mostraMensagemDeErro(this.vm, msg);
+                break;
+            case "novoMes":
+                this.mostraMensagemDeErro(this.vnm, msg);
+                break;
+            case "popup":
+                this.mostraMensagemDeErro(this.vmp, msg);
+                break;
+            default:
+                break;
+        }
+    }
+    
+    public void mostraMensagemDeErro(JFrame f, String mensagem){
+        JOptionPane.showMessageDialog(f, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override

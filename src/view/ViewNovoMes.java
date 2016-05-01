@@ -93,14 +93,11 @@ public class ViewNovoMes extends javax.swing.JFrame {
     }
     
     public void setModelList(ArrayList<Movimentacao> movs) {
-        DefaultListModel<Movimentacao> modelList = 
-                new DefaultListModel<>();
+        modelList.removeAllElements();
         
         for(Movimentacao m : movs) {
             modelList.addElement(m);
         }
-        
-        novoMesLista.setModel(modelList);
     }
     
     public void popularComDespesas() {
@@ -116,14 +113,19 @@ public class ViewNovoMes extends javax.swing.JFrame {
         novoMesValorText.setText("");
     }
     
+    public void limpaLista() {
+        modelList.removeAllElements();
+    }
+    
     private void myInitComponents() {
+        modelList = new DefaultListModel<>();
         receitaModel = new DefaultComboBoxModel<>(CategoriaReceita.values());
         despesaModel = new DefaultComboBoxModel<>(CategoriaDespesa.values());
         
         novoMesCategoriaCb.setModel(novoMesReceitaCheck.isSelected() ? receitaModel : despesaModel);
         
         
-        novoMesLista.setModel(new DefaultListModel());
+        novoMesLista.setModel(modelList);
         novoMesLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         this.setAlterando(false);
@@ -331,6 +333,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private Movimentacao movimentacaoAtual;
+    private DefaultListModel<Movimentacao> modelList;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup groupDeR;
     private javax.swing.JLabel novoMesAnoLabel;

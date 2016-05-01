@@ -50,10 +50,11 @@ public class APIController implements ActionListener, ListSelectionListener{
         
         switch(e.getActionCommand()) {
             case "menuNovoMes":
-                this.view.abrePopup();                
+                this.view.abrePopup(e.getActionCommand());
                 break;
                 
             case "menuAbrirMes":
+                this.view.abrePopup(e.getActionCommand());
                 break;
                 
             case "menuRelatorio":
@@ -96,8 +97,9 @@ public class APIController implements ActionListener, ListSelectionListener{
                 break;
                 
             case "popupOk":
-                this.view.novoMes();
-                this.criaMes();
+                this.view.abreMes();
+                this.verificaSeCriaOuAbreMes(this.getDate(),
+                        this.view.getCommand());
                 break;
                 
             case "popupCancelar":
@@ -121,12 +123,37 @@ public class APIController implements ActionListener, ListSelectionListener{
         this.sistema.criaMes(this.getDate());
     }
     
+    public boolean visualizaMes(GregorianCalendar mes) {
+        return this.sistema.visualizaMes(mes);
+    }
+    
     public void salvaMes() {
         this.sistema.salvaMes(this.getDate());
     } 
     
     public void exportaMes(String dir) {
         //sistema.exportaMes(this.dados, dir);
+    }
+    
+    public boolean mesExiste(GregorianCalendar mes) {
+        return !this.visualizaMes(mes);
+    }
+    
+    public void verificaSeCriaOuAbreMes(GregorianCalendar mes, String command) {
+        if(command.equals("menuNovoMes")) {
+            if(!mesExiste(mes)) {
+                this.criaMes();
+            } else {
+                this.view.notificaErro("popup", "Mês já existe.\n"
+                        + "Use a opção ABRIR MÊS.");
+                this.view.voltar();
+            }
+        } else {
+            if(!mesExiste(mes)) {
+                this.view.notificaErro("popup", "Mês não existente.");
+                this.view.voltar();
+            }
+        }
     }
     
     public void addModel(APISistemaDesktop model) {
