@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Observable;
 
+
 /**
  *
  * @author William
@@ -17,8 +18,7 @@ public class APISistemaDesktop extends Observable{
 
     private ArrayList<DadosMes> dadosMes;
     private Conversor conversor;
-    
-    
+
     public static void main(String[] args) {
         
         
@@ -120,7 +120,6 @@ public class APISistemaDesktop extends Observable{
                 this.setChanged();
                 this.notifyObservers(dm.getMovimentacoes());
                 break;
-            
             }
         }
     }
@@ -130,15 +129,19 @@ public class APISistemaDesktop extends Observable{
         para a interface para ser mostrado ao usuario
         retorna null caso o mes nao exista 
     */
-    public DadosMes visualizaMes(GregorianCalendar mes){
-        
+    public boolean visualizaMes(GregorianCalendar mes){
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
-                return dm;
+                
+               this.setChanged();
+               
+               notifyObservers(dm.getMovimentacoes());
+               
+               return false;
             }
         }
-        
-        return null;
+
+        return true;
     }
 
     /*
