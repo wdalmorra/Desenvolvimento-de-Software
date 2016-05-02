@@ -23,7 +23,7 @@ public class Conversor {
     
     // Métodos e atributos da classe, para implementar o padrão singleton
     private static Conversor singleton;
-    private static String caminhoPadrao = ".";
+    private static String caminhoPadrao = "./test/caminhoPadrao";
     private static String listaDeArquivosPadrao = "dados_lista.xml";
     
     
