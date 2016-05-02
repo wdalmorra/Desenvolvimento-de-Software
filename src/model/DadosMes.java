@@ -26,6 +26,27 @@ public class DadosMes {
         movimentacoes = new ArrayList<>();
     }
     
+    DadosMes(DadosMes dm) {
+        date = new GregorianCalendar(
+                dm.getMes().get(GregorianCalendar.YEAR),
+                dm.getMes().get(GregorianCalendar.MONTH),
+                1
+        );
+        
+        movimentacoes = new ArrayList<>();
+        
+        for (Movimentacao mOrig : dm.getMovimentacoes()) {
+            Movimentacao mNova;
+            if (mOrig instanceof Receita) {
+                mNova = new Receita((Receita) mOrig);
+            } else if (mOrig instanceof Despesa) {
+                mNova = new Despesa((Despesa) mOrig);
+            } else {
+                mNova = null;
+            }
+            movimentacoes.add(mNova);
+        }
+    }
     
     public GregorianCalendar getMes(){
         return this.date;

@@ -21,6 +21,10 @@ public abstract class Movimentacao {
         this.valor = valor;
     }
     
+    public Movimentacao(Movimentacao m) {
+        this.valor = m.valor;
+    }
+    
     public int getValor(){
         return this.valor;
     }

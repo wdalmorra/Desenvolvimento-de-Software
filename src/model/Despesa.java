@@ -23,6 +23,11 @@ public class Despesa extends Movimentacao {
         this.categoria = cat;
     }
     
+    public Despesa(Despesa r) {
+        super(r);
+        this.categoria = r.categoria;
+    }
+    
     public CategoriaDespesa getCategoria(){
         return this.categoria;
     }

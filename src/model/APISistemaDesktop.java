@@ -18,6 +18,8 @@ public class APISistemaDesktop extends Observable{
 
     private ArrayList<DadosMes> dadosMes;
     private Conversor conversor;
+    
+    private DadosMes dadosDeTrabalho;
 
     public static void main(String[] args) {
         
@@ -65,6 +67,7 @@ public class APISistemaDesktop extends Observable{
     public APISistemaDesktop(){
         dadosMes = new ArrayList<>();
         conversor = Conversor.getInstance();
+        dadosDeTrabalho = new DadosMes();
         carregaArquivos();
     }
 
@@ -72,9 +75,8 @@ public class APISistemaDesktop extends Observable{
         criaMes é responsavel por adicionar um novo mes com dados ao sistema.
     */
     public void criaMes(GregorianCalendar gc){
-        DadosMes dMes = new DadosMes();
-        dMes.setDate(gc);
-        dadosMes.add(dMes);
+        dadosDeTrabalho = new DadosMes();
+        dadosDeTrabalho.setDate(gc);
     }
     
     /* 
@@ -86,31 +88,52 @@ public class APISistemaDesktop extends Observable{
             new Despesa(CategoriaDespesa.stringToCategoria(cat.toUpperCase()), valor) :
             new Receita(CategoriaReceita.stringToCategoria(cat.toUpperCase()), valor);
         boolean alt = false;
-        for (DadosMes dm : dadosMes){
-            if (comparaMeses(dm.getMes(),mes)) {
-                for (Movimentacao m: dm.getMovimentacoes()) {
-                    if (m instanceof Receita) {
-                        if (CategoriaReceita.categoriaToString(((Receita)m).getCategoria()).equals(cat) &&  tipo.equals("R")) {
-                            m.setValor(m.getValor()+ valor);
-                            alt = true;
-                            break;
-                        }
-                    } else {
-                        if (CategoriaDespesa.categoriaToString(((Despesa)m).getCategoria()).equals(cat) &&  tipo.equals("D")) {
-                            m.setValor(m.getValor()+ valor);
-                            alt = true;
-                            break;
-                        }
-                    }
+        for (Movimentacao m: dadosDeTrabalho.getMovimentacoes()) {
+            if (m instanceof Receita) {
+                if (CategoriaReceita.categoriaToString(((Receita)m).getCategoria()).equals(cat) &&  tipo.equals("R")) {
+                    m.setValor(m.getValor()+ valor);
+                    alt = true;
+                    break;
                 }
-                if (!alt) {
-                    dm.addMovimentacao(mov);
+            } else {
+                if (CategoriaDespesa.categoriaToString(((Despesa)m).getCategoria()).equals(cat) &&  tipo.equals("D")) {
+                    m.setValor(m.getValor()+ valor);
+                    alt = true;
+                    break;
                 }
-                this.setChanged();
-                this.notifyObservers(dm.getMovimentacoes());
-                break;
             }
-        }        
+        }
+        if (!alt) {
+            dadosDeTrabalho.addMovimentacao(mov);
+        }
+        this.setChanged();
+        this.notifyObservers(dadosDeTrabalho.getMovimentacoes());
+        
+//        for (DadosMes dm : dadosMes){
+//            if (comparaMeses(dm.getMes(),mes)) {
+//                for (Movimentacao m: dm.getMovimentacoes()) {
+//                    if (m instanceof Receita) {
+//                        if (CategoriaReceita.categoriaToString(((Receita)m).getCategoria()).equals(cat) &&  tipo.equals("R")) {
+//                            m.setValor(m.getValor()+ valor);
+//                            alt = true;
+//                            break;
+//                        }
+//                    } else {
+//                        if (CategoriaDespesa.categoriaToString(((Despesa)m).getCategoria()).equals(cat) &&  tipo.equals("D")) {
+//                            m.setValor(m.getValor()+ valor);
+//                            alt = true;
+//                            break;
+//                        }
+//                    }
+//                }
+//                if (!alt) {
+//                    dm.addMovimentacao(mov);
+//                }
+//                this.setChanged();
+//                this.notifyObservers(dm.getMovimentacoes());
+//                break;
+//            }
+//        }        
     }
     
     /* 
@@ -121,26 +144,42 @@ public class APISistemaDesktop extends Observable{
         Movimentacao mov = (tipo.equals("D")) ? 
             new Despesa(CategoriaDespesa.stringToCategoria(cat.toUpperCase()), valor) :
             new Receita(CategoriaReceita.stringToCategoria(cat.toUpperCase()), valor);
-        for (DadosMes dm : dadosMes){
-            if (comparaMeses(dm.getMes(),mes)) {
-                for (Movimentacao m: dm.getMovimentacoes()) {
-                    if (m instanceof Receita) {
-                        if (CategoriaReceita.categoriaToString(((Receita)m).getCategoria()).equals(cat)) {
-                            m.setValor(valor);
-                            break;
-                        }
-                    } else {
-                        if (CategoriaDespesa.categoriaToString(((Despesa)m).getCategoria()).equals(cat)) {
-                            m.setValor(valor);
-                            break;
-                        }
-                    }
+        for (Movimentacao m: dadosDeTrabalho.getMovimentacoes()) {
+            if (m instanceof Receita) {
+                if (CategoriaReceita.categoriaToString(((Receita)m).getCategoria()).equals(cat)) {
+                    m.setValor(valor);
+                    break;
                 }
-                this.setChanged();
-                this.notifyObservers(dm.getMovimentacoes());
-                break;
+            } else {
+                if (CategoriaDespesa.categoriaToString(((Despesa)m).getCategoria()).equals(cat)) {
+                    m.setValor(valor);
+                    break;
+                }
             }
-        }        
+        }
+        this.setChanged();
+        this.notifyObservers(dadosDeTrabalho.getMovimentacoes());
+
+//        for (DadosMes dm : dadosMes){
+//            if (comparaMeses(dm.getMes(),mes)) {
+//                for (Movimentacao m: dm.getMovimentacoes()) {
+//                    if (m instanceof Receita) {
+//                        if (CategoriaReceita.categoriaToString(((Receita)m).getCategoria()).equals(cat)) {
+//                            m.setValor(valor);
+//                            break;
+//                        }
+//                    } else {
+//                        if (CategoriaDespesa.categoriaToString(((Despesa)m).getCategoria()).equals(cat)) {
+//                            m.setValor(valor);
+//                            break;
+//                        }
+//                    }
+//                }
+//                this.setChanged();
+//                this.notifyObservers(dm.getMovimentacoes());
+//                break;
+//            }
+//        }        
     }
     
     /* 
@@ -148,14 +187,18 @@ public class APISistemaDesktop extends Observable{
         Observer nota essa modificacao e eh notificado.
     */
     public void removeMovimentacao(GregorianCalendar mes, Movimentacao mov) {
-        for (DadosMes dm : dadosMes){
-            if (comparaMeses(dm.getMes(),mes)) {
-                dm.getMovimentacoes().remove(mov);
-                this.setChanged();
-                this.notifyObservers(dm.getMovimentacoes());
-                break;
-            }
-        }
+        dadosDeTrabalho.getMovimentacoes().remove(mov);
+        this.setChanged();
+        this.notifyObservers(dadosDeTrabalho.getMovimentacoes());
+
+//        for (DadosMes dm : dadosMes){
+//            if (comparaMeses(dm.getMes(),mes)) {
+//                dm.getMovimentacoes().remove(mov);
+//                this.setChanged();
+//                this.notifyObservers(dm.getMovimentacoes());
+//                break;
+//            }
+//        }
     }
 
     /* 
@@ -167,11 +210,13 @@ public class APISistemaDesktop extends Observable{
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
                 
-               this.setChanged();
+                dadosDeTrabalho = new DadosMes(dm);
+
+                this.setChanged();
                
-               notifyObservers(dm.getMovimentacoes());
+                notifyObservers(dadosDeTrabalho.getMovimentacoes());
                
-               return true;
+                return true;
             }
         }
 
@@ -184,12 +229,15 @@ public class APISistemaDesktop extends Observable{
         parametro.
     */
     public void exportaMes(GregorianCalendar mes, String dir){
-        for (DadosMes dm : dadosMes){
-            if (comparaMeses(dm.getMes(),mes)) {
-                conversor.converteParaXML(dm, dir);
-                break;
-            }
-        }
+
+        conversor.converteParaXML(dadosDeTrabalho, dir);
+        
+//        for (DadosMes dm : dadosMes){
+//            if (comparaMeses(dm.getMes(),mes)) {
+//                conversor.converteParaXML(dm, dir);
+//                break;
+//            }
+//        }
     }
 
     /*
@@ -198,12 +246,19 @@ public class APISistemaDesktop extends Observable{
         backup dos dados.
     */
     public void salvaMes(GregorianCalendar mes){
+        
+        conversor.converteParaXML(dadosDeTrabalho);
+        
+        DadosMes dados = new DadosMes(dadosDeTrabalho);
+        
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
-                conversor.converteParaXML(dm);
+                dadosMes.remove(dm);
                 break;
             }
         }
+        
+        dadosMes.add(dados);
         
         // TODO: o local mais apropriado para atualizar a lista de arquivos
         // talvez não seja aqui e sim em um destrutor da classe,
