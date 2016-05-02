@@ -123,13 +123,12 @@ public class ViewNovoMes extends javax.swing.JFrame {
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
             if (f.exists()) {
-                int result = JOptionPane.showConfirmDialog(this,"O arquivo já existe. Deseja sobreescrevê-lo?");
+                int result = JOptionPane.showConfirmDialog(null,"O arquivo já existe. Deseja sobreescrevê-lo?","Exportar",JOptionPane.YES_NO_OPTION);
                 switch (result){
                     case JOptionPane.YES_OPTION:
                         return chooser.getSelectedFile().toString();
                     case JOptionPane.NO_OPTION:
                     case JOptionPane.CLOSED_OPTION:
-                    case JOptionPane.CANCEL_OPTION:
                     default:
                         return null;
                 }
