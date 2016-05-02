@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import model.CategoriaDespesa;
 import model.CategoriaReceita;
 import model.Movimentacao;
@@ -113,11 +115,28 @@ public class ViewNovoMes extends javax.swing.JFrame {
     public String exportarArquivo() {
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Exportar");
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setSelectedFile(new File("export.xml"));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("XML Files", "xml");
+        chooser.setFileFilter(filter);
+        chooser.setApproveButtonText("Exportar");
         
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            System.out.println(chooser.getSelectedFile().toString());
-            return chooser.getSelectedFile().toString() + "/xml.xml";
+            File f = chooser.getSelectedFile();
+            if (f.exists()) {
+                int result = JOptionPane.showConfirmDialog(this,"O arquivo já existe. Deseja sobreescrevê-lo?");
+                switch (result){
+                    case JOptionPane.YES_OPTION:
+                        return chooser.getSelectedFile().toString();
+                    case JOptionPane.NO_OPTION:
+                    case JOptionPane.CLOSED_OPTION:
+                    case JOptionPane.CANCEL_OPTION:
+                    default:
+                        return null;
+                }
+            } else {
+                return chooser.getSelectedFile().toString();
+            }
+            
         } else {
             return null;
         }
