@@ -82,6 +82,10 @@ public class APIView implements Observer{
         this.vmp.addController(c);
     }
     
+    public String exportarArquivo(){
+        return this.vnm.exportarArquivo();
+    }
+    
     public int getAno() {
         return this.vnm.getAno();
     }
