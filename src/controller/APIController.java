@@ -80,6 +80,7 @@ public class APIController implements ActionListener, ListSelectionListener{
                 break;
                 
             case "novoMesExportar":
+                this.sistema.exportaMes(this.getDate(), this.view.exportarArquivo());
                 break;
                 
             case "novoMesDeletar":

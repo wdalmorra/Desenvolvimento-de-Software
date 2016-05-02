@@ -6,9 +6,11 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
 import model.CategoriaDespesa;
@@ -106,6 +108,19 @@ public class ViewNovoMes extends javax.swing.JFrame {
     
     public void popularComReceitas() {
         novoMesCategoriaCb.setModel(receitaModel);
+    }
+    
+    public String exportarArquivo() {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Exportar");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            System.out.println(chooser.getSelectedFile().toString());
+            return chooser.getSelectedFile().toString() + "/xml.xml";
+        } else {
+            return null;
+        }
     }
     
     public void limpaSelecao(){
