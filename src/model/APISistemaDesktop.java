@@ -32,8 +32,13 @@ public class APISistemaDesktop extends Observable{
         ArrayList<GregorianCalendar> listaDeArquivos = 
                 conversor.carregaListaDeArquivos();
         
-        for (GregorianCalendar gc : listaDeArquivos) {
-            dadosMes.add(conversor.converteParaDadosMes(gc));
+        if (listaDeArquivos != null) {
+            for (GregorianCalendar gc : listaDeArquivos) {
+                DadosMes dm = conversor.converteParaDadosMes(gc);
+                if (dm != null) {
+                    dadosMes.add(dm);
+                }
+            }
         }
     }
     
