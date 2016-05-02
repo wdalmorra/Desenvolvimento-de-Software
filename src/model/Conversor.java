@@ -332,18 +332,13 @@ public class Conversor {
      * caso de falha na leitura.
      */
     public DadosMes converteParaDadosMes(String caminho) {
-        
-        DadosMes retval = null;
-        
         try {
             Document doc = leArquivoXML(caminho);
-            retval = parserArvoreXML(doc);
+            return parserArvoreXML(doc);
         } catch (Exception e) {
             System.out.println("Erro na leitura do arquivo " + caminho);
-            retval = null;
+            return null;
         }
-        
-        return retval;
     }
     
     
@@ -388,8 +383,9 @@ public class Conversor {
      * Lê a lista com a relação de todos os arquivos de dados disponíveis,
      * que deve estar em formato XML e em uma localização padrão.
      * 
-     * @return Uma lista de arquivos de data contendo o mês e o ano
-     * correspondentes aos arquivos existentes.
+     * @return Se existir, uma lista de arquivos de data contendo o mês e o ano
+     * correspondentes aos arquivos existentes. Caso contrário,
+     * <code>null</code>.
      */
     public ArrayList<GregorianCalendar> carregaListaDeArquivos () {
         String caminho = caminhoPadrao + '/' + caminhoListaDeArquivos;
