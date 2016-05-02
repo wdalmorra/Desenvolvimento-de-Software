@@ -146,6 +146,7 @@ public class APIController implements ActionListener, ListSelectionListener{
     public void criaOuAbreMes(GregorianCalendar mes, String command) {
         if(command.equals("menuNovoMes")) {
             if(mesExiste(mes)) {
+                this.view.popupCancelar();
                 this.view.notificaErro("popup", "Mês já existe.\n"
                         + "Use a opção ABRIR MÊS.");
             } else {
@@ -156,6 +157,7 @@ public class APIController implements ActionListener, ListSelectionListener{
             if(mesExiste(mes)) {
                 this.view.mostraMes();
             } else {
+                this.view.popupCancelar();
                 this.view.notificaErro("popup", "Mês não existente.");
             }
         }

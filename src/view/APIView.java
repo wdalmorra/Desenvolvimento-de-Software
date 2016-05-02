@@ -49,7 +49,7 @@ public class APIView implements Observer{
     
     public void mostraMes() {
         this.vnm.setVisible(true);
-        this.vmp.dispose();
+        this.vmp.setVisible(false);
         this.vm.setVisible(false); 
     }
     
@@ -60,12 +60,12 @@ public class APIView implements Observer{
     public void voltar() {
         this.vnm.limpaLista();
         this.vnm.limpaInfos();
-        this.vnm.dispose();
+        this.vnm.setVisible(false);
         this.vm.setVisible(true);
     }
     
     public void popupCancelar() {
-        this.vmp.dispose();
+        this.vmp.setVisible(false);
     }
     
     public void popularComDespesas() {
