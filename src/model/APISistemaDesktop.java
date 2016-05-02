@@ -23,6 +23,34 @@ public class APISistemaDesktop extends Observable{
         
         
     }
+    
+    /*
+        carregaArquivos transforma todos os arquivos existentes no diretorio
+        de backup e importa para dentro do sistema em estruturas DadosMes.
+    */
+    private void carregaArquivos(){
+        ArrayList<GregorianCalendar> listaDeArquivos = 
+                conversor.carregaListaDeArquivos();
+        
+        for (GregorianCalendar gc : listaDeArquivos) {
+            dadosMes.add(conversor.converteParaDadosMes(gc));
+        }
+    }
+    
+    /*
+        transforma a estrutura <code>Array<DadosMes></code> em arquivos xml
+    */
+    private void salvaArquivos(){
+        ArrayList<GregorianCalendar> listaDeArquivos = new ArrayList<>();
+        
+        for (DadosMes dm : dadosMes) {
+            conversor.converteParaXML(dm);
+            listaDeArquivos.add(dm.getMes());
+        }
+        
+        conversor.salvaListaDeArquivos(listaDeArquivos);
+    }
+    
 
     /*
         Construtor da classe
@@ -32,6 +60,7 @@ public class APISistemaDesktop extends Observable{
     public APISistemaDesktop(){
         dadosMes = new ArrayList<>();
         conversor = Conversor.getInstance();
+        carregaArquivos();
     }
 
     /*
@@ -170,6 +199,11 @@ public class APISistemaDesktop extends Observable{
                 break;
             }
         }
+        
+        // TODO: o local mais apropriado para atualizar a lista de arquivos
+        // talvez não seja aqui e sim em um destrutor da classe,
+        // chamado no momento de saída do programa.
+        salvaArquivos();
     }
 
     /*
@@ -191,14 +225,6 @@ public class APISistemaDesktop extends Observable{
         deletaArquivo exclui o arquivo correspondente ao mes selecionado.
     */
     public void deletaArquivo(GregorianCalendar mes){
-        
-    }
-
-    /*
-        carregaArquivos transforma todos os arquivos existentes no diretorio
-        de backup e importa para dentro do sistema em estruturas DadosMes.
-    */
-    public void carregaArquivos(){
         
     }
 

@@ -24,6 +24,8 @@ public class Conversor {
     // Métodos e atributos da classe, para implementar o padrão singleton
     private static Conversor singleton;
     private static String caminhoPadrao = ".";
+    private static String listaDeArquivosPadrao = "dados_lista.xml";
+    
     
     /**
      * Retorna uma instancia (singleton) de um objeto Conversor (xml <-> DadosMes).
@@ -45,6 +47,9 @@ public class Conversor {
      * caso nenhum caminho seja fornecido
      */
     private String caminhoBase;
+    private String caminhoListaDeArquivos;
+    
+    private DocumentBuilder domBuilder;
     
     
     /**
@@ -54,6 +59,14 @@ public class Conversor {
      */
     private Conversor() {
         this.caminhoBase = ".";
+        this.caminhoListaDeArquivos = listaDeArquivosPadrao;
+
+        try {
+            domBuilder = initDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            // Talvez devesse ser erro fatal
+            domBuilder = null;
+        }
     }
     
     
@@ -65,6 +78,27 @@ public class Conversor {
      */
     private Conversor(String caminhoBase) {
         this.caminhoBase = caminhoBase;
+        this.caminhoListaDeArquivos = listaDeArquivosPadrao;
+        
+        try {
+            domBuilder = initDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            // Talvez devesse ser erro fatal
+            domBuilder = null;
+        }
+    }
+    
+    
+    /**
+     * Inicializa o gerador de documentos XML
+     * @return um gerador de documentos XML
+     * @throws ParserConfigurationException 
+     */
+    private DocumentBuilder initDocumentBuilder()
+            throws ParserConfigurationException
+    {
+        DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
+        return domFactory.newDocumentBuilder();
     }
     
     
@@ -82,9 +116,7 @@ public class Conversor {
             throws ParserConfigurationException 
     {
         // Prepara o documento
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document documentoXML = builder.newDocument();
+        Document documentoXML = domBuilder.newDocument();
 
         // Elemento raiz: financas
         Element elemRaiz = documentoXML.createElement("financas");
@@ -217,9 +249,7 @@ public class Conversor {
     private Document leArquivoXML(String caminho)
             throws ParserConfigurationException, SAXException, IOException
     {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        return builder.parse(new File(caminho));
+        return domBuilder.parse(new File(caminho));
     }
     
     
@@ -314,5 +344,75 @@ public class Conversor {
         }
         
         return retval;
+    }
+    
+    
+    /**
+     * Grava uma lista em formato XML com a relação de todos os arquivos de
+     * dados disponíveis. A lista é gravada em uma localização padrão.
+     * 
+     * @param listaDeArquivos Array com todos os meses para os quais existe uma
+     * entrada com movimentações e um arquivo de dados correspondente
+     */
+    public void salvaListaDeArquivos(ArrayList<GregorianCalendar> listaDeArquivos) {
+        Document listaArquivosXML = domBuilder.newDocument();
+        Element elemRaiz = listaArquivosXML.createElement("financasLista");
+        listaArquivosXML.appendChild(elemRaiz);
+        
+        for (GregorianCalendar gc : listaDeArquivos) {
+            Element elemArquivo = listaArquivosXML.createElement("arquivo");
+            
+            elemArquivo.setAttribute(
+                    "mes", 
+                    Integer.toString(gc.get(GregorianCalendar.MONTH))
+            );
+            
+            elemArquivo.setAttribute(
+                    "ano", 
+                    Integer.toString(gc.get(GregorianCalendar.YEAR))
+            );
+            
+            elemRaiz.appendChild(elemArquivo);
+        }
+        
+        String caminho = caminhoPadrao + '/' + caminhoListaDeArquivos;
+        try {
+            gravaArquivoXML(listaArquivosXML, caminho);
+        } catch (TransformerException e) {
+            // TODO: logar o erro apropriadamente
+        }
+    }
+    
+    
+    /**
+     * Lê a lista com a relação de todos os arquivos de dados disponíveis,
+     * que deve estar em formato XML e em uma localização padrão.
+     * 
+     * @return Uma lista de arquivos de data contendo o mês e o ano
+     * correspondentes aos arquivos existentes.
+     */
+    public ArrayList<GregorianCalendar> carregaListaDeArquivos () {
+        String caminho = caminhoPadrao + '/' + caminhoListaDeArquivos;
+        
+        try {
+            ArrayList<GregorianCalendar> listaArquivos = new ArrayList<>();
+            
+            Document listaArquivosXML = domBuilder.parse(caminho);
+            Element financasLista = listaArquivosXML.getDocumentElement();
+            NodeList arquivos = financasLista.getElementsByTagName("arquivo");
+            
+            // Não, não aceita foreach.
+            for (int i = 0; i < arquivos.getLength(); i++) {
+                Element arquivo = (Element) arquivos.item(i);
+                int mes = Integer.parseInt(arquivo.getAttribute("mes"));
+                int ano = Integer.parseInt(arquivo.getAttribute("ano"));
+                GregorianCalendar gc = new GregorianCalendar(ano, mes, 1);
+                listaArquivos.add(gc);
+            }
+            
+            return listaArquivos;
+        } catch (SAXException | IOException e) {
+            return null;
+        }        
     }
 }
