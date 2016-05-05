@@ -304,4 +304,37 @@ public class APISistemaDesktop extends Observable{
         return (a.get(GregorianCalendar.YEAR) == b.get(GregorianCalendar.YEAR))
                 && (a.get(GregorianCalendar.MONTH) == b.get(GregorianCalendar.MONTH));
     }
+    
+    
+    /* Tentativa de criacao de um metodo que gere os relatorios de barra gerais.
+       Nao ta pronto ainda. Termina ele ou apaga e faz outro.
+    */
+//    public void geraRelatorioGeral(GregorianCalendar inicio, GregorianCalendar fim, String cat) {
+//        int i, j;
+//        int anoInicial, anoFinal, mesInicial, mesFinal;
+//        anoInicial = inicio.get(GregorianCalendar.YEAR);
+//        anoFinal = fim.get(GregorianCalendar.YEAR);
+//        mesInicial = inicio.get(GregorianCalendar.MONTH);
+//        mesFinal = 11;
+//        
+//        if(anoInicial > anoFinal) {
+//            return;
+//        }
+//        for(i = anoInicial; i <= anoFinal; i++) {
+//            if(i != anoInicial) {
+//                mesInicial = 0;
+//            }
+//            if(i == anoFinal) {
+//                mesFinal = fim.get(GregorianCalendar.MONTH);
+//            }
+//            for(j = mesInicial; j <= mesFinal; j++) {
+//                for (DadosMes dm : dadosMes){
+//                    if (comparaMeses(dm.getMes(), new GregorianCalendar(i, j, 1))) {
+//                        
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+//    }
 }

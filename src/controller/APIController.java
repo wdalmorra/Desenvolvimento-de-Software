@@ -25,7 +25,7 @@ public class APIController implements ActionListener, ListSelectionListener{
         this.view = null;
     }
     
-     @Override
+    @Override
     public void valueChanged(ListSelectionEvent lse) {
         JList lsm = (JList) lse.getSource();
          
@@ -49,101 +49,88 @@ public class APIController implements ActionListener, ListSelectionListener{
         System.out.println(e.paramString());
         
         switch(e.getActionCommand()) {
-            case "menuNovoMes":
-                this.view.abrePopup(e.getActionCommand());
+            case "despesaCheckBox":
+                this.despesaCheckBox();
                 break;
                 
             case "menuAbrirMes":
-                this.view.abrePopup(e.getActionCommand());
+                this.menuAbrirMes(e.getActionCommand());
+                break;
+                
+            case "menuNovoMes":
+                this.menuNovoMes(e.getActionCommand());
                 break;
                 
             case "menuRelatorio":
-                break;
-                
-            case "menuSobre":
+                this.menuRelatorio();
                 break;
                 
             case "menuSair":
-                this.view.fechar();
+                this.menuSair();
                 break;
                 
-            case "novoMesSubmeter":
-                this.submeteMovimentacao(true);
+            case "menuSobre":
+                this.menuSobre();
                 break;
-                
-            case "novoMesVoltar":
-                this.view.voltar();
+            
+            case "novoMesAlterar":
+                this.novoMesAlterar();
+                break;    
+            
+            case "novoMesCancelar":
+                this.novoMesCancelar();
+                break;
+            
+            case "novoMesDeletar":
+                this.novoMesDeletar();
+                break;  
+            
+            case "novoMesExportar":
+                this.novoMesExportar();
                 break;
                 
             case "novoMesSalvar":
-                this.salvaMes();
+                this.novoMesSalvar();
                 break;
                 
-            case "novoMesExportar":
-                String filePath = this.view.exportarArquivo();
-                if (filePath != null) {
-                    this.sistema.exportaMes(this.getDate(), filePath);
-                }
+            case "novoMesSubmeter":
+               this.novoMesSubmeter();
                 break;
                 
-            case "novoMesDeletar":
-                this.removeMovimentacao();
-                this.view.setAlterando(false);
-                break;
-                
-            case "novoMesCancelar":
-                this.view.cancelarAlteracao();
-                break;
-                
-            case "novoMesAlterar":
-                this.submeteMovimentacao(false);
-                this.view.setAlterando(false);
-                break;
-                
-            case "popupOk":
-                this.view.atualizaInfoMes();
-                this.criaOuAbreMes(this.getDate(),
-                        this.view.getCommand());
+            case "novoMesVoltar":
+                this.novoMesVoltar();
                 break;
                 
             case "popupCancelar":
-                this.view.popupCancelar();
+                this.popupCancelar();
                 break;
                 
-            case "despesaCheckBox":
-                this.view.popularComDespesas();
+            case "popupOk":
+                this.popupOk();
                 break;
                 
             case "receitaCheckBox":
-                this.view.popularComReceitas();
+                this.receitaCheckBox();
                 break;
            
+            case "relatorioVoltar":
+                this.relatorioVoltar();
+                break;
+                
             default:
                 break;
         }
     }
     
-    public void criaMes() {
-        this.sistema.criaMes(this.getDate());
+    public void addModel(APISistemaDesktop model) {
+        this.sistema = model;
     }
     
-    public boolean visualizaMes(GregorianCalendar mes) {
-        return this.sistema.visualizaMes(mes);
+    public void addView(APIView view) {
+        this.view = view;
     }
     
-    public void salvaMes() {
-        this.sistema.salvaMes(this.getDate());
-    } 
-    
-    public void exportaMes(String dir) {
-        //sistema.exportaMes(this.dados, dir);
-    }
-    
-    public boolean mesExiste(GregorianCalendar mes) {
-        return this.visualizaMes(mes);
-    }
-    
-    public void criaOuAbreMes(GregorianCalendar mes, String command) {
+    private void criaOuAbreMes(GregorianCalendar mes, String command) {
         if(command.equals("menuNovoMes")) {
             if(mesExiste(mes)) {
                 this.view.popupCancelar();
@@ -151,7 +138,7 @@ public class APIController implements ActionListener, ListSelectionListener{
                         + "Use a opção ABRIR MÊS.");
             } else {
                 this.view.mostraMes();
-                this.criaMes();
+                this.sistema.criaMes(this.getDate());
             }
         } else {
             if(mesExiste(mes)) {
@@ -163,12 +150,89 @@ public class APIController implements ActionListener, ListSelectionListener{
         }
     }
     
-    public void addModel(APISistemaDesktop model) {
-        this.sistema = model;
+    private void despesaCheckBox() {
+        this.view.popularComDespesas();
     }
     
-    public void addView(APIView view) {
-        this.view = view;
+    private GregorianCalendar getDate() {
+        int ano = this.view.getAno();
+        int mes = this.view.getMes();
+        GregorianCalendar date = new GregorianCalendar(ano, mes, 1);
+        return date;
+    }
+    
+    private void menuAbrirMes(String comando) {
+        this.view.abrePopup(comando);
+    }
+    
+    private void menuNovoMes(String comando) {
+        this.view.abrePopup(comando);
+    }
+    
+    private void menuRelatorio() {
+        this.view.abreRelatorio();
+    }
+    
+    private void menuSair() {
+        this.view.fechaPrograma();
+    }
+    
+    private void menuSobre() {
+        
+    }
+    
+    private boolean mesExiste(GregorianCalendar mes) {
+        return this.visualizaMes(mes);
+    }
+    
+    private void novoMesAlterar() {
+        this.submeteMovimentacao(false);
+        this.view.setAlterando(false);
+    }
+    
+    private void novoMesCancelar() {
+        this.view.cancelarAlteracao();
+    }
+    
+    private void novoMesDeletar() {
+        this.removeMovimentacao();
+        this.view.setAlterando(false);
+    }
+    
+    private void novoMesExportar() {
+        String filePath = this.view.exportarArquivo();
+        if (filePath != null) {
+            this.sistema.exportaMes(this.getDate(), filePath);
+        }
+    }
+    
+    private void novoMesSalvar() {
+        this.sistema.salvaMes(this.getDate());
+    }
+    
+    private void novoMesSubmeter() {
+        this.submeteMovimentacao(true);
+    }
+    
+    private void novoMesVoltar() {
+        this.view.voltar();
+    }
+    
+    private void popupCancelar() {
+        this.view.popupCancelar();
+    }
+    
+    private void popupOk() {
+        this.view.atualizaInfoMes();
+        this.criaOuAbreMes(this.getDate(), this.view.getComando());
+    }
+    
+    private void receitaCheckBox() {
+        this.view.popularComReceitas();
+    }
+    
+    private void relatorioVoltar() {
+        this.view.fechaRelatorio();
     }
     
     private void removeMovimentacao() { 
@@ -193,10 +257,7 @@ public class APIController implements ActionListener, ListSelectionListener{
         this.view.limpaValor();
     }
     
-    private GregorianCalendar getDate() {
-        int ano = this.view.getAno();
-        int mes = this.view.getMes();
-        GregorianCalendar date = new GregorianCalendar(ano, mes, 1);
-        return date;
+    private boolean visualizaMes(GregorianCalendar mes) {
+        return this.sistema.visualizaMes(mes);
     }
 }

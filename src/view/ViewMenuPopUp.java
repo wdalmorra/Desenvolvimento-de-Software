@@ -40,12 +40,12 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
         return (String)popupAnoCb.getSelectedItem();
     }
     
-    public String getCommand() {
-        return this.command;
+    public String getComando() {
+        return this.comando;
     }
     
-    public void setCommand(String comm) {
-        this.command = comm;
+    public void setComando(String comando) {
+        this.comando = comando;
     }
 
     /**
@@ -128,7 +128,7 @@ public class ViewMenuPopUp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private String command;
+    private String comando;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> popupAnoCb;
     private javax.swing.JButton popupCancelar;
