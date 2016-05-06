@@ -92,7 +92,7 @@ public class APISistemaDesktopTest implements Observer {
         referencia.add(0);
         
         // testa e compara
-        instance.geraRelatorio(inicio, fim, c);
+        instance.geraRelatorio(inicio, fim, "DESPESA1");
         assert(referencia.equals(relatorio));
     }
     

@@ -326,22 +326,42 @@ public class APISistemaDesktop extends Observable{
     
     
     /**
-     * Gera um vetor com o historico de despesas para uma dada categoria ao
-     * longo de um periodo especifico. O resultado e notificado aos observers,
-     * em vez de ser retornado.
+     * Gera um vetor com o historico de despesas/receitas para uma dada 
+     * categoria ao longo de um periodo especifico. O resultado e notificado
+     * aos observers, em vez de ser retornado.
      * 
      * @param inicio Mes e ano iniciais para o intervalo a ser consultado
      *               (inicio faz parte do intervalo).
      * @param fim    Mes e ano finais para o intervalo a ser consultado
      *               (fim faz parte do intervalo).
-     * @param c      Categoria para a despesa a ser consultada.
+     * @param categoria Categoria para a despesa ou receita a ser consultada.
      */
-    public void geraRelatorio(GregorianCalendar inicio, GregorianCalendar fim, CategoriaDespesa c) {
+    public void geraRelatorio(GregorianCalendar inicio, GregorianCalendar fim, String categoria) {
         
         // Verifico a entrada
         if (inicio.compareTo(fim) > 0) {
             throw new IllegalArgumentException();
         }
+        
+        CategoriaDespesa cd;
+        CategoriaReceita cr;
+        boolean receita = false;
+        boolean despesa = false;
+        
+        cd = CategoriaDespesa.stringToCategoria(categoria);
+        if (cd != null) {
+            despesa = true;
+        }
+        
+        cr = CategoriaReceita.stringToCategoria(categoria);
+        if (cr != null) {
+            receita = true;
+        }
+        
+        if (cd == null && cr == null) {
+            throw new IllegalArgumentException();
+        }
+        
         
         // Acho todos os meses dentro do intervalo pedido
         ArrayList<DadosMes> meses = new ArrayList<>();
@@ -383,7 +403,11 @@ public class APISistemaDesktop extends Observable{
                     !comparaMeses(ic, meses.get(i).getMes())) {
                 resultado.add(0);
             } else {
-                resultado.add(meses.get(i).getMovimentacao(c));
+                if (despesa) {
+                    resultado.add(meses.get(i).getMovimentacao(cd));
+                } else {
+                    resultado.add(meses.get(i).getMovimentacao(cr));
+                }
                 i++;
             }
             ic.add(GregorianCalendar.MONTH, 1);
