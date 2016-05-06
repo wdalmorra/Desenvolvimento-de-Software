@@ -16,7 +16,18 @@ import java.util.*;
 
 
 /**
- *
+ * Classe do modelo que realiza as operacoes envolvendo arquivos XML. Abrange:
+ * <ul>
+ *  <li> Conversao entre a estrutura de dados basica que representa os dados
+ *       de despesas e receitas e sua representacao em XML
+ *  <li> Gravacao e leitura de arquivos XML
+ *  <li> Manutencao de um arquivo-indice indexando todos os arquivos de dados
+ *       disponiveis em um diretorio padrao
+ * </ul>
+ * A classe implementa um padrao singleton. Existe uma unica instancia, para a
+ * qual devem ser direcionadas todas as requisicoes de operacoes envolvendo
+ * arquivos.
+ * 
  * @author lxavier
  */
 public class Conversor {
@@ -28,9 +39,8 @@ public class Conversor {
     
     
     /**
-     * Retorna uma instancia (singleton) de um objeto Conversor (xml <-> DadosMes).
-     * <p>
-     * O metodo eh thread safe.
+     * Retorna uma instancia (singleton) de um objeto Conversor
+     * (xml <-> DadosMes). O metodo eh thread safe.
      * 
      * @return referencia para um Conversor
      */
@@ -53,9 +63,8 @@ public class Conversor {
     
     
     /**
-     * Construtor privado.
-     * <p>
-     * Assume um caminho base padrao, definido quando da implementacao da classe.
+     * Construtor privado. Assume um caminho base padrao,
+     * definido quando da implementacao da classe.
      */
     private Conversor() {
         this.caminhoBase = ".";
@@ -91,6 +100,7 @@ public class Conversor {
     
     /**
      * Inicializa o gerador de documentos XML
+     * 
      * @return um gerador de documentos XML
      * @throws ParserConfigurationException 
      */

@@ -17,7 +17,11 @@ public enum CategoriaReceita {
     }
     
     static public CategoriaReceita stringToCategoria(String s){
-        return CategoriaReceita.valueOf(s);
+       try {
+            return CategoriaReceita.valueOf(s);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
     }
     
 }

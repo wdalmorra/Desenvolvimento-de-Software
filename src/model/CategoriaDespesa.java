@@ -17,7 +17,11 @@ public enum CategoriaDespesa {
     }
     
     static public CategoriaDespesa stringToCategoria(String s){
-        return CategoriaDespesa.valueOf(s);
+        try {
+            return CategoriaDespesa.valueOf(s);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
     }
     
     
