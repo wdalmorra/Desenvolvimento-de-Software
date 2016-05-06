@@ -198,6 +198,7 @@ public class APIView implements Observer{
                     this.vnm.setModelList((ArrayList<Movimentacao>)ob);
                 } else if (((ArrayList<?>)ob).get(0) instanceof Integer) {
                     // TODO: implementar a logica de gerar a visualizacao dos
+                    this.vr.criaDadosGraficoBarras((ArrayList<Integer>) ob);
                     // relatorios
                 }
             }

@@ -116,7 +116,9 @@ public class APIController implements ActionListener, ListSelectionListener{
             case "relatorioVoltar":
                 this.relatorioVoltar();
                 break;
-                
+            case "relatorioAplicarFiltro":
+                this.relatorioAplicarFiltro();
+                break;
             default:
                 break;
         }
@@ -233,6 +235,9 @@ public class APIController implements ActionListener, ListSelectionListener{
     
     private void relatorioVoltar() {
         this.view.fechaRelatorio();
+    }
+    private void relatorioAplicarFiltro(){
+        this.sistema.geraRelatorio(new GregorianCalendar(2016,01,01), new GregorianCalendar(2016,03,01), "RECEITA1");        
     }
     
     private void removeMovimentacao() { 

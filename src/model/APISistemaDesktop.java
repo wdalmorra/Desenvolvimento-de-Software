@@ -319,7 +319,7 @@ public class APISistemaDesktop extends Observable{
      * @param b Segundo operando.
      * @return  true, se a e b tem o ano e mes identicos. false, caso contrario.
      */
-    private boolean comparaMeses(GregorianCalendar a, GregorianCalendar b){
+    static public boolean comparaMeses(GregorianCalendar a, GregorianCalendar b){
         return (a.get(GregorianCalendar.YEAR) == b.get(GregorianCalendar.YEAR))
                 && (a.get(GregorianCalendar.MONTH) == b.get(GregorianCalendar.MONTH));
     }
