@@ -19,25 +19,35 @@ public class APIView implements Observer{
     private ViewMenu vm;
     private ViewNovoMes vnm;
     private ViewMenuPopUp vmp;
+    private ViewRelatorios vr;
     
     public APIView() {
         this.vm = new ViewMenu();
         this.vnm = new ViewNovoMes();
         this.vmp = new ViewMenuPopUp();
+        this.vr = new ViewRelatorios();
     }
 
-    public void menu() {
-        this.vm.pack();
-        this.vm.setLocationRelativeTo(null);
-        this.vm.setVisible(true);
-    }
-    
-    public void abrePopup(String comm) {
+    public void abrePopup(String comando) {
         this.vmp.pack();
         this.vmp.setLocationRelativeTo(null);
-        this.vmp.setCommand(comm);
+        this.vmp.setComando(comando);
         this.vmp.popularMenus();
         this.vmp.setVisible(true);
+    }
+    
+    public void abreRelatorio() {
+        this.vr.pack();
+        this.vr.setLocationRelativeTo(null);
+        this.vr.setVisible(true);
+        this.vm.setVisible(false);
+    }
+    
+    public void addController(ActionListener c) {
+        this.vm.addController(c);
+        this.vnm.addController(c);
+        this.vmp.addController(c);
+        this.vr.addController(c);
     }
     
     public void atualizaInfoMes() {
@@ -47,43 +57,17 @@ public class APIView implements Observer{
         this.vnm.setAno(this.vmp.getAnoPopup());       
     }
     
-    public void mostraMes() {
-        this.vnm.setVisible(true);
-        this.vmp.setVisible(false);
-        this.vm.setVisible(false); 
+    public String exportarArquivo(){
+        return this.vnm.exportarArquivo();
     }
     
-    public void fechar() {
+    public void fechaPrograma() {
         System.exit(0);
     }
     
-    public void voltar() {
-        this.vnm.limpaLista();
-        this.vnm.limpaInfos();
-        this.vnm.setVisible(false);
+    public void fechaRelatorio() {
+        this.vr.setVisible(false);
         this.vm.setVisible(true);
-    }
-    
-    public void popupCancelar() {
-        this.vmp.setVisible(false);
-    }
-    
-    public void popularComDespesas() {
-        this.vnm.popularComDespesas();
-    }
-    
-    public void popularComReceitas() {
-        this.vnm.popularComReceitas();
-    }
-    
-    public void addController(ActionListener c) {
-        this.vm.addController(c);
-        this.vnm.addController(c);
-        this.vmp.addController(c);
-    }
-    
-    public String exportarArquivo(){
-        return this.vnm.exportarArquivo();
     }
     
     public int getAno() {
@@ -107,6 +91,37 @@ public class APIView implements Observer{
         return -1;
     }
     
+    public void menu() {
+        this.vm.pack();
+        this.vm.setLocationRelativeTo(null);
+        this.vm.setVisible(true);
+    }
+    
+    public void mostraMes() {
+        this.vnm.setVisible(true);
+        this.vmp.setVisible(false);
+        this.vm.setVisible(false); 
+    }
+    
+    public void popularComDespesas() {
+        this.vnm.popularComDespesas();
+    }
+    
+    public void popularComReceitas() {
+        this.vnm.popularComReceitas();
+    }
+    
+    public void popupCancelar() {
+        this.vmp.setVisible(false);
+    }
+    
+    public void voltar() {
+        this.vnm.limpaLista();
+        this.vnm.limpaInfos();
+        this.vnm.setVisible(false);
+        this.vm.setVisible(true);
+    }
+    
     public void limpaValor() {
         this.vnm.limpaValor();
     }
@@ -124,8 +139,8 @@ public class APIView implements Observer{
         return this.vnm.getDouR();
     }
     
-    public String getCommand() {
-        return this.vmp.getCommand();
+    public String getComando() {
+        return this.vmp.getComando();
     }
     
     public void setAlterando(boolean b){
@@ -166,7 +181,7 @@ public class APIView implements Observer{
         }
     }
     
-    public void mostraMensagemDeErro(JFrame f, String mensagem){
+    private void mostraMensagemDeErro(JFrame f, String mensagem){
         JOptionPane.showMessageDialog(f, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
