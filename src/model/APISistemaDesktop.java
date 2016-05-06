@@ -6,6 +6,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.Observable;
 
@@ -288,13 +290,6 @@ public class APISistemaDesktop extends Observable{
         
     }
 
-    /*
-        geraRelatorio
-        A SER DEFINIDO
-    */
-    public ArrayList<DadosMes> geraRelatorio(){
-        return null;
-    }
     
     /*
         comparaMeses simplesmente verifica se dadas duas datas, os meses e anos
@@ -306,35 +301,65 @@ public class APISistemaDesktop extends Observable{
     }
     
     
-    /* Tentativa de criacao de um metodo que gere os relatorios de barra gerais.
-       Nao ta pronto ainda. Termina ele ou apaga e faz outro.
+    /* 
+        Gera um vetor com o historico de gastos para uma dada categoria ao
+        longo de um periodo especifico.
     */
-//    public void geraRelatorioGeral(GregorianCalendar inicio, GregorianCalendar fim, String cat) {
-//        int i, j;
-//        int anoInicial, anoFinal, mesInicial, mesFinal;
-//        anoInicial = inicio.get(GregorianCalendar.YEAR);
-//        anoFinal = fim.get(GregorianCalendar.YEAR);
-//        mesInicial = inicio.get(GregorianCalendar.MONTH);
-//        mesFinal = 11;
-//        
-//        if(anoInicial > anoFinal) {
-//            return;
-//        }
-//        for(i = anoInicial; i <= anoFinal; i++) {
-//            if(i != anoInicial) {
-//                mesInicial = 0;
-//            }
-//            if(i == anoFinal) {
-//                mesFinal = fim.get(GregorianCalendar.MONTH);
-//            }
-//            for(j = mesInicial; j <= mesFinal; j++) {
-//                for (DadosMes dm : dadosMes){
-//                    if (comparaMeses(dm.getMes(), new GregorianCalendar(i, j, 1))) {
-//                        
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-//    }
+    public void geraRelatorio(GregorianCalendar inicio, GregorianCalendar fim, CategoriaDespesa c) {
+        
+        // Verifico a entrada
+        if (inicio.compareTo(fim) > 0) {
+            throw new IllegalArgumentException();
+        }
+        
+        // Acho todos os meses dentro do intervalo pedido
+        ArrayList<DadosMes> meses = new ArrayList<>();
+        for (DadosMes dm : dadosMes) {
+            if (dm.getMes().compareTo(inicio) >= 0 
+                    && dm.getMes().compareTo(fim) <= 0) {
+                meses.add(dm);
+            }
+        }
+        
+        // Ordeno os meses cronologicamente
+        Comparator<DadosMes> comp = new Comparator<DadosMes> () {
+            @Override
+            public int compare(DadosMes dm1, DadosMes dm2) {
+                return (dm1.getMes().compareTo(dm2.getMes()));
+            }
+        };
+        Collections.sort(meses, comp);
+        
+        // Extraio apenas os valores correspondentes a categoria que foi pedida,
+        // completo com zeros se nao der
+        ArrayList<Integer> resultado = new ArrayList<>();
+        int i = 0;
+        GregorianCalendar ic = new GregorianCalendar(
+                inicio.get(GregorianCalendar.YEAR), 
+                inicio.get(GregorianCalendar.MONTH),
+                1
+        );
+        GregorianCalendar lc = new GregorianCalendar(
+                fim.get(GregorianCalendar.YEAR), 
+                fim.get(GregorianCalendar.MONTH),
+                1
+        );
+        lc.add(GregorianCalendar.MONTH, 1);
+        
+        do {
+            int deleteme;
+            if (i >= meses.size() ||
+                    !comparaMeses(ic, meses.get(i).getMes())) {
+                resultado.add(0);
+            } else {
+                resultado.add(meses.get(i).getMovimentacao(c));
+                i++;
+            }
+            ic.add(GregorianCalendar.MONTH, 1);
+        } while (!comparaMeses(ic, lc));
+        
+        // return resultado;
+        this.setChanged();
+        notifyObservers(resultado);
+    }
 }

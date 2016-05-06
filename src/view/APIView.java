@@ -188,7 +188,19 @@ public class APIView implements Observer{
     @Override
     public void update(Observable sis, Object ob) {
         if (sis instanceof APISistemaDesktop) {
-            this.vnm.setModelList((ArrayList<Movimentacao>)ob);
+            // REFATORAR: provavelmente vai precisar de um tipo de objeto 'evento'
+            // pra sinalizar se o que veio foi um relatorio ou um dado mensal.
+            // Ou mudar a logica da interface pra reconhecer isso
+            
+            if (ob instanceof ArrayList<?>) {
+                if(((ArrayList<?>)ob).get(0) instanceof Movimentacao) {
+                    // TODO: conferir se nao pode vir uma lista vazia;
+                    this.vnm.setModelList((ArrayList<Movimentacao>)ob);
+                } else if (((ArrayList<?>)ob).get(0) instanceof Integer) {
+                    // TODO: implementar a logica de gerar a visualizacao dos
+                    // relatorios
+                }
+            }
         }
     }
 }
