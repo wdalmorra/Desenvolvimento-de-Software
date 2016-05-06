@@ -57,6 +57,28 @@ public class DadosMes {
     public ArrayList<Movimentacao> getMovimentacoes(){
         return this.movimentacoes;
     }
+    public int getMovimentacao(CategoriaReceita cat) {
+        for (Movimentacao m : movimentacoes) {
+            if (m instanceof Receita) {
+                Receita r = (Receita) m;
+                if (r.getCategoria() == cat) {
+                    return r.getValor();
+                }
+            }
+        }
+        return 0;
+    }
+    public int getMovimentacao(CategoriaDespesa cat) {
+        for (Movimentacao m : movimentacoes) {
+            if (m instanceof Despesa) {
+                Despesa d = (Despesa) m;
+                if (d.getCategoria() == cat) {
+                    return d.getValor();
+                }
+            }
+        }
+        return 0;
+    }
     public void addMovimentacao(Movimentacao m){
         movimentacoes.add(m);
     }
