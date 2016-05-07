@@ -15,7 +15,9 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import javax.swing.DefaultComboBoxModel;
 import model.APISistemaDesktop;
+import model.Calendario;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -44,8 +46,6 @@ public class ViewRelatorios extends javax.swing.JFrame {
         dadosGraficoBarras = new DefaultCategoryDataset();
         geraPieChart(7);
         geraBarChart();
-        iniciogc = new GregorianCalendar(2016,01,01);
-        fimgc = new GregorianCalendar(2016,03,01);
     }
     
     public void addController(ActionListener c) {
@@ -78,8 +78,8 @@ public class ViewRelatorios extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        relatorioMesFinallCb = new javax.swing.JComboBox<String>();
-        relatorioAnoFinallCb = new javax.swing.JComboBox<String>();
+        relatorioMesFinalCb = new javax.swing.JComboBox<String>();
+        relatorioAnoFinalCb = new javax.swing.JComboBox<String>();
         relatorioAplicarFiltro = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         relatorioCategoriaMesCb = new javax.swing.JComboBox<String>();
@@ -129,9 +129,9 @@ public class ViewRelatorios extends javax.swing.JFrame {
 
         jLabel4.setText("Categoria");
 
-        relatorioMesFinallCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioMesFinalCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        relatorioAnoFinallCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioAnoFinalCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         relatorioAplicarFiltro.setText("Aplicar Filtro");
         relatorioAplicarFiltro.setActionCommand("relatorioAplicarFiltro");
@@ -155,9 +155,9 @@ public class ViewRelatorios extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(relatorioMesFinallCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(relatorioMesFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(relatorioAnoFinallCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(relatorioAnoFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -179,8 +179,8 @@ public class ViewRelatorios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(relatorioMesFinallCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(relatorioAnoFinallCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(relatorioMesFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(relatorioAnoFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -285,12 +285,12 @@ public class ViewRelatorios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JComboBox<String> relatorioAnoFinallCb;
+    private javax.swing.JComboBox<String> relatorioAnoFinalCb;
     private javax.swing.JComboBox<String> relatorioAnoInicialCb;
     private javax.swing.JButton relatorioAplicarFiltro;
     private javax.swing.JComboBox<String> relatorioCategoriaCb;
     private javax.swing.JComboBox<String> relatorioCategoriaMesCb;
-    private javax.swing.JComboBox<String> relatorioMesFinallCb;
+    private javax.swing.JComboBox<String> relatorioMesFinalCb;
     private javax.swing.JComboBox<String> relatorioMesInicialCb;
     private javax.swing.JTabbedPane relatorioMesTab;
     private javax.swing.JButton relatorioVoltar;
@@ -362,17 +362,46 @@ public class ViewRelatorios extends javax.swing.JFrame {
         viewRelatorio_BarChart.validate();
 
     }
+    
+    public String getMesInicial(){
+        return (String) relatorioMesInicialCb.getSelectedItem();
+    }
+    public String getAnoInicial(){
+        return (String) relatorioAnoInicialCb.getSelectedItem();
+    }
+    public String getMesFinal(){
+        return (String) relatorioMesFinalCb.getSelectedItem();
+    }
+    public String getAnoFinal(){
+        return (String) relatorioAnoFinalCb.getSelectedItem();
+    }
+    public String getCategoria(){
+        return (String) relatorioCategoriaCb.getSelectedItem();
+    }
+    
+    public void popularMenus() {
+        relatorioMesInicialCb.setModel(new DefaultComboBoxModel(Calendario.listaMes));
+        relatorioAnoInicialCb.setModel(new DefaultComboBoxModel(Calendario.listaMes));
+        relatorioMesFinalCb.setModel(new DefaultComboBoxModel(Calendario.listaAno));
+        relatorioAnoFinalCb.setModel(new DefaultComboBoxModel(Calendario.listaAno));
+    }
+    
+    public void setMeses(GregorianCalendar igc, GregorianCalendar lgc){
+        iniciogc = igc;
+        fimgc = lgc;
+    }
         
     public void criaDadosGraficoBarras(ArrayList<Integer> dados) {
-        
         GregorianCalendar gc;
         int it = 0;
-        fimgc.add(GregorianCalendar.MONTH, 1);
+        dadosGraficoBarras.clear();
+
         // TODO: Laco tem que ir ate um a mais, senao eh pouca coisa impressa
         for (gc = iniciogc; !APISistemaDesktop.comparaMeses(gc, fimgc); gc.add(GregorianCalendar.MONTH, 1)) {
+            System.out.println(it);
             if (dados.get(it) != 0) {
                 dadosGraficoBarras.addValue(dados.get(it)/100,"",
-                        String.valueOf(gc.get(GregorianCalendar.MONDAY)) + "/"
+                        String.valueOf(gc.get(GregorianCalendar.MONTH)) + "/"
                                 + String.valueOf(gc.get(GregorianCalendar.YEAR)) );
             }
             it++;
