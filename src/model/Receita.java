@@ -38,6 +38,13 @@ public class Receita extends Movimentacao {
     
     @Override
     public String toString(){
-        return CategoriaReceita.categoriaToString(categoria) +" R$:"+ String.valueOf(this.getValor());
+        String real = String.valueOf(this.getValor() / 100);
+        int dec = this.getValor() % 100;
+        String decimal = String.valueOf(dec);
+        if (dec < 10) {
+            decimal += "0";
+        }
+        return CategoriaReceita.categoriaToString(categoria) +" R$:"+
+                real + "," + decimal;
     }
 }
