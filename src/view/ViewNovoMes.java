@@ -7,7 +7,9 @@ package view;
 
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -197,7 +199,10 @@ public class ViewNovoMes extends javax.swing.JFrame {
     public void modificaMovimentacao(Movimentacao m){
         movimentacaoAtual = m;
         
-        novoMesValorText.setText(String.valueOf(m.getValor()));
+        NumberFormat n = NumberFormat.getCurrencyInstance(Locale.US); 
+        String s = n.format(m.getValor() / 100.0);
+        s = s.replaceAll("[$]", "");
+        novoMesValorText.setText(s);
         
         if (m instanceof Receita) {
             groupDeR.setSelected(novoMesReceitaCheck.getModel(), true);
