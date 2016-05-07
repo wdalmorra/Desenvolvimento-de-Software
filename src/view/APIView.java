@@ -87,7 +87,7 @@ public class APIView implements Observer{
         String valorComCentavos = valor.replaceAll("[.,]", "");
         
         if(isInteger(valorComCentavos)) {
-            return Integer.parseInt(valorComCentavos);
+            return Integer.parseInt(valorComCentavos.substring(0, valorComCentavos.length()-2));
         } else {
             this.mostraMensagemDeErro(this.vnm, "Por favor, insira um valor inteiro.");
         }
