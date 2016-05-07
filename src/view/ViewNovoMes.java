@@ -202,11 +202,11 @@ public class ViewNovoMes extends javax.swing.JFrame {
         if (m instanceof Receita) {
             groupDeR.setSelected(novoMesReceitaCheck.getModel(), true);
             
-            CategoriaReceita.categoriaToString(((Receita) m).getCategoria());
+             novoMesCategoriaCb.setSelectedItem(((Receita) m).getCategoria());
         } else {
             groupDeR.setSelected(novoMesDespesaCheck.getModel(), true);
             
-            novoMesCategoriaCb.setSelectedItem(CategoriaDespesa.categoriaToString(((Despesa) m).getCategoria()));
+            novoMesCategoriaCb.setSelectedItem(((Despesa) m).getCategoria());
         }
     }
     
