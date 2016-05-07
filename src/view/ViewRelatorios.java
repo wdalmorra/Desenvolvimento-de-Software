@@ -18,6 +18,12 @@ import java.util.GregorianCalendar;
 import javax.swing.DefaultComboBoxModel;
 import model.APISistemaDesktop;
 import model.Calendario;
+import model.CategoriaDespesa;
+import model.CategoriaReceita;
+import model.DadosMes;
+import model.Despesa;
+import model.Movimentacao;
+import model.Receita;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -36,7 +42,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
      */
     
     private DefaultCategoryDataset dadosGraficoBarras;
-    
+    private DefaultPieDataset dadosGraficoTorta;
     private GregorianCalendar iniciogc;
     private GregorianCalendar fimgc;
     
@@ -82,9 +88,15 @@ public class ViewRelatorios extends javax.swing.JFrame {
         relatorioAnoFinalCb = new javax.swing.JComboBox<String>();
         relatorioAplicarFiltro = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        relatorioCategoriaMesCb = new javax.swing.JComboBox<String>();
+        relatorioMesCb = new javax.swing.JComboBox<String>();
         relatorioVoltar2 = new javax.swing.JButton();
         viewRelatorio_PieChart = new javax.swing.JLayeredPane();
+        jLabel5 = new javax.swing.JLabel();
+        relatorioSelecionarMes = new javax.swing.JButton();
+        relatorioAnoCb = new javax.swing.JComboBox<String>();
+        jLabel6 = new javax.swing.JLabel();
+        relatorioDespesasChb = new javax.swing.JCheckBox();
+        relatorioReceitasChb = new javax.swing.JCheckBox();
 
         viewRelatorio_Pie.setLayout(new java.awt.BorderLayout());
 
@@ -219,36 +231,76 @@ public class ViewRelatorios extends javax.swing.JFrame {
 
         relatorioMesTab.addTab("tab1", jPanel1);
 
-        relatorioCategoriaMesCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioMesCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         relatorioVoltar2.setText("Voltar");
         relatorioVoltar2.setActionCommand("relatorioVoltar");
 
         viewRelatorio_PieChart.setLayout(new java.awt.BorderLayout());
 
+        jLabel5.setText("Selecionar Mês: ");
+
+        relatorioSelecionarMes.setText("Selecionar");
+        relatorioSelecionarMes.setToolTipText("");
+        relatorioSelecionarMes.setActionCommand("relatorioSelecionarMes");
+
+        relatorioAnoCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel6.setText("Mostrar: ");
+
+        relatorioDespesasChb.setText("Despesas");
+
+        relatorioReceitasChb.setText("Receitas");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(relatorioDespesasChb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(relatorioReceitasChb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(viewRelatorio_PieChart, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                        .addGap(0, 0, 0)
+                        .addComponent(relatorioSelecionarMes))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(relatorioVoltar2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(relatorioCategoriaMesCb, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 220, Short.MAX_VALUE))
-                    .addComponent(viewRelatorio_PieChart))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(relatorioMesCb, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(relatorioAnoCb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(relatorioCategoriaMesCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(relatorioMesCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(relatorioAnoCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(viewRelatorio_PieChart, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(4, 4, 4)
+                        .addComponent(viewRelatorio_PieChart, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(relatorioSelecionarMes)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(relatorioDespesasChb)
+                                .addComponent(relatorioReceitasChb)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(relatorioVoltar2)
                 .addContainerGap())
@@ -281,18 +333,24 @@ public class ViewRelatorios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JComboBox<String> relatorioAnoCb;
     private javax.swing.JComboBox<String> relatorioAnoFinalCb;
     private javax.swing.JComboBox<String> relatorioAnoInicialCb;
     private javax.swing.JButton relatorioAplicarFiltro;
     private javax.swing.JComboBox<String> relatorioCategoriaCb;
-    private javax.swing.JComboBox<String> relatorioCategoriaMesCb;
+    private javax.swing.JCheckBox relatorioDespesasChb;
+    private javax.swing.JComboBox<String> relatorioMesCb;
     private javax.swing.JComboBox<String> relatorioMesFinalCb;
     private javax.swing.JComboBox<String> relatorioMesInicialCb;
     private javax.swing.JTabbedPane relatorioMesTab;
+    private javax.swing.JCheckBox relatorioReceitasChb;
+    private javax.swing.JButton relatorioSelecionarMes;
     private javax.swing.JButton relatorioVoltar;
     private javax.swing.JButton relatorioVoltar2;
     private javax.swing.JPanel viewRelatorio_Bar;
@@ -307,33 +365,33 @@ public class ViewRelatorios extends javax.swing.JFrame {
     
     //Adicionei o int mes para passar o mes dos dados.
                                         
-    private  PieDataset createPieDataset(int mes) {
+    private  void criaDadosGraficoTorta(DadosMes dm) {
         
         
         //Exemplo da minha ideia
         
-        //For (categorias)
-        // result.setValue(categoria[i].getName(), bd.GetGastosComida(mes));
-        
         //Creio que essa funcao vai ser utilizada pelo controlador... Nao sei se este modo vai se encaixar bem na arquitetura...
         
         
-        DefaultPieDataset result = new DefaultPieDataset();
-        result.setValue("Gasolina", 290);
-        result.setValue("Festas", 1500);
-        result.setValue("St Tecla", 750);
-        result.setValue("XUXUs", 1700);
-        return result;
-
+        dadosGraficoTorta.clear();
+        for (Movimentacao mov : dm.getMovimentacoes()){
+            if (mov instanceof Receita) {
+                String cr = CategoriaReceita.categoriaToString(((Receita) mov).getCategoria());
+                dadosGraficoTorta.setValue(cr, mov.getValor()/100);
+            } else {
+                if (mov instanceof Despesa) {
+                    String cd = CategoriaDespesa.categoriaToString(((Despesa) mov).getCategoria());
+                    dadosGraficoTorta.setValue(cd, mov.getValor()/100);
+                }
+            }
+            
+        }
     }
     
     public void geraPieChart(int mes){
-        
-        PieDataset dataset = createPieDataset(mes);
-        JFreeChart chart = createChart("Relatorio", dataset);  
+        JFreeChart chart = createChart("Relatorio", dadosGraficoTorta);  
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension( 339, 117) );        
-        //chartPanel.setSize(315,125);
+        chartPanel.setPreferredSize(new java.awt.Dimension( 339, 117) );
         
         viewRelatorio_PieChart.removeAll();
         viewRelatorio_PieChart.add(chartPanel, BorderLayout.CENTER);
@@ -353,9 +411,6 @@ public class ViewRelatorios extends javax.swing.JFrame {
 
         ChartPanel chartPanel = new ChartPanel( barChart );
         chartPanel.setPreferredSize(new java.awt.Dimension(339, 117));
-     
-       
-        //chartPanel.setSize(315,125);
         
         viewRelatorio_BarChart.removeAll();
         viewRelatorio_BarChart.add(chartPanel, BorderLayout.CENTER);
@@ -378,12 +433,21 @@ public class ViewRelatorios extends javax.swing.JFrame {
     public String getCategoria(){
         return (String) relatorioCategoriaCb.getSelectedItem();
     }
+    public String getMes(){
+        return (String) relatorioMesCb.getSelectedItem();
+    }
+    public String getAno(){
+        return (String) relatorioAnoCb.getSelectedItem();
+    }
     
     public void popularMenus() {
         relatorioMesInicialCb.setModel(new DefaultComboBoxModel(Calendario.listaMes));
-        relatorioAnoInicialCb.setModel(new DefaultComboBoxModel(Calendario.listaMes));
-        relatorioMesFinalCb.setModel(new DefaultComboBoxModel(Calendario.listaAno));
+        relatorioAnoInicialCb.setModel(new DefaultComboBoxModel(Calendario.listaAno));
+        relatorioMesFinalCb.setModel(new DefaultComboBoxModel(Calendario.listaMes));
         relatorioAnoFinalCb.setModel(new DefaultComboBoxModel(Calendario.listaAno));
+        relatorioMesCb.setModel(new DefaultComboBoxModel(Calendario.listaMes));
+        relatorioAnoCb.setModel(new DefaultComboBoxModel(Calendario.listaAno));
+        
     }
     
     public void setMeses(GregorianCalendar igc, GregorianCalendar lgc){
@@ -405,37 +469,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
                                 + String.valueOf(gc.get(GregorianCalendar.YEAR)) );
             }
             it++;
-        }
-
-//      final String Comida = "Comida";
-//      final String Xuxus = "Xuxus";
-//      final String STecla = "Santa Tecla";        
-//      final String Baiuca = "Baiuca";        
-//      final String Receita = "Receita";        
-//      final String Despesa = "Despesa";    
-//      final DefaultCategoryDataset dataset = 
-//      new DefaultCategoryDataset( );  
-//
-//        dataset.addValue( 111.0, "Total de Despesas" , "Jan/2016");
-//        dataset.addValue( 156.0, "Total de Receitas" , "Jan/2016");
-//       // dataset.addValue( 200.0 , Comida , Receita );    
-//     //   dataset.addValue( 3.0 , fiat , userrating );        
-//        //dataset.addValue( 5.0 , fiat , millage ); 
-//       // dataset.addValue( 5.0 , fiat , safety );           
-//
-//        dataset.addValue( 52.0, "Total de Despesas" , "Fev/2016");
-//        dataset.addValue( 62.0, "Total de Receitas" , "Fev/2016");
-//        
-//        dataset.addValue( 32.0, "Total de Despesas" , "Abr/2016");
-//        dataset.addValue( 24.0, "Total de Receitas" , "Abr/2016");        
-//        //dataset.addValue( 6.0 , audi , userrating );       
-//        //dataset.addValue( 10.0 , audi , millage );        
-//       // dataset.addValue( 4.0 , audi , safety );
-//
-////        dataset.addValue( 400.0 , STecla , Receita );        
-//        //dataset.addValue( 2.0 , ford , userrating );        
-//        //dataset.addValue( 3.0 , ford , millage );        
-//        //dataset.addValue( 6.0 , ford , safety );               
+        }         
    }
     
 /**
