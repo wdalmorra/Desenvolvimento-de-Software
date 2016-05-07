@@ -117,6 +117,10 @@ public class APIController implements ActionListener, ListSelectionListener{
                 this.relatorioAplicarFiltro();
                 break;
                 
+             case "relatorioSelecionarMes":
+                this.relatorioSelecionarMes();
+                break;
+                
             case "relatorioVoltar":
                 this.relatorioVoltar();
                 break;
@@ -239,6 +243,15 @@ public class APIController implements ActionListener, ListSelectionListener{
         this.view.setMesesRelatorio();
         this.sistema.geraRelatorio(this.view.getMesAnoInicialRelatorio(),
                 this.view.getMesAnoFinalRelatorio(), this.view.getCategoriaRelatorio());        
+    }
+    
+    private void relatorioSelecionarMes() {
+        boolean mesExiste;
+        this.view.setReceitaEDespesa();
+        mesExiste = this.sistema.geraRelatorioMensal(this.view.getMesAnoPie());
+        if(!mesExiste) {
+            this.view.notificaErro("relatorio", "Mês não encontrado.");
+        }
     }
     
     private void relatorioVoltar() {
