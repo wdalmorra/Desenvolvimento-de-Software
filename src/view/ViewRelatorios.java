@@ -45,7 +45,8 @@ public class ViewRelatorios extends javax.swing.JFrame {
     private DefaultPieDataset dadosGraficoTorta;
     private GregorianCalendar iniciogc;
     private GregorianCalendar fimgc;
-    
+    private boolean isSelectedReceita;
+    private boolean isSelectedDespesa;
     
     public ViewRelatorios() {
         initComponents();
@@ -248,8 +249,10 @@ public class ViewRelatorios extends javax.swing.JFrame {
 
         jLabel6.setText("Mostrar: ");
 
+        relatorioDespesasChb.setSelected(true);
         relatorioDespesasChb.setText("Despesas");
 
+        relatorioReceitasChb.setSelected(true);
         relatorioReceitasChb.setText("Receitas");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -365,9 +368,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
     
     //Adicionei o int mes para passar o mes dos dados.
                                         
-    private  void criaDadosGraficoTorta(DadosMes dm) {
-        
-        
+    private  void criaDadosGraficoTorta(DadosMes dm){
         //Exemplo da minha ideia
         
         //Creio que essa funcao vai ser utilizada pelo controlador... Nao sei se este modo vai se encaixar bem na arquitetura...
@@ -375,16 +376,15 @@ public class ViewRelatorios extends javax.swing.JFrame {
         
         dadosGraficoTorta.clear();
         for (Movimentacao mov : dm.getMovimentacoes()){
-            if (mov instanceof Receita) {
+            if (mov instanceof Receita && isSelectedReceita) {
                 String cr = CategoriaReceita.categoriaToString(((Receita) mov).getCategoria());
                 dadosGraficoTorta.setValue(cr, mov.getValor()/100);
             } else {
-                if (mov instanceof Despesa) {
+                if (mov instanceof Despesa && isSelectedDespesa) {
                     String cd = CategoriaDespesa.categoriaToString(((Despesa) mov).getCategoria());
                     dadosGraficoTorta.setValue(cd, mov.getValor()/100);
                 }
             }
-            
         }
     }
     
@@ -433,12 +433,24 @@ public class ViewRelatorios extends javax.swing.JFrame {
     public String getCategoria(){
         return (String) relatorioCategoriaCb.getSelectedItem();
     }
-    public String getMes(){
+    public String getMesPie(){
         return (String) relatorioMesCb.getSelectedItem();
     }
-    public String getAno(){
+    public String getAnoPie(){
         return (String) relatorioAnoCb.getSelectedItem();
     }
+    public boolean isReceita(){
+        return relatorioReceitasChb.isSelected();
+    }
+    public boolean isDespesa(){
+        return relatorioDespesasChb.isSelected();
+    }
+
+    public void setReceitaEDespesa(boolean isR, boolean isD){
+        isSelectedReceita = isR;
+        isSelectedDespesa = isD;
+    }
+    
     
     public void popularMenus() {
         relatorioMesInicialCb.setModel(new DefaultComboBoxModel(Calendario.listaMes));
@@ -448,13 +460,26 @@ public class ViewRelatorios extends javax.swing.JFrame {
         relatorioMesCb.setModel(new DefaultComboBoxModel(Calendario.listaMes));
         relatorioAnoCb.setModel(new DefaultComboBoxModel(Calendario.listaAno));
         
+        ArrayList<String> cats = new ArrayList<>();
+        
+        for (CategoriaDespesa cd : CategoriaDespesa.values()) {
+            cats.add(CategoriaDespesa.categoriaToString(cd));
+        }
+        
+        for (CategoriaReceita cr : CategoriaReceita.values()) {
+            cats.add(CategoriaReceita.categoriaToString(cr));
+        }
+        
+        relatorioCategoriaCb.setModel(new DefaultComboBoxModel(cats.toArray()));
+        
     }
     
     public void setMeses(GregorianCalendar igc, GregorianCalendar lgc){
         iniciogc = igc;
         fimgc = lgc;
+        fimgc.add(GregorianCalendar.MONTH, 1);
     }
-        
+
     public void criaDadosGraficoBarras(ArrayList<Integer> dados) {
         GregorianCalendar gc;
         int it = 0;
@@ -464,9 +489,10 @@ public class ViewRelatorios extends javax.swing.JFrame {
         for (gc = iniciogc; !APISistemaDesktop.comparaMeses(gc, fimgc); gc.add(GregorianCalendar.MONTH, 1)) {
             System.out.println(it);
             if (dados.get(it) != 0) {
-                dadosGraficoBarras.addValue(dados.get(it)/100,"",
+                dadosGraficoBarras.addValue(dados.get(it)/100,
                         String.valueOf(gc.get(GregorianCalendar.MONTH)) + "/"
-                                + String.valueOf(gc.get(GregorianCalendar.YEAR)) );
+                                + String.valueOf(gc.get(GregorianCalendar.YEAR)),
+                        this.getCategoria());
             }
             it++;
         }         

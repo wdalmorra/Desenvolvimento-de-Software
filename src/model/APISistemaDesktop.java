@@ -417,4 +417,16 @@ public class APISistemaDesktop extends Observable{
         this.setChanged();
         notifyObservers(resultado);
     }
+    
+    public boolean geraRelatorioMensal(GregorianCalendar mes){
+        for (DadosMes dm : dadosMes){
+            if (comparaMeses(dm.getMes(),mes)) {
+                this.setChanged();
+                notifyObservers(dm);
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }
