@@ -162,9 +162,9 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="relatorioMesFinallCb" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <Component id="relatorioMesFinalCb" min="-2" pref="121" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="relatorioAnoFinallCb" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <Component id="relatorioAnoFinalCb" min="-2" pref="121" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -192,8 +192,8 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="relatorioMesFinallCb" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="relatorioAnoFinallCb" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="relatorioMesFinalCb" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="relatorioAnoFinalCb" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -272,7 +272,7 @@
                     <Property name="text" type="java.lang.String" value="Categoria"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="relatorioMesFinallCb">
+                <Component class="javax.swing.JComboBox" name="relatorioMesFinalCb">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
@@ -287,7 +287,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="relatorioAnoFinallCb">
+                <Component class="javax.swing.JComboBox" name="relatorioAnoFinalCb">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
