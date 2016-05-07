@@ -113,12 +113,14 @@ public class APIController implements ActionListener, ListSelectionListener{
                 this.receitaCheckBox();
                 break;
            
-            case "relatorioVoltar":
-                this.relatorioVoltar();
-                break;
             case "relatorioAplicarFiltro":
                 this.relatorioAplicarFiltro();
                 break;
+                
+            case "relatorioVoltar":
+                this.relatorioVoltar();
+                break;
+            
             default:
                 break;
         }
@@ -233,11 +235,14 @@ public class APIController implements ActionListener, ListSelectionListener{
         this.view.popularComReceitas();
     }
     
+    private void relatorioAplicarFiltro() {
+        this.view.setMesesRelatorio();
+        this.sistema.geraRelatorio(this.view.getMesAnoInicialRelatorio(),
+                this.view.getMesAnoFinalRelatorio(), this.view.getCategoriaRelatorio());        
+    }
+    
     private void relatorioVoltar() {
         this.view.fechaRelatorio();
-    }
-    private void relatorioAplicarFiltro(){
-        this.sistema.geraRelatorio(new GregorianCalendar(2016,01,01), new GregorianCalendar(2016,03,01), "RECEITA1");        
     }
     
     private void removeMovimentacao() { 
@@ -248,7 +253,7 @@ public class APIController implements ActionListener, ListSelectionListener{
         int valor = this.view.getValor();
         
         if(valor >= 0) {
-            String cat = this.view.getCategoria();
+            String cat = this.view.getCategoriaNovoMes();
             String tipo = this.view.getDouR();
             GregorianCalendar date = this.getDate();
             

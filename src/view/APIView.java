@@ -7,11 +7,13 @@ package view;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.APISistemaDesktop;
+import model.Calendario;
 import model.Movimentacao;
 
 
@@ -39,6 +41,7 @@ public class APIView implements Observer{
     public void abreRelatorio() {
         this.vr.pack();
         this.vr.setLocationRelativeTo(null);
+        this.vr.popularMenus();
         this.vr.setVisible(true);
         this.vm.setVisible(false);
     }
@@ -115,6 +118,25 @@ public class APIView implements Observer{
         this.vmp.setVisible(false);
     }
     
+    public String getCategoriaRelatorio() {
+        return this.vr.getCategoria();
+    }
+    
+    public GregorianCalendar getMesAnoInicialRelatorio() {
+        return new GregorianCalendar(Integer.parseInt(this.vr.getAnoInicial()),
+                Calendario.mesToInt(this.vr.getMesInicial()), 1);
+    }
+    
+    public GregorianCalendar getMesAnoFinalRelatorio() {
+        return new GregorianCalendar(Integer.parseInt(this.vr.getAnoFinal()),
+                Calendario.mesToInt(this.vr.getMesFinal()), 1);
+    }
+    
+    public void setMesesRelatorio(){
+        this.vr.setMeses(this.getMesAnoInicialRelatorio(),
+                this.getMesAnoFinalRelatorio());
+    }
+    
     public void voltar() {
         this.vnm.limpaLista();
         this.vnm.limpaInfos();
@@ -130,8 +152,7 @@ public class APIView implements Observer{
         return this.vnm.getMovimentacaoAtual();
     }
     
-    
-    public String getCategoria() {
+    public String getCategoriaNovoMes() {
         return this.vnm.getCategoria();
     }
     
