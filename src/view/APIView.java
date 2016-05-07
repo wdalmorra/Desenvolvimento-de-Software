@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.APISistemaDesktop;
 import model.Calendario;
+import model.DadosMes;
 import model.Movimentacao;
 
 
@@ -132,9 +133,18 @@ public class APIView implements Observer{
                 Calendario.mesToInt(this.vr.getMesFinal()), 1);
     }
     
+    public GregorianCalendar getMesAnoPie() {
+        return new GregorianCalendar(Integer.parseInt(this.vr.getAnoPie()),
+                Calendario.mesToInt(this.vr.getMesPie()), 1);
+    }
+    
     public void setMesesRelatorio(){
         this.vr.setMeses(this.getMesAnoInicialRelatorio(),
                 this.getMesAnoFinalRelatorio());
+    }
+    
+    public void setReceitaEDespesa() {
+        this.vr.setReceitaEDespesa(this.vr.isReceita(), this.vr.isDespesa());
     }
     
     public void voltar() {
@@ -197,6 +207,9 @@ public class APIView implements Observer{
             case "popup":
                 this.mostraMensagemDeErro(this.vmp, msg);
                 break;
+            case "relatorio":
+                this.mostraMensagemDeErro(this.vr, msg);
+                break;
             default:
                 break;
         }
@@ -222,6 +235,8 @@ public class APIView implements Observer{
                     this.vr.criaDadosGraficoBarras((ArrayList<Integer>) ob);
                     // relatorios
                 }
+            } else if (ob instanceof DadosMes) {
+                this.vr.criaDadosGraficoTorta((DadosMes)ob);
             }
         }
     }

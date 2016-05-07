@@ -27,6 +27,7 @@ import model.Receita;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -51,7 +52,8 @@ public class ViewRelatorios extends javax.swing.JFrame {
     public ViewRelatorios() {
         initComponents();
         dadosGraficoBarras = new DefaultCategoryDataset();
-        geraPieChart(7);
+        dadosGraficoTorta = new DefaultPieDataset();
+        geraPieChart();
         geraBarChart();
     }
     
@@ -59,6 +61,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
         relatorioVoltar.addActionListener(c);
         relatorioVoltar2.addActionListener(c);
         relatorioAplicarFiltro.addActionListener(c);
+        relatorioSelecionarMes.addActionListener(c);
     }
     
     /**
@@ -78,23 +81,23 @@ public class ViewRelatorios extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         viewRelatorio_BarChart = new javax.swing.JLayeredPane();
         jPanel3 = new javax.swing.JPanel();
-        relatorioMesInicialCb = new javax.swing.JComboBox<String>();
-        relatorioCategoriaCb = new javax.swing.JComboBox<String>();
-        relatorioAnoInicialCb = new javax.swing.JComboBox<String>();
+        relatorioMesInicialCb = new javax.swing.JComboBox<>();
+        relatorioCategoriaCb = new javax.swing.JComboBox<>();
+        relatorioAnoInicialCb = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        relatorioMesFinalCb = new javax.swing.JComboBox<String>();
-        relatorioAnoFinalCb = new javax.swing.JComboBox<String>();
+        relatorioMesFinalCb = new javax.swing.JComboBox<>();
+        relatorioAnoFinalCb = new javax.swing.JComboBox<>();
         relatorioAplicarFiltro = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        relatorioMesCb = new javax.swing.JComboBox<String>();
+        relatorioMesCb = new javax.swing.JComboBox<>();
         relatorioVoltar2 = new javax.swing.JButton();
         viewRelatorio_PieChart = new javax.swing.JLayeredPane();
         jLabel5 = new javax.swing.JLabel();
         relatorioSelecionarMes = new javax.swing.JButton();
-        relatorioAnoCb = new javax.swing.JComboBox<String>();
+        relatorioAnoCb = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         relatorioDespesasChb = new javax.swing.JCheckBox();
         relatorioReceitasChb = new javax.swing.JCheckBox();
@@ -128,11 +131,11 @@ public class ViewRelatorios extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        relatorioMesInicialCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioMesInicialCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        relatorioCategoriaCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioCategoriaCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        relatorioAnoInicialCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioAnoInicialCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setText("Filtrar Resultados");
 
@@ -142,9 +145,9 @@ public class ViewRelatorios extends javax.swing.JFrame {
 
         jLabel4.setText("Categoria");
 
-        relatorioMesFinalCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioMesFinalCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        relatorioAnoFinalCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioAnoFinalCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         relatorioAplicarFiltro.setText("Aplicar Filtro");
         relatorioAplicarFiltro.setActionCommand("relatorioAplicarFiltro");
@@ -232,7 +235,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
 
         relatorioMesTab.addTab("tab1", jPanel1);
 
-        relatorioMesCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioMesCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         relatorioVoltar2.setText("Voltar");
         relatorioVoltar2.setActionCommand("relatorioVoltar");
@@ -245,7 +248,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
         relatorioSelecionarMes.setToolTipText("");
         relatorioSelecionarMes.setActionCommand("relatorioSelecionarMes");
 
-        relatorioAnoCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioAnoCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel6.setText("Mostrar: ");
 
@@ -368,30 +371,30 @@ public class ViewRelatorios extends javax.swing.JFrame {
     
     //Adicionei o int mes para passar o mes dos dados.
                                         
-    private  void criaDadosGraficoTorta(DadosMes dm){
+    public  void criaDadosGraficoTorta(DadosMes dm){
         //Exemplo da minha ideia
         
         //Creio que essa funcao vai ser utilizada pelo controlador... Nao sei se este modo vai se encaixar bem na arquitetura...
-        
         
         dadosGraficoTorta.clear();
         for (Movimentacao mov : dm.getMovimentacoes()){
             if (mov instanceof Receita && isSelectedReceita) {
                 String cr = CategoriaReceita.categoriaToString(((Receita) mov).getCategoria());
-                dadosGraficoTorta.setValue(cr, mov.getValor()/100);
+                dadosGraficoTorta.setValue(cr, (double)(mov.getValor()/100));
             } else {
                 if (mov instanceof Despesa && isSelectedDespesa) {
                     String cd = CategoriaDespesa.categoriaToString(((Despesa) mov).getCategoria());
-                    dadosGraficoTorta.setValue(cd, mov.getValor()/100);
+                    dadosGraficoTorta.setValue(cd, (double)(mov.getValor()/100));
                 }
             }
         }
     }
     
-    public void geraPieChart(int mes){
-        JFreeChart chart = createChart("Relatorio", dadosGraficoTorta);  
+    public void geraPieChart(){
+        
+        JFreeChart chart = createChart("Relatorio", dadosGraficoTorta);
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension( 339, 117) );
+        chartPanel.setPreferredSize(new java.awt.Dimension(339, 117) );
         
         viewRelatorio_PieChart.removeAll();
         viewRelatorio_PieChart.add(chartPanel, BorderLayout.CENTER);
