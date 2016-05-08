@@ -42,7 +42,7 @@ public class Receita extends Movimentacao {
         int dec = this.getValor() % 100;
         String decimal = String.valueOf(dec);
         if (dec < 10) {
-            decimal += "0";
+            decimal = "0" + decimal;
         }
         return CategoriaReceita.categoriaToString(categoria) +" R$:"+
                 real + "," + decimal;
