@@ -163,6 +163,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
         novoMesCategoriaCb.setSelectedIndex(0);
         
         this.limpaValor();
+        popularComDespesas();
     }
     
     private void myInitComponents() {
