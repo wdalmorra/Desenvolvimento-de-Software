@@ -117,12 +117,16 @@ public class APIController implements ActionListener, ListSelectionListener{
                 this.relatorioAplicarFiltro();
                 break;
                 
-             case "relatorioSelecionarMes":
+            case "relatorioSelecionarMes":
                 this.relatorioSelecionarMes();
                 break;
                 
             case "relatorioVoltar":
                 this.relatorioVoltar();
+                break;
+            
+            case "sobreVoltar":
+                this.sobreVoltar();
                 break;
             
             default:
@@ -186,6 +190,7 @@ public class APIController implements ActionListener, ListSelectionListener{
     }
     
     private void menuSobre() {
+        this.view.abreSobre();
         
     }
     
@@ -245,7 +250,7 @@ public class APIController implements ActionListener, ListSelectionListener{
         this.sistema.geraRelatorio(this.view.getMesAnoInicialRelatorio(),
                 this.view.getMesAnoFinalRelatorio(), this.view.getCategoriaRelatorio());        
     }
-    
+
     private void relatorioSelecionarMes() {
         boolean mesExiste;
         this.view.setReceitaEDespesa();
@@ -254,23 +259,27 @@ public class APIController implements ActionListener, ListSelectionListener{
             this.view.notificaErro("relatorio", "Mês não encontrado.");
         }
     }
-    
+
     private void relatorioVoltar() {
         this.view.fechaRelatorio();
     }
-    
+
     private void removeMovimentacao() { 
         this.sistema.removeMovimentacao(this.getDate(),view.movimentacaoAtual());
     }
     
+    private void sobreVoltar(){
+        this.view.fechaSobre();
+    }
+
     private void submeteMovimentacao(boolean novaSub) {
         int valor = this.view.getValor();
-        
+
         if(valor >= 0) {
             String cat = this.view.getCategoriaNovoMes();
             String tipo = this.view.getDouR();
             GregorianCalendar date = this.getDate();
-            
+
             if (novaSub) {
                 this.sistema.addMovimentacao(valor, cat, tipo, date);
             } else {

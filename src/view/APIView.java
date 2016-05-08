@@ -23,12 +23,14 @@ public class APIView implements Observer{
     private ViewNovoMes vnm;
     private ViewMenuPopUp vmp;
     private ViewRelatorios vr;
+    private ViewSobre vs;
     
     public APIView() {
         this.vm = new ViewMenu();
         this.vnm = new ViewNovoMes();
         this.vmp = new ViewMenuPopUp();
         this.vr = new ViewRelatorios();
+        this.vs = new ViewSobre();
     }
 
     public void abrePopup(String comando) {
@@ -47,11 +49,19 @@ public class APIView implements Observer{
         this.vm.setVisible(false);
     }
     
+    public void abreSobre() {
+        this.vs.pack();
+        this.vs.setLocationRelativeTo(null);
+        this.vs.setVisible(true);
+        this.vm.setVisible(false);
+    }
+    
     public void addController(ActionListener c) {
         this.vm.addController(c);
         this.vnm.addController(c);
         this.vmp.addController(c);
         this.vr.addController(c);
+        this.vs.addController(c);
     }
     
     public void atualizaInfoMes() {
@@ -71,6 +81,11 @@ public class APIView implements Observer{
     
     public void fechaRelatorio() {
         this.vr.setVisible(false);
+        this.vm.setVisible(true);
+    }
+    
+    public void fechaSobre(){
+        this.vs.setVisible(false);
         this.vm.setVisible(true);
     }
     

@@ -13,6 +13,8 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import javax.swing.DefaultComboBoxModel;
@@ -27,6 +29,7 @@ import model.Receita;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.category.CategoryDataset;
@@ -48,6 +51,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
     private GregorianCalendar fimgc;
     private boolean isSelectedReceita;
     private boolean isSelectedDespesa;
+    private PiePlot plot2;
     
     public ViewRelatorios() {
         initComponents();
@@ -372,44 +376,16 @@ public class ViewRelatorios extends javax.swing.JFrame {
     //Adicionei o int mes para passar o mes dos dados.
                                         
     public  void criaDadosGraficoTorta(DadosMes dm){
-        //Exemplo da minha ideia
-        double somaDespesa = 0;
-        double somaReceita = 0;
-        double somaAmbos = 0;
-        //Creio que essa funcao vai ser utilizada pelo controlador... Nao sei se este modo vai se encaixar bem na arquitetura...
-         for (Movimentacao mov : dm.getMovimentacoes()){
-             if(isSelectedDespesa && isSelectedReceita){
-                 somaAmbos += mov.getValor();
-                 
-             }else if (mov instanceof Receita && isSelectedReceita) {
-                  somaReceita += mov.getValor();
-                }else if (mov instanceof Despesa && isSelectedDespesa){
-                  somaDespesa+= mov.getValor();
-                  System.out.println(mov.getValor() +"\n");
-              }
-        }
          
         dadosGraficoTorta.clear();
         for (Movimentacao mov : dm.getMovimentacoes()){
-             if(isSelectedDespesa && isSelectedReceita){
-                 
-                 if (mov instanceof Receita) {
-                         String cr = CategoriaReceita.categoriaToString(((Receita) mov).getCategoria())  + ' ' + String.valueOf(((mov.getValor()/(double)(somaAmbos)*100))) + "%";
-                         dadosGraficoTorta.setValue(cr, ((double)(mov.getValor()/(double)(somaAmbos))*100));
-                
-                 }else{
-                          String cd = CategoriaDespesa.categoriaToString(((Despesa) mov).getCategoria()) + ' ' + String.valueOf(((((double)(mov.getValor()/(double)(somaAmbos))*100)))) + "%";
-                        dadosGraficoTorta.setValue(cd, ((double)(mov.getValor()/(double)(somaAmbos))*100));
-                 }
-                
-             
-             }else if (mov instanceof Receita && isSelectedReceita) {
-                String cr = CategoriaReceita.categoriaToString(((Receita) mov).getCategoria())  + ' ' + String.valueOf(((mov.getValor()/(double)(somaReceita)*100))) + "%";
-                dadosGraficoTorta.setValue(cr, ((double)(mov.getValor()/(double)(somaReceita))*100));
+            if (mov instanceof Receita && isSelectedReceita) {
+                String cr = CategoriaReceita.categoriaToString(((Receita) mov).getCategoria());
+                dadosGraficoTorta.setValue(cr, mov.getValor());
             } else {
                 if (mov instanceof Despesa && isSelectedDespesa) {
-                    String cd = CategoriaDespesa.categoriaToString(((Despesa) mov).getCategoria()) + ' ' + String.valueOf(((((double)(mov.getValor()/(double)(somaDespesa))*100)))) + "%";
-                    dadosGraficoTorta.setValue(cd, ((double)(mov.getValor()/(double)(somaDespesa))*100));
+                    String cd = CategoriaDespesa.categoriaToString(((Despesa) mov).getCategoria());
+                    dadosGraficoTorta.setValue(cd, mov.getValor());
                 }
             }
         }
@@ -424,6 +400,11 @@ public class ViewRelatorios extends javax.swing.JFrame {
         viewRelatorio_PieChart.removeAll();
         viewRelatorio_PieChart.add(chartPanel, BorderLayout.CENTER);
         viewRelatorio_PieChart.validate();
+        
+        plot2 = (PiePlot) chart.getPlot();
+        plot2.setLabelGenerator(new StandardPieSectionLabelGenerator(
+                "{0} ({2})", NumberFormat.getNumberInstance(),  new DecimalFormat("0.00%")
+            ));
 
     }
     
