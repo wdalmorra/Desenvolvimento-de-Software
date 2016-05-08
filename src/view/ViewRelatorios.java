@@ -120,7 +120,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(viewRelatorio_BarChart, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .addComponent(viewRelatorio_BarChart)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -166,37 +166,40 @@ public class ViewRelatorios extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(relatorioMesInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(relatorioAnoInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(relatorioAnoInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(relatorioMesFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(relatorioAnoFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(relatorioAnoFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(relatorioCategoriaCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(relatorioAplicarFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(relatorioAplicarFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(9, 9, 9)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(relatorioMesInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(relatorioAnoInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(relatorioMesFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(relatorioAnoFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(relatorioMesInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(relatorioAnoInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(relatorioMesFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(relatorioAnoFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -268,23 +271,23 @@ public class ViewRelatorios extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(relatorioVoltar2))
+                    .addComponent(viewRelatorio_PieChart)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(relatorioMesCb, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(relatorioAnoCb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(relatorioAnoCb, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(viewRelatorio_PieChart, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(relatorioDespesasChb)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(relatorioReceitasChb)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(relatorioSelecionarMes)))))
+                        .addComponent(relatorioDespesasChb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(relatorioReceitasChb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(relatorioSelecionarMes)
+                        .addGap(32, 32, 32)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -298,10 +301,10 @@ public class ViewRelatorios extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(relatorioSelecionarMes)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(relatorioDespesasChb)
-                        .addComponent(relatorioReceitasChb)))
+                        .addComponent(relatorioReceitasChb)
+                        .addComponent(relatorioSelecionarMes)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewRelatorio_PieChart, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                 .addGap(11, 11, 11)
@@ -317,7 +320,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(relatorioMesTab, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                .addComponent(relatorioMesTab)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -370,18 +373,43 @@ public class ViewRelatorios extends javax.swing.JFrame {
                                         
     public  void criaDadosGraficoTorta(DadosMes dm){
         //Exemplo da minha ideia
-        
+        double somaDespesa = 0;
+        double somaReceita = 0;
+        double somaAmbos = 0;
         //Creio que essa funcao vai ser utilizada pelo controlador... Nao sei se este modo vai se encaixar bem na arquitetura...
-        
+         for (Movimentacao mov : dm.getMovimentacoes()){
+             if(isSelectedDespesa && isSelectedReceita){
+                 somaAmbos += mov.getValor();
+                 
+             }else if (mov instanceof Receita && isSelectedReceita) {
+                  somaReceita += mov.getValor();
+                }else if (mov instanceof Despesa && isSelectedDespesa){
+                  somaDespesa+= mov.getValor();
+                  System.out.println(mov.getValor() +"\n");
+              }
+        }
+         
         dadosGraficoTorta.clear();
         for (Movimentacao mov : dm.getMovimentacoes()){
-            if (mov instanceof Receita && isSelectedReceita) {
-                String cr = CategoriaReceita.categoriaToString(((Receita) mov).getCategoria());
-                dadosGraficoTorta.setValue(cr, (double)(mov.getValor()/100));
+             if(isSelectedDespesa && isSelectedReceita){
+                 
+                 if (mov instanceof Receita) {
+                         String cr = CategoriaReceita.categoriaToString(((Receita) mov).getCategoria())  + ' ' + String.valueOf(((mov.getValor()/(double)(somaAmbos)*100))) + "%";
+                         dadosGraficoTorta.setValue(cr, ((double)(mov.getValor()/(double)(somaAmbos))*100));
+                
+                 }else{
+                          String cd = CategoriaDespesa.categoriaToString(((Despesa) mov).getCategoria()) + ' ' + String.valueOf(((((double)(mov.getValor()/(double)(somaAmbos))*100)))) + "%";
+                        dadosGraficoTorta.setValue(cd, ((double)(mov.getValor()/(double)(somaAmbos))*100));
+                 }
+                
+             
+             }else if (mov instanceof Receita && isSelectedReceita) {
+                String cr = CategoriaReceita.categoriaToString(((Receita) mov).getCategoria())  + ' ' + String.valueOf(((mov.getValor()/(double)(somaReceita)*100))) + "%";
+                dadosGraficoTorta.setValue(cr, ((double)(mov.getValor()/(double)(somaReceita))*100));
             } else {
                 if (mov instanceof Despesa && isSelectedDespesa) {
-                    String cd = CategoriaDespesa.categoriaToString(((Despesa) mov).getCategoria());
-                    dadosGraficoTorta.setValue(cd, (double)(mov.getValor()/100));
+                    String cd = CategoriaDespesa.categoriaToString(((Despesa) mov).getCategoria()) + ' ' + String.valueOf(((((double)(mov.getValor()/(double)(somaDespesa))*100)))) + "%";
+                    dadosGraficoTorta.setValue(cd, ((double)(mov.getValor()/(double)(somaDespesa))*100));
                 }
             }
         }
