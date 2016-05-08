@@ -201,7 +201,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
         
         NumberFormat n = NumberFormat.getCurrencyInstance(new Locale( "pt", "BR" )); 
         String s = n.format(m.getValor() / 100.0);
-        s = s.replaceAll("[R$]", "");
+        s = s.replaceAll("[R $]", "");
         novoMesValorText.setText(s);
         
         if (m instanceof Receita) {
