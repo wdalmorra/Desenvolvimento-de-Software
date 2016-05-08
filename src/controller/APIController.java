@@ -223,6 +223,7 @@ public class APIController implements ActionListener, ListSelectionListener{
     }
     
     private void novoMesVoltar() {
+        this.view.setAlterando(false);
         this.view.voltar();
     }
     
@@ -255,6 +256,7 @@ public class APIController implements ActionListener, ListSelectionListener{
     }
     
     private void relatorioVoltar() {
+        this.view.setAlterando(false);
         this.view.fechaRelatorio();
     }
     
