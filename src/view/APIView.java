@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.APISistemaDesktop;
@@ -99,12 +100,26 @@ public class APIView implements Observer{
     
     public int getValor() {
         String valor = this.vnm.getValor();
-        String valorComCentavos = valor.replaceAll("[.,]", "");
+        if(valor.matches("\\d+")) {
+            valor = valor + "00";
+        } else if(valor.matches("\\d+[,]\\d")) {
+            valor = valor + "0";
+        } else if(valor.matches("\\d+[,]\\d\\d")) {
+            valor = valor + "";
+        } else {
+            if (valor.contains(".")) {
+                this.mostraMensagemDeErro(this.vnm, "Por favor, use vírgula para os centavos.");
+            } else {
+                this.mostraMensagemDeErro(this.vnm, "Por favor, insira um valor válido.");
+            }
+            
+            return -1;
+        }
+        
+        String valorComCentavos = valor.replaceFirst("[,]", "");
         
         if(isInteger(valorComCentavos)) {
             return Integer.parseInt(valorComCentavos);
-        } else {
-            this.mostraMensagemDeErro(this.vnm, "Por favor, insira um valor inteiro.");
         }
         
         return -1;

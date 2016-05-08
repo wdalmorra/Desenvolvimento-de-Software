@@ -236,11 +236,11 @@ public class ViewNovoMes extends javax.swing.JFrame {
         novoMesSalvar = new javax.swing.JButton();
         novoMesExportar = new javax.swing.JButton();
         novoMesRsLabel = new javax.swing.JLabel();
-        novoMesValorText = new javax.swing.JFormattedTextField();
         novoMesMesLabel = new javax.swing.JLabel();
         novoMesAnoLabel = new javax.swing.JLabel();
         novoMesCancelar = new javax.swing.JButton();
         novoMesDeletar = new javax.swing.JButton();
+        novoMesValorText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("novoMes");
@@ -277,9 +277,6 @@ public class ViewNovoMes extends javax.swing.JFrame {
 
         novoMesRsLabel.setText("R$");
 
-        novoMesValorText.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##,##0.00"))));
-        novoMesValorText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         novoMesMesLabel.setText("Mes");
 
         novoMesAnoLabel.setText("2016");
@@ -289,6 +286,8 @@ public class ViewNovoMes extends javax.swing.JFrame {
 
         novoMesDeletar.setText("Deletar");
         novoMesDeletar.setActionCommand("novoMesDeletar");
+
+        novoMesValorText.setText("0,00");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -327,14 +326,15 @@ public class ViewNovoMes extends javax.swing.JFrame {
                                 .addComponent(novoMesSubmeter)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(novoMesCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(novoMesCategoriaCb, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(novoMesRsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(novoMesValorText, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(12, 12, 12)
+                                    .addComponent(novoMesRsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(novoMesValorText))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(23, 23, 23)
+                                    .addComponent(novoMesCategoriaCb, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(novoMesDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -361,8 +361,8 @@ public class ViewNovoMes extends javax.swing.JFrame {
                         .addComponent(novoMesCategoriaCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(novoMesValorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(novoMesRsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(novoMesRsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(novoMesValorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(novoMesSubmeter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -401,7 +401,7 @@ public class ViewNovoMes extends javax.swing.JFrame {
     private javax.swing.JLabel novoMesRsLabel;
     private javax.swing.JButton novoMesSalvar;
     private javax.swing.JButton novoMesSubmeter;
-    private javax.swing.JFormattedTextField novoMesValorText;
+    private javax.swing.JTextField novoMesValorText;
     private javax.swing.JButton novoMesVoltar;
     // End of variables declaration//GEN-END:variables
 }

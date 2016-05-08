@@ -79,15 +79,17 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="novoMesCancelar" min="-2" pref="87" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                              <Component id="novoMesCategoriaCb" min="-2" pref="132" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="novoMesRsLabel" min="-2" pref="18" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="novoMesValorText" min="-2" pref="104" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="novoMesRsLabel" min="-2" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="novoMesValorText" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="novoMesCategoriaCb" min="-2" pref="132" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -124,8 +126,8 @@
                       <Component id="novoMesCategoriaCb" min="-2" pref="20" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="novoMesValorText" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="novoMesRsLabel" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="novoMesValorText" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -243,14 +245,6 @@
         <Property name="text" type="java.lang.String" value="R$"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="novoMesValorText">
-      <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="##,##0.00" subtype="-1" type="4"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="novoMesMesLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Mes"/>
@@ -271,6 +265,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Deletar"/>
         <Property name="actionCommand" type="java.lang.String" value="novoMesDeletar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="novoMesValorText">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0,00"/>
       </Properties>
     </Component>
   </SubComponents>
