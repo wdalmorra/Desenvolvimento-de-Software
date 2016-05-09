@@ -39,19 +39,23 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="novoMesMesLabelFixa" min="-2" pref="84" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="novoMesMesLabelFixa" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="novoMesMesLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="novoMesAnoLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="novoMesListaScroll" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="novoMesSalvar" max="32767" attributes="0"/>
+                              <Component id="novoMesSalvar" pref="67" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="novoMesExportar" max="32767" attributes="0"/>
+                              <Component id="novoMesExportar" pref="82" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
@@ -66,10 +70,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="novoMesVoltar" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="novoMesAnoLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="novoMesDespesaCheck" min="-2" pref="79" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -110,9 +110,10 @@
                           <Component id="novoMesMesLabelFixa" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                           <Component id="novoMesMesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="novoMesAnoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="novoMesListaScroll" pref="206" max="32767" attributes="0"/>
+                      <Component id="novoMesListaScroll" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
@@ -151,7 +152,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="novoMesMesLabelFixa">
       <Properties>
-        <Property name="text" type="java.lang.String" value="M&#xea;s"/>
+        <Property name="text" type="java.lang.String" value="M&#xea;s:"/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Mes"/>
@@ -268,6 +269,11 @@
     <Component class="javax.swing.JTextField" name="novoMesValorText">
       <Properties>
         <Property name="text" type="java.lang.String" value="0,00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="/"/>
       </Properties>
     </Component>
   </SubComponents>
