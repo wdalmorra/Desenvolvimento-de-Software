@@ -78,7 +78,7 @@
             </Property>
             <Property name="columns" type="int" value="7"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Vers&#xe3;o 0.1, maio de 2016&#xa;&#xa;P&#xe1;gina web:&#xa;https://github.com/wdalmorra/Desenvolvimento-de-Software&#xa;&#xa;Autores: Eli&#xe9;zer L. Ribeiro, &#xcd;talo D. Machado, Lucas M. S. Xavier, Thainan B. Remboski, William D. de Souza&#xa;&#xa;Desenvolvido como requisito parcial para a conclus&#xe3;o da disciplina de Desenvolvimento de Software, ministrada no primeiro semestre de 2016 no Centro Polit&#xe9;cnico da Universidade Federal de Pelotas."/>
+            <Property name="text" type="java.lang.String" value="Vers&#xe3;o 0.1, maio de 2016&#xa;&#xa;P&#xe1;gina web:&#xa;https://github.com/wdalmorra/Desenvolvimento-de-Software&#xa;&#xa;Autores: Eli&#xe9;zer L. Ribeiro, &#xcd;talo D. Machado, Lucas M. S. Xavier, Thainan B. Remboski, William D. de Souza&#xa;&#xa;Desenvolvido como requisito parcial para a conclus&#xe3;o da disciplina de Desenvolvimento de Software, ministrada no primeiro semestre de 2016 no Centro de Desenvolvimento Tecnol&#xf3;gico da Universidade Federal de Pelotas."/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>

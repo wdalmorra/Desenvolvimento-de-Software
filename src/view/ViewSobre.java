@@ -49,7 +49,7 @@ public class ViewSobre extends javax.swing.JFrame {
         jTextArea1.setBackground(new java.awt.Color(240, 240, 240));
         jTextArea1.setColumns(7);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Versão 0.1, maio de 2016\n\nPágina web:\nhttps://github.com/wdalmorra/Desenvolvimento-de-Software\n\nAutores: Eliézer L. Ribeiro, Ítalo D. Machado, Lucas M. S. Xavier, Thainan B. Remboski, William D. de Souza\n\nDesenvolvido como requisito parcial para a conclusão da disciplina de Desenvolvimento de Software, ministrada no primeiro semestre de 2016 no Centro Politécnico da Universidade Federal de Pelotas.");
+        jTextArea1.setText("Versão 0.1, maio de 2016\n\nPágina web:\nhttps://github.com/wdalmorra/Desenvolvimento-de-Software\n\nAutores: Eliézer L. Ribeiro, Ítalo D. Machado, Lucas M. S. Xavier, Thainan B. Remboski, William D. de Souza\n\nDesenvolvido como requisito parcial para a conclusão da disciplina de Desenvolvimento de Software, ministrada no primeiro semestre de 2016 no Centro de Desenvolvimento Tecnológico da Universidade Federal de Pelotas.");
         jTextArea1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextArea1.setOpaque(false);
         jScrollPane2.setViewportView(jTextArea1);
