@@ -85,23 +85,23 @@ public class ViewRelatorios extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         viewRelatorio_BarChart = new javax.swing.JLayeredPane();
         jPanel3 = new javax.swing.JPanel();
-        relatorioAnoInicialCb = new javax.swing.JComboBox<String>();
+        relatorioAnoInicialCb = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        relatorioMesInicialCb = new javax.swing.JComboBox<String>();
+        relatorioMesInicialCb = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        relatorioMesFinalCb = new javax.swing.JComboBox<String>();
-        relatorioCategoriaCb = new javax.swing.JComboBox<String>();
+        relatorioMesFinalCb = new javax.swing.JComboBox<>();
+        relatorioCategoriaCb = new javax.swing.JComboBox<>();
         relatorioAplicarFiltro = new javax.swing.JButton();
-        relatorioAnoFinalCb = new javax.swing.JComboBox<String>();
+        relatorioAnoFinalCb = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
-        relatorioMesCb = new javax.swing.JComboBox<String>();
+        relatorioMesCb = new javax.swing.JComboBox<>();
         relatorioVoltar2 = new javax.swing.JButton();
         viewRelatorio_PieChart = new javax.swing.JLayeredPane();
         jLabel5 = new javax.swing.JLabel();
         relatorioSelecionarMes = new javax.swing.JButton();
-        relatorioAnoCb = new javax.swing.JComboBox<String>();
+        relatorioAnoCb = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         relatorioDespesasChb = new javax.swing.JCheckBox();
         relatorioReceitasChb = new javax.swing.JCheckBox();
@@ -147,7 +147,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
             .addGap(0, 117, Short.MAX_VALUE)
         );
 
-        relatorioAnoInicialCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioAnoInicialCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setText("Categoria:");
 
@@ -156,24 +156,24 @@ public class ViewRelatorios extends javax.swing.JFrame {
 
         jLabel2.setText("Mês Inicial:");
 
-        relatorioMesInicialCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioMesInicialCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setText("Filtrar Resultados");
 
-        relatorioMesFinalCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioMesFinalCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         relatorioMesFinalCb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 relatorioMesFinalCbActionPerformed(evt);
             }
         });
 
-        relatorioCategoriaCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioCategoriaCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         relatorioAplicarFiltro.setText("Aplicar Filtro");
         relatorioAplicarFiltro.setActionCommand("relatorioAplicarFiltro");
         relatorioAplicarFiltro.setPreferredSize(new java.awt.Dimension(64, 22));
 
-        relatorioAnoFinalCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioAnoFinalCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         relatorioAnoFinalCb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 relatorioAnoFinalCbActionPerformed(evt);
@@ -199,7 +199,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(relatorioMesInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(relatorioAnoInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(relatorioAnoInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -212,7 +212,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
                                         .addComponent(relatorioCategoriaCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(relatorioAnoFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(relatorioAnoFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(relatorioAplicarFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(relatorioVoltar)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -232,12 +232,12 @@ public class ViewRelatorios extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(relatorioMesInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(relatorioAnoInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(relatorioAnoInicialCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(relatorioMesFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(relatorioAnoFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(relatorioAnoFinalCb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -254,7 +254,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
 
         relatorioMesTab.addTab("Comparação Entre Meses", jPanel1);
 
-        relatorioMesCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioMesCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         relatorioVoltar2.setText("Voltar");
         relatorioVoltar2.setActionCommand("relatorioVoltar");
@@ -267,7 +267,7 @@ public class ViewRelatorios extends javax.swing.JFrame {
         relatorioSelecionarMes.setToolTipText("");
         relatorioSelecionarMes.setActionCommand("relatorioSelecionarMes");
 
-        relatorioAnoCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        relatorioAnoCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel6.setText("Mostrar: ");
 
