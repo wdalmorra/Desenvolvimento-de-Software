@@ -304,20 +304,9 @@ public class ViewNovoMes extends javax.swing.JFrame {
 
         novoMesCancelar.setText("Cancelar");
         novoMesCancelar.setActionCommand("novoMesCancelar");
-        novoMesCancelar.setMaximumSize(new java.awt.Dimension(74, 33));
-        novoMesCancelar.setMinimumSize(new java.awt.Dimension(74, 33));
-        novoMesCancelar.setPreferredSize(new java.awt.Dimension(74, 33));
-        novoMesCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novoMesCancelarActionPerformed(evt);
-            }
-        });
 
         novoMesDeletar.setText("Deletar");
         novoMesDeletar.setActionCommand("novoMesDeletar");
-        novoMesDeletar.setMaximumSize(new java.awt.Dimension(74, 33));
-        novoMesDeletar.setMinimumSize(new java.awt.Dimension(74, 33));
-        novoMesDeletar.setPreferredSize(new java.awt.Dimension(74, 33));
 
         novoMesValorText.setText("0,00");
 
@@ -400,9 +389,9 @@ public class ViewNovoMes extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(novoMesSubmeter)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(novoMesCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(novoMesCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(novoMesDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(novoMesDeletar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -412,10 +401,6 @@ public class ViewNovoMes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void novoMesCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoMesCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_novoMesCancelarActionPerformed
     private Movimentacao movimentacaoAtual;
     private DefaultListModel<Movimentacao> modelList;
     // Variables declaration - do not modify//GEN-BEGIN:variables
