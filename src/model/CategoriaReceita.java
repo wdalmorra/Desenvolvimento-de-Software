@@ -10,15 +10,15 @@ package model;
  * @author William
  */
 public enum CategoriaReceita {
-    DEFAULT, RECEITA1, RECEITA2;
+    Lucros, Rendimentos, Salário, Vendas, Outras_receitas;
     
     static public String categoriaToString(CategoriaReceita cat){
-        return cat.toString();
+        return cat.toString().replaceAll("_", " ");
     }
     
     static public CategoriaReceita stringToCategoria(String s){
        try {
-            return CategoriaReceita.valueOf(s);
+            return CategoriaReceita.valueOf(s.replaceAll(" ", "_"));
         } catch (IllegalArgumentException e) {
             return null;
         }

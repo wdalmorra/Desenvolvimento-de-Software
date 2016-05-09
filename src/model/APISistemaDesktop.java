@@ -128,8 +128,8 @@ public class APISistemaDesktop extends Observable{
      */
     public void addMovimentacao(int valor, String cat, String tipo, GregorianCalendar mes){
         Movimentacao mov = (tipo.equals("D")) ? 
-            new Despesa(CategoriaDespesa.stringToCategoria(cat.toUpperCase()), valor) :
-            new Receita(CategoriaReceita.stringToCategoria(cat.toUpperCase()), valor);
+            new Despesa(CategoriaDespesa.stringToCategoria(cat), valor) :
+            new Receita(CategoriaReceita.stringToCategoria(cat), valor);
         boolean alt = false;
         for (Movimentacao m: dadosDeTrabalho.getMovimentacoes()) {
             if (m instanceof Receita) {
@@ -217,10 +217,8 @@ public class APISistemaDesktop extends Observable{
      * observers com os dados de movimentacao para o mes corrente.
      * 
      * @param mes Indica o mes e o ano que devem ser buscados na base de dados.
-     * @return true, caso o mes especificado seja encontrado; false, caso
-     *         contrario.
      */
-    public boolean visualizaMes(GregorianCalendar mes){
+    public void visualizaMes(GregorianCalendar mes){
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
                 
@@ -228,12 +226,8 @@ public class APISistemaDesktop extends Observable{
 
                 this.setChanged();
                 notifyObservers(dadosDeTrabalho.getMovimentacoes());
-               
-                return true;
             }
         }
-
-        return false;
     }
 
     
@@ -280,37 +274,6 @@ public class APISistemaDesktop extends Observable{
         salvaArquivos();
     }
 
-    
-    /**
-     * Exclui as informacoes de um mes especifico, removendo elas das estruturas
-     * de dados internas e suprimindo o arquivo em disco da lista de arquivos
-     * indexados.
-     * 
-     * @param mes Informa mes e ano a que se referem os dados que devem ser
-     *            suprimidos.
-     */
-    public void deletaMes(GregorianCalendar mes){
-        for (DadosMes dm : dadosMes){
-            if (comparaMeses(dm.getMes(),mes)) {
-                this.deletaArquivo(mes);
-                dadosMes.remove(dm);
-                break;
-            }
-        }
-    }
-
-    
-    /**
-     * Nao implementado nesse momento.
-     * 
-     * @param mes Informa mes e ano a que se referem os dados que devem ser
-     *            suprimidos.
-     */
-    public void deletaArquivo(GregorianCalendar mes){
-        
-    }
-
-    
     /**
      * Verifica se duas datas sao equivalentes levando em consideracao apenas
      * o mes e o ano.
@@ -339,7 +302,7 @@ public class APISistemaDesktop extends Observable{
     public void geraRelatorio(GregorianCalendar inicio, GregorianCalendar fim, String categoria) {
         
         // Verifico a entrada
-        if (inicio.compareTo(fim) > 0) {
+       if (inicio.compareTo(fim) > 0) {
             throw new IllegalArgumentException();
         }
         
@@ -426,6 +389,16 @@ public class APISistemaDesktop extends Observable{
                 return true;
             }
         }
+        return false;
+    }
+    
+    public boolean mesExiste(GregorianCalendar mes) {
+        for (DadosMes dm : dadosMes){
+            if (comparaMeses(dm.getMes(),mes)) {
+                return true;
+            }
+        }
+        
         return false;
     }
     

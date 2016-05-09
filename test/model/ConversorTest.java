@@ -48,8 +48,8 @@ public class ConversorTest {
         
         // Prepara o caso de teste
         DadosMes testCase = new DadosMes();
-        Movimentacao m1 = new Receita(CategoriaReceita.RECEITA1, 500);
-        Movimentacao m2 = new Despesa(CategoriaDespesa.DESPESA2, 313);
+        Movimentacao m1 = new Receita(CategoriaReceita.Salário, 500);
+        Movimentacao m2 = new Despesa(CategoriaDespesa.Estacionamento, 313);
         testCase.addMovimentacao(m1);
         testCase.addMovimentacao(m2);
         
@@ -106,8 +106,8 @@ public class ConversorTest {
         
         // Prepara o caso de teste
         DadosMes testCase = new DadosMes(new GregorianCalendar(1993, 8, 1));
-        Movimentacao m1 = new Receita(CategoriaReceita.RECEITA1, 500);
-        Movimentacao m2 = new Despesa(CategoriaDespesa.DESPESA2, 313);
+        Movimentacao m1 = new Receita(CategoriaReceita.Salário, 500);
+        Movimentacao m2 = new Despesa(CategoriaDespesa.Estacionamento, 313);
         testCase.addMovimentacao(m1);
         testCase.addMovimentacao(m2);
         
@@ -187,8 +187,8 @@ public class ConversorTest {
         // Gabarito para os resultados
         int[] expectedValues = {313, 500};
         boolean[] expectedReceita = {false, true};
-        CategoriaReceita[] expectedCategoriaReceita = {null, CategoriaReceita.RECEITA1};
-        CategoriaDespesa[] expectedCategoriaDespesa = {CategoriaDespesa.DESPESA2, null};
+        CategoriaReceita[] expectedCategoriaReceita = {null, CategoriaReceita.Salário};
+        CategoriaDespesa[] expectedCategoriaDespesa = {CategoriaDespesa.Estacionamento, null};
         
         for (int i = 0; i < 2; i++) {
             // Testa o valor

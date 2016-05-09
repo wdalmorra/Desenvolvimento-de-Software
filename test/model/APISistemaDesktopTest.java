@@ -80,7 +80,7 @@ public class APISistemaDesktopTest implements Observer {
         
         inicio = new GregorianCalendar(2010, 3, 1);
         fim = new GregorianCalendar(2010, 8, 1);
-        c = CategoriaDespesa.DESPESA1;
+        c = CategoriaDespesa.Combustível;
         
         // Gera os dados de referencia para a resposta
         referencia = new ArrayList<>();

@@ -155,6 +155,7 @@ public class APIController implements ActionListener, ListSelectionListener{
         } else {
             if(mesExiste(mes)) {
                 this.view.mostraMes();
+                this.sistema.visualizaMes(mes);
             } else {
                 this.view.popupCancelar();
                 this.view.notificaErro("popup", "Mês não existente.");
@@ -195,7 +196,7 @@ public class APIController implements ActionListener, ListSelectionListener{
     }
     
     private boolean mesExiste(GregorianCalendar mes) {
-        return this.visualizaMes(mes);
+        return this.sistema.mesExiste(mes);
     }
     
     private void novoMesAlterar() {
@@ -288,9 +289,5 @@ public class APIController implements ActionListener, ListSelectionListener{
         }
         
         this.view.limpaValor();
-    }
-    
-    private boolean visualizaMes(GregorianCalendar mes) {
-        return this.sistema.visualizaMes(mes);
     }
 }
