@@ -34,7 +34,7 @@ public class Conversor {
     
     // Métodos e atributos da classe, para implementar o padrão singleton
     private static Conversor singleton;
-    private static String caminhoPadrao = "./test/caminhoPadrao";
+    private static String caminhoPadrao = "./caminhoPadrao"; // Não deve ser um diretório aninhado, pelo menos por enquanto
     private static String listaDeArquivosPadrao = "dados_lista.xml";
     
     
@@ -95,6 +95,10 @@ public class Conversor {
             // Talvez devesse ser erro fatal
             domBuilder = null;
         }
+        
+        if (!verificaCaminhoPadrao()) {
+            throw new RuntimeException();
+        }
     }
     
     
@@ -109,6 +113,26 @@ public class Conversor {
     {
         DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
         return domFactory.newDocumentBuilder();
+    }
+    
+    
+    /**
+     * Verifica se o diretorio especificado como caminho padrao existe e e
+     * acessivel ao programa. Se o diretorio nao existe, tenta criar.
+     * 
+     * @return <code>true</code> caso o diretorio exista, <code>false</code> caso
+     * contrario.
+     */
+    private boolean verificaCaminhoPadrao() {
+        File f = new File(caminhoBase);
+        if (f.exists()) {
+            // Se o caminho existe, ve se eh um diretorio mesmo e se tem
+            // as permissoes adequadas.
+            return (f.isDirectory() && f.canWrite());
+        } else {
+            // Tenta criar o diretorio
+            return (f.mkdir());
+        }
     }
     
     
@@ -252,12 +276,11 @@ public class Conversor {
      * @param caminho Nome do arquivo a ser lido, apropriadamente qualificado
      * com sua localizacao
      * @return Arvore DOM representando o arquivo XML lido
-     * @throws ParserConfigurationException
      * @throws SAXException
      * @throws IOException 
      */
     private Document leArquivoXML(String caminho)
-            throws ParserConfigurationException, SAXException, IOException
+            throws SAXException, IOException
     {
         return domBuilder.parse(new File(caminho));
     }
@@ -403,7 +426,7 @@ public class Conversor {
         try {
             ArrayList<GregorianCalendar> listaArquivos = new ArrayList<>();
             
-            Document listaArquivosXML = domBuilder.parse(caminho);
+            Document listaArquivosXML = leArquivoXML(caminho);
             Element financasLista = listaArquivosXML.getDocumentElement();
             NodeList arquivos = financasLista.getElementsByTagName("arquivo");
             
