@@ -15,7 +15,7 @@ public class Receita extends Movimentacao {
     
     public Receita() {
         super();
-        this.categoria = CategoriaReceita.DEFAULT;
+        this.categoria = CategoriaReceita.Lucros;
     }
     
     public Receita(CategoriaReceita cat, int valor) {

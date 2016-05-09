@@ -15,7 +15,7 @@ public class Despesa extends Movimentacao {
     
     public Despesa() {
         super();
-        this.categoria = CategoriaDespesa.DEFAULT;
+        this.categoria = CategoriaDespesa.Combustível;
     }
     
     public Despesa(CategoriaDespesa cat, int valor) {

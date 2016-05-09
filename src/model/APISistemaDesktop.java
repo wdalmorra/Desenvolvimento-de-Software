@@ -128,8 +128,8 @@ public class APISistemaDesktop extends Observable{
      */
     public void addMovimentacao(int valor, String cat, String tipo, GregorianCalendar mes){
         Movimentacao mov = (tipo.equals("D")) ? 
-            new Despesa(CategoriaDespesa.stringToCategoria(cat.toUpperCase()), valor) :
-            new Receita(CategoriaReceita.stringToCategoria(cat.toUpperCase()), valor);
+            new Despesa(CategoriaDespesa.stringToCategoria(cat), valor) :
+            new Receita(CategoriaReceita.stringToCategoria(cat), valor);
         boolean alt = false;
         for (Movimentacao m: dadosDeTrabalho.getMovimentacoes()) {
             if (m instanceof Receita) {

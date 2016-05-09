@@ -76,13 +76,15 @@ public class ViewNovoMes extends javax.swing.JFrame {
     }
     
     public String getCategoria() {
-        String cat;
-        if( novoMesCategoriaCb.getSelectedItem() instanceof CategoriaDespesa ){
-            cat = CategoriaDespesa.categoriaToString(((CategoriaDespesa) novoMesCategoriaCb.getSelectedItem()));
-        } else {
-            cat = CategoriaReceita.categoriaToString(((CategoriaReceita) novoMesCategoriaCb.getSelectedItem()));
-        }
-        return cat;
+//        String cat;
+//        if(novoMesCategoriaCb.getSelectedItem() instanceof CategoriaDespesa ){
+//            cat = (String)novoMesCategoriaCb.getSelectedItem();
+//        } else {
+//            cat = (String)novoMesCategoriaCb.getSelectedItem();
+//        }
+//        return cat;
+
+        return (String)novoMesCategoriaCb.getSelectedItem();
     }
     
     public String getDouR() {
@@ -167,9 +169,27 @@ public class ViewNovoMes extends javax.swing.JFrame {
     }
     
     private void myInitComponents() {
+        CategoriaReceita[] receitas = CategoriaReceita.values();
+        CategoriaDespesa[] despesas = CategoriaDespesa.values();
+        
+        String tempReceitas[] = new String[receitas.length];
+        String tempDespesas[] = new String[despesas.length];
+        
+        int i = 0;
+        for (CategoriaReceita cr : receitas){
+            tempReceitas[i] = CategoriaReceita.categoriaToString(cr);
+            i++;
+        }
+        
+        i = 0;
+        for (CategoriaDespesa cd : despesas){
+            tempDespesas[i] = CategoriaDespesa.categoriaToString(cd);
+            i++;
+        }
+        
         modelList = new DefaultListModel<>();
-        receitaModel = new DefaultComboBoxModel<>(CategoriaReceita.values());
-        despesaModel = new DefaultComboBoxModel<>(CategoriaDespesa.values());
+        receitaModel = new DefaultComboBoxModel<>(tempReceitas);
+        despesaModel = new DefaultComboBoxModel<>(tempDespesas);
         
         novoMesCategoriaCb.setModel(novoMesReceitaCheck.isSelected() ? receitaModel : despesaModel);
         
@@ -311,6 +331,9 @@ public class ViewNovoMes extends javax.swing.JFrame {
                                 .addComponent(novoMesExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(6, 6, 6)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(novoMesDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,19 +350,15 @@ public class ViewNovoMes extends javax.swing.JFrame {
                                 .addComponent(novoMesSubmeter)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(novoMesCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(12, 12, 12)
-                                    .addComponent(novoMesRsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(novoMesValorText))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(23, 23, 23)
-                                    .addComponent(novoMesCategoriaCb, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(novoMesDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(novoMesCategoriaCb, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(novoMesRsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(novoMesValorText, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
