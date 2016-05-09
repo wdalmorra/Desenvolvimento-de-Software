@@ -264,7 +264,6 @@ public class ViewNovoMes extends javax.swing.JFrame {
         novoMesValorText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("novoMes");
         setBackground(new java.awt.Color(255, 204, 204));
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(350, 300));
