@@ -220,7 +220,7 @@ public class APISistemaDesktop extends Observable{
      * @return true, caso o mes especificado seja encontrado; false, caso
      *         contrario.
      */
-    public boolean visualizaMes(GregorianCalendar mes){
+    public void visualizaMes(GregorianCalendar mes){
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
                 
@@ -228,12 +228,8 @@ public class APISistemaDesktop extends Observable{
 
                 this.setChanged();
                 notifyObservers(dadosDeTrabalho.getMovimentacoes());
-               
-                return true;
             }
         }
-
-        return false;
     }
 
     
@@ -426,6 +422,16 @@ public class APISistemaDesktop extends Observable{
                 return true;
             }
         }
+        return false;
+    }
+    
+    public boolean mesExiste(GregorianCalendar mes) {
+        for (DadosMes dm : dadosMes){
+            if (comparaMeses(dm.getMes(),mes)) {
+                return true;
+            }
+        }
+        
         return false;
     }
     
