@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SobreController" >
+   <children>
+      <TextArea layoutX="14.0" layoutY="59.0" prefHeight="288.0" prefWidth="572.0" text="Versão 0.1, maio de 2016 &#10;&#10;Página web: https://github.com/wdalmorra/Desenvolvimento-de-Software&#10;&#10;Autores: Eliézer L. Ribeiro, Ítalo D. Machado, Lucas M. S. Xavier, Thainan B. Remboski, William D. de Souza&#10;&#10;Desenvolvido como requisito parcial para a conclusão da disciplina de Desenvolvimento de Software, ministrada no primeiro semestre de 2016 no Centro Politécnico da Universidade Federal de Pelotas." wrapText="true" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="59.0"  editable="false" />
+      <Label layoutX="161.0" layoutY="14.0" text="DreFinanças Desktop" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="sobreVoltar" layoutX="521.0" layoutY="355.0" mnemonicParsing="false" text="Menu" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="20.0" />
+   </children>
+</AnchorPane>

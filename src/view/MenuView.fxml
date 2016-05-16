@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
+   <children>
+      <AnchorPane layoutX="584.0" layoutY="357.0" prefHeight="275.0" prefWidth="214.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="menuNovoMes" layoutX="45.0" layoutY="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Novo Mes" />
+            <Button fx:id="menuAbrirMes" layoutX="45.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Abrir Mes" />
+            <Button fx:id="menuRelatorio" layoutX="45.0" layoutY="138.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Gerar Relatorio" />
+            <Button fx:id="menuSobre" layoutX="45.0" layoutY="173.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Sobre" />
+            <Button fx:id="menuSair" layoutX="45.0" layoutY="236.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Sair" AnchorPane.bottomAnchor="14.0" />
+            <Label layoutX="72.0" layoutY="24.0" text="Menu Principal" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

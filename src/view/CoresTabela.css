@@ -1,0 +1,17 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 13, 2016, 1:59:30 AM
+    Author     : Thainan
+*/
+
+.despesa-row .table-cell {
+    -fx-text-fill: red ;
+}
+
+.receita-row .table-cell {
+    -fx-text-fill: green ;
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RelatorioController">
+   <children>
+      <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Comparaçao Entre Meses">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="133.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Label layoutX="578.0" layoutY="14.0" text="Filtrar Resultados" AnchorPane.rightAnchor="107.0" />
+                              <Label layoutX="464.0" layoutY="42.0" text="Mes inicial:" AnchorPane.rightAnchor="263.0" />
+                              <Label layoutX="468.0" layoutY="73.0" text="Mes Final:" AnchorPane.rightAnchor="263.0" />
+                              <Label layoutX="467.0" layoutY="107.0" text="Categoria:" AnchorPane.rightAnchor="263.0" />
+                              <ComboBox fx:id="relatorioMesInicialCb" layoutX="546.0" layoutY="38.0" prefHeight="25.0" prefWidth="145.0" AnchorPane.rightAnchor="109.0" />
+                              <ComboBox fx:id="relatorioAnoInicialCb" layoutX="695.0" layoutY="38.0" prefHeight="25.0" prefWidth="91.0" AnchorPane.rightAnchor="14.0" />
+                              <ComboBox fx:id="relatorioMesFinalCb" layoutX="546.0" layoutY="68.0" prefHeight="25.0" prefWidth="145.0" AnchorPane.rightAnchor="109.0" />
+                              <ComboBox fx:id="relatorioAnoFinalCb" layoutX="695.0" layoutY="69.0" prefHeight="25.0" prefWidth="91.0" AnchorPane.rightAnchor="14.0" />
+                              <ComboBox fx:id="relatorioCategoriaCb" layoutX="546.0" layoutY="102.0" prefHeight="25.0" prefWidth="145.0" AnchorPane.rightAnchor="109.0" />
+                              <Button fx:id="relatorioAplicarFiltro" layoutX="695.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" text="Filtrar" AnchorPane.rightAnchor="14.0" />
+                           </children>
+                        </AnchorPane>
+                        <BarChart fx:id="relatorioGraficoBarras" layoutX="-1.0" layoutY="174.0" prefHeight="359.0" prefWidth="800.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="174.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                        <Button fx:id="relatorioVoltarBarras" layoutX="732.0" layoutY="533.0" mnemonicParsing="false" text="Menu" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="14.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Dados do Mes">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="110.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Label layoutX="422.0" layoutY="19.0" text="Selecionar Mes:" AnchorPane.rightAnchor="275.0" />
+                              <ComboBox fx:id="relatorioMesCb" layoutX="534.0" layoutY="14.0" prefWidth="145.0" AnchorPane.rightAnchor="121.0" />
+                              <ComboBox fx:id="relatorioAnoCb" layoutX="695.0" layoutY="14.0" prefWidth="91.0" AnchorPane.rightAnchor="14.0" />
+                              <Label layoutX="422.0" layoutY="54.0" text="Mostrar:" AnchorPane.rightAnchor="323.0" />
+                              <CheckBox fx:id="relatorioDespesasChb" layoutX="510.0" layoutY="52.0" mnemonicParsing="false" selected="true" text="Despesas" AnchorPane.rightAnchor="203.0" />
+                              <CheckBox fx:id="relatorioReceitasChb" layoutX="605.0" layoutY="52.0" mnemonicParsing="false" selected="true" text="Receitas" AnchorPane.rightAnchor="115.0" />
+                              <Button fx:id="relatorioSelecionarMes" layoutX="697.0" layoutY="49.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" text="Selecionar" AnchorPane.rightAnchor="14.0" />
+                           </children>
+                        </AnchorPane>
+                        <PieChart fx:id="relatorioGraficoTorta" layoutY="91.0" prefHeight="431.0" prefWidth="800.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="91.0" />
+                        <Button fx:id="relatorioVoltarTorta" layoutX="732.0" layoutY="527.0" mnemonicParsing="false" text="Menu" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="14.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

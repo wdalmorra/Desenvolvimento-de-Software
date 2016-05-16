@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NovoMesController">
+   <children>
+      <TableView fx:id="novoMesTable" layoutX="14.0" layoutY="14.0" prefHeight="347.0" prefWidth="359.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="290.0" AnchorPane.topAnchor="85.0">
+        <columns>
+          <TableColumn prefWidth="363.0" resizable="false" text="Categoria" />
+          <TableColumn prefWidth="132.0" resizable="false" text="Valor" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="14.0" layoutY="361.0" prefHeight="37.0" prefWidth="650.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-1.0">
+         <children>
+            <Button fx:id="novoMesSalvar" layoutY="6.0" mnemonicParsing="false" text="Salvar" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" />
+            <Button fx:id="novoMesExportar" layoutX="84.0" layoutY="6.0" mnemonicParsing="false" text="Exportar" AnchorPane.bottomAnchor="6.0" />
+            <Label fx:id="novoMesSaldo" layoutX="394.0" layoutY="11.0" text="R$ 0,00" AnchorPane.bottomAnchor="11.0" />
+            <Label layoutX="345.0" layoutY="11.0" text="Saldo:" AnchorPane.bottomAnchor="11.0" />
+            <Button fx:id="novoMesVoltar" layoutX="589.0" layoutY="6.0" mnemonicParsing="false" text="Menu" AnchorPane.rightAnchor="14.0" />
+            <Label fx:id="novoMesSalvo" layoutX="659.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Salvo" AnchorPane.rightAnchor="92.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="391.0" layoutY="85.0" prefHeight="476.0" prefWidth="261.0" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="24.0">
+         <children>
+            <TextField fx:id="novoMesValor" layoutX="89.0" layoutY="153.0" prefHeight="25.0" prefWidth="125.0" AnchorPane.bottomAnchor="298.0" />
+            <Label layoutX="42.0" layoutY="163.0" text="Valor: " AnchorPane.bottomAnchor="298.0" />
+            <Button fx:id="novoMesSubmeter" layoutX="41.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Submeter" AnchorPane.bottomAnchor="213.0" />
+            <Button fx:id="novoMesDeletar" layoutX="135.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Deletar" AnchorPane.bottomAnchor="213.0" />
+            <Button fx:id="novoMesCancelar" layoutX="44.0" layoutY="291.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="173.0" text="Cancelar" AnchorPane.bottomAnchor="160.0" />
+            <RadioButton fx:id="novoMesDespesa" layoutX="41.0" layoutY="37.0" mnemonicParsing="false" selected="true" text="Despesas">
+               <toggleGroup>
+                  <ToggleGroup fx:id="derGrupo" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="novoMesReceita" layoutX="141.0" layoutY="37.0" mnemonicParsing="false" text="Receitas" toggleGroup="$derGrupo" />
+            <ComboBox fx:id="novoMesCategorias" layoutX="44.0" layoutY="82.0" prefHeight="25.0" prefWidth="173.0" />
+            <Button fx:id="novoMesAlterar" layoutX="41.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Alterar" visible="false" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="14.0" layoutY="21.0" text="Mes:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="21.0" />
+      <Label fx:id="novoMesMes" alignment="CENTER_RIGHT" layoutX="45.0" layoutY="21.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="66.0" text="Mes" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="21.0" />
+      <Label layoutX="121.0" layoutY="21.0" text="/" AnchorPane.rightAnchor="674.0" AnchorPane.topAnchor="21.0" />
+      <Label fx:id="novoMesAno" layoutX="133.0" layoutY="21.0" text="Ano" AnchorPane.topAnchor="21.0" />
+      <Label layoutX="195.0" layoutY="62.0" text="Despesas e Receitas" AnchorPane.topAnchor="62.0" />
+   </children>
+</AnchorPane>
