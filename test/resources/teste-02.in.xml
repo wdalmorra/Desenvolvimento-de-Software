@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<financas>
-	<dadosmes mes="janeiro" ano="2006">
-		<movimentacao tipo="receita" valor="50" categoria="RECEITA1"/>
-	</dadosmes>
-	<dadosmes mes="fevereiro" ano="2007">
-		<movimentacao tipo="despesa" valor="313" categoria="DESPESA2"/>
-	</dadosmes>
-</financas>
