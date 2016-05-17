@@ -159,7 +159,6 @@ public class RelatorioController implements Initializable {
         
         relatorioGraficoTorta.setData(pieChartData);
         
-        relatorioGraficoBarras.setMaxWidth(5);
     }
     
     public void popularMenus() {

@@ -16,18 +16,18 @@
                         <AnchorPane prefHeight="133.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
                               <Label layoutX="578.0" layoutY="14.0" text="Filtrar Resultados" AnchorPane.rightAnchor="107.0" />
-                              <Label layoutX="464.0" layoutY="42.0" text="Mes inicial:" AnchorPane.rightAnchor="263.0" />
-                              <Label layoutX="468.0" layoutY="73.0" text="Mes Final:" AnchorPane.rightAnchor="263.0" />
-                              <Label layoutX="467.0" layoutY="107.0" text="Categoria:" AnchorPane.rightAnchor="263.0" />
-                              <ComboBox fx:id="relatorioMesInicialCb" layoutX="546.0" layoutY="38.0" prefHeight="25.0" prefWidth="145.0" AnchorPane.rightAnchor="109.0" />
+                              <Label layoutX="426.0" layoutY="42.0" text="Mes inicial:" AnchorPane.rightAnchor="301.0" />
+                              <Label layoutX="433.0" layoutY="73.0" text="Mes Final:" AnchorPane.rightAnchor="301.0" />
+                              <Label layoutX="431.0" layoutY="107.0" text="Categoria:" AnchorPane.rightAnchor="301.0" />
+                              <ComboBox fx:id="relatorioMesInicialCb" layoutX="545.0" layoutY="38.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.rightAnchor="109.0" />
                               <ComboBox fx:id="relatorioAnoInicialCb" layoutX="695.0" layoutY="38.0" prefHeight="25.0" prefWidth="91.0" AnchorPane.rightAnchor="14.0" />
-                              <ComboBox fx:id="relatorioMesFinalCb" layoutX="546.0" layoutY="68.0" prefHeight="25.0" prefWidth="145.0" AnchorPane.rightAnchor="109.0" />
+                              <ComboBox fx:id="relatorioMesFinalCb" layoutX="545.0" layoutY="68.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.rightAnchor="109.0" />
                               <ComboBox fx:id="relatorioAnoFinalCb" layoutX="695.0" layoutY="69.0" prefHeight="25.0" prefWidth="91.0" AnchorPane.rightAnchor="14.0" />
-                              <ComboBox fx:id="relatorioCategoriaCb" layoutX="546.0" layoutY="102.0" prefHeight="25.0" prefWidth="145.0" AnchorPane.rightAnchor="109.0" />
+                              <ComboBox fx:id="relatorioCategoriaCb" layoutX="546.0" layoutY="102.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.rightAnchor="109.0" />
                               <Button fx:id="relatorioAplicarFiltro" layoutX="695.0" layoutY="103.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" text="Filtrar" AnchorPane.rightAnchor="14.0" />
                            </children>
                         </AnchorPane>
-                        <BarChart fx:id="relatorioGraficoBarras" layoutX="-1.0" layoutY="174.0" prefHeight="359.0" prefWidth="800.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="174.0">
+                        <BarChart fx:id="relatorioGraficoBarras" animated="false" layoutX="-1.0" layoutY="174.0" prefHeight="359.0" prefWidth="800.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="174.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
