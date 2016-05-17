@@ -93,7 +93,7 @@ public class NovoMesController implements Initializable {
 
     private ObservableList<Movimentacao> tableData;
     
-    private boolean saved;
+    private boolean salvo;
     
     /**
      * Initializes the controller class.
@@ -101,7 +101,7 @@ public class NovoMesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        saved = false;
+        salvo = false;
 
         CategoriaReceita[] receitas = CategoriaReceita.values();
         CategoriaDespesa[] despesas = CategoriaDespesa.values();
@@ -238,7 +238,7 @@ public class NovoMesController implements Initializable {
     }
     
     public boolean isSaved(){
-        return saved;
+        return salvo;
     }
     
     public String getValor() {
@@ -316,7 +316,7 @@ public class NovoMesController implements Initializable {
     }
     
     public void setSalvo(boolean s){
-        this.saved = s;
+        this.salvo = s;
         if (s) {
             novoMesSalvo.setText("Salvo ✓");
             novoMesSalvo.setTextFill(Color.GREEN);

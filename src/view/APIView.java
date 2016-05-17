@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -271,10 +272,25 @@ public class APIView implements Observer{
         
     }
     
-    public void voltar() {
-        this.nmc.limpaLista();
-        this.nmc.limpaInfos();
-        this.abreMenu();
+    public void novoMesVoltar() {
+        if (!nmc.isSaved()) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Sair sem salvar");
+            alert.setHeaderText("As alterações não foram salvas!");
+            alert.setContentText("Deseja sair mesmo assim?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                this.nmc.limpaLista();
+                this.nmc.limpaInfos();
+                this.abreMenu();
+            }
+        } else {
+            this.nmc.limpaLista();
+            this.nmc.limpaInfos();
+            this.abreMenu();
+        }
+        
     }
 
     @Override
@@ -285,18 +301,17 @@ public class APIView implements Observer{
             // Ou mudar a logica da interface pra reconhecer isso
             
             if (ob instanceof ArrayList<?>) {
-                if (((ArrayList<?>)ob).size() == 0) {
-                    
-                } else {
-                    if(((ArrayList<?>)ob).get(0) instanceof Movimentacao) {
-                        // TODO: conferir se nao pode vir uma lista vazia;
-                        this.nmc.setTableData((ArrayList<Movimentacao>)ob);
-                        this.nmc.setSalvo(false);
-                    } else if (((ArrayList<?>)ob).get(0) instanceof Integer) {
-                        // TODO: implementar a logica de gerar a visualizacao dos
-                         this.rc.criaDadosGraficoBarras((ArrayList<Integer>) ob);
-                        // relatorios
-                    }
+                
+                if(((ArrayList<?>)ob).get(0) instanceof Movimentacao) {
+                    // TODO: conferir se nao pode vir uma lista vazia;
+                    ((ArrayList<Movimentacao>)ob).remove(0);
+                    this.nmc.setTableData((ArrayList<Movimentacao>)ob);
+                    this.nmc.setSalvo(false);
+                } else if (((ArrayList<?>)ob).get(0) instanceof Integer) {
+                    // TODO: implementar a logica de gerar a visualizacao dos
+                    ((ArrayList<Movimentacao>)ob).remove(0);
+                     this.rc.criaDadosGraficoBarras((ArrayList<Integer>) ob);
+                    // relatorios
                 }
                 
             } else if (ob instanceof DadosMes) {

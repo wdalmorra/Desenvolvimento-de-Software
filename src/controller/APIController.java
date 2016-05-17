@@ -223,7 +223,7 @@ public class APIController implements EventHandler<ActionEvent>, ChangeListener{
     private void novoMesVoltar() {
         this.view.setSalvo(false);
         this.view.setAlterando(false);
-        this.view.voltar();
+        this.view.novoMesVoltar();
     }
     
     private void popUpCancelar() {
