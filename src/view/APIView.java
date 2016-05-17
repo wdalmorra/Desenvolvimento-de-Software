@@ -272,7 +272,8 @@ public class APIView implements Observer{
         
     }
     
-    public void novoMesVoltar() {
+    public boolean novoMesVoltar() {
+        boolean ret = false;
         if (!nmc.isSaved()) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Sair sem salvar");
@@ -284,13 +285,16 @@ public class APIView implements Observer{
                 this.nmc.limpaLista();
                 this.nmc.limpaInfos();
                 this.abreMenu();
+                ret = true;
+                
             }
         } else {
             this.nmc.limpaLista();
             this.nmc.limpaInfos();
             this.abreMenu();
+            ret = true;
         }
-        
+        return ret;
     }
 
     @Override
