@@ -20,11 +20,13 @@ import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.APISistemaDesktop;
 import model.Calendario;
@@ -53,7 +55,6 @@ public class APIView implements Observer{
     
     public APIView(Stage stage) throws IOException{
         this.stage = stage;
-        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MenuView.fxml"));
         Parent root = (Parent)loader.load();
         menuScene = new Scene(root);
@@ -81,6 +82,7 @@ public class APIView implements Observer{
         sc = loader.<SobreController>getController();
         
         novoMesScene.getStylesheets().add("view/CoresTabela.css");
+        menuScene.getStylesheets().add("view/CoresTabela.css");
     }
     
     public void addController(EventHandler<ActionEvent> c){
@@ -92,27 +94,58 @@ public class APIView implements Observer{
     }
     
     public void abreNovoMes(){
+        double width = 800.0;
+        double height = 600.0;
+
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - width) / 2); 
+        stage.setY((screenBounds.getHeight() - height) / 2);  
         stage.setScene(novoMesScene);
         stage.show();
     }
     public void abreMenu(){
+        double width = 800.0;
+        double height = 600.0;
+        
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - width) / 2); 
+        stage.setY((screenBounds.getHeight() - height) / 2);  
         stage.setScene(menuScene);
         stage.show();
     }
     public void abrePopUp(String id){
         puc.setComando(id);
         puc.popularMenus();
+        
+        double width = 336.0;
+        double height = 155.0;
+
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - width) / 2); 
+        stage.setY((screenBounds.getHeight() - height) / 2);  
         stage.setScene(popUpScene);
         stage.show();
     }
     
     public void abreRelatorio() {
+        double width = 800.0;
+        double height = 600.0;
+
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - width) / 2); 
+        stage.setY((screenBounds.getHeight() - height) / 2);  
         this.rc.popularMenus();
         stage.setScene(relatorioScene);
         stage.show();
     }
     
     public void abreSobre() {
+        double width = 600.0;
+        double height = 400.0;
+
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - width) / 2); 
+        stage.setY((screenBounds.getHeight() - height) / 2);  
         stage.setScene(sobreScene);
         stage.show();
     }
@@ -228,7 +261,6 @@ public class APIView implements Observer{
     
     public void modificaMovimentacao(Movimentacao m){
         this.nmc.modificaMovimentacao(m);
-        
     }
     
     public void popularComDespesas() {

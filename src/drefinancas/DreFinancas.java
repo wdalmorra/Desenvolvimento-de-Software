@@ -7,6 +7,8 @@ package drefinancas;
 
 import controller.APIController;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.APISistemaDesktop;
 import view.APIView;
@@ -19,6 +21,7 @@ public class DreFinancas extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        
         
         APIView view = new APIView(stage);
         APISistemaDesktop sistema = new APISistemaDesktop();

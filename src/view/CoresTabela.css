@@ -15,3 +15,7 @@ and open the template in the editor.
 .receita-row .table-cell {
     -fx-text-fill: green ;
 }
+
+#anchorPane {
+    -fx-background-color: blue;
+}
