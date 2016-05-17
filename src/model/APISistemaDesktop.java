@@ -150,7 +150,10 @@ public class APISistemaDesktop extends Observable{
             dadosDeTrabalho.addMovimentacao(mov);
         }
         this.setChanged();
-        this.notifyObservers(dadosDeTrabalho.getMovimentacoes());     
+        ArrayList<Movimentacao> a = new ArrayList();
+        a.add(new Despesa());
+        a.addAll(dadosDeTrabalho.getMovimentacoes());
+        this.notifyObservers(a);
     }
     
     
@@ -191,7 +194,10 @@ public class APISistemaDesktop extends Observable{
             }
         }
         this.setChanged();
-        this.notifyObservers(dadosDeTrabalho.getMovimentacoes());
+        ArrayList<Movimentacao> a = new ArrayList();
+        a.add(new Despesa());
+        a.addAll(dadosDeTrabalho.getMovimentacoes());
+        this.notifyObservers();
     }
     
     
@@ -205,9 +211,12 @@ public class APISistemaDesktop extends Observable{
      * @param mov Entrada que deve ser suprimida da estrutura de dados.
      */
     public void removeMovimentacao(GregorianCalendar mes, Movimentacao mov) {
+        ArrayList<Movimentacao> a = new ArrayList();
+        a.add(new Despesa());
         dadosDeTrabalho.getMovimentacoes().remove(mov);
         this.setChanged();
-        this.notifyObservers(dadosDeTrabalho.getMovimentacoes());
+        a.addAll(dadosDeTrabalho.getMovimentacoes());
+        this.notifyObservers(a);
     }
 
     
@@ -219,13 +228,16 @@ public class APISistemaDesktop extends Observable{
      * @param mes Indica o mes e o ano que devem ser buscados na base de dados.
      */
     public void visualizaMes(GregorianCalendar mes){
+        ArrayList<Movimentacao> a = new ArrayList();
+        a.add(new Despesa());
         for (DadosMes dm : dadosMes){
             if (comparaMeses(dm.getMes(),mes)) {
                 
                 dadosDeTrabalho = new DadosMes(dm);
 
                 this.setChanged();
-                notifyObservers(dadosDeTrabalho.getMovimentacoes());
+                a.addAll(dadosDeTrabalho.getMovimentacoes());
+                notifyObservers(a);
             }
         }
     }
@@ -265,9 +277,9 @@ public class APISistemaDesktop extends Observable{
                 break;
             }
         }
-        
-        dadosMes.add(dados);
-        
+        if (dados.getMovimentacoes().size() != 0) {
+            dadosMes.add(dados);
+        }
         // TODO: o local mais apropriado para atualizar a lista de arquivos
         // talvez não seja aqui e sim em um destrutor da classe,
         // chamado no momento de saída do programa.
@@ -302,7 +314,7 @@ public class APISistemaDesktop extends Observable{
     public void geraRelatorio(GregorianCalendar inicio, GregorianCalendar fim, String categoria) {
         
         // Verifico a entrada
-       if (inicio.compareTo(fim) > 0) {
+        if (inicio.compareTo(fim) > 0) {
             throw new IllegalArgumentException();
         }
         
@@ -347,6 +359,7 @@ public class APISistemaDesktop extends Observable{
         // Extraio apenas os valores correspondentes a categoria que foi pedida,
         // completo com zeros se nao der
         ArrayList<Integer> resultado = new ArrayList<>();
+        resultado.add(0);
         int i = 0;
         GregorianCalendar ic = new GregorianCalendar(
                 inicio.get(GregorianCalendar.YEAR), 
