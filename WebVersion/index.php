@@ -34,7 +34,7 @@
 
 			<div>
 	            <button id="login_lost_btn" type="button" class="btn btn-link a">Lost Password?</button>
-	            <button id="login_register_btn" type="button"  onClick="registrer()" class="btn btn-link a">Register</button>
+	            <button id="login_register_btn" type="button"  onClick="register()" class="btn btn-link a">Register</button>
 	        </div>
 
 		</form>
@@ -51,7 +51,7 @@
 </html>
 
 <script type="text/javascript">
-function registrer()
+function register()
 {
 location.href="register.php"
 }

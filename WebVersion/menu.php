@@ -6,10 +6,10 @@ if (!isset($_SESSION)) session_start();
 
 // Verifica se não há a variável da sessão que identifica o usuário
 if (!isset($_SESSION['UsuarioID']) ) {
-	// Destrói a sessão por segurança
-	session_destroy();
-	// Redireciona o visitante de volta pro login
-	header("Location: index.php"); exit;
+    // Destrói a sessão por segurança
+    session_destroy();
+    // Redireciona o visitante de volta pro login
+    header("Location: index.php"); exit;
 }
 
 ?>
@@ -29,6 +29,32 @@ if (!isset($_SESSION['UsuarioID']) ) {
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="menu.css">
 
+
+    <script>
+        function upload_file() {
+            var fileSelect = document.getElementById("input01");
+            var files;
+            var file;
+            var user;
+        
+            var formData = new FormData();
+        
+            files = fileSelect.files;
+            file = files[0];
+
+            user = '<?php echo $_SESSION['UsuarioID']; ?>';
+
+            formData.append('file', file);
+            formData.append('user', user);
+            // document.getElementById("file-chooser").innerHTML = file.name;
+            
+            xmlhttp=new XMLHttpRequest();
+                
+            xmlhttp.open('POST',"upload.php",true);
+            xmlhttp.send(formData);
+        }
+        
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-light bg-faded" id = "nav_bar">
@@ -89,7 +115,7 @@ if (!isset($_SESSION['UsuarioID']) ) {
                 </div>
                 <div class="col-xs-2">
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">
+                        <button id="b1" type="button" onClick="upload_file()" class="btn btn-primary">
                             <span class="glyphicon glyphicon-ok"></span> Enviar
                         </button>
                     </div>

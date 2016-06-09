@@ -1,20 +1,20 @@
 <?php
-
+include 'config.php';
 // Verifica se houve POST e se o usuário ou a senha é(são) vazio(s)
 if (!empty($_POST) AND (empty($_POST['usuario']) OR empty($_POST['senha']))) {
 	header("Location: index.php"); exit;
 }
 
 // Tenta se conectar ao servidor MySQL
-mysql_connect('localhost', 'root', '123') or trigger_error(mysql_error());
+mysql_connect(HOSTNAME, DB_USER, DB_PASSWORD) or trigger_error(mysql_error());
 // Tenta se conectar a um banco de dados MySQL
-mysql_select_db('drefinancas') or trigger_error(mysql_error());
+mysql_select_db(DB_NAME) or trigger_error(mysql_error());
 
 $usuario = mysql_real_escape_string($_POST['usuario']);
 $senha = mysql_real_escape_string($_POST['senha']);
 
 // Validação do usuário/senha digitados
-$sql = "SELECT `email`, `nome` FROM `users` WHERE (`email` = '". $usuario ."') AND (`senha` = '". sha1($senha) ."') LIMIT 1";
+$sql = "SELECT `email`, `senha` FROM `Users` WHERE (`email` = '". $usuario ."') AND (`senha` = '". sha1($senha) ."') LIMIT 1";
 $query = mysql_query($sql);
 if (mysql_num_rows($query) != 1) {
 	// Mensagem de erro quando os dados são inválidos e/ou o usuário não foi encontrado
