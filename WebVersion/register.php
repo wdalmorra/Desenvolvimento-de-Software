@@ -19,7 +19,7 @@
   <nav class="navbar navbar-light bg-faded" id = "nav_bar">
     <a class="navbar-brand" href="#">DreFinanças</a>
   </nav>  
-  <form class="form-horizontal register">
+  <form class="form-horizontal register"  action="inserir.php" method="post" >
 
   <!-- Form Name -->
   <legend>Registrar-se</legend>
@@ -28,7 +28,7 @@
   <fieldset class="form-group">
     <label class="col-md-4 control-label" for="textinput">Email</label>  
     <div class="col-md-8">
-      <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+      <input id="textinput" name="usuario" type="text" placeholder="" class="form-control input-md">
     </div>
   </fieldset>
 
@@ -36,7 +36,7 @@
   <fieldset class="form-group">
     <label class="col-md-4 control-label" for="textinput">Nome</label>  
     <div class="col-md-8">
-      <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+      <input id="textinput" name="txNome" type="text" placeholder="" class="form-control input-md">
       
     </div>
   </fieldset>
@@ -45,7 +45,7 @@
   <fieldset class="form-group">
     <label class="col-md-4 control-label" for="selectbasic">Cidade</label>
     <div class="col-md-8">
-      <select id="selectbasic" name="selectbasic" class="form-control">
+      <select id="selectbasic" name="txCidade" class="form-control">
         <option value="1">Option one</option>
         <option value="2">Option two</option>
       </select>
@@ -56,7 +56,7 @@
   <fieldset class="form-group">
     <label class="col-md-4 control-label" for="selectbasic">Estado</label>
     <div class="col-md-8">
-      <select id="selectbasic" name="selectbasic" class="form-control">
+      <select id="selectbasic" name="txEstado" class="form-control">
         <option value="1">Option one</option>
         <option value="2">Option two</option>
       </select>
@@ -67,7 +67,7 @@
   <fieldset class="form-group">
     <label class="col-md-4 control-label" for="selectbasic">País</label>
     <div class="col-md-8">
-      <select id="selectbasic" name="selectbasic" class="form-control">
+      <select id="selectbasic" name="txPais" class="form-control">
         <option value="1">Option one</option>
         <option value="2">Option two</option>
       </select>
@@ -78,7 +78,7 @@
   <fieldset class="form-group">
     <label class="col-md-4 control-label" for="passwordinput">Senha</label>
     <div class="col-md-8">
-      <input id="passwordinput" name="passwordinput" type="password" placeholder="" class="form-control input-md">
+      <input id="passwordinput" name="senha" type="password" placeholder="" class="form-control input-md">
       
     </div>
   </fieldset>
@@ -87,7 +87,7 @@
   <fieldset class="form-group">
     <label class="col-md-4 control-label" for="passwordinput">Confirmar Senha</label>
     <div class="col-md-8">
-      <input id="passwordinput" name="passwordinput" type="password" placeholder="" class="form-control input-md">
+      <input id="passwordinput" name="txConfSenha" type="password" placeholder="" class="form-control input-md">
       
     </div>
   </fieldset>

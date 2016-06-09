@@ -24,17 +24,17 @@
 	</nav>
 	<div class="container">
 
-	    <form class="form-signin">
+	     <form class="form-signin" action="validacao.php" method="post" >
 			<h1 class="form-signin-heading text-muted">Log in</h1>
-			<input type="text" class="form-control" placeholder="Email address" required="" autofocus="">
-			<input type="password" class="form-control" placeholder="Password" required="">
+			<input type="text" class="form-control" name="usuario" placeholder="Email address" required="" autofocus="">
+			<input type="password" class="form-control"  name="senha" placeholder="Password" required="">
 			<button class="btn btn-lg btn-primary btn-block" type="submit">
 				Sign In
 			</button>
 
 			<div>
 	            <button id="login_lost_btn" type="button" class="btn btn-link a">Lost Password?</button>
-	            <button id="login_register_btn" type="button" class="btn btn-link a">Register</button>
+	            <button id="login_register_btn" type="button"  onClick="registrer()" class="btn btn-link a">Register</button>
 	        </div>
 
 		</form>
@@ -49,3 +49,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<script type="text/javascript">
+function registrer()
+{
+location.href="register.php"
+}
+</script>
