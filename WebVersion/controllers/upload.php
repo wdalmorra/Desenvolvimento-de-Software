@@ -23,9 +23,9 @@ if(isset($_FILES['file'])) {
 		
 		echo false;
 
-		// $parser = new Parser($file['tmp_name'], $email);
+		$parser = new Parser($file['tmp_name'], $email);
 
-		// echo $parser->parse();
+		echo $parser->parse();
 
 	} else {
 		echo false;
