@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../resources/register.css">
+     <!-- Datepicker -->
+      <link href="../resources/bootstrap-datepicker.css" rel="stylesheet">
 
 </head>
 <body>
@@ -41,13 +43,19 @@
     </div>
   </fieldset>
 
+  <fieldset class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Data de Nascimento</label>  
+    <div class="col-md-8">
+      <input type="text" id="txNasc" class="form-control">
+    </div>
+  </fieldset>
+  
+
   <!-- Select Basic -->
   <fieldset class="form-group">
-    <label class="col-md-4 control-label" for="selectbasic">Cidade</label>
+    <label class="col-md-4 control-label" for="selectbasic">País</label>
     <div class="col-md-8">
-      <select id="txCidade" name="txCidade" class="form-control">
-        <option value="1">Option one</option>
-        <option value="2">Option two</option>
+      <select id="txPais" name="txPais" class="form-control">
       </select>
     </div>
   </fieldset>
@@ -57,19 +65,15 @@
     <label class="col-md-4 control-label" for="selectbasic">Estado</label>
     <div class="col-md-8">
       <select id="txEstado" name="txEstado" class="form-control">
-        <option value="1">Option one</option>
-        <option value="2">Option two</option>
       </select>
     </div>
   </fieldset>
 
   <!-- Select Basic -->
   <fieldset class="form-group">
-    <label class="col-md-4 control-label" for="selectbasic">País</label>
+    <label class="col-md-4 control-label" for="selectbasic">Cidade</label>
     <div class="col-md-8">
-      <select id="txPais" name="txPais" class="form-control">
-        <option value="1">Option one</option>
-        <option value="2">Option two</option>
+      <select id="txCidade" name="txCidade" class="form-control">
       </select>
     </div>
   </fieldset>
@@ -108,10 +112,21 @@
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-<!-- Script responsavel pela tela de registro -->
+  <!-- Script responsavel pela tela de registro -->
   <script src="js/registro.js"></script>
+
+  <!-- Datepicker -->
+  <script src="js/bootstrap-datepicker.js"></script>
 
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function () {
+      $('#txNasc').datepicker({
+          format: "dd/mm/yyyy",
+          language: "pt-BR"
+      });
+    });
+  </script>
 </body>
 </html>
