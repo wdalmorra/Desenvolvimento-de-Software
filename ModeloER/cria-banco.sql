@@ -3,7 +3,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 DROP SCHEMA IF EXISTS `Drefinancas` ;
-CREATE SCHEMA IF NOT EXISTS `Drefinancas` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+CREATE SCHEMA IF NOT EXISTS `Drefinancas` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 USE `Drefinancas` ;
 
 -- -----------------------------------------------------
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `Drefinancas`.`Movimentacao` (
   INDEX `fk_Movimentacao_Categoria1_idx` (`categoriaId` ASC),
   CONSTRAINT `fk_Movimentacao_DadosMes1`
     FOREIGN KEY (`dadosMesMes` , `dadosMesUsersEmail`)
-    REFERENCES `mydb`.`DadosMes` (`mes` , `usersEmail`)
+    REFERENCES `Drefinancas`.`DadosMes` (`mes` , `usersEmail`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Movimentacao_Categoria1`
