@@ -1,10 +1,30 @@
 $(function () {
-	$('#txNasc').datepicker({
-      	format: "dd/mm/yyyy",
-      	language: "pt-BR"
-	  });
-
 });
+
+function populaPaises(){
+    // alert("Algo deu errado com os 2!");
+
+    $.ajax({
+            url: "../controllers/carregaPaises.php",
+            type: "POST",
+            dataType:"json"
+        }).error(function(data){
+            alert("Não foi possível carregar os países.");
+        }).done(function(data){
+            if(data.length > 0){
+                var select = document.getElementById("txPais");
+                for(var i = 0; i < data.length; i++) {
+                    var opt = data[i]["nome"];
+                    var el = document.createElement("option");
+                    el.textContent = opt;
+                    el.value = opt;
+                    select.appendChild(el);
+                }
+            } else {
+                alert("Algo deu errado com os países!");
+            }
+        })
+}
 
 function registra() {
 	var usuario = document.getElementById("usuario").value;
