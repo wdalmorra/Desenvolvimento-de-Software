@@ -16,7 +16,7 @@
       <link href="../resources/bootstrap-datepicker.css" rel="stylesheet">
 
 </head>
-<body>
+<body onLoad="populaPaises()">
 
   <nav class="navbar navbar-light bg-faded" id = "nav_bar">
     <a class="navbar-brand" href="#">DreFinanças</a>
@@ -120,5 +120,13 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function () {
+      $('#txNasc').datepicker({
+          format: "dd/mm/yyyy",
+          language: "pt-BR"
+      });
+    });
+  </script>
 </body>
 </html>
