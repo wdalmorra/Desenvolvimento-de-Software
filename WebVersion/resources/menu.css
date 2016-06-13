@@ -67,6 +67,13 @@ body, html {
 
 /* Sidebar Styles */
 
+  .btn 
+  {
+   background-color: #a7a7a7;
+   border-color: #a0a0a0;
+   color: #000;
+  }
+
 .sidebar-nav {
     position: absolute;
     top: 0;
