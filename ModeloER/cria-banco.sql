@@ -107,6 +107,19 @@ ENGINE = InnoDB;
 -- )
 -- ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `Drefinancas`.`Categoria`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Drefinancas`.`Categoria` ;
+
+CREATE TABLE IF NOT EXISTS `Drefinancas`.`Categoria` (
+  `nome` VARCHAR(50) NOT NULL,
+  `idCategoria` INT NOT NULL AUTO_INCREMENT,
+  `despesa` TINYINT(1) NULL,
+  PRIMARY KEY (`idCategoria`),
+  UNIQUE INDEX `idCategoria_UNIQUE` (`idCategoria` ASC))
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `Drefinancas`.`Movimentacao`
@@ -114,16 +127,22 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `Drefinancas`.`Movimentacao` ;
 
 CREATE TABLE IF NOT EXISTS `Drefinancas`.`Movimentacao` (
-  `categoria` ENUM('RECEITA1', 'RECEITA2') NOT NULL,
+  `categoriaId` INT NOT NULL,
   `dadosMesMes` DATE NOT NULL,
   `dadosMesUsersEmail` VARCHAR(50) NOT NULL,
-  `valor` LONG NULL,
+  `valor` MEDIUMTEXT NULL,
   `despesa` TINYINT(1) NULL,
-  PRIMARY KEY (`categoria`, `dadosMesMes`, `dadosMesUsersEmail`),
+  PRIMARY KEY (`dadosMesMes`, `dadosMesUsersEmail`, `categoriaId`),
   INDEX `fk_Movimentacao_DadosMes1_idx` (`dadosMesMes` ASC, `dadosMesUsersEmail` ASC),
+  INDEX `fk_Movimentacao_Categoria1_idx` (`categoriaId` ASC),
   CONSTRAINT `fk_Movimentacao_DadosMes1`
     FOREIGN KEY (`dadosMesMes` , `dadosMesUsersEmail`)
-    REFERENCES `Drefinancas`.`DadosMes` (`mes` , `usersEmail`)
+    REFERENCES `mydb`.`DadosMes` (`mes` , `usersEmail`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Movimentacao_Categoria1`
+    FOREIGN KEY (`categoriaId`)
+    REFERENCES `Drefinancas`.`Categoria` (`idCategoria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

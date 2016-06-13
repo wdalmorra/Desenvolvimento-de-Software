@@ -1,5 +1,31 @@
 USE Drefinancas;
 
+INSERT INTO `Drefinancas`.`Categoria` (`nome`, `despesa`) VALUES
+('Combustível', '1'),
+('Conta de água', '1'),
+('Conta de luz', '1'),
+('Conta telefônica', '1'),
+('Educação', '1'),
+('Estacionamento', '1'),
+('Internet', '1'),
+('Lazer', '1'),
+('Manutenção do carro', '1'),
+('Moradia', '1'),
+('Reforma da casa', '1'),
+('Restaurante', '1'),
+('Saúde', '1'),
+('Seguros', '1'),
+('Serviços domésticos', '1'),
+('Supermercado', '1'),
+('TV por assinatura', '1'),
+('Viagens', '1'),
+('Outras despesas', '1'), 
+('Lucros', '0'),
+('Rendimentos', '0'),
+('Salário', '0'),
+('Vendas', '0'),
+('Outras receitas', '0');
+
 INSERT INTO `Drefinancas`.`Pais` VALUES ('br', 'Brasil');
 INSERT INTO `Drefinancas`.`Pais` VALUES ('ar', 'Argentina');
 
