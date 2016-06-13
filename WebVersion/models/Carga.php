@@ -2,6 +2,10 @@
 
 include '../util/ConexaoDB.php';
 
+// function stripAccents($str) {
+//     return strtr($str, utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+// }
+
 class Carga {
 
     var $conn;
@@ -62,6 +66,7 @@ class Carga {
 
     function carregaCidades($pais, $estado) {
         $conexao = $this->conn->abrirConexao();
+        $logfile = "/var/www/html/WebVersion/log.txt";
         
         $sql_pais = "SELECT countryCode FROM Pais WHERE nome = '{$pais}';";
         $result_pais =  mysqli_query($conexao,$sql_pais);
@@ -81,11 +86,14 @@ class Carga {
 		    } else {
 		        $rows = array();
 		        while($row = mysqli_fetch_assoc($result)) {
+                    // $a = stripAccents(mysqli_real_escape_string($conexao, $row["nome"]));
+                    $row["nome"] = utf8_encode($row["nome"]);
+                    // exec("echo $a >> $logfile");
 		          $rows[]=$row;
 		        }
 
 		        $this->conn->fecharConexao();
-		        return $row;
+		        return $rows;
 		    }
         }
     }

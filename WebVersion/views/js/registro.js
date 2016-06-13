@@ -76,7 +76,7 @@ function populaCidades(){
         }).error(function(data){
             alert("Não foi possível carregar as cidades.");
         }).done(function(data){
-        	alert(data);
+        	// alert(data);
             if(data.length > 0){
                 var select = document.getElementById("txCidade");
                 select.options.length = 0;
