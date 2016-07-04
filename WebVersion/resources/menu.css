@@ -7,6 +7,9 @@ body, html {
 #nav_bar{
   background-color: #d0d0d0;
 }
+#dropdown-navbar{
+  background-color: #d0d0d0;  
+}
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
@@ -57,8 +60,16 @@ body, html {
 }
 
 
-#div10 {
-    padding-left: 400px;
+#arquivo{
+    padding-left: 50px;
+}
+
+#bemvindo{
+    margin-top: 50px;
+    padding-left: 150px;
+}
+.after-menu{
+    padding-left: 250px;
 }
 
 #gambiarraNivelPHP {
@@ -85,7 +96,7 @@ body, html {
 }
 
 .sidebar-nav li {
-    text-indent: 20px;
+    /*text-indent: 20px;*/
     line-height: 40px;
 }
 
@@ -121,8 +132,10 @@ body, html {
     background: none;
 }
 
-.sidebar-submenu{
-	text-indent: 40px;
+.sidebar-large{
+	height: 50px;
+    width: 250px;
+    text-align: center;
 }
 
 @media(min-width:768px) {
@@ -143,7 +156,7 @@ body, html {
     }
 
     #page-content-wrapper {
-        padding: 20px;
+        padding: 20px;sidebar-nav
         position: relative;
     }
 
