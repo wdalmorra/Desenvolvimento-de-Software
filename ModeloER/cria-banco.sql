@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS `Drefinancas`.`Pais` ;
 
 CREATE TABLE IF NOT EXISTS `Drefinancas`.`Pais` (
   `countryCode` VARCHAR(2) NOT NULL,
-  `nome` VARCHAR(45) NULL,
+  `nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`countryCode`),
   UNIQUE INDEX `countryCode_UNIQUE` (`countryCode` ASC))
 ENGINE = InnoDB;
@@ -66,9 +66,9 @@ DROP TABLE IF EXISTS `Drefinancas`.`Users` ;
 CREATE TABLE IF NOT EXISTS `Drefinancas`.`Users` (
   `email` VARCHAR(50) NOT NULL,
   `nascimento` DATE NULL,
-  `nome` VARCHAR(50) NULL,
-  `senha` VARCHAR(100) NULL,
-  `cidadeId` INT NOT NULL,
+  `nome` VARCHAR(50) NOT NULL,
+  `senha` VARCHAR(100) NOT NULL,
+  `cidadeId` INT NULL,
   PRIMARY KEY (`email`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   INDEX `fk_Users_Cidade1_idx` (`cidadeId` ASC),
@@ -115,7 +115,6 @@ DROP TABLE IF EXISTS `Drefinancas`.`Categoria` ;
 CREATE TABLE IF NOT EXISTS `Drefinancas`.`Categoria` (
   `nome` VARCHAR(50) NOT NULL,
   `idCategoria` INT NOT NULL AUTO_INCREMENT,
-  `despesa` TINYINT(1) NULL,
   PRIMARY KEY (`idCategoria`),
   UNIQUE INDEX `idCategoria_UNIQUE` (`idCategoria` ASC))
 ENGINE = InnoDB;
@@ -130,8 +129,8 @@ CREATE TABLE IF NOT EXISTS `Drefinancas`.`Movimentacao` (
   `categoriaId` INT NOT NULL,
   `dadosMesMes` DATE NOT NULL,
   `dadosMesUsersEmail` VARCHAR(50) NOT NULL,
-  `valor` MEDIUMTEXT NULL,
-  `despesa` TINYINT(1) NULL,
+  `valor` MEDIUMTEXT NOT NULL,
+  `tipo` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`dadosMesMes`, `dadosMesUsersEmail`, `categoriaId`),
   INDEX `fk_Movimentacao_DadosMes1_idx` (`dadosMesMes` ASC, `dadosMesUsersEmail` ASC),
   INDEX `fk_Movimentacao_Categoria1_idx` (`categoriaId` ASC),

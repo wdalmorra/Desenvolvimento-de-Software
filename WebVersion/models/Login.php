@@ -19,15 +19,17 @@ class Login {
 
 	function autentica() {
 		$conexao = $this->conn->abrirConexao();
-		$sql = "SELECT email, senha FROM Users WHERE (`email` = '". $this->email ."') AND (`senha` = '". sha1($this->senha) ."') LIMIT 1";
+		$sql = "SELECT email, senha, nome FROM Users WHERE (`email` = '". $this->email ."') AND (`senha` = '". sha1($this->senha) ."') LIMIT 1";
 		$result = mysqli_query($conexao,$sql);
 
 		if(mysqli_num_rows($result) == 1){
+			$linha = $result->fetch_assoc();
+			$nome = $linha['nome'];
 			$this->conn->fecharConexao();
-			return true;
+			return array(true, $nome);
 		} else {
 			$this->conn->fecharConexao();
-			return false;
+			return array(false, "false");
 		}
 	}
 }

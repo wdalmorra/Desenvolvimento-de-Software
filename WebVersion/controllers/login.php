@@ -8,10 +8,13 @@ $senha = $_POST['password'];
 $login = new Login($email, $senha);
 
 // Veririca existencia do usuario
-if($login->autentica()){
-	echo json_encode(array("state" => "ok"));
+$autenticacao = $login->autentica();
+$autenticado = $autenticacao[0];
+if($autenticado){
+	$nome = $autenticacao[1];
+	echo json_encode(array("state" => "ok", "nome" => $nome));
 } else {
-	echo json_encode(array("state" => "erro"));
+	echo json_encode(array("state" => "erro", "nome" => "erro"));
 }
 
 ?>

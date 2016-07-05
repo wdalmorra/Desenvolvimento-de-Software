@@ -51,10 +51,10 @@ class Parser {
 				exec("echo $categoria $tipo $valor >> $logfile");
 
 				// Ve se eh despesa ou receita
-				$despesa = 0;
-				if(strcmp($tipo, "despesa") == 0) {
-					$despesa = 1;
-				}
+				// $despesa = "RECEITA";
+				// if(strcmp($tipo, "despesa") == 0) {
+				// 	$despesa = "DESPESA";
+				// }
 
 				// Acha o id da categoria
 				$sql = "SELECT idCategoria FROM Categoria WHERE Categoria.nome = '$categoria';";
@@ -70,7 +70,7 @@ class Parser {
 					$idCategoria = $linha['idCategoria'];
 
 					// Insere no DB
-					$sql = "INSERT INTO Movimentacao (categoriaId, dadosMesMes, dadosMesUsersEmail, valor, despesa) VALUES ('{$idCategoria}', '{$ano}-{$mes}-01', '{$this->email}', '{$valor}', '{$despesa}');";
+					$sql = "INSERT INTO Movimentacao (categoriaId, dadosMesMes, dadosMesUsersEmail, valor, tipo) VALUES ('{$idCategoria}', '{$ano}-{$mes}-01', '{$this->email}', '{$valor}', '{$tipo}');";
 					mysqli_query($conexao,$sql);
 					$this->conn->fecharConexao();
 				}

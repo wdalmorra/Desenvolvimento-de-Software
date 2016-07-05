@@ -14,18 +14,7 @@
     <link rel="stylesheet" href="../resources/menu.css">
 
 </head>
-<body>
-<!--     <nav class="navbar navbar-light bg-faded" id = "nav_bar">
-      <div class="container-fluid"> 
-      
-        <a class="navbar-brand" href="#">DreFinanças</a>
-        <div class="navbar-text pull-xs-right">
-
-              <p>Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
-        </div>
-      </div>
-
-    </nav> -->
+<body onload="carregaInfos()">
 
     <nav class="navbar navbar-light bg-faded" id="nav_bar">
 
@@ -35,32 +24,17 @@
         <!-- Links -->
         <ul class="nav navbar-nav pull-xs-right">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    Olá, Newbie
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" id="dropdown" aria-expanded="false">
+                    Olá!
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Conta" id="dropdown-navbar">
                     <a class="dropdown-item" href="#">Minha conta</a>
-                    <a class="dropdown-item" href="#">Sair</a>
+                    <a class="dropdown-item" onclick="logout()" href="../index.html">Sair</a>
                 </div>
             </li>
         </ul>
 
     </nav>
-
-    <!-- nav class = "navbar navbar-default" role = "navigation">
-   
-   <div class = "navbar-header">
-      <a class = "navbar-brand" href = "#">TutorialsPoint</a>
-   </div>
-   
-   <div>
-      <p class = "navbar-text navbar-right">
-         Signed in as 
-         <a href = "#" class = "navbar-link">Thomas</a>
-      </p>
-   </div>
-   
-</nav> -->
   
     <div class = "col-xs-2" id="wrapper">
 
@@ -68,7 +42,7 @@
         <div id="sidebar-wrapper">
             <ul class="nav nav-pills sidebar-nav nav-stacked left-menu" id="stacked-menu">
                 <li>
-                  <a href="#" class="sidebar-large" data-target="#item1" data-parent="#stacked-menu">Dashboard<span class="caret arrow"></span></a>
+                  <a href="#" class="sidebar-large sidebar-selected" data-target="#item1" data-parent="#stacked-menu">Dashboard<span class="caret arrow"></span></a>
                 </li>
                 <li>
                   <a href="#" class="sidebar-large" data-target="#item2" data-parent="#stacked-menu">Balanço Mensal<span class="caret arrow"></span></a>          
@@ -82,7 +56,7 @@
     </div>
 
     <div id="bemvindo">    
-        <h1 class="after-menu">  Bem Vindo </h1>
+        <h1 class="after-menu" id="textbemvindo">  Bem Vindo! </h1>
     </div>
 
     <div id="arquivo">
