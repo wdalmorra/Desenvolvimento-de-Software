@@ -1,0 +1,299 @@
+<!-- DOCTYPE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DreFinanças</title>
+ <!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+	<link rel="stylesheet" href="../resources/graficos.css">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- jvectormap -->
+	<link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+
+</head>
+<body onload="carregaInfos()">
+
+	<nav class="navbar navbar-light bg-faded" id="nav_bar">
+
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">DreFinancas</a>
+
+		<!-- Links -->
+		<ul class="nav navbar-nav pull-xs-right">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" id="dropdown" aria-expanded="false">
+					Olá!
+				</a>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="Conta" id="dropdown-navbar">
+					<a class="dropdown-item" href="./conta.html">Minha conta</a>
+					<a class="dropdown-item" onclick="logout()" href="../index.html">Sair</a>
+				</div>
+			</li>
+		</ul>
+
+	</nav>
+  
+	<div class = "col-xs-2" id="wrapper">
+
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="nav nav-pills sidebar-nav nav-stacked left-menu" id="stacked-menu">
+				<li>
+				  <a href="#" class="sidebar-large sidebar-selected" data-target="#item1" data-parent="#stacked-menu">Dashboard<span class="caret arrow"></span></a>
+				</li>
+				<li>
+				  <a href="#" class="sidebar-large" data-target="#item2" data-parent="#stacked-menu">Balanço Mensal<span class="caret arrow"></span></a>          
+				</li>
+				<li>
+				  <a href="#" class="sidebar-large" data-target="#item3" data-toggle="collapse" data-parent="#stacked-menu">Gráficos<span class="caret arrow"></span></a>          
+				</li>
+			</ul>
+		</div>
+		<!-- /#sidebar-wrapper -->
+	</div>
+
+	<div class="after-menu" id="graficos">
+
+
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" href="#barchart" role="tab" data-toggle="tab" id="barchartTab">Gráfico de Barras</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#piechart" role="tab" data-toggle="tab" id="piechartTab">Gráfico de Pizza</a>
+			</li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane fade in active" id="barchart">
+				<!-- BAR CHART -->
+				<div class="box box-success">
+
+					<h3>Filtros</h3>
+
+					<div>
+						<!-- Select Basic -->
+						<fieldset class="form-group col-xs-3">
+							<label class="col-md-4 control-label" for="selectbasic">Mês Inicial</label>
+					    	<div class="col-md-8">
+					    		<select id="txMesInicialBar" name="txMesInicialBar" class="form-control">
+					    		</select>
+					    	</div>
+					  	</fieldset>
+
+					    <!-- Select Basic -->
+						<fieldset class="form-group col-xs-3">
+							<label class="col-md-4 control-label" for="selectbasic">Ano Inicial</label>
+					    	<div class="col-md-8">
+					    		<select id="txAnoInicialBar" name="txAnoInicialBar" class="form-control">
+					    		</select>
+					    	</div>
+					  	</fieldset>
+
+					  	<!-- Select Basic -->
+					  	<fieldset class="form-group col-xs-3">
+					    	<label class="col-md-4 control-label" for="selectbasic">Mês Final</label>
+					    	<div class="col-md-8">
+						      	<select id="txMesFinalBar" name="txMesFinalBar" class="form-control">
+						      	</select>
+					    	</div>
+					    </fieldset>
+
+					  	<!-- Select Basic -->
+					  	<fieldset class="form-group col-xs-3">
+					    	<label class="col-md-4 control-label" for="selectbasic">Ano Final</label>
+					    	<div class="col-md-8">
+						      	<select id="txAnoFinalBar" name="txAnoFinalBar" class="form-control">
+						      	</select>
+					    	</div>
+					    </fieldset>
+					</div>
+
+					<div>
+					  	</fieldset>
+					  	<!-- Select Basic -->
+						<fieldset class="form-group col-xs-4">
+							<label class="col-md-4 control-label" for="selectbasic">Categoria</label>
+					    	<div class="col-md-8">
+					    		<select id="txCategoriaBar" name="txCategoriaBar" class="form-control">
+					    		</select>
+					    	</div>
+					  	</fieldset>
+
+					  	<!-- Select Basic -->
+					  	<fieldset class="form-group col-xs-4">
+					    	<label class="col-md-4 control-label" for="selectbasic">Idade Inicial</label>
+					    	<div class="col-md-8">
+						      	<select id="txIdadeInicialBar" name="txIdadeInicialBar" class="form-control">
+						      	</select>
+					    	</div>
+					  	</fieldset>
+
+					  	<!-- Select Basic -->
+					  	<fieldset class="form-group col-xs-4">
+					    	<label class="col-md-4 control-label" for="selectbasic">Idade Final</label>
+					    	<div class="col-md-8">
+						      	<select id="txIdadeFinalBar" name="txIdadeFinalBar" class="form-control">
+						      	</select>
+					    	</div>
+					  	</fieldset>
+					</div>
+
+					<div>
+						<!-- Select Basic -->
+						<fieldset class="form-group col-xs-4">
+							<label class="col-md-4 control-label" for="selectbasic">País</label>
+					    	<div class="col-md-8">
+					    		<select onchange= "populaEstados()" id="txPaisBar" name="txPaisBar" class="form-control">
+					    		</select>
+					    	</div>
+					  	</fieldset>
+
+					  	<!-- Select Basic -->
+					  	<fieldset class="form-group col-xs-4">
+					    	<label class="col-md-4 control-label" for="selectbasic">Estado</label>
+					    	<div class="col-md-8">
+						      	<select onchange= "populaCidades()" id="txEstadoBar" name="txEstadoBar" class="form-control">
+						      	</select>
+					    	</div>
+					  	</fieldset>
+
+					  	<!-- Select Basic -->
+					  	<fieldset class="form-group col-xs-4">
+					    	<label class="col-md-4 control-label" for="selectbasic">Cidade</label>
+					    	<div class="col-md-8">
+							    <select id="txCidadeBar" name="txCidadeBar" class="form-control">
+							    </select>
+				    		</div>
+					  	</fieldset>
+
+					</div>
+
+					<div class="box-header with-border">
+						<h3 class="box-title">Bar Chart</h3>
+					</div>
+					<div class="box-body">
+						<div class="chart">
+							<canvas id="barChart" style="height:230px"></canvas>
+						</div>
+					</div>
+					<!-- /.box-body -->
+				</div>
+				<!-- /.box -->
+			</div>
+
+			<div role="tabpanel" class="tab-pane fade" id="piechart">
+				<h3>Filtros</h3>
+
+				<div>
+					<!-- Select Basic -->
+					<fieldset class="form-group col-xs-3">
+						<label class="col-md-4 control-label" for="selectbasic">Mês</label>
+				    	<div class="col-md-8">
+				    		<select id="txMesPie" name="txMesPie" class="form-control">
+				    		</select>
+				    	</div>
+				  	</fieldset>
+
+				    <!-- Select Basic -->
+					<fieldset class="form-group col-xs-3">
+						<label class="col-md-4 control-label" for="selectbasic">Ano</label>
+				    	<div class="col-md-8">
+				    		<select id="txAnoPie" name="txAnoPie" class="form-control">
+				    		</select>
+				    	</div>
+				  	</fieldset>
+				</div>
+
+				<div>
+				  	<!-- Select Basic -->
+				  	<fieldset class="form-group col-xs-3">
+				    	<label class="col-md-4 control-label" for="selectbasic">Idade Inicial</label>
+				    	<div class="col-md-8">
+					      	<select id="txIdadeInicialPie" name="txIdadeInicialPie" class="form-control">
+					      	</select>
+				    	</div>
+				  	</fieldset>
+
+				  	<!-- Select Basic -->
+				  	<fieldset class="form-group col-xs-3">
+				    	<label class="col-md-4 control-label" for="selectbasic">Idade Final</label>
+				    	<div class="col-md-8">
+					      	<select id="txIdadeFinalPie" name="txIdadeFinalPie" class="form-control">
+					      	</select>
+				    	</div>
+				  	</fieldset>
+				</div>
+
+				<div>
+					<!-- Select Basic -->
+					<fieldset class="form-group col-xs-4">
+						<label class="col-md-4 control-label" for="selectbasic">País</label>
+				    	<div class="col-md-8">
+				    		<select onchange= "populaEstados()" id="txPaisPie" name="txPaisPie" class="form-control">
+				    		</select>
+				    	</div>
+				  	</fieldset>
+
+				  	<!-- Select Basic -->
+				  	<fieldset class="form-group col-xs-4">
+				    	<label class="col-md-4 control-label" for="selectbasic">Estado</label>
+				    	<div class="col-md-8">
+					      	<select onchange= "populaCidades()" id="txEstadoPie" name="txEstadoPie" class="form-control">
+					      	</select>
+				    	</div>
+				  	</fieldset>
+
+				  	<!-- Select Basic -->
+				  	<fieldset class="form-group col-xs-4">
+				    	<label class="col-md-4 control-label" for="selectbasic">Cidade</label>
+				    	<div class="col-md-8">
+						    <select id="txCidadePie" name="txCidadePie" class="form-control">
+						    </select>
+			    		</div>
+				  	</fieldset>
+
+				</div>
+
+
+
+				<!-- DONUT CHART -->
+				<div class="box box-danger">
+					<div class="box-header with-border">
+						<h3 class="box-title" id="pieChartName">Pie Chart</h3>
+					</div>
+					<div class="box-body">
+						<canvas id="pieChart" style="height:250px"></canvas>
+					</div>
+					<!-- /.box-body -->
+				</div>
+				<!-- /.box -->
+			</div>
+		</div>
+	</div>
+
+
+	<!-- JavaScript: placed at the end of the document so the pages load faster -->
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<!-- Script responsavel pela tela de menu -->
+	<script src="js/graficos.js"></script>
+
+	<!-- ChartJS 1.0.1 -->
+	<script src="js/Chart.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+</body>
+</html>
