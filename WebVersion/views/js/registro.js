@@ -1,4 +1,8 @@
 $(function () {
+	var email = getCookie("email");
+	if (email != "") {
+		window.location.href = "./menu.html";
+	}
 });
 
 function populaPaises(){
@@ -184,4 +188,19 @@ function registra() {
 
 function cancela() {
 	window.location.href="../index.html";
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
 }

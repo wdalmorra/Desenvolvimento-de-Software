@@ -1,6 +1,6 @@
 $(function () {
-	var nome = getCookie("nome");
-	if (nome != "") {
+	var email = getCookie("email");
+	if (email != "") {
 		window.location.href = "./views/menu.html";
 	}
 
@@ -31,10 +31,11 @@ function login() {
 }
 
 function criaCookie(email, nome){
+	var path = "/WebVersion/";
 	deletaCookie("email");
 	deletaCookie("nome");
-	document.cookie = "email=" + email;
-	document.cookie = "nome=" + nome;
+	document.cookie = "email=" + email + "; Path=" + path;
+	document.cookie = "nome=" + nome + "; Path=" + path;
 }
 
 function getCookie(cname) {
@@ -54,7 +55,13 @@ function getCookie(cname) {
 
 function deletaCookie(cname) {
 	var path = "/WebVersion/";
-	document.cookie = cname + "=; Path=" + path + "; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+	var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+	if(isChrome) {
+		document.cookie = cname + "=; Path=" + path + "; Expires=" + new Date(0).toGMTString();
+	} else {
+		document.cookie = cname + "=; Path=" + path + "; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+	}
 }
 
 function carregaMenu(){
