@@ -1,0 +1,182 @@
+<!-- DOCTYPE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DreFinanças</title>
+ <!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+	<link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../resources/conta.css">
+	 <!-- Datepicker -->
+	  <link href="../resources/bootstrap-datepicker.css" rel="stylesheet">
+
+</head>
+<body onLoad="populaTudo()">
+
+	<nav class="navbar navbar-light bg-faded" id="nav_bar">
+
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">DreFinancas</a>
+
+		<!-- Links -->
+		<ul class="nav navbar-nav pull-xs-right">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" id="dropdown" aria-expanded="false">
+					Olá!
+				</a>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="Conta" id="dropdown-navbar">
+					<a class="dropdown-item" href="./conta.html">Minha conta</a>
+					<a class="dropdown-item" onclick="logout()" href="../index.html">Sair</a>
+				</div>
+			</li>
+		</ul>
+
+	</nav>
+
+	<div class = "col-xs-2" id="wrapper">
+
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="nav nav-pills sidebar-nav nav-stacked left-menu" id="stacked-menu">
+				<li>
+				  <a href="#" class="sidebar-large" data-target="#item1" data-parent="#stacked-menu">Dashboard<span class="caret arrow"></span></a>
+				</li>
+				<li>
+				  <a href="#" class="sidebar-large" data-target="#item2" data-parent="#stacked-menu">Balanço Mensal<span class="caret arrow"></span></a>          
+				</li>
+				<li>
+				  <a href="#" class="sidebar-large" data-target="#item3" data-toggle="collapse" data-parent="#stacked-menu">Gráficos<span class="caret arrow"></span></a>          
+				</li>
+			</ul>
+		</div>
+		<!-- /#sidebar-wrapper -->
+	</div>
+	  
+  <form class="form-horizontal alterar" method="post" >
+
+  <!-- Form Name -->
+  <legend>Alterar Dados Pessoais</legend>
+
+  <br>
+
+  <!-- Text input-->
+  <fieldset class="form-group">
+	<label class="col-md-5 control-label" for="textinput">Nome</label>  
+	<div class="col-md-7">
+	  <input id="txNome" name="txNome" type="text" placeholder="" class="form-control input-md">
+	  
+	</div>
+  </fieldset>
+
+  <fieldset class="form-group">
+	<label class="col-md-5 control-label" for="textinput">Data de Nascimento</label>  
+	<div class="col-md-7">
+	  <input type="text" id="txNasc" class="form-control">
+	</div>
+  </fieldset>
+  
+  <!-- Select Basic -->
+  <fieldset class="form-group">
+	<label class="col-md-5 control-label" for="selectbasic">País</label>
+	<div class="col-md-7">
+	  <select onchange= "populaEstados()" id="txPais" name="txPais" class="form-control">
+	  </select>
+	</div>
+  </fieldset>
+
+  <!-- Select Basic -->
+  <fieldset class="form-group">
+	<label class="col-md-5 control-label" for="selectbasic">Estado</label>
+	<div class="col-md-7">
+	  <select onchange = "populaCidades()" id="txEstado" name="txEstado" class="form-control">
+	  </select>
+	</div>
+  </fieldset>
+
+  <!-- Select Basic -->
+  <fieldset class="form-group">
+	<label class="col-md-5 control-label" for="selectbasic">Cidade</label>
+	<div class="col-md-7">
+	  <select id="txCidade" name="txCidade" class="form-control">
+	  </select>
+	</div>
+  </fieldset>
+
+  <!-- Button (Double) -->
+  <fieldset class="form-group" id = "buttons">
+	<div class="col-md-12">
+	  <button id="button1id" type="button" onClick="alteraDados()" name="button1id" class="btn btn-secondary">Alterar Dados</button>
+	  <button id="button2id" type="reset" onClick="cancela()" name="button2id" class="btn btn-secondary">Cancelar</button>
+	</div>
+  </fieldset>
+
+  </form>
+
+  <hr>
+
+  <form class="form-horizontal alterar" method="post" >
+
+  <!-- Form Name -->
+  <legend>Alterar Senha</legend>
+
+  <br>
+
+    <!-- Password input-->
+  <fieldset class="form-group">
+	<label class="col-md-5 control-label" for="passwordinput">Senha Atual</label>
+	<div class="col-md-7">
+	  <input id="senhaAtual" name="senhaAtual" type="password" placeholder="" class="form-control input-md">
+	</div>
+  </fieldset>
+
+  <!-- Password input-->
+  <fieldset class="form-group">
+	<label class="col-md-5 control-label" for="passwordinput">Nova Senha</label>
+	<div class="col-md-7">
+	  <input id="senha" name="senha" type="password" placeholder="" class="form-control input-md">
+	</div>
+  </fieldset>
+
+  <!-- Password input-->
+  <fieldset class="form-group">
+	<label class="col-md-5 control-label" for="passwordinput">Confirmar Nova Senha</label>
+	<div class="col-md-7">
+	  <input id="txConfSenha" name="txConfSenha" type="password" placeholder="" class="form-control input-md">
+	</div>
+  </fieldset>
+  <fieldset class="form-group" id = "buttons">
+  	<div class="col-md-12">
+  		<button id="buttonSenha" type="button" onClick="alteraSenha()" name="buttonSenha" class="btn btn-secondary">Alterar Senha</button>
+  	</div>
+  </fieldset>
+
+  </form>
+
+
+  <!-- JavaScript: placed at the end of the document so the pages load faster -->
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <!-- Script responsavel pela tela de registro -->
+  <script src="js/conta.js"></script>
+
+  <!-- Datepicker -->
+  <script src="js/bootstrap-datepicker.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+  <script>
+	$(document).ready(function () {
+	  $('#txNasc').datepicker({
+		  format: "dd/mm/yyyy",
+		  language: "pt-BR"
+	  });
+	});
+  </script>
+</body>
+</html>
