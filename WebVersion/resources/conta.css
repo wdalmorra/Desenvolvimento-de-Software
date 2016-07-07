@@ -12,6 +12,10 @@ body, html {
 	background-color: #d0d0d0;  
 }
 
+.nav-pad {
+	padding-top:54px;
+}
+
 .alterar {
 	width: 550px;
 	margin: 10px auto;

@@ -8,6 +8,10 @@ body, html {
   background-color: #d0d0d0;
 }
 
+.nav-pad {
+    padding-top: 54px;
+}
+
 #dropdown-navbar{
   background-color: #d0d0d0;  
 }
@@ -55,11 +59,21 @@ body, html {
 }
 
 #titulo{
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 #file-chooser{
-	margin-top: 20px;
+	margin-top: 30px;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 16px;
+    text-align: left;
+    height:38px;
 }
 
 #dropdown {
@@ -71,9 +85,11 @@ body, html {
 }
 
 #bemvindo{
-    margin-top: 50px;
+    margin-top: 30px;
     padding-left: 50px;
+    margin-bottom: 25px;
 }
+
 .after-menu{
     padding-left: 250px;
 }
@@ -167,7 +183,7 @@ body, html {
     }
 
     #page-content-wrapper {
-        padding: 20px;sidebar-nav
+        padding: 20px;
         position: relative;
     }
 
@@ -175,4 +191,13 @@ body, html {
         position: relative;
         margin-right: 0;
     }
+}
+
+.pie {
+    padding-left: 60px;
+}
+
+#graficos {
+    padding-top: 30px;
+    margin-left: 40px;
 }

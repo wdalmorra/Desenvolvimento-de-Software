@@ -207,7 +207,7 @@ function carregaInfos() {
 	var nome = getCookie("nome");
 	if (nome != "") {
 		var textBemVindo = document.getElementById("textbemvindo");
-		textBemVindo.innerHTML = "Bem Vindo, " + nome + "!";
+		textBemVindo.innerHTML = "Bem vindo, " + nome + "!";
 
 		var dropdown = document.getElementById("dropdown");
 		dropdown.innerHTML = "Olá, " + nome + "!";

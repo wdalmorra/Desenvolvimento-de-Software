@@ -22,10 +22,10 @@
 </head>
 <body onload="carregaInfos()">
 
-	<nav class="navbar navbar-light bg-faded" id="nav_bar">
+	<nav class="navbar navbar-fixed-top navbar-light bg-faded" id="nav_bar">
 
 		<!-- Brand -->
-		<a class="navbar-brand" href="#">DreFinancas</a>
+		<a class="navbar-brand" href="./menu.html">DreFinanças</a>
 
 		<!-- Links -->
 		<ul class="nav navbar-nav pull-xs-right">
@@ -42,108 +42,195 @@
 
 	</nav>
   
-	<div class = "col-xs-2" id="wrapper">
+  	<div class="nav-pad">
+		<div class = "col-xs-2" id="wrapper">
 
-		<!-- Sidebar -->
-		<div id="sidebar-wrapper">
-			<ul class="nav nav-pills sidebar-nav nav-stacked left-menu" id="stacked-menu">
-				<li>
-				  <a href="#" class="sidebar-large sidebar-selected" data-target="#item1" data-parent="#stacked-menu">Dashboard<span class="caret arrow"></span></a>
+			<!-- Sidebar -->
+			<div id="sidebar-wrapper">
+				<ul class="nav nav-pills sidebar-nav nav-stacked left-menu" id="stacked-menu">
+					<li>
+					  <a href="./menu.html" class="sidebar-large" data-target="#item1" data-parent="#stacked-menu">Dashboard<span class="caret arrow"></span></a>
+					</li>
+					<li>
+					  <a href="#" class="sidebar-large" data-target="#item2" data-parent="#stacked-menu">Balanço Mensal<span class="caret arrow"></span></a>          
+					</li>
+					<li>
+					  <a href="#" class="sidebar-large sidebar-selected" data-target="#item3" data-parent="#stacked-menu">Gráficos<span class="caret arrow"></span></a>          
+					</li>
+				</ul>
+			</div>
+			<!-- /#sidebar-wrapper -->
+		</div>
+
+		<div class="after-menu" id="graficos">
+
+
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link active" href="#barchart" role="tab" data-toggle="tab" id="barchartTab">Gráfico de Barras</a>
 				</li>
-				<li>
-				  <a href="#" class="sidebar-large" data-target="#item2" data-parent="#stacked-menu">Balanço Mensal<span class="caret arrow"></span></a>          
-				</li>
-				<li>
-				  <a href="#" class="sidebar-large" data-target="#item3" data-toggle="collapse" data-parent="#stacked-menu">Gráficos<span class="caret arrow"></span></a>          
+				<li class="nav-item">
+					<a class="nav-link" href="#piechart" role="tab" data-toggle="tab" id="piechartTab">Gráfico de Pizza</a>
 				</li>
 			</ul>
-		</div>
-		<!-- /#sidebar-wrapper -->
-	</div>
 
-	<div class="after-menu" id="graficos">
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="barchart">
+					<!-- BAR CHART -->
+					<div class="box box-success">
 
+						<h3>Filtros</h3>
 
-		<ul class="nav nav-tabs" role="tablist">
-			<li class="nav-item">
-				<a class="nav-link active" href="#barchart" role="tab" data-toggle="tab" id="barchartTab">Gráfico de Barras</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#piechart" role="tab" data-toggle="tab" id="piechartTab">Gráfico de Pizza</a>
-			</li>
-		</ul>
+						<div>
+							<!-- Select Basic -->
+							<fieldset class="form-group col-xs-3">
+								<label class="col-md-4 control-label" for="selectbasic">Mês Inicial</label>
+						    	<div class="col-md-8">
+						    		<select id="txMesInicialBar" name="txMesInicialBar" class="form-control">
+						    		</select>
+						    	</div>
+						  	</fieldset>
 
-		<!-- Tab panes -->
-		<div class="tab-content">
-			<div role="tabpanel" class="tab-pane fade in active" id="barchart">
-				<!-- BAR CHART -->
-				<div class="box box-success">
+						    <!-- Select Basic -->
+							<fieldset class="form-group col-xs-3">
+								<label class="col-md-4 control-label" for="selectbasic">Ano Inicial</label>
+						    	<div class="col-md-8">
+						    		<select id="txAnoInicialBar" name="txAnoInicialBar" class="form-control">
+						    		</select>
+						    	</div>
+						  	</fieldset>
 
+						  	<!-- Select Basic -->
+						  	<fieldset class="form-group col-xs-3">
+						    	<label class="col-md-4 control-label" for="selectbasic">Mês Final</label>
+						    	<div class="col-md-8">
+							      	<select id="txMesFinalBar" name="txMesFinalBar" class="form-control">
+							      	</select>
+						    	</div>
+						    </fieldset>
+
+						  	<!-- Select Basic -->
+						  	<fieldset class="form-group col-xs-3">
+						    	<label class="col-md-4 control-label" for="selectbasic">Ano Final</label>
+						    	<div class="col-md-8">
+							      	<select id="txAnoFinalBar" name="txAnoFinalBar" class="form-control">
+							      	</select>
+						    	</div>
+						    </fieldset>
+						</div>
+
+						<div>
+						  	</fieldset>
+						  	<!-- Select Basic -->
+							<fieldset class="form-group col-xs-4">
+								<label class="col-md-4 control-label" for="selectbasic">Categoria</label>
+						    	<div class="col-md-8">
+						    		<select id="txCategoriaBar" name="txCategoriaBar" class="form-control">
+						    		</select>
+						    	</div>
+						  	</fieldset>
+
+						  	<!-- Select Basic -->
+						  	<fieldset class="form-group col-xs-4">
+						    	<label class="col-md-4 control-label" for="selectbasic">Idade Inicial</label>
+						    	<div class="col-md-8">
+							      	<select id="txIdadeInicialBar" name="txIdadeInicialBar" class="form-control">
+							      	</select>
+						    	</div>
+						  	</fieldset>
+
+						  	<!-- Select Basic -->
+						  	<fieldset class="form-group col-xs-4">
+						    	<label class="col-md-4 control-label" for="selectbasic">Idade Final</label>
+						    	<div class="col-md-8">
+							      	<select id="txIdadeFinalBar" name="txIdadeFinalBar" class="form-control">
+							      	</select>
+						    	</div>
+						  	</fieldset>
+						</div>
+
+						<div>
+							<!-- Select Basic -->
+							<fieldset class="form-group col-xs-4">
+								<label class="col-md-4 control-label" for="selectbasic">País</label>
+						    	<div class="col-md-8">
+						    		<select onchange= "populaEstados()" id="txPaisBar" name="txPaisBar" class="form-control">
+						    		</select>
+						    	</div>
+						  	</fieldset>
+
+						  	<!-- Select Basic -->
+						  	<fieldset class="form-group col-xs-4">
+						    	<label class="col-md-4 control-label" for="selectbasic">Estado</label>
+						    	<div class="col-md-8">
+							      	<select onchange= "populaCidades()" id="txEstadoBar" name="txEstadoBar" class="form-control">
+							      	</select>
+						    	</div>
+						  	</fieldset>
+
+						  	<!-- Select Basic -->
+						  	<fieldset class="form-group col-xs-4">
+						    	<label class="col-md-4 control-label" for="selectbasic">Cidade</label>
+						    	<div class="col-md-8">
+								    <select id="txCidadeBar" name="txCidadeBar" class="form-control">
+								    </select>
+					    		</div>
+						  	</fieldset>
+
+						</div>
+
+						<div class="box-header with-border">
+							<h3 class="box-title">Bar Chart</h3>
+						</div>
+						<div class="box-body">
+							<div class="chart">
+								<canvas id="barChart" style="height:230px"></canvas>
+							</div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+				</div>
+
+				<div role="tabpanel" class="tab-pane fade" id="piechart">
 					<h3>Filtros</h3>
 
 					<div>
 						<!-- Select Basic -->
 						<fieldset class="form-group col-xs-3">
-							<label class="col-md-4 control-label" for="selectbasic">Mês Inicial</label>
+							<label class="col-md-4 control-label" for="selectbasic">Mês</label>
 					    	<div class="col-md-8">
-					    		<select id="txMesInicialBar" name="txMesInicialBar" class="form-control">
+					    		<select id="txMesPie" name="txMesPie" class="form-control">
 					    		</select>
 					    	</div>
 					  	</fieldset>
 
 					    <!-- Select Basic -->
 						<fieldset class="form-group col-xs-3">
-							<label class="col-md-4 control-label" for="selectbasic">Ano Inicial</label>
+							<label class="col-md-4 control-label" for="selectbasic">Ano</label>
 					    	<div class="col-md-8">
-					    		<select id="txAnoInicialBar" name="txAnoInicialBar" class="form-control">
+					    		<select id="txAnoPie" name="txAnoPie" class="form-control">
 					    		</select>
 					    	</div>
 					  	</fieldset>
-
-					  	<!-- Select Basic -->
-					  	<fieldset class="form-group col-xs-3">
-					    	<label class="col-md-4 control-label" for="selectbasic">Mês Final</label>
-					    	<div class="col-md-8">
-						      	<select id="txMesFinalBar" name="txMesFinalBar" class="form-control">
-						      	</select>
-					    	</div>
-					    </fieldset>
-
-					  	<!-- Select Basic -->
-					  	<fieldset class="form-group col-xs-3">
-					    	<label class="col-md-4 control-label" for="selectbasic">Ano Final</label>
-					    	<div class="col-md-8">
-						      	<select id="txAnoFinalBar" name="txAnoFinalBar" class="form-control">
-						      	</select>
-					    	</div>
-					    </fieldset>
 					</div>
 
 					<div>
-					  	</fieldset>
 					  	<!-- Select Basic -->
-						<fieldset class="form-group col-xs-4">
-							<label class="col-md-4 control-label" for="selectbasic">Categoria</label>
-					    	<div class="col-md-8">
-					    		<select id="txCategoriaBar" name="txCategoriaBar" class="form-control">
-					    		</select>
-					    	</div>
-					  	</fieldset>
-
-					  	<!-- Select Basic -->
-					  	<fieldset class="form-group col-xs-4">
+					  	<fieldset class="form-group col-xs-3">
 					    	<label class="col-md-4 control-label" for="selectbasic">Idade Inicial</label>
 					    	<div class="col-md-8">
-						      	<select id="txIdadeInicialBar" name="txIdadeInicialBar" class="form-control">
+						      	<select id="txIdadeInicialPie" name="txIdadeInicialPie" class="form-control">
 						      	</select>
 					    	</div>
 					  	</fieldset>
 
 					  	<!-- Select Basic -->
-					  	<fieldset class="form-group col-xs-4">
+					  	<fieldset class="form-group col-xs-3">
 					    	<label class="col-md-4 control-label" for="selectbasic">Idade Final</label>
 					    	<div class="col-md-8">
-						      	<select id="txIdadeFinalBar" name="txIdadeFinalBar" class="form-control">
+						      	<select id="txIdadeFinalPie" name="txIdadeFinalPie" class="form-control">
 						      	</select>
 					    	</div>
 					  	</fieldset>
@@ -154,7 +241,7 @@
 						<fieldset class="form-group col-xs-4">
 							<label class="col-md-4 control-label" for="selectbasic">País</label>
 					    	<div class="col-md-8">
-					    		<select onchange= "populaEstados()" id="txPaisBar" name="txPaisBar" class="form-control">
+					    		<select onchange= "populaEstados()" id="txPaisPie" name="txPaisPie" class="form-control">
 					    		</select>
 					    	</div>
 					  	</fieldset>
@@ -163,7 +250,7 @@
 					  	<fieldset class="form-group col-xs-4">
 					    	<label class="col-md-4 control-label" for="selectbasic">Estado</label>
 					    	<div class="col-md-8">
-						      	<select onchange= "populaCidades()" id="txEstadoBar" name="txEstadoBar" class="form-control">
+						      	<select onchange= "populaCidades()" id="txEstadoPie" name="txEstadoPie" class="form-control">
 						      	</select>
 					    	</div>
 					  	</fieldset>
@@ -172,112 +259,27 @@
 					  	<fieldset class="form-group col-xs-4">
 					    	<label class="col-md-4 control-label" for="selectbasic">Cidade</label>
 					    	<div class="col-md-8">
-							    <select id="txCidadeBar" name="txCidadeBar" class="form-control">
+							    <select id="txCidadePie" name="txCidadePie" class="form-control">
 							    </select>
 				    		</div>
 					  	</fieldset>
 
 					</div>
 
-					<div class="box-header with-border">
-						<h3 class="box-title">Bar Chart</h3>
-					</div>
-					<div class="box-body">
-						<div class="chart">
-							<canvas id="barChart" style="height:230px"></canvas>
+
+
+					<!-- DONUT CHART -->
+					<div class="box box-danger">
+						<div class="box-header with-border">
+							<h3 class="box-title" id="pieChartName">Pie Chart</h3>
 						</div>
+						<div class="box-body">
+							<canvas id="pieChart" style="height:250px"></canvas>
+						</div>
+						<!-- /.box-body -->
 					</div>
-					<!-- /.box-body -->
+					<!-- /.box -->
 				</div>
-				<!-- /.box -->
-			</div>
-
-			<div role="tabpanel" class="tab-pane fade" id="piechart">
-				<h3>Filtros</h3>
-
-				<div>
-					<!-- Select Basic -->
-					<fieldset class="form-group col-xs-3">
-						<label class="col-md-4 control-label" for="selectbasic">Mês</label>
-				    	<div class="col-md-8">
-				    		<select id="txMesPie" name="txMesPie" class="form-control">
-				    		</select>
-				    	</div>
-				  	</fieldset>
-
-				    <!-- Select Basic -->
-					<fieldset class="form-group col-xs-3">
-						<label class="col-md-4 control-label" for="selectbasic">Ano</label>
-				    	<div class="col-md-8">
-				    		<select id="txAnoPie" name="txAnoPie" class="form-control">
-				    		</select>
-				    	</div>
-				  	</fieldset>
-				</div>
-
-				<div>
-				  	<!-- Select Basic -->
-				  	<fieldset class="form-group col-xs-3">
-				    	<label class="col-md-4 control-label" for="selectbasic">Idade Inicial</label>
-				    	<div class="col-md-8">
-					      	<select id="txIdadeInicialPie" name="txIdadeInicialPie" class="form-control">
-					      	</select>
-				    	</div>
-				  	</fieldset>
-
-				  	<!-- Select Basic -->
-				  	<fieldset class="form-group col-xs-3">
-				    	<label class="col-md-4 control-label" for="selectbasic">Idade Final</label>
-				    	<div class="col-md-8">
-					      	<select id="txIdadeFinalPie" name="txIdadeFinalPie" class="form-control">
-					      	</select>
-				    	</div>
-				  	</fieldset>
-				</div>
-
-				<div>
-					<!-- Select Basic -->
-					<fieldset class="form-group col-xs-4">
-						<label class="col-md-4 control-label" for="selectbasic">País</label>
-				    	<div class="col-md-8">
-				    		<select onchange= "populaEstados()" id="txPaisPie" name="txPaisPie" class="form-control">
-				    		</select>
-				    	</div>
-				  	</fieldset>
-
-				  	<!-- Select Basic -->
-				  	<fieldset class="form-group col-xs-4">
-				    	<label class="col-md-4 control-label" for="selectbasic">Estado</label>
-				    	<div class="col-md-8">
-					      	<select onchange= "populaCidades()" id="txEstadoPie" name="txEstadoPie" class="form-control">
-					      	</select>
-				    	</div>
-				  	</fieldset>
-
-				  	<!-- Select Basic -->
-				  	<fieldset class="form-group col-xs-4">
-				    	<label class="col-md-4 control-label" for="selectbasic">Cidade</label>
-				    	<div class="col-md-8">
-						    <select id="txCidadePie" name="txCidadePie" class="form-control">
-						    </select>
-			    		</div>
-				  	</fieldset>
-
-				</div>
-
-
-
-				<!-- DONUT CHART -->
-				<div class="box box-danger">
-					<div class="box-header with-border">
-						<h3 class="box-title" id="pieChartName">Pie Chart</h3>
-					</div>
-					<div class="box-body">
-						<canvas id="pieChart" style="height:250px"></canvas>
-					</div>
-					<!-- /.box-body -->
-				</div>
-				<!-- /.box -->
 			</div>
 		</div>
 	</div>
