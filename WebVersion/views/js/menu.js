@@ -160,7 +160,7 @@ function uploadXml() {
 	files = fileSelect.files;
 	file = files[0];
 
-	var username = getCookie("email");
+	var username = getCookie("username");
 
 	formData.append('email', username);
 	formData.append('file', file);
@@ -200,7 +200,13 @@ function getCookie(cname) {
 
 function deletaCookie(cname) {
 	var path = "/WebVersion/";
-	document.cookie = cname + "=; Path=" + path + "; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+	var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+	if(isChrome) {
+		document.cookie = cname + "=; Path=" + path + "; Expires=" + new Date(0).toGMTString();
+	} else {
+		document.cookie = cname + "=; Path=" + path + "; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+	}
 }
 
 function carregaInfos() {
@@ -217,6 +223,4 @@ function carregaInfos() {
 function logout() {
 	deletaCookie("email");
 	deletaCookie("nome");
-
-	// window.location.href = "../index.html";
 }

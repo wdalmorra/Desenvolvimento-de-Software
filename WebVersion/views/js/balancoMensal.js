@@ -16,15 +16,18 @@ function getCookie(cname) {
 
 function deletaCookie(cname) {
 	var path = "/WebVersion/";
-	document.cookie = cname + "=; Path=" + path + "; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+	var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+	if(isChrome) {
+		document.cookie = cname + "=; Path=" + path + "; Expires=" + new Date(0).toGMTString();
+	} else {
+		document.cookie = cname + "=; Path=" + path + "; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+	}
 }
 
 function carregaInfos() {
 	var nome = getCookie("nome");
 	if (nome != "") {
-		var textBemVindo = document.getElementById("textbemvindo");
-		textBemVindo.innerHTML = "Bem vindo, " + nome + "!";
-
 		var dropdown = document.getElementById("dropdown");
 		dropdown.innerHTML = "Olá, " + nome + "!";
 	}
@@ -33,6 +36,4 @@ function carregaInfos() {
 function logout() {
 	deletaCookie("email");
 	deletaCookie("nome");
-
-	// window.location.href = "../index.html";
 }
