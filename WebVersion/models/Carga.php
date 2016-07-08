@@ -14,6 +14,82 @@ class Carga {
         $this->conn = new ConexaoDB();
     }
 
+    function carregaCategorias(){
+        $conexao = $this->conn->abrirConexao();
+        $sql = "SELECT nome FROM Categoria;";
+        $result =  mysqli_query($conexao,$sql);
+        if(!$result){
+            $this->conn->fecharConexao();
+            return array();
+        } else {
+            $rows = array();
+            while($row = mysqli_fetch_assoc($result)) {
+                $row["nome"] = utf8_encode($row["nome"]);
+              $rows[]=$row;
+            }
+
+            $this->conn->fecharConexao();
+            return $rows;
+        }
+    }
+
+    function carregaMeses(){
+        $conexao = $this->conn->abrirConexao();
+        $sql = "SELECT mes FROM Mes;";
+        $result =  mysqli_query($conexao,$sql);
+        if(!$result){
+            $this->conn->fecharConexao();
+            return array();
+        } else {
+            $rows = array();
+            while($row = mysqli_fetch_assoc($result)) {
+                $row["mes"] = utf8_encode($row["mes"]);
+              $rows[]=$row;
+            }
+
+            $this->conn->fecharConexao();
+            return $rows;
+        }
+    }
+
+    function carregaAnos(){
+        $conexao = $this->conn->abrirConexao();
+        $sql = "SELECT ano FROM Ano;";
+        $result =  mysqli_query($conexao,$sql);
+        if(!$result){
+            $this->conn->fecharConexao();
+            return array();
+        } else {
+            $rows = array();
+            while($row = mysqli_fetch_assoc($result)) {
+              $rows[]=$row;
+            }
+
+            $this->conn->fecharConexao();
+            return $rows;
+        }
+    }
+
+    function carregaIdades(){
+        $conexao = $this->conn->abrirConexao();
+        $sql = "SELECT idade FROM Idade;";
+        $result =  mysqli_query($conexao,$sql);
+        if(!$result){
+            $this->conn->fecharConexao();
+            return array();
+
+        } else {
+            $rows = array();
+            while($row = mysqli_fetch_assoc($result)) {
+              $rows[]=$row;
+            }
+
+            $this->conn->fecharConexao();
+            return $rows;
+        }
+
+    }
+
     function carregaPaises() {
         $conexao = $this->conn->abrirConexao();
         $sql = "SELECT nome FROM Pais;";

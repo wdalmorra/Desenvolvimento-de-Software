@@ -12,6 +12,404 @@ function carregaInfos() {
     var dropdown = document.getElementById("dropdown");
     dropdown.innerHTML = "Olá, " + nome + "!";
   }
+  populaPaisesBar();
+  populaPaisesPie();
+  populaIdadesPie();
+  populaIdadesBar();
+  populaAnosPie();
+  populaAnosBar();
+  populaCategoriasBar();
+  populaMesesPie();
+  populaMesesBar();
+}
+
+function populaCategoriasBar(){
+  // alert("Algo deu errado com os 2!");
+
+  $.ajax({
+      url: "../controllers/carregaCategorias.php",
+      type: "POST",
+      dataType:"json"
+    }).error(function(data){
+      alert("Não foi possível carregar as categorias.");
+    }).done(function(data){
+      if(data.length > 0){
+        var select = document.getElementById("txCategoriaBar");
+        for(var i = 0; i < data.length; i++) {
+          var opt = data[i]["nome"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          select.appendChild(el);
+        }
+
+      } else {
+        alert("Algo deu errado com as categorias!");
+      }
+    })
+}
+
+function populaMesesPie(){
+  // alert("Algo deu errado com os 2!");
+
+  $.ajax({
+      url: "../controllers/carregaMeses.php",
+      type: "POST",
+      dataType:"json"
+    }).error(function(data){
+      alert("Não foi possível carregar os meses.");
+    }).done(function(data){
+      if(data.length > 0){
+        var select = document.getElementById("txMesPie");
+        for(var i = 0; i < data.length; i++) {
+          var opt = data[i]["mes"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          select.appendChild(el);
+        }
+
+      } else {
+        alert("Algo deu errado com os meses!");
+      }
+    })
+} 
+
+function populaMesesBar(){
+  // alert("Algo deu errado com os 2!");
+
+  $.ajax({
+      url: "../controllers/carregaMeses.php",
+      type: "POST",
+      dataType:"json"
+    }).error(function(data){
+      alert("Não foi possível carregar os meses.");
+    }).done(function(data){
+      if(data.length > 0){
+        var select = document.getElementById("txMesInicialBar");
+        var select2 = document.getElementById("txMesFinalBar");
+        for(var i = 0; i < data.length; i++) {
+          var opt = data[i]["mes"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          var el2 = document.createElement("option");
+          el2.textContent = opt;
+          el2.value = opt;
+          select.appendChild(el);
+          select2.appendChild(el2);
+        }
+
+      } else {
+        alert("Algo deu errado com os meses!");
+      }
+    })
+}
+
+function populaAnosPie(){
+  // alert("Algo deu errado com os 2!");
+
+  $.ajax({
+      url: "../controllers/carregaAnos.php",
+      type: "POST",
+      dataType:"json"
+    }).error(function(data){
+      alert("Não foi possível carregar os meses.");
+    }).done(function(data){
+      if(data.length > 0){
+        var select = document.getElementById("txAnoPie");
+        for(var i = 0; i < data.length; i++) {
+          var opt = data[i]["ano"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          select.appendChild(el);
+        }
+
+      } else {
+        alert("Algo deu errado com os meses!");
+      }
+    })
+}
+
+function populaAnosBar(){
+  // alert("Algo deu errado com os 2!");
+
+  $.ajax({
+      url: "../controllers/carregaAnos.php",
+      type: "POST",
+      dataType:"json"
+    }).error(function(data){
+      alert("Não foi possível carregar os anos.");
+    }).done(function(data){
+      if(data.length > 0){
+        var select = document.getElementById("txAnoInicialBar");
+        var select2 = document.getElementById("txAnoFinalBar");
+        for(var i = 0; i < data.length; i++) {
+          var opt = data[i]["ano"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          var el2 = document.createElement("option");
+          el2.textContent = opt;
+          el2.value = opt;
+          select.appendChild(el);
+          select2.appendChild(el2);
+        }
+
+      } else {
+        alert("Algo deu errado com os anos!");
+      }
+    })
+}
+
+function populaIdadesPie(){
+  // alert("Algo deu errado com os 2!");
+
+  $.ajax({
+      url: "../controllers/carregaIdades.php",
+      type: "POST",
+      dataType:"json"
+    }).error(function(data){
+      alert("Não foi possível carregar as idades.");
+    }).done(function(data){
+      if(data.length > 0){
+        var select = document.getElementById("txIdadeInicialPie");
+        var select2 = document.getElementById("txIdadeFinalPie");
+        for(var i = 0; i < data.length; i++) {
+          var opt = data[i]["idade"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          var el2 = document.createElement("option");
+          el2.textContent = opt;
+          el2.value = opt;
+          select.appendChild(el);
+          select2.appendChild(el2);
+        }
+
+      } else {
+        alert("Algo deu errado com as idades!");
+      }
+    })
+}
+
+function populaIdadesBar(){
+  // alert("Algo deu errado com os 2!");
+
+  $.ajax({
+      url: "../controllers/carregaIdades.php",
+      type: "POST",
+      dataType:"json"
+    }).error(function(data){
+      alert("Não foi possível carregar as idades.");
+    }).done(function(data){
+      if(data.length > 0){
+        var select = document.getElementById("txIdadeInicialBar");
+        var select2 = document.getElementById("txIdadeFinalBar");
+        for(var i = 0; i < data.length; i++) {
+          var opt = data[i]["idade"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          var el2 = document.createElement("option");
+          el2.textContent = opt;
+          el2.value = opt;
+          select.appendChild(el);
+          select2.appendChild(el2);
+        }
+
+      } else {
+        alert("Algo deu errado com as idades!");
+      }
+    })
+}
+
+
+function populaPaisesPie(){
+  // alert("Algo deu errado com os 2!");
+
+  $.ajax({
+      url: "../controllers/carregaPaises.php",
+      type: "POST",
+      dataType:"json"
+    }).error(function(data){
+      alert("Não foi possível carregar os países.");
+    }).done(function(data){
+      if(data.length > 0){
+        var select = document.getElementById("txPaisPie");
+        for(var i = 0; i < data.length; i++) {
+          var opt = data[i]["nome"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          select.appendChild(el);
+        }
+
+      } else {
+        alert("Algo deu errado com os países!");
+      }
+    })
+}
+
+function populaEstadosPie(){
+  var ddPaises = document.getElementById("txPaisPie");
+  var selected = ddPaises.options[ddPaises.selectedIndex].value;
+  var ddCidade = document.getElementById("txCidadePie");
+
+  $.ajax({
+      url: "../controllers/carregaEstados.php",
+      type: "POST",
+      dataType:"json",
+      data: {
+        pais: selected
+      }
+    }).error(function(data){
+      alert("Não foi possível carregar os estados.");
+    }).done(function(data){
+      if(data.length > 0){
+        var select = document.getElementById("txEstadoPie");
+        select.options.length = 0;
+        ddCidade.options.length = 0;
+        for(var i = 0; i < data.length; i++) {
+          // alert(data[i]["estado"]);
+          var opt = data[i]["estado"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          select.appendChild(el);
+        }
+      } else {
+        alert("Algo deu errado com os estados!");
+      }
+    })  
+}
+
+function populaCidadesPie(){
+  var ddPaises = document.getElementById("txPaisPie");
+  var sPais = ddPaises.options[ddPaises.selectedIndex].value;
+  var ddEstados = document.getElementById("txEstadoPie");
+  var sEstado = ddEstados.options[ddEstados.selectedIndex].value;
+
+  $.ajax({
+      url: "../controllers/carregaCidades.php",
+      type: "POST",
+      dataType:"json",
+      data: {
+        pais: sPais,
+        estado: sEstado
+      }
+    }).error(function(data){
+      alert("Não foi possível carregar as cidades.");
+    }).done(function(data){
+      // alert(data);
+      if(data.length > 0){
+        var select = document.getElementById("txCidadePie");
+        select.options.length = 0;
+        for(var i = 0; i < data.length; i++) {
+          var opt = data[i]["nome"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          select.appendChild(el);
+        }
+      } else {
+        alert("Algo deu errado com as cidades!");
+      }
+    })
+}
+
+function populaPaisesBar(){
+  // alert("Algo deu errado com os 2!");
+
+  $.ajax({
+      url: "../controllers/carregaPaises.php",
+      type: "POST",
+      dataType:"json"
+    }).error(function(data){
+      alert("Não foi possível carregar os países.");
+    }).done(function(data){
+      if(data.length > 0){
+        var select = document.getElementById("txPaisBar");
+        for(var i = 0; i < data.length; i++) {
+          var opt = data[i]["nome"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          select.appendChild(el);
+        }
+
+      } else {
+        alert("Algo deu errado com os países!");
+      }
+    })
+}
+
+function populaEstadosBar(){
+  var ddPaises = document.getElementById("txPaisBar");
+  var selected = ddPaises.options[ddPaises.selectedIndex].value;
+  var ddCidade = document.getElementById("txCidadeBar");
+
+  $.ajax({
+      url: "../controllers/carregaEstados.php",
+      type: "POST",
+      dataType:"json",
+      data: {
+        pais: selected
+      }
+    }).error(function(data){
+      alert("Não foi possível carregar os estados.");
+    }).done(function(data){
+      if(data.length > 0){
+        var select = document.getElementById("txEstadoBar");
+        select.options.length = 0;
+        ddCidade.options.length = 0;
+        for(var i = 0; i < data.length; i++) {
+          // alert(data[i]["estado"]);
+          var opt = data[i]["estado"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          select.appendChild(el);
+        }
+      } else {
+        alert("Algo deu errado com os estados!");
+      }
+    })  
+}
+
+function populaCidadesBar(){
+  var ddPaises = document.getElementById("txPaisBar");
+  var sPais = ddPaises.options[ddPaises.selectedIndex].value;
+  var ddEstados = document.getElementById("txEstadoBar");
+  var sEstado = ddEstados.options[ddEstados.selectedIndex].value;
+
+  $.ajax({
+      url: "../controllers/carregaCidades.php",
+      type: "POST",
+      dataType:"json",
+      data: {
+        pais: sPais,
+        estado: sEstado
+      }
+    }).error(function(data){
+      alert("Não foi possível carregar as cidades.");
+    }).done(function(data){
+      // alert(data);
+      if(data.length > 0){
+        var select = document.getElementById("txCidadeBar");
+        select.options.length = 0;
+        for(var i = 0; i < data.length; i++) {
+          var opt = data[i]["nome"];
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = opt;
+          select.appendChild(el);
+        }
+      } else {
+        alert("Algo deu errado com as cidades!");
+      }
+    })
 }
 
 function loadPieChart(){
