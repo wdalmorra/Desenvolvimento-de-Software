@@ -160,7 +160,7 @@ function uploadXml() {
 	files = fileSelect.files;
 	file = files[0];
 
-	var username = getCookie("username");
+	var username = getCookie("email");
 
 	formData.append('email', username);
 	formData.append('file', file);
