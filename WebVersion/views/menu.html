@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
 
 </head>
-<body onload="carregaInfos()">
+<body onload="carregaInfos(); verificaAdmin()">
 
 	<nav class="navbar navbar-fixed-top navbar-light bg-faded" id="nav_bar">
 
@@ -57,6 +57,11 @@
 					<li>
 					  <a href="./graficos.html" class="sidebar-large" data-target="#item3" data-parent="#stacked-menu">Gráficos<span class="caret arrow"></span></a>          
 					</li>
+					<div id="gerencia" style="visibility:hidden">
+						<li>
+					  		<a href="./gerencia.html" class="sidebar-large" data-target="#item4" data-parent="#stacked-menu">Gerenciar Usuários<span class="caret arrow"></span></a>          
+						</li>
+				  	</div>
 				</ul>
 			</div>
 			<!-- /#sidebar-wrapper -->

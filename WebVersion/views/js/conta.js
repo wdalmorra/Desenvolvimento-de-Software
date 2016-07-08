@@ -293,3 +293,25 @@ function logout() {
 	deletaCookie("email");
 	deletaCookie("nome");
 }
+
+function verificaAdmin() {
+	var tipo = "admin";
+
+	var email = getCookie("email");
+	if(email != "") {
+		$.ajax({
+			url: "../controllers/gerencia.php",
+			type: "POST",
+			data: {
+				tipo: tipo,
+				email: email
+			}
+		}).error(function(data){
+			alert("Desculpe, ocorreu um erro na solicitacao.");
+		}).done(function(data){
+			if(data){
+				document.getElementById("gerencia").style.visibility='visible';
+			}
+		})
+	}
+}

@@ -16,6 +16,16 @@ body, html {
   background-color: #d0d0d0;  
 }
 
+#titulo{
+	margin-top: 30px;
+	padding-left: 50px;
+	margin-bottom: 25px;
+}
+
+#admin-box {
+	padding-right: 20px;
+}
+
 #wrapper {
 	padding-left: 0;
 	-webkit-transition: all 0.5s ease;
@@ -159,4 +169,17 @@ body, html {
 		position: relative;
 		margin-right: 0;
 	}
+}
+
+.list-users {
+	margin: 10px auto;
+	max-width: 800px;
+}
+
+.table td {
+	text-align: center;
+}
+
+.table th {
+	text-align: center;
 }

@@ -10,7 +10,7 @@
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-	<link rel="stylesheet" href="../resources/balancoMensal.css">
+	<link rel="stylesheet" href="../resources/gerencia.css">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -52,64 +52,50 @@
 					  <a href="./menu.html" class="sidebar-large" data-target="#item1" data-parent="#stacked-menu">Dashboard<span class="caret arrow"></span></a>
 					</li>
 					<li>
-					  <a href="#" class="sidebar-large  sidebar-selected" data-target="#item2" data-parent="#stacked-menu">Balanço Mensal<span class="caret arrow"></span></a>          
+					  <a href="./balancoMensal.html" class="sidebar-large" data-target="#item2" data-parent="#stacked-menu">Balanço Mensal<span class="caret arrow"></span></a>          
 					</li>
 					<li>
 					  <a href="./graficos.html" class="sidebar-large" data-target="#item3" data-parent="#stacked-menu">Gráficos<span class="caret arrow"></span></a>          
 					</li>
 					<div id="gerencia" style="visibility:hidden">
 						<li>
-					  		<a href="./gerencia.html" class="sidebar-large" data-target="#item4" data-parent="#stacked-menu">Gerenciar Usuários<span class="caret arrow"></span></a>          
+					  		<a href="#" class="sidebar-large sidebar-selected" data-target="#item4" data-parent="#stacked-menu">Gerenciar Usuários<span class="caret arrow"></span></a>          
 						</li>
 				  	</div>
 				</ul>
 			</div>
 			<!-- /#sidebar-wrapper -->
 		</div>
-		<hr>
 
-		<div class="after-menu" id="balancoMes">
-			<div >
-
-			  	<!-- Select Basic -->
-			  	<fieldset class="form-group col-xs-4">
-			    	<label class="col-md-4 control-label" for="selectbasic">Mes</label>
-			    	<div class="col-md-8">
-					    <select id="txMesBar" name="txMesBar" class="form-control">
-					    </select>
-		    		</div>
-			  	</fieldset>
-
-
-			  	<!-- Select Basic -->
-			  	<fieldset class="form-group col-xs-4">
-			    	<label class="col-md-4 control-label" for="selectbasic">Ano</label>
-			    	<div class="col-md-8">
-					    <select id="txAnoBar" name="txAnoBar" class="form-control">
-					    </select>
-		    		</div>
-			  	</fieldset>
-			</div>
-			
-
-			<div class="col-xs-5">
-				<div>
-					<div> 
-						<h3>Receita</h3>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-xs-5">
-				<div >
-					<div >
-						<h3>Despesas</h3>
-					</div>
-					
-				</div>
-			</div>
+		<div class="after-menu">    
+			<h1 id="titulo">  Usuários cadastrados: </h1>
 		</div>
-		
+
+		<!-- <ul class="list-group after-menu list-users">
+			<li class="list-group-item">
+				<a href="#"> <i class="fa fa-times fa-lg pull-xs-right" style="color:red; line-height:25px" aria-hidden="true"></i></a>
+				<a href="#"> <i class="fa fa-square-o fa-lg pull-xs-right admin-box" style="color:black; line-height:25px" aria-hidden="true"></i></a>
+					These Boots Are Made For Walking
+			</li>
+		</ul> -->
+
+		<table class="table table-striped list-users" onload="popularUsuarios()">
+			<thead>
+				<tr>
+					<th colspan="3">Email</th>
+					<th colspan="1">Admin</th>
+					<th colspan="1">Remover</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="3">Doido</td>
+					<td colspan="1"><a href="#"> <i class="fa fa-square-o fa-lg" style="color:black" aria-hidden="true"></i></a></td>
+					<td colspan="1"><a href="#"> <i class="fa fa-times fa-lg" style="color:red" aria-hidden="true"></i></a></td>
+				</tr>
+			</tbody>
+		</table>
+
 	</div>
 
 
@@ -118,10 +104,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 	<!-- Script responsavel pela tela de menu -->
-	<script src="js/balancoMensal.js"></script>
-
-	<!-- ChartJS 1.0.1 -->
-	<script src="js/Chart.min.js"></script>
+	<script src="js/gerencia.js"></script>
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>

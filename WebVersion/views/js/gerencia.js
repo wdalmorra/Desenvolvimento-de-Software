@@ -1,3 +1,9 @@
+$(function () {
+	var email = getCookie("email");
+	if (email == "") {
+		window.location.href = "../index.html";
+	}
+});
 
 function getCookie(cname) {
 	var name = cname + "=";
@@ -55,7 +61,26 @@ function verificaAdmin() {
 		}).done(function(data){
 			if(data){
 				document.getElementById("gerencia").style.visibility='visible';
+			} else {
+				window.location.href = "../index.html";
 			}
 		})
 	}
+}
+
+function popularUsuarios() {
+	var tipo = "tabela";
+
+	$.ajax({
+		url: "../controllers/gerencia.php",
+		type: "POST",
+		data: {
+			tipo: tipo
+		},
+		dataType: "json"
+	}).error(function(data){
+		alert("Desculpe, ocorreu um erro na solicitacao.");
+	}).done(function(data){
+		alert(data.state);
+	})
 }
