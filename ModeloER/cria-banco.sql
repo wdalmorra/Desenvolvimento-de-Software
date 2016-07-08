@@ -6,6 +6,40 @@ DROP SCHEMA IF EXISTS `Drefinancas` ;
 CREATE SCHEMA IF NOT EXISTS `Drefinancas` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 USE `Drefinancas` ;
 
+
+-- -----------------------------------------------------
+-- Table `Drefinancas`.`Mes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Drefinancas`.`Mes` ;
+
+CREATE TABLE IF NOT EXISTS `Drefinancas`.`Mes` (
+  `mes` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`mes`),
+  UNIQUE INDEX `mes_UNIQUE` (`mes` ASC))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `Drefinancas`.`Ano`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Drefinancas`.`Ano` ;
+
+CREATE TABLE IF NOT EXISTS `Drefinancas`.`Ano` (
+  `ano` VARCHAR(5) NOT NULL,
+  PRIMARY KEY (`ano`),
+  UNIQUE INDEX `ano_UNIQUE` (`ano` ASC))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `Drefinancas`.`Idade`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Drefinancas`.`Idade` ;
+
+CREATE TABLE IF NOT EXISTS `Drefinancas`.`Idade` (
+  `idade` VARCHAR(5) NOT NULL,
+  PRIMARY KEY (`idade`),
+  UNIQUE INDEX `idade_UNIQUE` (`idade` ASC))
+ENGINE = InnoDB;
+
 -- -----------------------------------------------------
 -- Table `Drefinancas`.`Pais`
 -- -----------------------------------------------------
