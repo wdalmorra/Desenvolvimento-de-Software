@@ -49,10 +49,10 @@
 			<div id="sidebar-wrapper">
 				<ul class="nav nav-pills sidebar-nav nav-stacked left-menu" id="stacked-menu">
 					<li>
-					  <a href="#" class="sidebar-large sidebar-selected" data-target="#item1" data-parent="#stacked-menu">Dashboard<span class="caret arrow"></span></a>
+					  <a href="./menu.html" class="sidebar-large" data-target="#item1" data-parent="#stacked-menu">Dashboard<span class="caret arrow"></span></a>
 					</li>
 					<li>
-					  <a href="./balancoMensal.html" class="sidebar-large" data-target="#item2" data-parent="#stacked-menu">Balanço Mensal<span class="caret arrow"></span></a>          
+					  <a href="#" class="sidebar-large  sidebar-selected" data-target="#item2" data-parent="#stacked-menu">Balanço Mensal<span class="caret arrow"></span></a>          
 					</li>
 					<li>
 					  <a href="./graficos.html" class="sidebar-large" data-target="#item3" data-parent="#stacked-menu">Gráficos<span class="caret arrow"></span></a>          
@@ -61,69 +61,50 @@
 			</div>
 			<!-- /#sidebar-wrapper -->
 		</div>
-
-		<div id="bemvindo">    
-			<h1 class="after-menu" id="textbemvindo">  Bem vindo! </h1>
-		</div>
-
 		<hr>
 
-		<div id="arquivo">
-			<div class="well after-menu">
-				<div>
-					<h3  id= "titulo">Envio do balanço mensal:</h3>
-				</div>
-				<div class="row" id = "file-chooser">
-					<div class="col-xs-4">
-						<div class="form-group btn-file">
-							<input type="file" name="example" id="input01">
-						</div>
-					</div>
-					<div class="col-xs-2">
-						<div class="form-group">
-							<button id="b1" type="button" onClick="uploadXml()" class="btn btn-secondary">
-								<span class="glyphicon glyphicon-ok"></span> Enviar Arquivo
-							</button>
-						</div>
-					</div>
-				</div>
+		<div class="after-menu" id="balancoMes">
+			<div >
+
+			  	<!-- Select Basic -->
+			  	<fieldset class="form-group col-xs-4">
+			    	<label class="col-md-4 control-label" for="selectbasic">Mes</label>
+			    	<div class="col-md-8">
+					    <select id="txMesBar" name="txMesBar" class="form-control">
+					    </select>
+		    		</div>
+			  	</fieldset>
+
+
+			  	<!-- Select Basic -->
+			  	<fieldset class="form-group col-xs-4">
+			    	<label class="col-md-4 control-label" for="selectbasic">Ano</label>
+			    	<div class="col-md-8">
+					    <select id="txAnoBar" name="txAnoBar" class="form-control">
+					    </select>
+		    		</div>
+			  	</fieldset>
 			</div>
-		</div>
-
-		<hr>
-
-		<div class="after-menu" id="graficos">
+			
 
 			<div class="col-xs-5">
-				<!-- BAR CHART -->
-				<div class="box box-success">
-					<div class="box-header with-border">
-						<h3 class="box-title">Despesas dos últimos 7 meses</h3>
+				<div>
+					<div> 
+						<h3>Receita</h3>
 					</div>
-					<div class="box-body">
-						<div class="chart">
-							<canvas id="barChart" style="height:203px"></canvas>
-						</div>
-					</div>
-					<!-- /.box-body -->
 				</div>
-				<!-- /.box -->
 			</div>
 
-			<div class="col-xs-5 pie">
-				<!-- DONUT CHART -->
-				<div class="box box-danger">
-					<div class="box-header with-border">
-						<h3 class="box-title" id="pieChartName">Despesas de Julho</h3>
+			<div class="col-xs-5">
+				<div >
+					<div >
+						<h3>Despesas</h3>
 					</div>
-					<div class="box-body">
-						<canvas id="pieChart" style="height:250px"></canvas>
-					</div>
-					<!-- /.box-body -->
+					
 				</div>
-				<!-- /.box -->
 			</div>
 		</div>
+		
 	</div>
 
 
