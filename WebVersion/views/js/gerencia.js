@@ -85,64 +85,68 @@ function populaUsuarios() {
 			var tab_body = document.getElementById("tabela-body");
 			for(var i = 0; i < data.length; i++) {
 				var email = data[i]["email"];
-				var admin = data[i]["admin"];
-				var status = data[i]["status"];
-				var id_admin = "admin_" + i;
-				var id_rem = "rem_" + i;
-				var tr = document.createElement("tr");
-				var td_email = document.createElement("td");
-				var td_admin = document.createElement("td");
-				var td_rem = document.createElement("td");
-				var a_admin = document.createElement("a");
-				var a_rem = document.createElement("a");
-				var i_admin = document.createElement("i");
-				var i_rem = document.createElement("i");
+				var email_logado = getCookie("email");
 
-				td_email.colSpan = "3";
-				td_admin.colSpan = "1";
-				td_rem.colSpan = "1";
+				if(email != email_logado) {
+					var admin = data[i]["admin"];
+					var status = data[i]["status"];
+					var id_admin = "admin_" + i;
+					var id_rem = "rem_" + i;
+					var tr = document.createElement("tr");
+					var td_email = document.createElement("td");
+					var td_admin = document.createElement("td");
+					var td_rem = document.createElement("td");
+					var a_admin = document.createElement("a");
+					var a_rem = document.createElement("a");
+					var i_admin = document.createElement("i");
+					var i_rem = document.createElement("i");
 
-				td_email.innerHTML = email;
-				td_email.id = "email_" + i;
+					td_email.colSpan = "3";
+					td_admin.colSpan = "1";
+					td_rem.colSpan = "1";
 
-				a_admin.setAttribute("href", "#");
-				i_admin.setAttribute("id", id_admin);
-				a_admin.onclick = function(x, y) { return function() { toggleAdmin(x, y); }; }(td_email.id, admin);
-				if(admin) {
-					i_admin.setAttribute("class", "fa fa-square fa-lg");
-					a_admin.setAttribute("title", "Remover admin");
-				} else {
-					i_admin.setAttribute("class", "fa fa-square-o fa-lg");
-					a_admin.setAttribute("title", "Ativar admin");
+					td_email.innerHTML = email;
+					td_email.id = "email_" + i;
+
+					a_admin.setAttribute("href", "#");
+					i_admin.setAttribute("id", id_admin);
+					a_admin.onclick = function(x, y) { return function() { toggleAdmin(x, y); }; }(td_email.id, admin);
+					if(admin) {
+						i_admin.setAttribute("class", "fa fa-square fa-lg");
+						a_admin.setAttribute("title", "Remover admin");
+					} else {
+						i_admin.setAttribute("class", "fa fa-square-o fa-lg");
+						a_admin.setAttribute("title", "Ativar admin");
+					}
+					i_admin.style.color = "black";
+					i_admin.setAttribute("aria-hidden", "true");
+
+					a_rem.setAttribute("href", "#");
+					i_rem.setAttribute("id", id_rem);
+					a_rem.onclick = function(x, y) { return function() { toggleUser(x, y); }; }(td_email.id, status);
+					if(status == "ativo") {
+						i_rem.setAttribute("class", "fa fa-times fa-lg");
+						i_rem.style.color = "red";
+						a_rem.setAttribute("title", "Remover usuário");
+					} else {
+						i_rem.setAttribute("class", "fa fa-check fa-lg");
+						i_rem.style.color = "green";
+						a_rem.setAttribute("title", "Reativar usuário");
+					}
+					i_rem.setAttribute("aria-hidden", "true");
+
+					a_admin.appendChild(i_admin);
+					td_admin.appendChild(a_admin);
+
+					a_rem.appendChild(i_rem);
+					td_rem.appendChild(a_rem);
+
+					tr.appendChild(td_email);
+					tr.appendChild(td_admin);
+					tr.appendChild(td_rem);
+
+					tab_body.appendChild(tr);
 				}
-				i_admin.style.color = "black";
-				i_admin.setAttribute("aria-hidden", "true");
-
-				a_rem.setAttribute("href", "#");
-				i_rem.setAttribute("id", id_rem);
-				a_rem.onclick = function(x, y) { return function() { toggleUser(x, y); }; }(td_email.id, status);
-				if(status == "ativo") {
-					i_rem.setAttribute("class", "fa fa-times fa-lg");
-					i_rem.style.color = "red";
-					a_rem.setAttribute("title", "Remover usuário");
-				} else {
-					i_rem.setAttribute("class", "fa fa-check fa-lg");
-					i_rem.style.color = "green";
-					a_rem.setAttribute("title", "Reativar usuário");
-				}
-				i_rem.setAttribute("aria-hidden", "true");
-
-				a_admin.appendChild(i_admin);
-				td_admin.appendChild(a_admin);
-
-				a_rem.appendChild(i_rem);
-				td_rem.appendChild(a_rem);
-
-				tr.appendChild(td_email);
-				tr.appendChild(td_admin);
-				tr.appendChild(td_rem);
-
-				tab_body.appendChild(tr);
 			}
 
 		} else {
