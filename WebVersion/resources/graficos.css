@@ -12,6 +12,10 @@ body, html {
 	padding-top: 54px; 
 }
 
+#buttons{
+	text-align: right; 
+}
+
 #piechart{
 	height: 1000px;
 	width: 1000px;
