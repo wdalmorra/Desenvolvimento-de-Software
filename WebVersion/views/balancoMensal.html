@@ -68,14 +68,14 @@
 		</div>
 		<hr>
 
-		<div class="after-menu" id="balancoMes">
+		<div class="after-menu" id="balanco">
 			<div >
 
 			  	<!-- Select Basic -->
 			  	<fieldset class="form-group col-xs-4">
 			    	<label class="col-md-4 control-label" for="selectbasic">Mes</label>
 			    	<div class="col-md-8">
-					    <select id="txMesBar" name="txMesBar" class="form-control">
+					    <select id="txMes" name="txMes" class="form-control">
 					    </select>
 		    		</div>
 			  	</fieldset>
@@ -85,10 +85,18 @@
 			  	<fieldset class="form-group col-xs-4">
 			    	<label class="col-md-4 control-label" for="selectbasic">Ano</label>
 			    	<div class="col-md-8">
-					    <select id="txAnoBar" name="txAnoBar" class="form-control">
+					    <select id="txAno" name="txAno" class="form-control">
 					    </select>
 		    		</div>
 			  	</fieldset>
+
+				<div class="col-xs-2">
+					<div class="form-group">
+						<button id="b1" type="button" onClick="carregaReceitaDespesa()" class="btn btn-secondary">
+							<span class="glyphicon glyphicon-ok"></span> Ok
+						</button>
+					</div>
+				</div>
 			</div>
 			
 
@@ -96,6 +104,9 @@
 				<div>
 					<div> 
 						<h3>Receita</h3>
+					</div>
+					<div id="receita"> 
+						
 					</div>
 				</div>
 			</div>
@@ -105,7 +116,9 @@
 					<div >
 						<h3>Despesas</h3>
 					</div>
-					
+					<div id="despesas"> 
+						
+					</div>
 				</div>
 			</div>
 		</div>

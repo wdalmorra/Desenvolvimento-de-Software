@@ -174,5 +174,42 @@ class Carga {
         }
     }
 
+  function carregaReceita($mes , $ano, $email){
+	$conexao = $this->conn->abrirConexao();
+	$logfile = "/var/www/html/WebVersion/log.txt";
+	$anoMesDia = $ano."-".$mes."-01";
+	$sql_receita = "SELECT  c.nome AS categoria , m.valor AS valor from Movimentacao AS m INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria WHERE m.dadosMesMes='{$anoMesDia}' AND m.dadosMesUsersEmail='{$email}' AND tipo='receita';";
+	$result_receita =  mysqli_query($conexao,$sql_receita);
+        if(!$result_receita){
+            $this->conn->fecharConexao();
+            return array();
+        } else {
+		$rows = array();
+		while($row = mysqli_fetch_assoc($result_receita)) {
+		          $rows[]=$row;
+		}
+		$this->conn->fecharConexao();
+		return $rows;
+	}
+    }
+
+    function carregaDespesa($mes, $ano, $email){
+	$conexao = $this->conn->abrirConexao();
+	$logfile = "/var/www/html/WebVersion/log.txt";
+	$anoMesDia = $ano."-".$mes."-01";
+	$sql_despesa = "SELECT c.nome AS categoria , m.valor AS valor from Movimentacao AS m INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria WHERE m.dadosMesMes='{$anoMesDia}' AND m.dadosMesUsersEmail='{$email}' AND tipo='despesa';";
+	$result_despesa =  mysqli_query($conexao,$sql_despesa);
+        if(!$result_despesa){
+            $this->conn->fecharConexao();
+            return array();
+        } else {
+		$rows = array();
+		while($row = mysqli_fetch_assoc($result_despesa)) {
+		   $rows[]=$row;
+		}
+		$this->conn->fecharConexao();
+		return $rows;
+	}
+    }
 }
 ?>
