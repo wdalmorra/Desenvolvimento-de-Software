@@ -1,0 +1,70 @@
+<!-- DOCTYPE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DreFinanças</title>
+ <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../resources/esqueceuSenha.css">
+     <!-- Datepicker -->
+      <link href="../resources/bootstrap-datepicker.css" rel="stylesheet">
+
+</head>
+<body >
+
+  <nav class="navbar navbar-light bg-faded" id = "nav_bar">
+    <a class="navbar-brand" href="./menu.html">DreFinanças</a>
+  </nav>  
+  <form class="form-horizontal register" method="post" >
+
+  <!-- Form Name -->
+  <legend>Esqueci a senha</legend>
+
+  <!-- Text input-->
+  <fieldset class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Email</label>  
+    <div class="col-md-8">
+      <input id="usuario" name="usuario" type="text" placeholder="" class="form-control input-md">
+    </div>
+  </fieldset>
+
+  <!-- Button (Double) -->
+  <fieldset class="form-group" id = "buttons">
+    <div class="col-md-9">
+      <button id="button1id" type="button" onClick="envia()" name="button1id" class="btn btn-success">Registar</button>
+      <button id="button2id" type="reset" onClick="cancela()" name="button2id" class="btn btn-danger">Cancelar</button>
+    </div>
+  </fieldset>
+
+
+  </form>
+
+
+  <!-- JavaScript: placed at the end of the document so the pages load faster -->
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <!-- Script responsavel pela tela de esqueceuSenha -->
+  <script src="js/esqueceuSenha.js"></script>
+
+  <!-- Datepicker -->
+  <script src="js/bootstrap-datepicker.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function () {
+      $('#txNasc').datepicker({
+          format: "dd/mm/yyyy",
+          language: "pt-BR"
+      });
+    });
+  </script>
+</body>
+</html>
