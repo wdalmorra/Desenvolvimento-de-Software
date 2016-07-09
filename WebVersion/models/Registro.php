@@ -54,8 +54,9 @@ class Registro {
 		}
 
 		$idCidade = $row_cidade["idCidade"];
+		$status = "ativo";
 
-		$sql = "INSERT INTO Users (email,nascimento,nome,senha,cidadeId) VALUES ('{$this->email}','{$this->nascimento}','{$this->nome}','{$this->senha}','$idCidade');";
+		$sql = "INSERT INTO Users (email,nascimento,nome,senha,cidadeId,status) VALUES ('{$this->email}','{$this->nascimento}','{$this->nome}','{$this->senha}','$idCidade','$status');";
 		if(mysqli_query($conexao,$sql)){
 			$this->conn->fecharConexao();
 			return true;

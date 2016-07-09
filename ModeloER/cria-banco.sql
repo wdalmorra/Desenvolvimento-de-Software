@@ -103,6 +103,7 @@ CREATE TABLE IF NOT EXISTS `Drefinancas`.`Users` (
   `nome` VARCHAR(50) NOT NULL,
   `senha` VARCHAR(100) NOT NULL,
   `cidadeId` INT NULL,
+  `status` VARCHAR(12) NOT NULL,
   PRIMARY KEY (`email`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   INDEX `fk_Users_Cidade1_idx` (`cidadeId` ASC),
