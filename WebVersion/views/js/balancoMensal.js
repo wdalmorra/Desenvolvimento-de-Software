@@ -24,7 +24,13 @@ function getCookie(cname) {
 
 function deletaCookie(cname) {
 	var path = "/WebVersion/";
-	document.cookie = cname + "=; Path=" + path + "; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+	var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+	if(isChrome) {
+		document.cookie = cname + "=; Path=" + path + "; Expires=" + new Date(0).toGMTString();
+	} else {
+		document.cookie = cname + "=; Path=" + path + "; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+	}
 }
 
 function carregaInfos() {
@@ -111,9 +117,16 @@ function carregaReceita() {
 			 alert("Não foi possível carregar as receitas.");
 		}).done(function(data){
 			if(data.length > 0){
-			alert("deu certo carregaReceita!");
+			alert(data[0]["valor"]);
 		 	  
-
+				var select = document.getElementById("receita");
+				for(var i = 0; i < data.length; i++) {
+				  var opt = data[i]["valor"];
+				  var el = document.createElement("table");
+				  el.textContent = opt;
+				  el.value = opt;
+				  select.appendChild(el);
+				}
 			} else {
 				alert("Algo deu errado com as receita!");
 			}
@@ -137,12 +150,42 @@ function carregaDespesas(){
 		}).done(function(data){
 			if(data.length > 0){
 				alert("deu certo!");
-		 	  
+		 	        var select = document.getElementById("despesas");
+				for(var i = 0; i < data.length; i++) {
+				  var opt = data[i]["valor"];
+				  var el = document.createElement("table");
+				  el.textContent = opt;
+				  el.value = opt;
+				  select.appendChild(el);
+				}
 			} else {
-				alert("Algo deu errado com os anos!");
+				alert("Algo deu errado com as despesas!");
 			}
 		})
 }
+
+function verificaAdmin() {
+	var tipo = "admin";
+
+	var email = getCookie("email");
+	if(email != "") {
+		$.ajax({
+			url: "../controllers/gerencia.php",
+			type: "POST",
+			data: {
+				tipo: tipo,
+				email: email
+			}
+		}).error(function(data){
+			alert("Desculpe, ocorreu um erro na solicitacao.");
+		}).done(function(data){
+			if(data){
+				document.getElementById("gerencia").style.visibility='visible';
+			}
+		})
+	}
+} 
+
 
 function logout() {
 	deletaCookie("email");
