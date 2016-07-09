@@ -1,55 +1,49 @@
-<?
+<?php
+$Nome		= $_POST["email"];	// Pega o valor do campo Nome
+$Fone		= $_POST["email"];	// Pega o valor do campo Telefone
+$Email		= $_POST["email"];	// Pega o valor do campo Email
+$Mensagem	= $_POST["SenhaNova"];	// Pega os valores do campo Mensagem
 
-require_once('PHPMailer_5.2.1/class.phpmailer.php'); /* classe PHPMailer */
- 
-/* Recebe os dados do cliente ajax via POST */
-$nome = $_POST['nome'];
-$email = $_POST['email'];
+// Variável que junta os valores acima e monta o corpo do email
 
-try {
-$mail = new PHPMailer(true); //New instance, with exceptions enabled
- 
-/* CORPO DO E-MAIL */
-$body .= "<h2>Enviando e-mails com AJAX e PHP via SMTP</h2>";
-$body .= "Nome: $nome <br>";
-$body .= "E-mail: $email <br>";
-$body .= "Mensagem:<br>";
-$body .= $msg;
-$body .= "<br>";
-$body .= "----------------------------";
-$body .= "<br>";
-$body .= "Enviado em <strong>".date("h:m:i d/m/Y")." por ".$_SERVER['REMOTE_ADDR']."</strong>"; //mostra a data e o IP
-$body .= "<br>";
-$body .= "----------------------------";
- 
-$mail->IsSMTP(); //tell the class to use SMTP
-$mail->SMTPAuth = true; // enable SMTP authentication
-$mail->Port = 587; //SMTP porta (as mais utilizadas são '25' e '587'
-$mail->Host = "smtp.meudominio.com"; // SMTP servidor
-$mail->Username = "contato@meudominio.com";  // SMTP  usuário
-$mail->Password = "senha123abc";  // SMTP senha
- 
-$mail->IsSendmail();  
- 
-$mail->AddReplyTo($email, $nome); //Responder para..
-$mail->From = $email; //e-mail fornecido pelo cliente
-$mail->FromName   = $nome; //nome fornecido pelo cliente
- 
-$to = "meuemail@meuservidor.com"; //Enviar para
-$mail->AddAddress($to); 
-$mail->Subject  = "Assunto do E-mail"; //Assunto
-$mail->WordWrap   = 80; // set word wrap
- 
-$mail->MsgHTML($body);
- 
-$mail->IsHTML(true); // send as HTML
- 
-$mail->Send();
-echo 'Mensagem enviada com sucesso.'; //retorno devolvido para o ajax caso sucesso
-} catch (phpmailerException $e) {
-echo $e->errorMessage(); //retorno devolvido para o ajax caso erro
+$Vai 		= "Nome: $Nome\n\nE-mail: $Email\n\nTelefone: $Fone\n\nMensagem: $Mensagem\n";
+
+require_once("../phpmailer/class.phpmailer.php");
+
+define('GUSER', 'suport@drefinancas.com');	// <-- Insira aqui o seu GMail
+define('GPWD', 'thereal13');		// <-- Insira aqui a senha do seu GMail
+
+function smtpmailer($para, $de, $de_nome, $assunto, $corpo) { 
+	global $error;
+	$mail = new PHPMailer();
+	$mail->IsSMTP();		// Ativar SMTP
+	$mail->SMTPDebug = 0;		// Debugar: 1 = erros e mensagens, 2 = mensagens apenas
+	$mail->SMTPAuth = true;		// Autenticação ativada
+	$mail->SMTPSecure = 'ssl';	// SSL REQUERIDO pelo GMail
+	$mail->Host = 'smtp.gmail.com';	// SMTP utilizado
+	$mail->Port = 587;  		// A porta 587 deverá estar aberta em seu servidor
+	$mail->Username = GUSER;
+	$mail->Password = GPWD;
+	$mail->SetFrom($de, $de_nome);
+	$mail->Subject = $assunto;
+	$mail->Body = $corpo;
+	$mail->AddAddress($para);
+	if(!$mail->Send()) {
+		$error = 'Mail error: '.$mail->ErrorInfo; 
+		return false;
+	} else {
+		$error = 'Mensagem enviada!';
+		return true;
+	}
 }
 
->
+// Insira abaixo o email que irá receber a mensagem, o email que irá enviar (o mesmo da variável GUSER), 
+o nome do email que envia a mensagem, o Assunto da mensagem e por último a variável com o corpo do email.
 
+ if (smtpmailer($Email, 'suport@drefinancas.com', 'suporte drefinancas', 'Troca de senha', $Vai)) {
 
+	echo "tudo certo";
+
+}
+if (!empty($error)) echo $error;
+?>
