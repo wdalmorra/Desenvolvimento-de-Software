@@ -4,6 +4,7 @@ $(function () {
     window.location.href = "../index.html";
   }
 	loadBarChart();
+  populaDropdowns();
 });
 
 function carregaInfos() {
@@ -12,6 +13,17 @@ function carregaInfos() {
     var dropdown = document.getElementById("dropdown");
     dropdown.innerHTML = "Olá, " + nome + "!";
   }
+}
+
+function aplicarFiltroBar() {
+
+}
+
+function aplicarFiltroPie() {
+
+}
+
+function populaDropdowns () {
   populaPaisesBar();
   populaPaisesPie();
   populaIdadesPie();
@@ -35,9 +47,15 @@ function populaCategoriasBar(){
     }).done(function(data){
       if(data.length > 0){
         var select = document.getElementById("txCategoriaBar");
+
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
+
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["nome"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
           select.appendChild(el);
@@ -61,9 +79,13 @@ function populaMesesPie(){
     }).done(function(data){
       if(data.length > 0){
         var select = document.getElementById("txMesPie");
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["mes"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
           select.appendChild(el);
@@ -88,12 +110,22 @@ function populaMesesBar(){
       if(data.length > 0){
         var select = document.getElementById("txMesInicialBar");
         var select2 = document.getElementById("txMesFinalBar");
+
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
+        var el2 = document.createElement("option");
+        el2.textContent = "N/A";
+        el2.value = "N/A";
+        select2.appendChild(el2);
+
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["mes"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
-          var el2 = document.createElement("option");
+          el2 = document.createElement("option");
           el2.textContent = opt;
           el2.value = opt;
           select.appendChild(el);
@@ -118,9 +150,13 @@ function populaAnosPie(){
     }).done(function(data){
       if(data.length > 0){
         var select = document.getElementById("txAnoPie");
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["ano"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
           select.appendChild(el);
@@ -145,12 +181,20 @@ function populaAnosBar(){
       if(data.length > 0){
         var select = document.getElementById("txAnoInicialBar");
         var select2 = document.getElementById("txAnoFinalBar");
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
+        var el2 = document.createElement("option");
+        el2.textContent = "N/A";
+        el2.value = "N/A";
+        select2.appendChild(el2);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["ano"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
-          var el2 = document.createElement("option");
+          el2 = document.createElement("option");
           el2.textContent = opt;
           el2.value = opt;
           select.appendChild(el);
@@ -176,12 +220,20 @@ function populaIdadesPie(){
       if(data.length > 0){
         var select = document.getElementById("txIdadeInicialPie");
         var select2 = document.getElementById("txIdadeFinalPie");
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
+        var el2 = document.createElement("option");
+        el2.textContent = "N/A";
+        el2.value = "N/A";
+        select2.appendChild(el2);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["idade"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
-          var el2 = document.createElement("option");
+          el2 = document.createElement("option");
           el2.textContent = opt;
           el2.value = opt;
           select.appendChild(el);
@@ -207,12 +259,20 @@ function populaIdadesBar(){
       if(data.length > 0){
         var select = document.getElementById("txIdadeInicialBar");
         var select2 = document.getElementById("txIdadeFinalBar");
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
+        var el2 = document.createElement("option");
+        el2.textContent = "N/A";
+        el2.value = "N/A";
+        select2.appendChild(el2);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["idade"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
-          var el2 = document.createElement("option");
+          el2 = document.createElement("option");
           el2.textContent = opt;
           el2.value = opt;
           select.appendChild(el);
@@ -238,9 +298,13 @@ function populaPaisesPie(){
     }).done(function(data){
       if(data.length > 0){
         var select = document.getElementById("txPaisPie");
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["nome"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
           select.appendChild(el);
@@ -271,10 +335,15 @@ function populaEstadosPie(){
         var select = document.getElementById("txEstadoPie");
         select.options.length = 0;
         ddCidade.options.length = 0;
+
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           // alert(data[i]["estado"]);
           var opt = data[i]["estado"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
           select.appendChild(el);
@@ -306,9 +375,13 @@ function populaCidadesPie(){
       if(data.length > 0){
         var select = document.getElementById("txCidadePie");
         select.options.length = 0;
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["nome"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
           select.appendChild(el);
@@ -331,9 +404,13 @@ function populaPaisesBar(){
     }).done(function(data){
       if(data.length > 0){
         var select = document.getElementById("txPaisBar");
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["nome"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
           select.appendChild(el);
@@ -364,10 +441,14 @@ function populaEstadosBar(){
         var select = document.getElementById("txEstadoBar");
         select.options.length = 0;
         ddCidade.options.length = 0;
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           // alert(data[i]["estado"]);
           var opt = data[i]["estado"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
           select.appendChild(el);
@@ -399,9 +480,13 @@ function populaCidadesBar(){
       if(data.length > 0){
         var select = document.getElementById("txCidadeBar");
         select.options.length = 0;
+        var el = document.createElement("option");
+        el.textContent = "N/A";
+        el.value = "N/A";
+        select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["nome"];
-          var el = document.createElement("option");
+          el = document.createElement("option");
           el.textContent = opt;
           el.value = opt;
           select.appendChild(el);
