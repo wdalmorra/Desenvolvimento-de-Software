@@ -143,6 +143,8 @@ var ddMes = document.getElementById("txMes");
 
 					td_valor.innerHTML = valor;
 					td_categoria.id = "valor_" + i;
+					td_valor.style.color = "blue"; 
+					td_categoria.style.color = "blue"; 
 
 					tr.appendChild(td_categoria);
 					tr.appendChild(td_valor);
@@ -157,6 +159,7 @@ var ddMes = document.getElementById("txMes");
 				var td_categoria = document.createElement("td");
 				td_categoria.colSpan = "3";
 				td_categoria.innerHTML = "Não obteve movimentação de receita neste mês";
+				td_categoria.style.color = "green"; 
 				tr.appendChild(td_categoria);
 				tab_body.appendChild(tr);
 			}
@@ -205,6 +208,8 @@ function carregaDespesas(){
 
 					td_valor.innerHTML = valor;
 					td_categoria.id = "valor_" + i;
+					td_valor.style.color = "red"; 
+					td_categoria.style.color = "red"; 
 
 					tr.appendChild(td_categoria);
 					tr.appendChild(td_valor);
@@ -220,6 +225,7 @@ function carregaDespesas(){
 				var td_categoria = document.createElement("td");
 				td_categoria.colSpan = "3";
 				td_categoria.innerHTML = "Não obteve movimentação de despesa neste mês";
+				td_categoria.style.color = "green"; 
 				tr.appendChild(td_categoria);
 				tab_body.appendChild(tr);
 			}
