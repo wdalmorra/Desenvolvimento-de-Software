@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS `Drefinancas`.`Mes` ;
 
 CREATE TABLE IF NOT EXISTS `Drefinancas`.`Mes` (
   `mes` VARCHAR(15) NOT NULL,
+  `mesNum` VARCHAR(4) ,
   PRIMARY KEY (`mes`),
   UNIQUE INDEX `mes_UNIQUE` (`mes` ASC))
 ENGINE = InnoDB;

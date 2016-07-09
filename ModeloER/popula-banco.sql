@@ -1,18 +1,18 @@
 USE Drefinancas;
 
-INSERT INTO `Drefinancas`.`Mes` (`mes`) VALUES
-('Janeiro'),
-('Fevereiro'),
-('Março'),
-('Abril'),
-('Maio'),
-('Junho'),
-('Julho'),
-('Agosto'),
-('Setembro'),
-('Outubro'),
-('Novembro'),
-('Dezembro');
+INSERT INTO `Drefinancas`.`Mes` (`mes` , `mesNum`) VALUES
+('Janeiro' , '01'),
+('Fevereiro','02'),
+('Março', '03'),
+('Abril', '04'),
+('Maio', '05'),
+('Junho', '06'),
+('Julho', '07'),
+('Agosto', '08'),
+('Setembro', '09'),
+('Outubro', '10'),
+('Novembro', '11'),
+('Dezembro', '12');
 
 INSERT INTO `Drefinancas`.`Ano` (`ano`) VALUES
 ('1990'),
