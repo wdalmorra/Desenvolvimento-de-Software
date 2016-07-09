@@ -177,16 +177,31 @@ class Carga {
   function carregaReceita($mes , $ano, $email){
 	$conexao = $this->conn->abrirConexao();
 	$logfile = "/var/www/html/WebVersion/log.txt";
-	$anoMesDia = $ano."-".$mes."-01";
+	
+	$sql_mes = "SELECT mesNum from Mes WHERE mes='{$mes}';";
+	$result_mes =  mysqli_query($conexao,$sql_mes);
+	if(!$result_mes){
+            $this->conn->fecharConexao();
+            return array();
+        } 
+	
+ 	$row_mes = mysqli_fetch_assoc($result_mes);
+	$t = $row_mes["mesNum"];
+
+
+	$anoMesDia = $ano."-".$t."-01";
+
 	$sql_receita = "SELECT  c.nome AS categoria , m.valor AS valor from Movimentacao AS m INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria WHERE m.dadosMesMes='{$anoMesDia}' AND m.dadosMesUsersEmail='{$email}' AND tipo='receita';";
 	$result_receita =  mysqli_query($conexao,$sql_receita);
+	
         if(!$result_receita){
             $this->conn->fecharConexao();
             return array();
         } else {
 		$rows = array();
 		while($row = mysqli_fetch_assoc($result_receita)) {
-		          $rows[]=$row;
+	         	 $row["categoria"] = utf8_encode($row["categoria"]);
+		         $rows[]=$row;
 		}
 		$this->conn->fecharConexao();
 		return $rows;
@@ -196,8 +211,20 @@ class Carga {
     function carregaDespesa($mes, $ano, $email){
 	$conexao = $this->conn->abrirConexao();
 	$logfile = "/var/www/html/WebVersion/log.txt";
-	$anoMesDia = $ano."-".$mes."-01";
-	$sql_despesa = "SELECT c.nome AS categoria , m.valor AS valor from Movimentacao AS m INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria WHERE m.dadosMesMes='{$anoMesDia}' AND m.dadosMesUsersEmail='{$email}' AND tipo='despesa';";
+
+	$sql_mes = "SELECT mesNum from Mes WHERE mes='{$mes}';";
+	$result_mes =  mysqli_query($conexao,$sql_mes);
+	if(!$result_mes){
+            $this->conn->fecharConexao();
+            return array();
+        } 
+	
+ 	$row_mes = mysqli_fetch_assoc($result_mes);
+	$t = $row_mes["mesNum"];
+
+
+	$anoMesDia = $ano."-".$t."-01";
+	$sql_despesa= "SELECT  c.nome AS categoria , m.valor AS valor from Movimentacao AS m INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria WHERE m.dadosMesMes='{$anoMesDia}' AND m.dadosMesUsersEmail='{$email}' AND tipo='despesa';";
 	$result_despesa =  mysqli_query($conexao,$sql_despesa);
         if(!$result_despesa){
             $this->conn->fecharConexao();
@@ -205,7 +232,8 @@ class Carga {
         } else {
 		$rows = array();
 		while($row = mysqli_fetch_assoc($result_despesa)) {
-		   $rows[]=$row;
+		          $row["categoria"] = utf8_encode($row["categoria"]);
+		          $rows[]=$row;
 		}
 		$this->conn->fecharConexao();
 		return $rows;

@@ -7,5 +7,6 @@ $email = $_POST['email'];
 
 $record = new Carga();
 
-echo json_encode($record->carregaDespesa($mes , $ano, $email));
+echo  json_encode($record->carregaDespesa($mes , $ano, $email));
+
 ?>

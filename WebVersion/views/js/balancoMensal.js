@@ -100,10 +100,15 @@ function carregaReceitaDespesa() {
 	carregaDespesas();
 }
 
+
 function carregaReceita() {
 	var usuario = getCookie("email");
-	var txMes = "01";
-	var txAno = "2016";		
+	
+var ddMes = document.getElementById("txMes");
+	var txMes = ddMes.options[ddMes.selectedIndex].value;	
+
+	var ddAno = document.getElementById("txAno");
+	var txAno = ddAno.options[ddAno.selectedIndex].value;	
 				
 	$.ajax({
 		url: "../controllers/carregaReceitas.php",
@@ -112,31 +117,61 @@ function carregaReceita() {
 			email: usuario,
 			mes: txMes ,  
 			ano: txAno
-		}
+		},
+		dataType: "json"
 		}).error(function(data){
 			 alert("Não foi possível carregar as receitas.");
 		}).done(function(data){
 			if(data.length > 0){
-			alert(data[0]["valor"]);
-		 	  
-				var select = document.getElementById("receita");
-				for(var i = 0; i < data.length; i++) {
-				  var opt = data[i]["valor"];
-				  var el = document.createElement("table");
-				  el.textContent = opt;
-				  el.value = opt;
-				  select.appendChild(el);
+				$("#receitaTabela").html("");
+				var tab_body = document.getElementById("receitaTabela");
+ 				for(var i = 0; i < data.length; i++) {
+
+					var categoria = data[i]["categoria"];
+					var valor = data[i]["valor"];
+
+					var tr = document.createElement("tr");
+					var td_categoria = document.createElement("td");
+					var td_valor = document.createElement("td");
+
+					td_categoria.colSpan = "1";
+					td_valor.colSpan = "2";
+
+
+					td_categoria.innerHTML = categoria;
+					td_categoria.id = "categoria_" + i;
+
+					td_valor.innerHTML = valor;
+					td_categoria.id = "valor_" + i;
+
+					tr.appendChild(td_categoria);
+					tr.appendChild(td_valor);
+
+					tab_body.appendChild(tr);
+
 				}
 			} else {
-				alert("Algo deu errado com as receita!");
+				$("#receitaTabela").html("");
+				var tab_body = document.getElementById("receitaTabela");
+				var tr = document.createElement("tr");
+				var td_categoria = document.createElement("td");
+				td_categoria.colSpan = "3";
+				td_categoria.innerHTML = "Não obteve movimentação de receita neste mês";
+				tr.appendChild(td_categoria);
+				tab_body.appendChild(tr);
 			}
 		})
 }
 
 function carregaDespesas(){
 	var usuario = getCookie("email");
-	var txMes = "01";
-	var txAno = "2016";	
+
+	var ddMes = document.getElementById("txMes");
+	var txMes = ddMes.options[ddMes.selectedIndex].value;	
+
+	var ddAno = document.getElementById("txAno");
+	var txAno = ddAno.options[ddAno.selectedIndex].value;	
+
 	$.ajax({
 		url: "../controllers/carregaDespesas.php",
 		type: "POST",
@@ -144,22 +179,49 @@ function carregaDespesas(){
 			email: usuario,
 			mes: txMes ,  
 			ano: txAno
-		}
+		},
+		dataType: "json"
 		}).error(function(data){
 			 alert("Não foi possível carregar as despesas.");
 		}).done(function(data){
 			if(data.length > 0){
-				alert("deu certo!");
-		 	        var select = document.getElementById("despesas");
-				for(var i = 0; i < data.length; i++) {
-				  var opt = data[i]["valor"];
-				  var el = document.createElement("table");
-				  el.textContent = opt;
-				  el.value = opt;
-				  select.appendChild(el);
+				$("#despesaTabela").html("");
+				var tab_body = document.getElementById("despesaTabela");
+
+ 				for(var i = 0; i < data.length; i++) {
+
+					var categoria = data[i]["categoria"];
+					var valor = data[i]["valor"];
+
+					var tr = document.createElement("tr");
+					var td_categoria = document.createElement("td");
+					var td_valor = document.createElement("td");
+
+					td_categoria.colSpan = "1";
+					td_valor.colSpan = "2";
+
+					td_categoria.innerHTML = categoria;
+					td_categoria.id = "categoria_" + i;
+
+					td_valor.innerHTML = valor;
+					td_categoria.id = "valor_" + i;
+
+					tr.appendChild(td_categoria);
+					tr.appendChild(td_valor);
+
+					tab_body.appendChild(tr);
+
 				}
 			} else {
-				alert("Algo deu errado com as despesas!");
+				$("#despesaTabela").html("");
+				var tab_body = document.getElementById("despesaTabela");
+
+				var tr = document.createElement("tr");
+				var td_categoria = document.createElement("td");
+				td_categoria.colSpan = "3";
+				td_categoria.innerHTML = "Não obteve movimentação de despesa neste mês";
+				tr.appendChild(td_categoria);
+				tab_body.appendChild(tr);
 			}
 		})
 }

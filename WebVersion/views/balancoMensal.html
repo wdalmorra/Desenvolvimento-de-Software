@@ -69,7 +69,7 @@
 		<hr>
 
 		<div class="after-menu" id="balanco">
-			<div >
+			<div id="afterMenu-antesDiviReceita" >
 
 			  	<!-- Select Basic -->
 			  	<fieldset class="form-group col-xs-4">
@@ -98,31 +98,41 @@
 					</div>
 				</div>
 			</div>
-			
-
-			<div class="col-xs-5">
-				<div>
-					<div> 
-						<h3>Receita</h3>
-					</div>
-					<div id="receita"> 
-						
-					</div>
+		
+			<div class="col" id="divReceitaDespesa">
+				<div class="col-xs-5" id="DivReceita">
+					<h3>Receita</h3>
+					
+					<table class="table " id="tabela-receita">
+						<thead>
+							<tr>
+								<th colspan="2">Categoria</th>
+								<th colspan="1">Valor</th>
+							</tr>
+						</thead>
+						<tbody id="receitaTabela">
+					
+						</tbody>
+					</table>
 				</div>
-			</div>
 
-			<div class="col-xs-5">
-				<div >
-					<div >
-						<h3>Despesas</h3>
-					</div>
-					<div id="despesas"> 
-						
-					</div>
+				<div class="col-xs-5" id="DivDespesa">
+					<h3>Despesas</h3>
+					
+					<table class="table " id="tabela-despesa">
+						<thead>
+							<tr>
+								<th colspan="2">Categoria</th>
+								<th colspan="1">Valor</th>
+							</tr>
+						</thead>
+						<tbody id="despesaTabela">
+			
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
-		
 	</div>
 
 
