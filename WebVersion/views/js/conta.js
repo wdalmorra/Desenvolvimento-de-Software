@@ -183,7 +183,7 @@ function alteraDados() {
 		}).done(function(data){
 			if(data.state == "ok"){
 				alert("Dados alterados com sucesso!");
-				criaCookie(data.nome);
+				criaCookie("", data.nome);
 				location.reload();
 			} else {
 				alert("Algo deu errado!");
@@ -241,38 +241,6 @@ function alteraSenha() {
 
 function cancela() {
 	window.location.href="./menu.html";
-}
-
-function getCookie(cname) {
-	var name = cname + "=";
-	var ca = document.cookie.split(';');
-	for(var i = 0; i < ca.length; i++) {
-		var c = ca[i];
-		while (c.charAt(0) == ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) == 0) {
-			return c.substring(name.length, c.length);
-		}
-	}
-	return "";
-}
-
-function criaCookie(nome){
-	var path = "/WebVersion/";
-	deletaCookie("nome");
-	document.cookie = "nome=" + nome + "; Path=" + path;
-}
-
-function deletaCookie(cname) {
-	var path = "/WebVersion/";
-	var isChrome = !!window.chrome && !!window.chrome.webstore;
-
-	if(isChrome) {
-		document.cookie = cname + "=; Path=" + path + "; Expires=" + new Date(0).toGMTString();
-	} else {
-		document.cookie = cname + "=; Path=" + path + "; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-	}
 }
 
 function carregaInfos(nasc) {
