@@ -273,6 +273,14 @@
 					  	</fieldset>
 
 					</div>
+
+					<div>
+						 <form>
+							<input type="radio" class="tipo" name="tipo" value="receita" checked> Receita&nbsp;&nbsp;&nbsp;
+							<input type="radio" class="tipo" name="tipo" value="despesa"> Despesa
+						</form> 
+					</div>
+
 					<div class="col-md-12" id="buttons">
 						<button id="buttonFiltroPie" type="button" onClick="aplicarFiltroPie()" name="buttonFiltroPie" class="btn btn-secondary">Filtrar</button>
 					</div>
@@ -282,7 +290,7 @@
 					<!-- DONUT CHART -->
 					<div class="box box-danger">
 						<div class="box-header with-border">
-							<h3 class="box-title" id="pieChartName">Pie Chart</h3>
+							<h3 class="box-title" id="pieChartName">Gráfico de Pizza</h3>
 						</div>
 						<div class="box-body">
 							<canvas id="pieChart" style="height:250px"></canvas>

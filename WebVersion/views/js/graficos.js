@@ -20,7 +20,7 @@ function aplicarFiltroBar() {
 }
 
 function aplicarFiltroPie() {
-
+	loadPieChart();
 }
 
 function populaDropdowns () {
@@ -561,7 +561,6 @@ function pieChartCallback(data, pieChart) {
 		};
 
 		//Create pie or douhnut chart
-		// You can switch between pie and douhnut using the method below.
 		pieChart.Doughnut(PieData, pieOptions);
 
 		} else {
@@ -569,25 +568,34 @@ function pieChartCallback(data, pieChart) {
 		}
 }
 
-
 function loadPieChart(){
 	//-------------
     //- PIE CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
-    var pieChart = new Chart(pieChartCanvas);
+	if (typeof loadPieChart.pieChart != 'undefined') {
+		$('#pieChart').replaceWith('<canvas id="pieChart"></canvas>');
+	}
+
+	var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+	loadPieChart.pieChart = new Chart(pieChartCanvas);
+
+	var isReceita = "0";
+	if ($(".tipo:checked").val() == "receita") {
+		isReceita = "1";
+	}
 
 	$.ajax({
 		url: "../controllers/graficos.php",
 		type: "POST",
 		dataType:"json",
-		data: {},
-		done: pieChartCallback
+		data: {
+			isReceita: isReceita
+		},
 	}).error(function(data){
 		alert("Não foi possível carregar o gráfico de pizza.");
 	}).done(function(data) {
-		pieChartCallback(data, pieChart)
+		pieChartCallback(data, loadPieChart.pieChart)
 	})
 }
 

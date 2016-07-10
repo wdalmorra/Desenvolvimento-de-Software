@@ -2,7 +2,13 @@
 
 include '../models/Carga.php';
 
+$tipo = $_POST['isReceita'];
 $carga = new Carga();
-echo json_encode($carga->carregaMediaPie(NULL, true));
+
+if ($tipo == "1") {
+	echo json_encode($carga->carregaMediaPie(NULL, false));
+} else {
+	echo json_encode($carga->carregaMediaPie(NULL, true));
+}
 
 ?>
