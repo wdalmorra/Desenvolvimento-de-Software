@@ -618,13 +618,15 @@ function loadUserPieChart(){
 		isReceita = "1";
 	}
 
+	var email = getCookie("email");
+
 	$.ajax({
 		url: "../controllers/graficos.php",
 		type: "POST",
 		dataType:"json",
 		data: {
 			isReceita: isReceita,
-			user: 'test@aol.com'
+			user: email
 		},
 	}).error(function(data){
 		alert("Não foi possível carregar o gráfico de pizza.");
