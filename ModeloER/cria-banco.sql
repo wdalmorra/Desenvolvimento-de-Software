@@ -15,8 +15,8 @@ DROP TABLE IF EXISTS `Drefinancas`.`Mes` ;
 CREATE TABLE IF NOT EXISTS `Drefinancas`.`Mes` (
   `mes` VARCHAR(15) NOT NULL,
   `mesNum` VARCHAR(4) ,
-  PRIMARY KEY (`mes`),
-  UNIQUE INDEX `mes_UNIQUE` (`mes` ASC))
+  PRIMARY KEY (`mesNum`),
+  UNIQUE INDEX `mes_UNIQUE` (`mesNum` ASC))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -37,8 +37,9 @@ DROP TABLE IF EXISTS `Drefinancas`.`Idade` ;
 
 CREATE TABLE IF NOT EXISTS `Drefinancas`.`Idade` (
   `idade` VARCHAR(5) NOT NULL,
-  PRIMARY KEY (`idade`),
-  UNIQUE INDEX `idade_UNIQUE` (`idade` ASC))
+  `idadeNum` VARCHAR(3),
+  PRIMARY KEY (`idadeNum`),
+  UNIQUE INDEX `idade_UNIQUE` (`idadeNum` ASC))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------

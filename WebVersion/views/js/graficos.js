@@ -49,8 +49,8 @@ function populaCategoriasBar(){
         var select = document.getElementById("txCategoriaBar");
 
         var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
+        el.textContent = "Todos";
+        el.value = "Todos";
         select.appendChild(el);
 
         for(var i = 0; i < data.length; i++) {
@@ -80,8 +80,8 @@ function populaMesesPie(){
       if(data.length > 0){
         var select = document.getElementById("txMesPie");
         var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
+        el.textContent = "Todos";
+        el.value = "Todos";
         select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["mes"];
@@ -112,12 +112,12 @@ function populaMesesBar(){
         var select2 = document.getElementById("txMesFinalBar");
 
         var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
+        el.textContent = "Todos";
+        el.value = "Todos";
         select.appendChild(el);
         var el2 = document.createElement("option");
-        el2.textContent = "N/A";
-        el2.value = "N/A";
+        el2.textContent = "Todos";
+        el2.value = "Todos";
         select2.appendChild(el2);
 
         for(var i = 0; i < data.length; i++) {
@@ -151,8 +151,8 @@ function populaAnosPie(){
       if(data.length > 0){
         var select = document.getElementById("txAnoPie");
         var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
+        el.textContent = "Todos";
+        el.value = "Todos";
         select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["ano"];
@@ -182,12 +182,12 @@ function populaAnosBar(){
         var select = document.getElementById("txAnoInicialBar");
         var select2 = document.getElementById("txAnoFinalBar");
         var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
+        el.textContent = "Todos";
+        el.value = "Todos";
         select.appendChild(el);
         var el2 = document.createElement("option");
-        el2.textContent = "N/A";
-        el2.value = "N/A";
+        el2.textContent = "Todos";
+        el2.value = "Todos";
         select2.appendChild(el2);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["ano"];
@@ -221,12 +221,12 @@ function populaIdadesPie(){
         var select = document.getElementById("txIdadeInicialPie");
         var select2 = document.getElementById("txIdadeFinalPie");
         var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
+        el.textContent = "Todos";
+        el.value = "Todos";
         select.appendChild(el);
         var el2 = document.createElement("option");
-        el2.textContent = "N/A";
-        el2.value = "N/A";
+        el2.textContent = "Todos";
+        el2.value = "Todos";
         select2.appendChild(el2);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["idade"];
@@ -260,12 +260,12 @@ function populaIdadesBar(){
         var select = document.getElementById("txIdadeInicialBar");
         var select2 = document.getElementById("txIdadeFinalBar");
         var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
+        el.textContent = "Todos";
+        el.value = "Todos";
         select.appendChild(el);
         var el2 = document.createElement("option");
-        el2.textContent = "N/A";
-        el2.value = "N/A";
+        el2.textContent = "Todos";
+        el2.value = "Todos";
         select2.appendChild(el2);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["idade"];
@@ -299,8 +299,8 @@ function populaPaisesPie(){
       if(data.length > 0){
         var select = document.getElementById("txPaisPie");
         var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
+        el.textContent = "Todos";
+        el.value = "Todos";
         select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["nome"];
@@ -321,37 +321,44 @@ function populaEstadosPie(){
   var selected = ddPaises.options[ddPaises.selectedIndex].value;
   var ddCidade = document.getElementById("txCidadePie");
 
-  $.ajax({
-      url: "../controllers/carregaEstados.php",
-      type: "POST",
-      dataType:"json",
-      data: {
-        pais: selected
-      }
-    }).error(function(data){
-      alert("Não foi possível carregar os estados.");
-    }).done(function(data){
-      if(data.length > 0){
-        var select = document.getElementById("txEstadoPie");
-        select.options.length = 0;
-        ddCidade.options.length = 0;
-
-        var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
-        select.appendChild(el);
-        for(var i = 0; i < data.length; i++) {
-          // alert(data[i]["estado"]);
-          var opt = data[i]["estado"];
-          el = document.createElement("option");
-          el.textContent = opt;
-          el.value = opt;
-          select.appendChild(el);
+  if (selected != "Todos") {
+    $.ajax({
+        url: "../controllers/carregaEstados.php",
+        type: "POST",
+        dataType:"json",
+        data: {
+          pais: selected
         }
-      } else {
-        alert("Algo deu errado com os estados!");
-      }
-    })  
+      }).error(function(data){
+        alert("Não foi possível carregar os estados.");
+      }).done(function(data){
+        if(data.length > 0){
+          var select = document.getElementById("txEstadoPie");
+          select.options.length = 0;
+          ddCidade.options.length = 0;
+
+          var el = document.createElement("option");
+          el.textContent = "Todos";
+          el.value = "Todos";
+          select.appendChild(el);
+          for(var i = 0; i < data.length; i++) {
+            // alert(data[i]["estado"]);
+            var opt = data[i]["estado"];
+            el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+          }
+        } else {
+          alert("Algo deu errado com os estados!");
+        }
+      })  
+  } else {
+    var select = document.getElementById("txEstadoPie");
+    select.length = 0;
+    ddCidade.length = 0;
+  }
+
 }
 
 function populaCidadesPie(){
@@ -360,36 +367,41 @@ function populaCidadesPie(){
   var ddEstados = document.getElementById("txEstadoPie");
   var sEstado = ddEstados.options[ddEstados.selectedIndex].value;
 
-  $.ajax({
-      url: "../controllers/carregaCidades.php",
-      type: "POST",
-      dataType:"json",
-      data: {
-        pais: sPais,
-        estado: sEstado
-      }
-    }).error(function(data){
-      alert("Não foi possível carregar as cidades.");
-    }).done(function(data){
-      // alert(data);
-      if(data.length > 0){
-        var select = document.getElementById("txCidadePie");
-        select.options.length = 0;
-        var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
-        select.appendChild(el);
-        for(var i = 0; i < data.length; i++) {
-          var opt = data[i]["nome"];
-          el = document.createElement("option");
-          el.textContent = opt;
-          el.value = opt;
-          select.appendChild(el);
+  if (sEstado != "Todos") {
+    $.ajax({
+        url: "../controllers/carregaCidades.php",
+        type: "POST",
+        dataType:"json",
+        data: {
+          pais: sPais,
+          estado: sEstado
         }
-      } else {
-        alert("Algo deu errado com as cidades!");
-      }
-    })
+      }).error(function(data){
+        alert("Não foi possível carregar as cidades.");
+      }).done(function(data){
+        // alert(data);
+        if(data.length > 0){
+          var select = document.getElementById("txCidadePie");
+          select.options.length = 0;
+          var el = document.createElement("option");
+          el.textContent = "Todos";
+          el.value = "Todos";
+          select.appendChild(el);
+          for(var i = 0; i < data.length; i++) {
+            var opt = data[i]["nome"];
+            el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+          }
+        } else {
+          alert("Algo deu errado com as cidades!");
+        }
+      })
+  } else {
+    var select = document.getElementById("txCidadePie");
+    select.length = 0;
+  }
 }
 
 function populaPaisesBar(){
@@ -405,8 +417,8 @@ function populaPaisesBar(){
       if(data.length > 0){
         var select = document.getElementById("txPaisBar");
         var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
+        el.textContent = "Todos";
+        el.value = "Todos";
         select.appendChild(el);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["nome"];
@@ -427,36 +439,42 @@ function populaEstadosBar(){
   var selected = ddPaises.options[ddPaises.selectedIndex].value;
   var ddCidade = document.getElementById("txCidadeBar");
 
-  $.ajax({
-      url: "../controllers/carregaEstados.php",
-      type: "POST",
-      dataType:"json",
-      data: {
-        pais: selected
-      }
-    }).error(function(data){
-      alert("Não foi possível carregar os estados.");
-    }).done(function(data){
-      if(data.length > 0){
-        var select = document.getElementById("txEstadoBar");
-        select.options.length = 0;
-        ddCidade.options.length = 0;
-        var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
-        select.appendChild(el);
-        for(var i = 0; i < data.length; i++) {
-          // alert(data[i]["estado"]);
-          var opt = data[i]["estado"];
-          el = document.createElement("option");
-          el.textContent = opt;
-          el.value = opt;
-          select.appendChild(el);
+  if (selected != "Todos") {
+    $.ajax({
+        url: "../controllers/carregaEstados.php",
+        type: "POST",
+        dataType:"json",
+        data: {
+          pais: selected
         }
-      } else {
-        alert("Algo deu errado com os estados!");
-      }
-    })  
+      }).error(function(data){
+        alert("Não foi possível carregar os estados.");
+      }).done(function(data){
+        if(data.length > 0){
+          var select = document.getElementById("txEstadoBar");
+          select.options.length = 0;
+          ddCidade.options.length = 0;
+          var el = document.createElement("option");
+          el.textContent = "Todos";
+          el.value = "Todos";
+          select.appendChild(el);
+          for(var i = 0; i < data.length; i++) {
+            // alert(data[i]["estado"]);
+            var opt = data[i]["estado"];
+            el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+          }
+        } else {
+          alert("Algo deu errado com os estados!");
+        }
+      })
+  } else {
+    var select = document.getElementById("txEstadoBar");
+    select.length = 0;
+    ddCidade.length = 0;
+  }
 }
 
 function populaCidadesBar(){
@@ -465,36 +483,41 @@ function populaCidadesBar(){
   var ddEstados = document.getElementById("txEstadoBar");
   var sEstado = ddEstados.options[ddEstados.selectedIndex].value;
 
-  $.ajax({
-      url: "../controllers/carregaCidades.php",
-      type: "POST",
-      dataType:"json",
-      data: {
-        pais: sPais,
-        estado: sEstado
-      }
-    }).error(function(data){
-      alert("Não foi possível carregar as cidades.");
-    }).done(function(data){
-      // alert(data);
-      if(data.length > 0){
-        var select = document.getElementById("txCidadeBar");
-        select.options.length = 0;
-        var el = document.createElement("option");
-        el.textContent = "N/A";
-        el.value = "N/A";
-        select.appendChild(el);
-        for(var i = 0; i < data.length; i++) {
-          var opt = data[i]["nome"];
-          el = document.createElement("option");
-          el.textContent = opt;
-          el.value = opt;
-          select.appendChild(el);
+  if (sEstado != "Todos") {
+    $.ajax({
+        url: "../controllers/carregaCidades.php",
+        type: "POST",
+        dataType:"json",
+        data: {
+          pais: sPais,
+          estado: sEstado
         }
-      } else {
-        alert("Algo deu errado com as cidades!");
-      }
-    })
+      }).error(function(data){
+        alert("Não foi possível carregar as cidades.");
+      }).done(function(data){
+        // alert(data);
+        if(data.length > 0){
+          var select = document.getElementById("txCidadeBar");
+          select.options.length = 0;
+          var el = document.createElement("option");
+          el.textContent = "Todos";
+          el.value = "Todos";
+          select.appendChild(el);
+          for(var i = 0; i < data.length; i++) {
+            var opt = data[i]["nome"];
+            el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+          }
+        } else {
+          alert("Algo deu errado com as cidades!");
+        }
+      })
+  } else {
+    var select = document.getElementById("txCidadeBar");
+    select.length = 0;
+  }
 }
 
 function loadPieChart(){
