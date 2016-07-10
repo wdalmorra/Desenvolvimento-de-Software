@@ -570,66 +570,93 @@ function pieChartCallback(data, pieChart) {
 }
 
 function loadGlobalPieChart(){
-	//-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
+
+	// Destroi o grafico anterior, se houver
 	if (typeof loadGlobalPieChart.pieChart != 'undefined') {
 		$('#pieChart').replaceWith('<canvas id="pieChart"></canvas>');
 	}
 
+    // Get context with jQuery - using jQuery's .get() method.
 	var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
 	loadGlobalPieChart.pieChart = new Chart(pieChartCanvas);
 
+	// Despesa ou receita?
 	var isReceita = "0";
 	if ($(".tipo:checked").val() == "receita") {
 		isReceita = "1";
 	}
 
+	// Qual pais?
+	var dPais = document.getElementById("txPaisPie");
+	var txPais = dPais.options[dPais.selectedIndex].value;
+
+	// Qual estado?
+	var txEstado = "Todos";
+	if (txPais != "Todos") {
+		var dEstado = document.getElementById("txEstadoPie");
+		txEstado = dEstado.options[dEstado.selectedIndex].value;
+	}
+
+	// Qual cidade?
+	var txCidade = "Todos";
+	if (txPais != "Todos" && txEstado != "Todos") {
+		var dCidade = document.getElementById("txCidadePie");
+		txCidade = dCidade.options[dCidade.selectedIndex].value;
+	}
+
+	// Faz a solicitacao dos dados
 	$.ajax({
 		url: "../controllers/graficos.php",
 		type: "POST",
 		dataType:"json",
 		data: {
 			isReceita: isReceita,
-			user: ""
+			user: "",
+			pais: txPais,
+			estado: txEstado,
+			cidade: txCidade
 		},
 	}).error(function(data){
-		alert("Não foi possível carregar o gráfico de pizza.");
+		alert("Não foi possível carregar o gráfico de pizza (global).");
 	}).done(function(data) {
 		pieChartCallback(data, loadGlobalPieChart.pieChart)
 	})
 }
 
 function loadUserPieChart(){
-	//-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
+
+	// Destroi o grafico anterior, se houver
 	if (typeof loadUserPieChart.pieChart != 'undefined') {
 		$('#pieChart2').replaceWith('<canvas id="pieChart2"></canvas>');
 	}
 
+    // Get context with jQuery - using jQuery's .get() method.
 	var pieChartCanvas = $("#pieChart2").get(0).getContext("2d");
 	loadUserPieChart.pieChart = new Chart(pieChartCanvas);
 
+	// Despesa ou receita?
 	var isReceita = "0";
 	if ($(".tipo:checked").val() == "receita") {
 		isReceita = "1";
 	}
 
+	// Para qual usuario?
 	var email = getCookie("email");
 
+	// Faz a solicitacao dos dados
 	$.ajax({
 		url: "../controllers/graficos.php",
 		type: "POST",
 		dataType:"json",
 		data: {
 			isReceita: isReceita,
-			user: email
+			user: email,
+			pais: "Todos",
+			estado: "Todos",
+			cidade: "Todos"
 		},
 	}).error(function(data){
-		alert("Não foi possível carregar o gráfico de pizza.");
+		alert("Não foi possível carregar o gráfico de pizza (user).");
 	}).done(function(data) {
 		pieChartCallback(data, loadUserPieChart.pieChart)
 	})

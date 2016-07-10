@@ -251,11 +251,30 @@ class Carga {
 		}
 
 		if ($user == "") {
-			$sql_medias = "SELECT c.nome AS categoria, c.idCategoria AS idCategoria, AVG(m.valor) AS valor FROM Movimentacao AS m INNER JOIN Categoria as c on m.categoriaId=c.IdCategoria WHERE tipo='{$tipo}' GROUP BY categoriaId";
-		} else {
-			$sql_medias = "SELECT c.nome AS categoria, c.idCategoria AS idCategoria, AVG(m.valor) AS valor FROM Movimentacao AS m INNER JOIN Categoria as c on m.categoriaId=c.IdCategoria WHERE tipo='{$tipo}' AND  m.dadosMesUsersEmail='{$user}' GROUP BY categoriaId";
+			$user = '%';
 		}
 
+		$pais = '%';
+		if ($filtro->pais != 'Todos') {
+			$sql_aux = "SELECT countryCode FROM Pais WHERE nome='{$filtro->pais}'";
+			$result_aux = mysqli_query($conexao,$sql_aux);
+			$row = mysqli_fetch_assoc($result_aux);
+			$pais = $row['countryCode'];
+			$this->conn->fecharConexao();
+			$conexao = $this->conn->abrirConexao();
+		}
+
+		$estado = '%';
+		if ($filtro->estado != 'Todos') {
+				$estado = $filtro->estado;
+		}
+
+		$cidade = '%';
+		if ($estado != '%' && $filtro->cidade != 'Todos') {
+			$cidade = $filtro->cidade;
+		}	
+
+		$sql_medias = "SELECT c.nome AS categoria, c.idCategoria AS idCategoria, AVG(m.valor) AS valor FROM Movimentacao AS m INNER JOIN Users AS u ON u.email=m.dadosMesUsersEmail INNER JOIN Cidade AS cid ON cid.idCidade=u.cidadeId INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria WHERE tipo='{$tipo}' AND  m.dadosMesUsersEmail LIKE '{$user}' AND cid.nome LIKE '{$cidade}' AND cid.estadoEstado LIKE '{$estado}' AND cid.estadoCC LIKE '{$pais}' GROUP BY categoriaId";
 		$result_medias = mysqli_query($conexao,$sql_medias);
 
         if(!$result_medias){
