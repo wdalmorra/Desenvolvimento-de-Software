@@ -239,5 +239,31 @@ class Carga {
 		return $rows;
 	}
     }
+
+	function carregaMediaPie($filtro, $isDespesa) {
+		$conexao = $this->conn->abrirConexao();
+
+		$sql_medias = NULL;
+		if ($isDespesa) {
+			$sql_medias = "SELECT c.nome AS categoria, AVG(m.valor) AS valor FROM Movimentacao AS m INNER JOIN Categoria as c on m.categoriaId=c.IdCategoria WHERE tipo='despesa' GROUP BY categoriaId";
+		} else {
+			$sql_medias = "SELECT c.nome AS categoria, AVG(m.valor) AS valor FROM Movimentacao AS m INNER JOIN Categoria as c on m.categoriaId=c.IdCategoria WHERE tipo='receita' GROUP BY categoriaId";
+		}
+
+		$result_medias = mysqli_query($conexao,$sql_medias);
+
+        if(!$result_medias){
+            $this->conn->fecharConexao();
+            return array();
+        } else {
+			$rows = array();
+			while($row = mysqli_fetch_assoc($result_medias)) {
+			      $row["categoria"] = utf8_encode($row["categoria"]);
+			      $rows[]=$row;
+			}
+			$this->conn->fecharConexao();
+			return $rows;
+		}
+	}
 }
 ?>
