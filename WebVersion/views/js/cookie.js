@@ -1,5 +1,4 @@
-var masterPath = "/"
-//var masterPath = "/WebVersion/"
+var masterPath = "/WebVersion/"
 
 function getCookie(cname) {
 	var name = cname + "=";
