@@ -1,7 +1,8 @@
 <?php
+include '../models/EnviaEmail.php';
 
 $Email		= $_POST["email"];	// Pega o valor do campo Email
-$Mensagem	= $_POST["SenhaNova"];	// Pega os valores do campo Mensagem
+$Mensagem	= "SenhaNova";	// Pega os valores do campo Mensagem
 
 // Variável que junta os valores acima e monta o corpo do email
 
@@ -37,9 +38,14 @@ function smtpmailer($para, $de, $de_nome, $assunto, $corpo) {
 }
 
  if (smtpmailer($Email, 'suport@drefinancas.com', 'suporte drefinancas', 'Troca de senha', $Vai)) {
-
+	$record = new EnviaEmail($Email , $Mensagem);
+	echo $record->mudaSenha();
 	echo "tudo certo";
 
 }
-if (!empty($error)) echo $error;
+if (!empty($error)){ 
+	$record = new EnviaEmail($Email , $Mensagem); //QuandoEmailEnviarDeVerdadeRetirar
+	echo $record->mudaSenha(); //QuandoEmailEnviarDeVerdadeRetirar
+	echo $error;
+}
 ?>
