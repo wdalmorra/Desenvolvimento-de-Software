@@ -528,7 +528,7 @@ function pieChartCallback(data, pieChart) {
 	if(data.length > 0) {
 		for ($i = 0; $i < data.length; $i++) {
 			PieData.push({
-				value: (data[$i].valor),
+				value: (data[$i].valor) / 100,
 				color: colors[$i % 8],
 				highlight: colors[$i % 8],
 				label: (data[$i].categoria)
