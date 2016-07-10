@@ -35,7 +35,7 @@ class Carga {
 
     function carregaMeses(){
         $conexao = $this->conn->abrirConexao();
-        $sql = "SELECT mes FROM Mes;";
+        $sql = "SELECT mes, mesNum FROM Mes ORDER BY mesNum ASC;";
         $result =  mysqli_query($conexao,$sql);
         if(!$result){
             $this->conn->fecharConexao();
@@ -54,7 +54,7 @@ class Carga {
 
     function carregaAnos(){
         $conexao = $this->conn->abrirConexao();
-        $sql = "SELECT ano FROM Ano;";
+        $sql = "SELECT ano FROM Ano ORDER BY ano DESC;";
         $result =  mysqli_query($conexao,$sql);
         if(!$result){
             $this->conn->fecharConexao();
