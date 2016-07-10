@@ -240,14 +240,20 @@ class Carga {
 	}
     }
 
-	function carregaMediaPie($filtro, $isDespesa) {
+	function carregaMediaPie($filtro, $isDespesa, $user) {
 		$conexao = $this->conn->abrirConexao();
 
 		$sql_medias = NULL;
+		$tipo = "receita";
+
 		if ($isDespesa) {
-			$sql_medias = "SELECT c.nome AS categoria, AVG(m.valor) AS valor FROM Movimentacao AS m INNER JOIN Categoria as c on m.categoriaId=c.IdCategoria WHERE tipo='despesa' GROUP BY categoriaId";
+			$tipo = "despesa";
+		}
+
+		if ($user == "") {
+			$sql_medias = "SELECT c.nome AS categoria, c.idCategoria AS idCategoria, AVG(m.valor) AS valor FROM Movimentacao AS m INNER JOIN Categoria as c on m.categoriaId=c.IdCategoria WHERE tipo='{$tipo}' GROUP BY categoriaId";
 		} else {
-			$sql_medias = "SELECT c.nome AS categoria, AVG(m.valor) AS valor FROM Movimentacao AS m INNER JOIN Categoria as c on m.categoriaId=c.IdCategoria WHERE tipo='receita' GROUP BY categoriaId";
+			$sql_medias = "SELECT c.nome AS categoria, c.idCategoria AS idCategoria, AVG(m.valor) AS valor FROM Movimentacao AS m INNER JOIN Categoria as c on m.categoriaId=c.IdCategoria WHERE tipo='{$tipo}' AND  m.dadosMesUsersEmail='{$user}' GROUP BY categoriaId";
 		}
 
 		$result_medias = mysqli_query($conexao,$sql_medias);

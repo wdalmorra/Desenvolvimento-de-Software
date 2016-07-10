@@ -20,7 +20,8 @@ function aplicarFiltroBar() {
 }
 
 function aplicarFiltroPie() {
-	loadPieChart();
+	loadGlobalPieChart();
+	loadUserPieChart();
 }
 
 function populaDropdowns () {
@@ -568,17 +569,17 @@ function pieChartCallback(data, pieChart) {
 		}
 }
 
-function loadPieChart(){
+function loadGlobalPieChart(){
 	//-------------
     //- PIE CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
-	if (typeof loadPieChart.pieChart != 'undefined') {
+	if (typeof loadGlobalPieChart.pieChart != 'undefined') {
 		$('#pieChart').replaceWith('<canvas id="pieChart"></canvas>');
 	}
 
 	var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
-	loadPieChart.pieChart = new Chart(pieChartCanvas);
+	loadGlobalPieChart.pieChart = new Chart(pieChartCanvas);
 
 	var isReceita = "0";
 	if ($(".tipo:checked").val() == "receita") {
@@ -590,19 +591,53 @@ function loadPieChart(){
 		type: "POST",
 		dataType:"json",
 		data: {
-			isReceita: isReceita
+			isReceita: isReceita,
+			user: ""
 		},
 	}).error(function(data){
 		alert("Não foi possível carregar o gráfico de pizza.");
 	}).done(function(data) {
-		pieChartCallback(data, loadPieChart.pieChart)
+		pieChartCallback(data, loadGlobalPieChart.pieChart)
+	})
+}
+
+function loadUserPieChart(){
+	//-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+	if (typeof loadUserPieChart.pieChart != 'undefined') {
+		$('#pieChart2').replaceWith('<canvas id="pieChart2"></canvas>');
+	}
+
+	var pieChartCanvas = $("#pieChart2").get(0).getContext("2d");
+	loadUserPieChart.pieChart = new Chart(pieChartCanvas);
+
+	var isReceita = "0";
+	if ($(".tipo:checked").val() == "receita") {
+		isReceita = "1";
+	}
+
+	$.ajax({
+		url: "../controllers/graficos.php",
+		type: "POST",
+		dataType:"json",
+		data: {
+			isReceita: isReceita,
+			user: 'test@aol.com'
+		},
+	}).error(function(data){
+		alert("Não foi possível carregar o gráfico de pizza.");
+	}).done(function(data) {
+		pieChartCallback(data, loadUserPieChart.pieChart)
 	})
 }
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
   var target = $(e.target).attr("href") // activated tab
   if (target == "#piechart") {
-    loadPieChart();
+    loadUserPieChart();
+    loadGlobalPieChart();
   } else {
     loadBarChart();
   }
