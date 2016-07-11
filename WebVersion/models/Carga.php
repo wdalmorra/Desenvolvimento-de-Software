@@ -418,6 +418,28 @@ class Carga {
             }
         }
 
+		$sql_total = 
+				"SELECT " .
+					"MONTH(dadosMesMes) AS mes, " .
+					"YEAR(dadosMesMes) AS ano, " .
+					"AVG(receitas-despesas) AS valor, " .
+					"'receita' AS tipo " .
+				"FROM " . 
+						"( " .
+							"SELECT dadosMesMes, dadosMesUsersEmail, SUM(m1.valor) AS despesas " .
+							"FROM Movimentacao AS m1 " .
+							"WHERE tipo='despesa' " .
+							"GROUP BY dadosMesMes, dadosMesUsersEmail " .
+						") AS t1 " .
+					"NATURAL JOIN " .
+						"( " .
+							"SELECT m2.dadosMesMes, m2.dadosMesUsersEmail, SUM(m2.valor) as receitas " .
+							"FROM Movimentacao AS m2 " . 
+							"WHERE tipo='receita' " .
+							"GROUP BY m2.dadosMesMes, m2.dadosMesUsersEmail " .
+						") AS t2 " .
+				"GROUP BY t2.dadosMesMes;";
+
         $sql_medias =
                 "SELECT " . 
                     "MONTH(m.dadosMesMes) AS mes, " .
@@ -457,7 +479,11 @@ class Carga {
             *   grafico de barras
         */
 
-        $result_medias = mysqli_query($conexao,$sql_medias);
+		if ($filtro->categoria == "Saldo") {
+	        $result_medias = mysqli_query($conexao,$sql_total);
+		} else {
+	        $result_medias = mysqli_query($conexao,$sql_medias);
+		}
 
         $num_rows = mysqli_num_rows($result_medias);
         $logfile = "/var/www/html/WebVersion/log.txt";
