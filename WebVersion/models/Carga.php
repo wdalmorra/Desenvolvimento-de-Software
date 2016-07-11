@@ -282,6 +282,7 @@ class Carga {
 		}
 
 		// Transforma os meses de string para numero
+        $filtro->mesMin = utf8_decode($filtro->mesMin);
 		$sql_mes_min = "SELECT mesNum FROM Mes WHERE mes LIKE '{$filtro->mesMin}'";
 		$result_mes_min = mysqli_query($conexao,$sql_mes_min);
 		$row = mysqli_fetch_assoc($result_mes_min);
@@ -289,6 +290,7 @@ class Carga {
 		$this->conn->fecharConexao();
 		$conexao = $this->conn->abrirConexao();
 
+        $filtro->mesMax = utf8_decode($filtro->mesMax);
 		$sql_mes_max = "SELECT mesNum FROM Mes WHERE mes LIKE '{$filtro->mesMax}'";
 		$result_mes_max = mysqli_query($conexao,$sql_mes_max);
 		$row = mysqli_fetch_assoc($result_mes_max);
