@@ -3,8 +3,6 @@ $(function () {
 	if (email == "") {
 		window.location.href = "../index.html";
 	}
-	loadPieChart();
-	loadBarChart();
 });
 
 function carregaInfos() {
@@ -14,59 +12,74 @@ function carregaInfos() {
 		dropdown.innerHTML = "Olá, " + nome + "!";
 	}
 
-	populaMeses();
-	populaAnos();
+	carregaMesAtual();
 }
 
-function populaMeses(){
+function populaMeses(mes){
   // alert("Algo deu errado com os 2!");
 
   $.ajax({
-      url: "../controllers/carregaMeses.php",
-      type: "POST",
-      dataType:"json"
-    }).error(function(data){
-      alert("Não foi possível carregar os meses.");
-    }).done(function(data){
-      if(data.length > 0){
-        var select = document.getElementById("txMes");
-        for(var i = 0; i < data.length; i++) {
-          var opt = data[i]["mes"];
-          var el = document.createElement("option");
-          el.textContent = opt;
-          el.value = opt;
-          select.appendChild(el);
-        }
+	  url: "../controllers/carregaMeses.php",
+	  type: "POST",
+	  dataType:"json"
+	}).error(function(data){
+	  alert("Não foi possível carregar os meses.");
+	}).done(function(data){
+	  if(data.length > 0){
+		var select = document.getElementById("txMes");
+		for(var i = 0; i < data.length; i++) {
+		  var opt = data[i]["mes"];
+		  var el = document.createElement("option");
+		  el.textContent = opt;
+		  el.value = opt;
+		  select.appendChild(el);
+		}
+		var select = document.getElementById("txMes");
+		for(var i = 0; i < select.options.length; i++) {
+			if(select.options[i].text == mes) {
+				select.selectedIndex = i;
+				break;
+			}
+		}
 
-      } else {
-        alert("Algo deu errado com os meses!");
-      }
-    })
+	  } else {
+		alert("Algo deu errado com os meses!");
+	  }
+	})
 }
-function populaAnos(){
+function populaAnos(ano){
   // alert("Algo deu errado com os 2!");
 
   $.ajax({
-      url: "../controllers/carregaAnos.php",
-      type: "POST",
-      dataType:"json"
-    }).error(function(data){
-      alert("Não foi possível carregar os anos.");
-    }).done(function(data){
-      if(data.length > 0){
-        var select = document.getElementById("txAno");
-        for(var i = 0; i < data.length; i++) {
-          var opt = data[i]["ano"];
-          var el = document.createElement("option");
-          el.textContent = opt;
-          el.value = opt;
-          select.appendChild(el);
-        }
+	  url: "../controllers/carregaAnos.php",
+	  type: "POST",
+	  dataType:"json"
+	}).error(function(data){
+	  alert("Não foi possível carregar os anos.");
+	}).done(function(data){
+	  if(data.length > 0){
+		var select = document.getElementById("txAno");
+		for(var i = 0; i < data.length; i++) {
+		  var opt = data[i]["ano"];
+		  var el = document.createElement("option");
+		  el.textContent = opt;
+		  el.value = opt;
+		  select.appendChild(el);
+		}
+		var select = document.getElementById("txAno");
+		for(var i = 0; i < select.options.length; i++) {
+			if(select.options[i].text == ano) {
+				select.selectedIndex = i;
+				break;
+			}
+		}
 
-      } else {
-        alert("Algo deu errado com os anos!");
-      }
-    })
+		document.getElementById("b1").click();
+
+	  } else {
+		alert("Algo deu errado com os anos!");
+	  }
+	})
 }
 
 function carregaReceitaDespesa() {
@@ -99,10 +112,10 @@ var ddMes = document.getElementById("txMes");
 			if(data.length > 0){
 				$("#receitaTabela").html("");
 				var tab_body = document.getElementById("receitaTabela");
- 				for(var i = 0; i < data.length; i++) {
+				for(var i = 0; i < data.length; i++) {
 
 					var categoria = data[i]["categoria"];
-					var valor = data[i]["valor"];
+					var valor = (data[i]["valor"]) / 100.0;
 
 					var tr = document.createElement("tr");
 					var td_categoria = document.createElement("td");
@@ -165,10 +178,10 @@ function carregaDespesas(){
 				$("#despesaTabela").html("");
 				var tab_body = document.getElementById("despesaTabela");
 
- 				for(var i = 0; i < data.length; i++) {
+				for(var i = 0; i < data.length; i++) {
 
 					var categoria = data[i]["categoria"];
-					var valor = data[i]["valor"];
+					var valor = (data[i]["valor"]) / 100.0;
 
 					var tr = document.createElement("tr");
 					var td_categoria = document.createElement("td");
@@ -228,6 +241,55 @@ function verificaAdmin() {
 	}
 } 
 
+function carregaMesAtual() {
+	var today = new Date();
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+
+	switch(mm) {
+		case 1:
+			mes_ = "Janeiro";
+			break;
+		case 2:
+			mes_ = "Fevereiro";
+			break;
+		case 3:
+			mes_ = "Março";
+			break;
+		case 4:
+			mes_ = "Abril";
+			break;
+		case 5:
+			mes_ = "Maio";
+			break;
+		case 6:
+			mes_ = "Junho";
+			break;
+		case 7:
+			mes_ = "Julho";
+			break;
+		case 8:
+			mes_ = "Agosto";
+			break;
+		case 9:
+			mes_ = "Setembro";
+			break;
+		case 10:
+			mes_ = "Outubro";
+			break;
+		case 11:
+			mes_ = "Novembro";
+			break;
+		case 12:
+			mes_ = "Dezembro";
+			break;
+	}
+
+	ano_ = yyyy+"";
+
+	populaMeses(mes_);
+	populaAnos(ano_);
+}
 
 function logout() {
 	deletaCookie("email");
