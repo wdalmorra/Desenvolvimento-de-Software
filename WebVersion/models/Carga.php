@@ -324,7 +324,7 @@ class Carga {
 					"AND YEAR(m.dadosMesMes) >= '{$filtro->anoMin}' " .
 					"AND YEAR(m.dadosMesMes) <= '{$filtro->anoMax}' " .
 				"GROUP BY categoriaId";
-        exec("echo $sql_medias >> $logfile");
+#        exec("echo $sql_medias >> $logfile");
 
 		/*
 			* Nota: a semantica da selecao de datas nao seleciona um intervalo. Ela seleciona:

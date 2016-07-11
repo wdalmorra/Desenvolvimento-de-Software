@@ -672,10 +672,6 @@ function loadGlobalPieChart(){
   var dateInicial = yyyyInicial + "-" + mm + "-" + dd;
   var dateFinal = yyyyFinal + "-" + mm + "-" + dd;
 
-  // alert(dateInicial);
-  // alert(dateFinal);
-
-
 
 	// Para qual usuario?
 	var email = getCookie("email");
@@ -875,14 +871,16 @@ function barChartCallback(data, barChart) {
 }
 
 
-function loadBarChart(){
+function loadBarChart() {
 
-//   // if (typeof loadBarChart.barChart != 'undefined') {
-//   //   $('#barChart').replaceWith('<canvas id="barChart"></canvas>');
-//   // }
+    // Destroi o grafico anterior, se houver
+	if (typeof loadBarChart.barChart != 'undefined') {
+		$('#barChart').replaceWith('<canvas id="barChart"></canvas>');
+	}
+
 
   var barChartCanvas = $("#barChart").get(0).getContext("2d");
-  var barChart = new Chart(barChartCanvas);
+  loadBarChart.barChart = new Chart(barChartCanvas);
 
   // Qual a época?
   var dMesIni = document.getElementById("txMesInicialBar");
@@ -966,7 +964,7 @@ function loadBarChart(){
     alert("Não foi possível carregar o gráfico de barras.");
   }).done(function(data) {
     document.getElementById("barChartLabel").innerHTML = "Dados para " + txCategoria;
-    barChartCallback(data, barChart);
+    barChartCallback(data, loadBarChart.barChart);
   })
 }
 
