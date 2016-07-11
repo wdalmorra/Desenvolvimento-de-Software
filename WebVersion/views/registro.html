@@ -18,94 +18,109 @@
 </head>
 <body onLoad="populaPaises()">
 
-  <nav class="navbar navbar-light bg-faded" id = "nav_bar">
+  <nav class="navbar navbar-fixed-top navbar-light bg-faded" id="nav_bar">
+
+    <!-- Brand -->
     <a class="navbar-brand" href="./menu.html">DreFinanças</a>
-  </nav>  
-  <form class="form-horizontal register" method="post" >
 
-  <!-- Form Name -->
-  <legend>Registrar-se</legend>
+    <!-- Links -->
+    <ul class="nav navbar-nav">
+      <li class="nav-item col-md-2">
+        <a class="nav-link" style="color:rgba(0,0,0,.8)" href="../jar/TrabalhoDS.jar" download>
+          Baixar o app desktop
+        </a>
+      </li>
+    </ul>
 
-  <!-- Text input-->
-  <fieldset class="form-group">
-    <label class="col-md-4 control-label" for="textinput">Email</label>  
-    <div class="col-md-8">
-      <input id="usuario" name="usuario" type="text" placeholder="" class="form-control input-md">
-    </div>
-  </fieldset>
+  </nav>
 
-  <!-- Text input-->
-  <fieldset class="form-group">
-    <label class="col-md-4 control-label" for="textinput">Nome</label>  
-    <div class="col-md-8">
-      <input id="txNome" name="txNome" type="text" placeholder="" class="form-control input-md">
-      
-    </div>
-  </fieldset>
+  <div class="nav-pad">
+    <form class="form-horizontal register" method="post" >
 
-  <fieldset class="form-group">
-    <label class="col-md-4 control-label" for="textinput">Data de Nascimento</label>  
-    <div class="col-md-8">
-      <input type="text" id="txNasc" class="form-control">
-    </div>
-  </fieldset>
-  
+    <!-- Form Name -->
+    <legend>Registrar-se</legend>
 
-  <!-- Select Basic -->
-  <fieldset class="form-group">
-    <label class="col-md-4 control-label" for="selectbasic">País</label>
-    <div class="col-md-8">
-      <select onchange= "populaEstados()" id="txPais" name="txPais" class="form-control">
-      </select>
-    </div>
-  </fieldset>
+    <!-- Text input-->
+    <fieldset class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Email</label>  
+      <div class="col-md-8">
+        <input id="usuario" name="usuario" type="text" placeholder="" class="form-control input-md">
+      </div>
+    </fieldset>
 
-  <!-- Select Basic -->
-  <fieldset class="form-group">
-    <label class="col-md-4 control-label" for="selectbasic">Estado</label>
-    <div class="col-md-8">
-      <select onchange = "populaCidades()" id="txEstado" name="txEstado" class="form-control">
-      </select>
-    </div>
-  </fieldset>
+    <!-- Text input-->
+    <fieldset class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Nome</label>  
+      <div class="col-md-8">
+        <input id="txNome" name="txNome" type="text" placeholder="" class="form-control input-md">
+        
+      </div>
+    </fieldset>
 
-  <!-- Select Basic -->
-  <fieldset class="form-group">
-    <label class="col-md-4 control-label" for="selectbasic">Cidade</label>
-    <div class="col-md-8">
-      <select id="txCidade" name="txCidade" class="form-control">
-      </select>
-    </div>
-  </fieldset>
+    <fieldset class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Data de Nascimento</label>  
+      <div class="col-md-8">
+        <input type="text" id="txNasc" class="form-control">
+      </div>
+    </fieldset>
+    
 
-  <!-- Password input-->
-  <fieldset class="form-group">
-    <label class="col-md-4 control-label" for="passwordinput">Senha</label>
-    <div class="col-md-8">
-      <input id="senha" name="senha" type="password" placeholder="" class="form-control input-md">
-      
-    </div>
-  </fieldset>
+    <!-- Select Basic -->
+    <fieldset class="form-group">
+      <label class="col-md-4 control-label" for="selectbasic">País</label>
+      <div class="col-md-8">
+        <select onchange= "populaEstados()" id="txPais" name="txPais" class="form-control">
+        </select>
+      </div>
+    </fieldset>
 
-  <!-- Password input-->
-  <fieldset class="form-group">
-    <label class="col-md-4 control-label" for="passwordinput">Confirmar Senha</label>
-    <div class="col-md-8">
-      <input id="txConfSenha" name="txConfSenha" type="password" placeholder="" class="form-control input-md">
-      
-    </div>
-  </fieldset>
+    <!-- Select Basic -->
+    <fieldset class="form-group">
+      <label class="col-md-4 control-label" for="selectbasic">Estado</label>
+      <div class="col-md-8">
+        <select onchange = "populaCidades()" id="txEstado" name="txEstado" class="form-control">
+        </select>
+      </div>
+    </fieldset>
 
-  <!-- Button (Double) -->
-  <fieldset class="form-group" id = "buttons">
-    <div class="col-md-12">
-      <button id="button1id" type="button" onClick="registra()" name="button1id" class="btn btn-success">Registar</button>
-      <button id="button2id" type="reset" onClick="cancela()" name="button2id" class="btn btn-danger">Cancelar</button>
-    </div>
-  </fieldset>
+    <!-- Select Basic -->
+    <fieldset class="form-group">
+      <label class="col-md-4 control-label" for="selectbasic">Cidade</label>
+      <div class="col-md-8">
+        <select id="txCidade" name="txCidade" class="form-control">
+        </select>
+      </div>
+    </fieldset>
+
+    <!-- Password input-->
+    <fieldset class="form-group">
+      <label class="col-md-4 control-label" for="passwordinput">Senha</label>
+      <div class="col-md-8">
+        <input id="senha" name="senha" type="password" placeholder="" class="form-control input-md">
+        
+      </div>
+    </fieldset>
+
+    <!-- Password input-->
+    <fieldset class="form-group">
+      <label class="col-md-4 control-label" for="passwordinput">Confirmar Senha</label>
+      <div class="col-md-8">
+        <input id="txConfSenha" name="txConfSenha" type="password" placeholder="" class="form-control input-md">
+        
+      </div>
+    </fieldset>
+
+    <!-- Button (Double) -->
+    <fieldset class="form-group" id = "buttons">
+      <div class="col-md-12">
+        <button id="button1id" type="button" onClick="registra()" name="button1id" class="btn btn-success">Registar</button>
+        <button id="button2id" type="reset" onClick="cancela()" name="button2id" class="btn btn-danger">Cancelar</button>
+      </div>
+    </fieldset>
 
 
-  </form>
+    </form>
+  </div>
 
 
   <!-- JavaScript: placed at the end of the document so the pages load faster -->
