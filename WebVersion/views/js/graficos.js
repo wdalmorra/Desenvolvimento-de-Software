@@ -599,7 +599,7 @@ function pieChartCallback(data, pieChart,pieChartNome) {
 			var tr = document.createElement("tr");
 			var td_categoria = document.createElement("td");
 			td_categoria.colSpan = "5";
-			td_categoria.innerHTML = "Não é possivel gerar gráfico pois não hà movimentação";
+			td_categoria.innerHTML = "Não é possoíel gerar gráfico pois não hà movimentação";
 			td_categoria.style.color = "green"; 
 			tr.appendChild(td_categoria);
 			tab_body.appendChild(tr);
