@@ -7,6 +7,54 @@ $(function () {
 	loadBarChart();
 });
 
+function pieChartCallback(data, pieChart) {
+
+	var PieData = [];
+	var colors = ["#5DA5DA", "#FAA43A", "#60BD68", "#F17CB0", "#DECF3F", "#B2912F", "#F15854", "#B276B2"];
+
+	if(data.length > 0) {
+		for ($i = 0; $i < data.length; $i++) {
+			PieData.push({
+				value: (data[$i].valor) / 100,
+				color: colors[$i % 8],
+				highlight: colors[$i % 8],
+				label: (data[$i].categoria)
+			});
+		}
+
+		var pieOptions = {
+			//Boolean - Whether we should show a stroke on each segment
+			segmentShowStroke: true,
+			//String - The colour of each segment stroke
+			segmentStrokeColor: "#fff",
+			//Number - The width of each segment stroke
+			segmentStrokeWidth: 2,
+			//Number - The percentage of the chart that we cut out of the middle
+			percentageInnerCutout: 0, // This is 0 for Pie charts
+			//Number - Amount of animation steps
+			animationSteps: 100,
+			//String - Animation easing effect
+			animationEasing: "easeOutBounce",
+			//Boolean - Whether we animate the rotation of the Doughnut
+			animateRotate: true,
+			//Boolean - Whether we animate scaling the Doughnut from the centre
+			animateScale: true,
+			//Boolean - whether to make the chart responsive to window resizing
+			responsive: true,
+			// Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+			maintainAspectRatio: true,
+			//String - A legend template
+			legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+		};
+
+		//Create pie or douhnut chart
+		pieChart.Doughnut(PieData, pieOptions);
+
+		} else {
+			// alert("Erro na geração do gráfico de pizza.");
+		}
+}
+
 function loadPieChart(){
 	//-------------
 	//- PIE CHART -
@@ -14,71 +62,65 @@ function loadPieChart(){
 	// Get context with jQuery - using jQuery's .get() method.
 	var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
 	var pieChart = new Chart(pieChartCanvas);
-	var PieData = [
-	  {
-		value: 700,
-		color: "#f56954",
-		highlight: "#f56954",
-		label: "Chrome"
-	  },
-	  {
-		value: 500,
-		color: "#00a65a",
-		highlight: "#00a65a",
-		label: "IE"
-	  },
-	  {
-		value: 400,
-		color: "#f39c12",
-		highlight: "#f39c12",
-		label: "FireFox"
-	  },
-	  {
-		value: 600,
-		color: "#00c0ef",
-		highlight: "#00c0ef",
-		label: "Safari"
-	  },
-	  {
-		value: 300,
-		color: "#3c8dbc",
-		highlight: "#3c8dbc",
-		label: "Opera"
-	  },
-	  {
-		value: 100,
-		color: "#d2d6de",
-		highlight: "#d2d6de",
-		label: "Navigator"
-	  }
-	];
-	var pieOptions = {
-	  //Boolean - Whether we should show a stroke on each segment
-	  segmentShowStroke: true,
-	  //String - The colour of each segment stroke
-	  segmentStrokeColor: "#fff",
-	  //Number - The width of each segment stroke
-	  segmentStrokeWidth: 2,
-	  //Number - The percentage of the chart that we cut out of the middle
-	  percentageInnerCutout: 0, // This is 0 for Pie charts
-	  //Number - Amount of animation steps
-	  animationSteps: 100,
-	  //String - Animation easing effect
-	  animationEasing: "easeOutBounce",
-	  //Boolean - Whether we animate the rotation of the Doughnut
-	  animateRotate: true,
-	  //Boolean - Whether we animate scaling the Doughnut from the centre
-	  animateScale: true,
-	  //Boolean - whether to make the chart responsive to window resizing
-	  responsive: true,
-	  // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-	  maintainAspectRatio: true,
-	  //String - A legend template
-	  legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-	};
-	//Create pie or douhnut chart
-	// You can switch between pie and douhnut using the method below.
-	pieChart.Doughnut(PieData, pieOptions);
+
+	// Para qual usuario?
+	var email = getCookie("email");
+
+	var tipo = ["despesa", "receita"];
+
+	var cat = tipo[Math.floor(Math.random() * 2)];
+
+	$.ajax({
+      url: "../controllers/carregaPieChartDashboard.php",
+      type: "POST",
+      dataType:"json",
+      data: {
+			user: email,
+			tipo: cat
+		},
+    }).error(function(data){
+      // alert("Não foi possível carregar as categorias.");
+    }).done(function(data){
+
+    	// var pieChartName = document.getElementById("pieChartName");
+
+    	// var date = data[0].split("-");
+
+    	// var meses = ["Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+    	// pieChartName.value = "Balanço de " + meses[date[1]] + " de " + date[0];
+
+      	// pieChartCallback(data.splice(0,1), pieChart);
+      	pieChartCallback(data, pieChart);
+    });
+
+    $.ajax({
+      url: "../controllers/carregaUltimoMes.php",
+      type: "POST",
+      dataType:"json",
+      data: {
+			user: email,
+		},
+    }).error(function(data){
+      // alert("Não foi possível carregar as categorias.");
+    }).done(function(data){
+
+    	var pieChartName = document.getElementById("pieChartName");
+
+
+    	var date = data[0].mes.split("-");
+    	// alert(date[1]);
+
+    	var meses = ["Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+		rd = "Receitas";
+    	if (cat == "despesa") {
+    		rd = "Despesas";
+    	};
+    	pieChartName.innerHTML =  rd + " de " + meses[parseInt(date[1]) - 1] + " de " + date[0];
+
+      	// pieChartCallback(data.splice(0,1), pieChart);
+      	// pieChartCallback(data, pieChart);
+    });
 
 }
 

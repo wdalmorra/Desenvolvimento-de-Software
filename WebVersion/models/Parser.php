@@ -39,6 +39,13 @@ class Parser {
 			$sql = "INSERT INTO DadosMes (mes, usersEmail) VALUES ('{$ano}-{$mes}-01', '{$this->email}');";
 			mysqli_query($conexao,$sql);
 			$this->conn->fecharConexao();
+			
+
+			// Delete para substituir os arquivos de envio
+
+			$sql = "DELETE from Movimentacao WHERE dadosMesUsersEmail='{$this->email}' AND dadosMesMes='{$ano}-{$mes}-01';"
+			mysqli_query($conexao,$sql);
+			$this->conn->fecharConexao();
 
 			// Percorre cada uma das movimentacoes registratdas
 			foreach($dadosMes->children() as $movimentacao) {

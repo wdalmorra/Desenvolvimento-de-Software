@@ -343,5 +343,49 @@ class Carga {
 			return $rows;
 		}
 	}
+
+    function carregaUltimoMes($user){
+        $conexao = $this->conn->abrirConexao();
+        
+        $logfile = "/var/www/html/WebVersion/log2.txt";
+        $sql_max_month = "SELECT mes from DadosMes WHERE mes = (SELECT  max(subp.mes) from DadosMes subp WHERE usersEmail = '{$user}');";
+        $result_max_month = mysqli_query($conexao,$sql_max_month);
+        
+        if(!$result_max_month){
+            $this->conn->fecharConexao();
+            return array();
+        } else {
+            while($row = mysqli_fetch_assoc($result_max_month)) {
+                $row["mes"] = utf8_encode($row["mes"]);
+                // exec("echo $row >> $logfile");
+                $rows[]=$row;
+            }
+            $this->conn->fecharConexao();
+            return $rows;
+        }
+    }
+
+    function carregaPieChartDashboard($user, $tipo){
+
+        $conexao = $this->conn->abrirConexao();
+
+        $sql_medias = "SELECT c.nome AS categoria, c.idCategoria AS idCategoria, m.valor AS valor FROM Movimentacao AS m INNER JOIN Users AS u ON u.email=m.dadosMesUsersEmail INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria WHERE tipo='{$tipo}' AND m.dadosMesUsersEmail LIKE '{$user}' AND m.dadosMesMes = (SELECT  max(subp.mes) from DadosMes subp WHERE usersEmail = '{$user}') GROUP BY categoriaId;";
+        $result_medias = mysqli_query($conexao,$sql_medias);
+
+        if(!$result_medias){
+            $this->conn->fecharConexao();
+            return array();
+        } else {
+            $rows = array();
+            while($row = mysqli_fetch_assoc($result_medias)) {
+                  $row["categoria"] = utf8_encode($row["categoria"]);
+                  $rows[]=$row;
+            }
+            
+            $this->conn->fecharConexao();
+            return $rows;
+        }
+
+    }
 }
 ?>
