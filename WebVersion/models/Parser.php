@@ -42,8 +42,8 @@ class Parser {
 			
 
 			// Delete para substituir os arquivos de envio
-
-			$sql = "DELETE from Movimentacao WHERE dadosMesUsersEmail='{$this->email}' AND dadosMesMes='{$ano}-{$mes}-01';"
+			$conexao = $this->conn->abrirConexao();
+			$sql = "DELETE from Movimentacao WHERE dadosMesUsersEmail='{$this->email}' AND dadosMesMes='{$ano}-{$mes}-01';";
 			mysqli_query($conexao,$sql);
 			$this->conn->fecharConexao();
 

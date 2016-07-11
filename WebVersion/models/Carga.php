@@ -177,6 +177,8 @@ class Carga {
   function carregaReceita($mes , $ano, $email){
 	$conexao = $this->conn->abrirConexao();
 	$logfile = "/var/www/html/WebVersion/log.txt";
+
+    $mes = utf8_decode($mes);
 	
 	$sql_mes = "SELECT mesNum from Mes WHERE mes='{$mes}';";
 	$result_mes =  mysqli_query($conexao,$sql_mes);
@@ -211,6 +213,8 @@ class Carga {
     function carregaDespesa($mes, $ano, $email){
 	$conexao = $this->conn->abrirConexao();
 	$logfile = "/var/www/html/WebVersion/log.txt";
+
+    $mes = utf8_decode($mes);
 
 	$sql_mes = "SELECT mesNum from Mes WHERE mes='{$mes}';";
 	$result_mes =  mysqli_query($conexao,$sql_mes);
