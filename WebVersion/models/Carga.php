@@ -405,14 +405,19 @@ class Carga {
         $filtro->categoria = utf8_decode($filtro->categoria);
         $filtroCat = "";
 
+		$gambi = NULL;
+
         if ($filtro->categoria == "Total receitas") {
             $filtroCat = "AND m.tipo = 'receita' ";
+			$gambi = "receitas";
         } else {
             if ($filtro->categoria == "Total despesas") {
                 $filtroCat = "AND m.tipo = 'despesa' ";
+				$gambi = "despesas";
             } else {
                 if ($filtro->categoria != "Saldo") {
                     $filtroCat = "AND cat.nome = '{$filtro->categoria}' ";
+					$gambi = "receitas-despesas";
                 }
                 // Se for saldo, nao precisa de filtro, pega tudo
             }
@@ -422,20 +427,50 @@ class Carga {
 				"SELECT " .
 					"MONTH(dadosMesMes) AS mes, " .
 					"YEAR(dadosMesMes) AS ano, " .
-					"AVG(receitas-despesas) AS valor, " .
+					"AVG({$gambi}) AS valor, " .
 					"'receita' AS tipo " .
 				"FROM " . 
 						"( " .
 							"SELECT dadosMesMes, dadosMesUsersEmail, SUM(m1.valor) AS despesas " .
 							"FROM Movimentacao AS m1 " .
-							"WHERE tipo='despesa' " .
+						        "INNER JOIN Users AS u1       ON       u1.email=m1.dadosMesUsersEmail " .
+						        "INNER JOIN Cidade AS cid1    ON  cid1.idCidade=u1.cidadeId " .
+						        "INNER JOIN Categoria AS cat1 ON m1.categoriaId=cat1.idCategoria " .
+						        "INNER JOIN DadosMes AS dm1   ON m1.dadosMesMes=dm1.mes " .
+							"WHERE " .
+								"m1.tipo='despesa' " .
+						        "AND u1.nascimento <= STR_TO_DATE('{$filtro->idadeMin}', '%Y-%m-%d') ".
+						        // "AND u.nascimento >= STR_TO_DATE('{$filtro->idadeMax}', '%Y-%m-%d') ".
+						        "AND cid1.nome LIKE '{$cidade}' " .
+						        "AND cid1.estadoEstado LIKE '{$estado}' " .
+						        "AND cid1.estadoCC LIKE '{$pais}' " .
+						        "AND dm1.usersEmail = '{$owner}' " .
+						        "AND MONTH(m1.dadosMesMes) >= '{$mesMin}' " .
+						        "AND MONTH(m1.dadosMesMes) <= '{$mesMax}' " .
+						        "AND YEAR(m1.dadosMesMes) >= '{$filtro->anoMin}' " .
+						        "AND YEAR(m1.dadosMesMes) <= '{$filtro->anoMax}' " .
 							"GROUP BY dadosMesMes, dadosMesUsersEmail " .
 						") AS t1 " .
 					"NATURAL JOIN " .
 						"( " .
 							"SELECT m2.dadosMesMes, m2.dadosMesUsersEmail, SUM(m2.valor) as receitas " .
 							"FROM Movimentacao AS m2 " . 
-							"WHERE tipo='receita' " .
+						        "INNER JOIN Users AS u2       ON       u2.email=m2.dadosMesUsersEmail " .
+						        "INNER JOIN Cidade AS cid2    ON  cid2.idCidade=u2.cidadeId " .
+						        "INNER JOIN Categoria AS cat2 ON m2.categoriaId=cat2.idCategoria " .
+						        "INNER JOIN DadosMes AS dm2   ON m2.dadosMesMes=dm2.mes " .
+							"WHERE " .
+								"m2.tipo='receita' " .
+						        "AND u2.nascimento <= STR_TO_DATE('{$filtro->idadeMin}', '%Y-%m-%d') ".
+						        // "AND u.nascimento >= STR_TO_DATE('{$filtro->idadeMax}', '%Y-%m-%d') ".
+						        "AND cid2.nome LIKE '{$cidade}' " .
+						        "AND cid2.estadoEstado LIKE '{$estado}' " .
+						        "AND cid2.estadoCC LIKE '{$pais}' " .
+						        "AND dm2.usersEmail = '{$owner}' " .
+						        "AND MONTH(m2.dadosMesMes) >= '{$mesMin}' " .
+						        "AND MONTH(m2.dadosMesMes) <= '{$mesMax}' " .
+						        "AND YEAR(m2.dadosMesMes) >= '{$filtro->anoMin}' " .
+						        "AND YEAR(m2.dadosMesMes) <= '{$filtro->anoMax}' " .
 							"GROUP BY m2.dadosMesMes, m2.dadosMesUsersEmail " .
 						") AS t2 " .
 				"GROUP BY t2.dadosMesMes;";
@@ -479,7 +514,7 @@ class Carga {
             *   grafico de barras
         */
 
-		if ($filtro->categoria == "Saldo") {
+		if ($gambi != NULL) {
 	        $result_medias = mysqli_query($conexao,$sql_total);
 		} else {
 	        $result_medias = mysqli_query($conexao,$sql_medias);
