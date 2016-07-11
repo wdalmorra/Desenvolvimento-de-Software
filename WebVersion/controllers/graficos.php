@@ -17,8 +17,8 @@ $mes = $_POST['mes'];
 $ano = $_POST['ano'];
 
 if ($mes == "Todos") {
-	$filtro->mesMin = "1";
-	$filtro->mesMax = "12";
+	$filtro->mesMin = "Janeiro";
+	$filtro->mesMax = "Dezembro";
 } else {
 	$filtro->mesMin = $mes;
 	$filtro->mesMax = $mes;
