@@ -3,8 +3,6 @@ $(function () {
   if (email == "") {
     window.location.href = "../index.html";
   }
-	loadBarChart();
-  populaDropdowns();
 });
 
 function carregaInfos() {
@@ -13,10 +11,11 @@ function carregaInfos() {
     var dropdown = document.getElementById("dropdown");
     dropdown.innerHTML = "Olá, " + nome + "!";
   }
+  populaDropdowns();
 }
 
 function aplicarFiltroBar() {
-
+  loadBarChart();
 }
 
 function aplicarFiltroPie() {
@@ -145,6 +144,8 @@ function populaMesesBar(){
 
         select.selectedIndex = 0;
         select2.selectedIndex = data.length - 1;
+
+        loadBarChart();
 
       } else {
         alert("Algo deu errado com os meses!");
@@ -780,73 +781,85 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 });
 
 function barChartCallback(data, barChart) {
-  var areaChartData = {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
-      datasets: [
-        {
-          label: "Electronics",
-          fillColor: "rgba(210, 214, 222, 1)",
-          strokeColor: "rgba(210, 214, 222, 1)",
-          pointColor: "rgba(210, 214, 222, 1)",
-          pointStrokeColor: "#c1c7d1",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(220,220,220,1)",
-          data: [65, 59, 80, 81, 56, 55, 40]
-        },
-        {
-          label: "Digital Goods",
-          fillColor: "rgba(60,141,188,0.9)",
-          strokeColor: "rgba(60,141,188,0.8)",
-          pointColor: "#3b8bba",
-          pointStrokeColor: "rgba(60,141,188,1)",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [28, 48, 40, 19, 86, 27, 90]
-        }
-      ]
-    };
+  var labels = [];
+  var dadosGlobais = [];
+  var dadosUser = [];
+  if(data.length > 0) {
+    for(var i = 0; i < data.length; i++) {
+      labels.push(data[i].mes + "/" + data[i].ano);
+      dadosGlobais.push((data[i].valor) / 100.0);
+      dadosUser.push((data[i].userValor) / 100.0);
+    }
+    var areaChartData = {
+        labels: labels,
+        datasets: [
+          {
+            label: "Dados globais",
+            fillColor: "rgba(210, 214, 222, 1)",
+            strokeColor: "rgba(210, 214, 222, 1)",
+            pointColor: "rgba(210, 214, 222, 1)",
+            pointStrokeColor: "#c1c7d1",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: dadosGlobais
+          },
+          {
+            label: "Dados do usuário",
+            // fillColor: "rgba(60,141,188,0.9)",
+            // strokeColor: "rgba(60,141,188,0.8)",
+            // pointColor: "#3b8bba",
+            // pointStrokeColor: "rgba(60,141,188,1)",
+            // pointHighlightFill: "#fff",
+            // pointHighlightStroke: "rgba(60,141,188,1)",
+            data: dadosUser 
+          }
+        ]
+      };
 
-    var barChartData = areaChartData;
-    barChartData.datasets[1].fillColor = "#00a65a";
-    barChartData.datasets[1].strokeColor = "#00a65a";
-    barChartData.datasets[1].pointColor = "#00a65a";
-    var barChartOptions = {
-      //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-      scaleBeginAtZero: true,
-      //Boolean - Whether grid lines are shown across the chart
-      scaleShowGridLines: true,
-      //String - Colour of the grid lines
-      scaleGridLineColor: "rgba(0,0,0,.05)",
-      //Number - Width of the grid lines
-      scaleGridLineWidth: 1,
-      //Boolean - Whether to show horizontal lines (except X axis)
-      scaleShowHorizontalLines: true,
-      //Boolean - Whether to show vertical lines (except Y axis)
-      scaleShowVerticalLines: true,
-      //Boolean - If there is a stroke on each bar
-      barShowStroke: true,
-      //Number - Pixel width of the bar stroke
-      barStrokeWidth: 2,
-      //Number - Spacing between each of the X value sets
-      barValueSpacing: 5,
-      //Number - Spacing between data sets within X values
-      barDatasetSpacing: 1,
-      //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
-      //Boolean - whether to make the chart responsive
-      responsive: true,
-      maintainAspectRatio: true
-    };
+      var barChartData = areaChartData;
+      barChartData.datasets[1].fillColor = "#00a65a";
+      barChartData.datasets[1].strokeColor = "#00a65a";
+      barChartData.datasets[1].pointColor = "#00a65a";
+      var barChartOptions = {
+        //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+        scaleBeginAtZero: true,
+        //Boolean - Whether grid lines are shown across the chart
+        scaleShowGridLines: true,
+        //String - Colour of the grid lines
+        scaleGridLineColor: "rgba(0,0,0,.05)",
+        //Number - Width of the grid lines
+        scaleGridLineWidth: 1,
+        //Boolean - Whether to show horizontal lines (except X axis)
+        scaleShowHorizontalLines: true,
+        //Boolean - Whether to show vertical lines (except Y axis)
+        scaleShowVerticalLines: true,
+        //Boolean - If there is a stroke on each bar
+        barShowStroke: true,
+        //Number - Pixel width of the bar stroke
+        barStrokeWidth: 2,
+        //Number - Spacing between each of the X value sets
+        barValueSpacing: 5,
+        //Number - Spacing between data sets within X values
+        barDatasetSpacing: 1,
+        //String - A legend template
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+        //Boolean - whether to make the chart responsive
+        responsive: true,
+        maintainAspectRatio: true
+      };
 
-    barChart.Bar(barChartData, barChartOptions);
+      barChart.Bar(barChartData, barChartOptions);
+    } else {
+      alert("Nenhum Registro Encontrado.");
+    }
 }
 
 
 function loadBarChart(){
 
-  // if (typeof loadBarChart.barChart != 'undefined') {
-  //   $('#barChart').replaceWith('<canvas id="barChart"></canvas>');
-  // }
+//   // if (typeof loadBarChart.barChart != 'undefined') {
+//   //   $('#barChart').replaceWith('<canvas id="barChart"></canvas>');
+//   // }
 
   var barChartCanvas = $("#barChart").get(0).getContext("2d");
   var barChart = new Chart(barChartCanvas);
@@ -879,14 +892,35 @@ function loadBarChart(){
   var dPais = document.getElementById("txPaisBar");
   var txPais = dPais.options[dPais.selectedIndex].value;
 
-  var dEstado = document.getElementById("txEstadoBar");
-  var txEstado = dEstado.options[dEstado.selectedIndex].value;
+  var txEstado = "Todos";
+  if (txPais != "Todos") {
+    var dEstado = document.getElementById("txEstadoBar");
+    txEstado = dEstado.options[dEstado.selectedIndex].value;
+  }
 
-  var dCidade = document.getElementById("txCidadeBar");
-  var txCidade = dCidade.options[dCidade.selectedIndex].value;
+  // Qual cidade?
+  var txCidade = "Todos";
+  if (txPais != "Todos" && txEstado != "Todos") {
+    var dCidade = document.getElementById("txCidadeBar");
+    txCidade = dCidade.options[dCidade.selectedIndex].value;
+  }
 
   // Para qual usuario?
   var email = getCookie("email");
+
+  var today = new Date();
+  var mm = today.getMonth()+1;
+  var yyyy = today.getFullYear();
+  var dd = today.getDate();
+  
+  if (dd < 10) { dd = "0" + dd};
+  if (mm < 10) { mm = "0" + mm};
+
+  var yyyyInicial = yyyy - txIdadeIni;
+  var yyyyFinal = yyyy - txIdadeFim;
+
+  var dateInicial = yyyyInicial + "-" + mm + "-" + dd;
+  var dateFinal = yyyyFinal + "-" + mm + "-" + dd;
 
   // Faz a solicitacao dos dados
   $.ajax({
@@ -902,17 +936,18 @@ function loadBarChart(){
       mesFim: txMesFim,
       anoFim: txAnoFim,
       categoria: txCategoria,
-      idadeIni: txIdadeIni;
-      idadeFim: txIdadeFim;
+      idadeIni: dateInicial,
+      idadeFim: dateFinal,
       pais: txPais,
       estado: txEstado,
       cidade: txCidade
-    },
+    }
   }).error(function(data){
     alert("Não foi possível carregar o gráfico de barras.");
   }).done(function(data) {
+    document.getElementById("barChartLabel").innerHTML = "Dados para " + txCategoria;
     barChartCallback(data, barChart);
-  }) 
+  })
 }
 
 function logout() {

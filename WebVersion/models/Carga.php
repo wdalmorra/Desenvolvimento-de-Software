@@ -402,16 +402,17 @@ class Carga {
         $conexao = $this->conn->abrirConexao();
 
         // Filtro por categoria
+        $filtro->categoria = utf8_decode($filtro->categoria);
         $filtroCat = "";
 
         if ($filtro->categoria == "Total receitas") {
-            $filtroCat = "AND m.tipo = receita ";
+            $filtroCat = "AND m.tipo = 'receita' ";
         } else {
             if ($filtro->categoria == "Total despesas") {
-                $filtroCat = "AND m.tipo = despesa ";
+                $filtroCat = "AND m.tipo = 'despesa' ";
             } else {
                 if ($filtro->categoria != "Saldo") {
-                    $filtroCat = "AND cat.categoria = '{$filtro->categoria}' ";
+                    $filtroCat = "AND cat.nome = '{$filtro->categoria}' ";
                 }
                 // Se for saldo, nao precisa de filtro, pega tudo
             }
@@ -421,19 +422,19 @@ class Carga {
                 "SELECT " . 
                     "MONTH(m.dadosMesMes) AS mes, " .
                     "YEAR(m.dadosMesMes) AS ano, " .
-                    "AVG(m.valor) AS valor " .
+                    "AVG(m.valor) AS valor, " .
                     "m.tipo AS tipo " .
                 "FROM " . 
                     "Movimentacao AS m " .
                     "INNER JOIN Users AS u       ON       u.email=m.dadosMesUsersEmail " .
                     "INNER JOIN Cidade AS cid    ON  cid.idCidade=u.cidadeId " .
-                    "INNER JOIN Categoria AS cat ON m.categoriaId=cat.IdCategoria " .
+                    "INNER JOIN Categoria AS cat ON m.categoriaId=cat.idCategoria " .
                     "INNER JOIN DadosMes AS dm   ON m.dadosMesMes=dm.mes " .
                 "WHERE " .
-                    "m.dadosMesUsersEmail LIKE '%' " +
-                    $filtroCat +
+                    "m.dadosMesUsersEmail LIKE '%' " .
+                    $filtroCat .
                     "AND u.nascimento <= STR_TO_DATE('{$filtro->idadeMin}', '%Y-%m-%d') ".
-                    "AND u.nascimento >= STR_TO_DATE('{$filtro->idadeMax}', '%Y-%m-%d') ".
+                    // "AND u.nascimento >= STR_TO_DATE('{$filtro->idadeMax}', '%Y-%m-%d') ".
                     "AND cid.nome LIKE '{$cidade}' " .
                     "AND cid.estadoEstado LIKE '{$estado}' " .
                     "AND cid.estadoCC LIKE '{$pais}' " .
@@ -458,6 +459,10 @@ class Carga {
 
         $result_medias = mysqli_query($conexao,$sql_medias);
 
+        $num_rows = mysqli_num_rows($result_medias);
+        $logfile = "/var/www/html/WebVersion/log.txt";
+        exec("echo $num_rows >> $logfile");
+
         if(!$result_medias){
             $this->conn->fecharConexao();
             return array();
@@ -466,7 +471,7 @@ class Carga {
 
             $sql_user = 
                     "SELECT " .
-                        "AVG(m.valor) AS valor " .
+                        "m.valor AS valor, " .
                         "m.tipo AS tipo " .
                     "FROM " . 
                         "Movimentacao AS m " .
@@ -475,8 +480,8 @@ class Carga {
                         "INNER JOIN Categoria AS cat ON m.categoriaId=cat.IdCategoria " .
                         "INNER JOIN DadosMes AS dm   ON m.dadosMesMes=dm.mes " .
                     "WHERE " .
-                        "m.dadosMesUsersEmail LIKE '{$user}' " +
-                        $filtroCat +
+                        "m.dadosMesUsersEmail LIKE '{$user}' " .
+                        $filtroCat .
                         "AND dm.usersEmail = '{$owner}' " .
                         "AND MONTH(m.dadosMesMes) >= '{$mesMin}' " .
                         "AND MONTH(m.dadosMesMes) <= '{$mesMax}' " .
@@ -490,9 +495,9 @@ class Carga {
                 return array();
             } else {
 
-                while($row = mysqli_fetch_assoc($result_medias)) {
+                while(($row = mysqli_fetch_assoc($result_medias)) && ($rowu = mysqli_fetch_assoc($result_user))) {
                       // $row["categoria"] = utf8_encode($row["categoria"]);
-                        $rowu = mysqli_fetch_assoc($result_user)
+                        // $rowu = mysqli_fetch_assoc($result_user);
                         $row["userValor"] = $rowu["valor"];
                         $row["usertipo"] = $rowu["tipo"];
                       $rows[]=$row;
