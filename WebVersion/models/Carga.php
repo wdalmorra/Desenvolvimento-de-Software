@@ -256,6 +256,7 @@ class Carga {
 			$user = '%';
 		}
 
+		// Acha o country code do pais solicitado, se necessario
 		$pais = '%';
 		if ($filtro->pais != 'Todos') {
 			$sql_aux = "SELECT countryCode FROM Pais WHERE nome='{$filtro->pais}'";
@@ -274,27 +275,58 @@ class Carga {
 		$cidade = '%';
 		if ($estado != '%' && $filtro->cidade != 'Todos') {
 			$cidade = $filtro->cidade;
-		}	
+		}
+
+		// Transforma os meses de string para numero
+		$sql_mes_min = "SELECT mesNum FROM Mes WHERE mes LIKE '{$filtro->mesMin}'";
+		$result_mes_min = mysqli_query($conexao,$sql_mes_min);
+		$row = mysqli_fetch_assoc($result_mes_min);
+		$mesMin = $row['mesNum'];
+		$this->conn->fecharConexao();
+		$conexao = $this->conn->abrirConexao();
+
+		$sql_mes_max = "SELECT mesNum FROM Mes WHERE mes LIKE '{$filtro->mesMax}'";
+		$result_mes_max = mysqli_query($conexao,$sql_mes_max);
+		$row = mysqli_fetch_assoc($result_mes_max);
+		$mesMax = $row['mesNum'];
+		$this->conn->fecharConexao();
+		$conexao = $this->conn->abrirConexao();
 
 		$sql_medias =
 				"SELECT " . 
-					"c.nome AS categoria, " .
-					"c.idCategoria AS idCategoria, " .
+					"cat.nome AS categoria, " .
+					"cat.idCategoria AS idCategoria, " .
 					"AVG(m.valor) AS valor " .
 				"FROM " . 
 					"Movimentacao AS m " .
-					"INNER JOIN Users AS u ON u.email=m.dadosMesUsersEmail " .
-					"INNER JOIN Cidade AS cid ON cid.idCidade=u.cidadeId " .
-					"INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria " .
-					"INNER JOIN DadosMes AS dm ON m.dadosMesMes = dm.mes " .
+					"INNER JOIN Users AS u       ON       u.email=m.dadosMesUsersEmail " .
+					"INNER JOIN Cidade AS cid    ON  cid.idCidade=u.cidadeId " .
+					"INNER JOIN Categoria AS cat ON m.categoriaId=cat.IdCategoria " .
+					"INNER JOIN DadosMes AS dm   ON m.dadosMesMes=dm.mes " .
 				"WHERE " .
 					"tipo='{$tipo}' " .
-					"AND  m.dadosMesUsersEmail LIKE '{$user}' " .
+					"AND m.dadosMesUsersEmail LIKE '{$user}' " .
 					"AND cid.nome LIKE '{$cidade}' " .
 					"AND cid.estadoEstado LIKE '{$estado}' " .
 					"AND cid.estadoCC LIKE '{$pais}' " .
 					"AND dm.usersEmail = '{$owner}' " .
+					"AND MONTH(m.dadosMesMes) >= '{$mesMin}' " .
+					"AND MONTH(m.dadosMesMes) <= '{$mesMax}' " .
+					"AND YEAR(m.dadosMesMes) >= '{$filtro->anoMin}' " .
+					"AND YEAR(m.dadosMesMes) <= '{$filtro->anoMax}' " .
 				"GROUP BY categoriaId";
+
+		/*
+			* Nota: a semantica da selecao de datas nao seleciona um intervalo. Ela seleciona:
+			* (a) dados de um dos meses pra um unico ano
+			* (b) dados de todos os meses em um unico ano
+			* (c) dados de um dos meses (e.g. janeiro) ao longo de um periodo de varios anos
+					(e.g. media de todos os janeiros ao longo de todos os anos disponiveis)
+			* (d) dados historicos totais para todos os meses que o usuario submeteu
+			*
+			* Em funcao disso, tem que acertar a parte das datas se for transpor a query para o
+			*   grafico de barras
+		*/
 
 		$result_medias = mysqli_query($conexao,$sql_medias);
 

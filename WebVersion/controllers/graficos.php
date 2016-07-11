@@ -13,6 +13,25 @@ $filtro->cidade = $_POST['cidade'];
 $filtro->estado = $_POST['estado'];
 $filtro->pais = $_POST['pais'];
 
+$mes = $_POST['mes'];
+$ano = $_POST['ano'];
+
+if ($mes == "Todos") {
+	$filtro->mesMin = "1";
+	$filtro->mesMax = "12";
+} else {
+	$filtro->mesMin = $mes;
+	$filtro->mesMax = $mes;
+}
+
+if ($ano == "Todos") {
+	$filtro->anoMin = "1900";
+	$filtro->anoMax = "2100";
+} else {
+	$filtro->anoMin = $ano;
+	$filtro->anoMax = $ano;
+}
+
 $carga = new Carga();
 
 if ($tipo == "1") {

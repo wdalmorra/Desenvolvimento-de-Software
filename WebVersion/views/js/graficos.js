@@ -604,6 +604,13 @@ function loadGlobalPieChart(){
 		txCidade = dCidade.options[dCidade.selectedIndex].value;
 	}
 
+	// Qual a época?
+	var dMes = document.getElementById("txMesPie");
+	var txMes = dMes.options[dMes.selectedIndex].value;
+
+	var dAno = document.getElementById("txAnoPie");
+	var txAno = dAno.options[dAno.selectedIndex].value;
+
 	// Para qual usuario?
 	var email = getCookie("email");
 
@@ -618,7 +625,9 @@ function loadGlobalPieChart(){
 			owner: email,
 			pais: txPais,
 			estado: txEstado,
-			cidade: txCidade
+			cidade: txCidade,
+			mes: txMes,
+			ano: txAno
 		},
 	}).error(function(data){
 		alert("Não foi possível carregar o gráfico de pizza (global).");
@@ -644,6 +653,13 @@ function loadUserPieChart(){
 		isReceita = "1";
 	}
 
+	// Qual a época?
+	var dMes = document.getElementById("txMesPie");
+	var txMes = dMes.options[dMes.selectedIndex].value;
+
+	var dAno = document.getElementById("txAnoPie");
+	var txAno = dAno.options[dAno.selectedIndex].value;
+
 	// Para qual usuario?
 	var email = getCookie("email");
 
@@ -658,7 +674,9 @@ function loadUserPieChart(){
 			owner: email,
 			pais: "Todos",
 			estado: "Todos",
-			cidade: "Todos"
+			cidade: "Todos",
+			mes: txMes,
+			ano: txAno
 		},
 	}).error(function(data){
 		alert("Não foi possível carregar o gráfico de pizza (user).");
