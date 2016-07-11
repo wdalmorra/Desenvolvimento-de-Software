@@ -49,10 +49,20 @@ function populaCategoriasBar(){
       if(data.length > 0){
         var select = document.getElementById("txCategoriaBar");
 
-        var el = document.createElement("option");
-        el.textContent = "Todos";
-        el.value = "Todos";
-        select.appendChild(el);
+        var el1 = document.createElement("option");
+        el1.textContent = "Saldo";
+        el1.value = "Saldo";
+        select.appendChild(el1);
+
+        var el2 = document.createElement("option");
+        el2.textContent = "Total despesas";
+        el2.value = "Total despesas";
+        select.appendChild(el2);
+
+        var el3 = document.createElement("option");
+        el3.textContent = "Total receitas";
+        el3.value = "Total receitas";
+        select.appendChild(el3);
 
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["nome"];
@@ -112,14 +122,14 @@ function populaMesesBar(){
         var select = document.getElementById("txMesInicialBar");
         var select2 = document.getElementById("txMesFinalBar");
 
-        var el = document.createElement("option");
-        el.textContent = "Todos";
-        el.value = "Todos";
-        select.appendChild(el);
-        var el2 = document.createElement("option");
-        el2.textContent = "Todos";
-        el2.value = "Todos";
-        select2.appendChild(el2);
+        // var el = document.createElement("option");
+        // el.textContent = "Todos";
+        // el.value = "Todos";
+        // select.appendChild(el);
+        // var el2 = document.createElement("option");
+        // el2.textContent = "Todos";
+        // el2.value = "Todos";
+        // select2.appendChild(el2);
 
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["mes"];
@@ -132,6 +142,9 @@ function populaMesesBar(){
           select.appendChild(el);
           select2.appendChild(el2);
         }
+
+        select.selectedIndex = 0;
+        select2.selectedIndex = data.length - 1;
 
       } else {
         alert("Algo deu errado com os meses!");
@@ -182,14 +195,16 @@ function populaAnosBar(){
       if(data.length > 0){
         var select = document.getElementById("txAnoInicialBar");
         var select2 = document.getElementById("txAnoFinalBar");
-        var el = document.createElement("option");
-        el.textContent = "Todos";
-        el.value = "Todos";
-        select.appendChild(el);
-        var el2 = document.createElement("option");
-        el2.textContent = "Todos";
-        el2.value = "Todos";
-        select2.appendChild(el2);
+
+        // var el = document.createElement("option");
+        // el.textContent = "Todos";
+        // el.value = "Todos";
+        // select.appendChild(el);
+        // var el2 = document.createElement("option");
+        // el2.textContent = "Todos";
+        // el2.value = "Todos";
+        // select2.appendChild(el2);
+
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["ano"];
           el = document.createElement("option");
@@ -201,6 +216,9 @@ function populaAnosBar(){
           select.appendChild(el);
           select2.appendChild(el2);
         }
+
+        select.selectedIndex = data.length - 1;
+        select2.selectedIndex = 0;
 
       } else {
         alert("Algo deu errado com os anos!");
@@ -262,14 +280,16 @@ function populaIdadesBar(){
       if(data.length > 0){
         var select = document.getElementById("txIdadeInicialBar");
         var select2 = document.getElementById("txIdadeFinalBar");
-        var el = document.createElement("option");
-        el.textContent = "Todos";
-        el.value = "Todos";
-        select.appendChild(el);
-        var el2 = document.createElement("option");
-        el2.textContent = "Todos";
-        el2.value = "Todos";
-        select2.appendChild(el2);
+
+        // var el = document.createElement("option");
+        // el.textContent = "Todos";
+        // el.value = "Todos";
+        // select.appendChild(el);
+        // var el2 = document.createElement("option");
+        // el2.textContent = "Todos";
+        // el2.value = "Todos";
+        // select2.appendChild(el2);
+
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["idade"];
           el = document.createElement("option");
@@ -281,6 +301,9 @@ function populaIdadesBar(){
           select.appendChild(el);
           select2.appendChild(el2);
         }
+
+        select.selectedIndex = 0;
+        select2.selectedIndex = data.length - 1;
 
       } else {
         alert("Algo deu errado com as idades!");
@@ -652,6 +675,7 @@ function loadGlobalPieChart(){
 		dataType:"json",
 		data: {
 			isReceita: isReceita,
+      tipo: "pie",
 			user: "",
 			owner: email,
 			pais: txPais,
@@ -727,6 +751,7 @@ function loadUserPieChart(){
 		dataType:"json",
 		data: {
 			isReceita: isReceita,
+      tipo: "pie",
 			user: email,
 			owner: email,
 			pais: "Todos",
@@ -754,13 +779,8 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
   }
 });
 
-
-function loadBarChart(){
-	//-------------
-    //- BAR CHART -
-    //-------------
-
-    var areaChartData = {
+function barChartCallback(data, barChart) {
+  var areaChartData = {
       labels: ["January", "February", "March", "April", "May", "June", "July"],
       datasets: [
         {
@@ -786,9 +806,6 @@ function loadBarChart(){
       ]
     };
 
-
-    var barChartCanvas = $("#barChart").get(0).getContext("2d");
-    var barChart = new Chart(barChartCanvas);
     var barChartData = areaChartData;
     barChartData.datasets[1].fillColor = "#00a65a";
     barChartData.datasets[1].strokeColor = "#00a65a";
@@ -822,6 +839,80 @@ function loadBarChart(){
     };
 
     barChart.Bar(barChartData, barChartOptions);
+}
+
+
+function loadBarChart(){
+
+  // if (typeof loadBarChart.barChart != 'undefined') {
+  //   $('#barChart').replaceWith('<canvas id="barChart"></canvas>');
+  // }
+
+  var barChartCanvas = $("#barChart").get(0).getContext("2d");
+  var barChart = new Chart(barChartCanvas);
+
+  // Qual a época?
+  var dMesIni = document.getElementById("txMesInicialBar");
+  var txMesIni = dMesIni.options[dMesIni.selectedIndex].value;
+
+  var dAnoIni = document.getElementById("txAnoInicialBar");
+  var txAnoIni = dAnoIni.options[dAnoIni.selectedIndex].value;
+
+  var dMesFim = document.getElementById("txMesFinalBar");
+  var txMesFim = dMesFim.options[dMesFim.selectedIndex].value;
+
+  var dAnoFim = document.getElementById("txAnoFinalBar");
+  var txAnoFim = dAnoFim.options[dAnoFim.selectedIndex].value;
+
+  // Qual categoria?
+  var dCategoria = document.getElementById("txCategoriaBar");
+  var txCategoria = dCategoria.options[dCategoria.selectedIndex].value;
+
+  // Qual faixa etaria?
+  var dIdadeIni = document.getElementById("txIdadeInicialBar");
+  var txIdadeIni = dIdadeIni.options[dIdadeIni.selectedIndex].value;
+
+  var dIdadeFim = document.getElementById("txIdadeFinalBar");
+  var txIdadeFim = dIdadeFim.options[dIdadeFim.selectedIndex].value;
+
+  // Qual o local?
+  var dPais = document.getElementById("txPaisBar");
+  var txPais = dPais.options[dPais.selectedIndex].value;
+
+  var dEstado = document.getElementById("txEstadoBar");
+  var txEstado = dEstado.options[dEstado.selectedIndex].value;
+
+  var dCidade = document.getElementById("txCidadeBar");
+  var txCidade = dCidade.options[dCidade.selectedIndex].value;
+
+  // Para qual usuario?
+  var email = getCookie("email");
+
+  // Faz a solicitacao dos dados
+  $.ajax({
+    url: "../controllers/graficos.php",
+    type: "POST",
+    dataType:"json",
+    data: {
+      tipo: "bar",
+      user: email,
+      owner: email,
+      mesIni: txMesIni,
+      anoIni: txAnoIni,
+      mesFim: txMesFim,
+      anoFim: txAnoFim,
+      categoria: txCategoria,
+      idadeIni: txIdadeIni;
+      idadeFim: txIdadeFim;
+      pais: txPais,
+      estado: txEstado,
+      cidade: txCidade
+    },
+  }).error(function(data){
+    alert("Não foi possível carregar o gráfico de barras.");
+  }).done(function(data) {
+    barChartCallback(data, barChart);
+  }) 
 }
 
 function logout() {
