@@ -51,7 +51,7 @@ function pieChartCallback(data, pieChart) {
 		pieChart.Doughnut(PieData, pieOptions);
 
 		} else {
-			alert("Erro na geração do gráfico de pizza.");
+			// alert("Erro na geração do gráfico de pizza.");
 		}
 }
 
