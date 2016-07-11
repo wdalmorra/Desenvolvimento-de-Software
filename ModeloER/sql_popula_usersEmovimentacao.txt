@@ -1,0 +1,270 @@
+use Drefinancas;
+
+insert into Users (email, nascimento, nome, senha, cidadeId, status) VALUES ('wil@wil.com', '1990-01-20' , 'wil',SHA1('123'), '4154', 'ativo');
+
+insert into Users (email, nascimento, nome, senha, cidadeId, status) VALUES ("eli@eli.com", "1990-01-20" , 'eli',SHA1("123"), '4154', 'ativo');
+
+insert into Users (email, nascimento, nome, senha, cidadeId, status) VALUES ("ita@ita.com", "1990-01-20" , 'ita',SHA1("123"), '4154', 'ativo');
+
+insert into Users (email, nascimento, nome, senha, cidadeId, status) VALUES ("tha@tha.com", "1990-01-20" , 'tha',SHA1("123"), '4154', 'ativo');
+
+insert into Users (email, nascimento, nome, senha, cidadeId, status) VALUES ("luc@luc.com", "1990-01-20" , 'luc',SHA1("123"), '4154', 'ativo');
+
+insert into DadosMes (mes, usersEmail) VALUES ('2016-01-01', 'wil@wil.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-02-01', 'wil@wil.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-03-01', 'wil@wil.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-04-01', 'wil@wil.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-05-01', 'wil@wil.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-06-01', 'wil@wil.com');
+
+
+
+insert into DadosMes (mes, usersEmail) VALUES ('2016-01-01', 'eli@eli.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-02-01', 'eli@eli.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-03-01', 'eli@eli.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-04-01', 'eli@eli.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-05-01', 'eli@eli.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-06-01', 'eli@eli.com');
+
+
+
+insert into DadosMes (mes, usersEmail) VALUES ('2016-01-01', 'ita@ita.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-02-01', 'ita@ita.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-03-01', 'ita@ita.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-04-01', 'ita@ita.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-05-01', 'ita@ita.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-06-01', 'ita@ita.com');
+
+
+
+insert into DadosMes (mes, usersEmail) VALUES ('2016-01-01', 'tha@tha.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-02-01', 'tha@tha.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-03-01', 'tha@tha.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-04-01', 'tha@tha.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-05-01', 'tha@tha.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-06-01', 'tha@tha.com');
+
+
+
+insert into DadosMes (mes, usersEmail) VALUES ('2016-01-01', 'luc@luc.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-02-01', 'luc@luc.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-03-01', 'luc@luc.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-04-01', 'luc@luc.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-05-01', 'luc@luc.com');
+insert into DadosMes (mes, usersEmail) VALUES ('2016-06-01', 'luc@luc.com');
+
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-01-01', 'wil@wil.com', '5000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-01-01', 'wil@wil.com', '5000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-01-01', 'wil@wil.com', '5000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-01-01', 'wil@wil.com', '5000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-01-01', 'wil@wil.com', '150000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-02-01', 'wil@wil.com', '10000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-02-01', 'wil@wil.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-02-01', 'wil@wil.com', '50000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-02-01', 'wil@wil.com', '5000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-02-01', 'wil@wil.com', '150000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-02-01', 'wil@wil.com', '15000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-03-01', 'wil@wil.com', '10000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-03-01', 'wil@wil.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-03-01', 'wil@wil.com', '60000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-03-01', 'wil@wil.com', '7000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-03-01', 'wil@wil.com', '120000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-03-01', 'wil@wil.com', '130000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('18','2016-04-01', 'wil@wil.com', '5000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('17','2016-04-01', 'wil@wil.com', '5000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('5','2016-04-01', 'wil@wil.com', '5000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-04-01', 'wil@wil.com', '5000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-04-01', 'wil@wil.com', '150000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-05-01', 'wil@wil.com', '10000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-05-01', 'wil@wil.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-05-01', 'wil@wil.com', '60000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-05-01', 'wil@wil.com', '7000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-05-01', 'wil@wil.com', '120000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-05-01', 'wil@wil.com', '130000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-06-01', 'wil@wil.com', '10000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('4','2016-06-01', 'wil@wil.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('3','2016-06-01', 'wil@wil.com', '60000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('8','2016-06-01', 'wil@wil.com', '7000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('20','2016-06-01', 'wil@wil.com', '120000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-06-01', 'wil@wil.com', '130000', 'receita');
+
+
+
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-01-01', 'eli@eli.com', '4000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-01-01', 'eli@eli.com', '4000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-01-01', 'eli@eli.com', '4000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-01-01', 'eli@eli.com', '4000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-01-01', 'eli@eli.com', '140000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-02-01', 'eli@eli.com', '20000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-02-01', 'eli@eli.com', '2400', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-02-01', 'eli@eli.com', '40000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-02-01', 'eli@eli.com', '4000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-02-01', 'eli@eli.com', '130000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-02-01', 'eli@eli.com', '13000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-03-01', 'eli@eli.com', '9000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-03-01', 'eli@eli.com', '1100', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-03-01', 'eli@eli.com', '20000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-03-01', 'eli@eli.com', '4000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-03-01', 'eli@eli.com', '140000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-03-01', 'eli@eli.com', '100000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('18','2016-04-01', 'eli@eli.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('17','2016-04-01', 'eli@eli.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('5','2016-04-01', 'eli@eli.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-04-01', 'eli@eli.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-04-01', 'eli@eli.com', '250000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-05-01', 'eli@eli.com', '15000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-05-01', 'eli@eli.com', '2400', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-05-01', 'eli@eli.com', '64000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-05-01', 'eli@eli.com', '7400', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-05-01', 'eli@eli.com', '140000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-05-01', 'eli@eli.com', '140000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-06-01', 'eli@eli.com', '14000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('4','2016-06-01', 'eli@eli.com', '2000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('3','2016-06-01', 'eli@eli.com', '30000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('8','2016-06-01', 'eli@eli.com', '2000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('20','2016-06-01', 'eli@eli.com', '120000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-06-01', 'eli@eli.com', '130000', 'receita');
+
+
+
+
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-01-01', 'ita@ita.com', '6000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-01-01', 'ita@ita.com', '6000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-01-01', 'ita@ita.com', '6000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-01-01', 'ita@ita.com', '6000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-01-01', 'ita@ita.com', '160000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-02-01', 'ita@ita.com', '6000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-02-01', 'ita@ita.com', '2600', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-02-01', 'ita@ita.com', '60000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-02-01', 'ita@ita.com', '4500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-02-01', 'ita@ita.com', '160000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-02-01', 'ita@ita.com', '9000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-03-01', 'ita@ita.com', '15000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-03-01', 'ita@ita.com', '1200', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-03-01', 'ita@ita.com', '19000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-03-01', 'ita@ita.com', '4100', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-03-01', 'ita@ita.com', '120000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-03-01', 'ita@ita.com', '90000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('18','2016-04-01', 'ita@ita.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('17','2016-04-01', 'ita@ita.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('5','2016-04-01', 'ita@ita.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-04-01', 'ita@ita.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-04-01', 'ita@ita.com', '250000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-05-01', 'ita@ita.com', '15000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-05-01', 'ita@ita.com', '2400', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-05-01', 'ita@ita.com', '64000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-05-01', 'ita@ita.com', '7400', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-05-01', 'ita@ita.com', '100000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-05-01', 'ita@ita.com', '110000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-06-01', 'ita@ita.com', '14000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('4','2016-06-01', 'ita@ita.com', '2000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('3','2016-06-01', 'ita@ita.com', '30000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('8','2016-06-01', 'ita@ita.com', '2000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('20','2016-06-01', 'ita@ita.com', '90000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-06-01', 'ita@ita.com', '110000', 'receita');
+
+
+
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-01-01', 'tha@tha.com', '3000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-01-01', 'tha@tha.com', '3000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-01-01', 'tha@tha.com', '3000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-01-01', 'tha@tha.com', '3000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-01-01', 'tha@tha.com', '130000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-02-01', 'tha@tha.com', '3000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-02-01', 'tha@tha.com', '2300', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-02-01', 'tha@tha.com', '30000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-02-01', 'tha@tha.com', '3500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-02-01', 'tha@tha.com', '130000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-02-01', 'tha@tha.com', '13000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-03-01', 'tha@tha.com', '13000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-03-01', 'tha@tha.com', '1100', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-03-01', 'tha@tha.com', '12000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-03-01', 'tha@tha.com', '3100', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-03-01', 'tha@tha.com', '130000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-03-01', 'tha@tha.com', '30000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('18','2016-04-01', 'tha@tha.com', '2300', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('17','2016-04-01', 'tha@tha.com', '2300', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('5','2016-04-01', 'tha@tha.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-04-01', 'tha@tha.com', '2300', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-04-01', 'tha@tha.com', '230000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-05-01', 'tha@tha.com', '15000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-05-01', 'tha@tha.com', '2400', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-05-01', 'tha@tha.com', '64000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-05-01', 'tha@tha.com', '7400', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-05-01', 'tha@tha.com', '100000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-05-01', 'tha@tha.com', '110000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-06-01', 'tha@tha.com', '14000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('4','2016-06-01', 'tha@tha.com', '2000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('3','2016-06-01', 'tha@tha.com', '30000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('8','2016-06-01', 'tha@tha.com', '2000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('20','2016-06-01', 'tha@tha.com', '100000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-06-01', 'tha@tha.com', '100000', 'receita');
+
+
+
+
+
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-01-01', 'luc@luc.com', '3000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-01-01', 'luc@luc.com', '3000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-01-01', 'luc@luc.com', '3000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-01-01', 'luc@luc.com', '3000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-01-01', 'luc@luc.com', '130000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('19','2016-02-01', 'luc@luc.com', '3000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-02-01', 'luc@luc.com', '2300', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-02-01', 'luc@luc.com', '30000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('9','2016-02-01', 'luc@luc.com', '3500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-02-01', 'luc@luc.com', '130000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-02-01', 'luc@luc.com', '13000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('18','2016-03-01', 'luc@luc.com', '13000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-03-01', 'luc@luc.com', '1100', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('11','2016-03-01', 'luc@luc.com', '12000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('13','2016-03-01', 'luc@luc.com', '3100', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-03-01', 'luc@luc.com', '130000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-03-01', 'luc@luc.com', '30000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('13','2016-04-01', 'luc@luc.com', '2300', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('15','2016-04-01', 'luc@luc.com', '2300', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('3','2016-04-01', 'luc@luc.com', '2500', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('2','2016-04-01', 'luc@luc.com', '2300', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-04-01', 'luc@luc.com', '230000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('3','2016-05-01', 'luc@luc.com', '15000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('2','2016-05-01', 'luc@luc.com', '2400', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('1','2016-05-01', 'luc@luc.com', '64000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('10','2016-05-01', 'luc@luc.com', '7400', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('21','2016-05-01', 'luc@luc.com', '100000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-05-01', 'luc@luc.com', '110000', 'receita');
+
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('18','2016-06-01', 'luc@luc.com', '14000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('3','2016-06-01', 'luc@luc.com', '2000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('4','2016-06-01', 'luc@luc.com', '30000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('5','2016-06-01', 'luc@luc.com', '2000', 'despesa');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('20','2016-06-01', 'luc@luc.com', '100000', 'receita');
+INSERT INTO Movimentacao (categoriaId, dadosMesMes ,dadosMesUsersEmail, valor, tipo) VALUES ('22','2016-06-01', 'luc@luc.com', '100000', 'receita');
