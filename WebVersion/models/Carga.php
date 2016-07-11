@@ -548,7 +548,7 @@ class Carga {
 		$sql_user = "";
 
 		if ($gambi != NULL) {
-			$sql_user = $this->sqlTotal($gambi, "2200-12-31", $cidade, $estado, $pais, $user, $owner, $mesMin, $mesMax, $filtro->anoMin, $filtro->anoMax);
+			$sql_user = $this->sqlTotal($gambi, "2200-12-31", '%', '%', '%', $user, $owner, $mesMin, $mesMax, $filtro->anoMin, $filtro->anoMax);
 		} else {
             $sql_user = 
                     "SELECT " .
