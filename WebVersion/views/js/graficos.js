@@ -547,12 +547,14 @@ function populaCidadesBar(){
   }
 }
 
-function pieChartCallback(data, pieChart) {
+function pieChartCallback(data, pieChart,pieChartNome) {
 
 	var PieData = [];
 	var colors = ["#5DA5DA", "#FAA43A", "#60BD68", "#F17CB0", "#DECF3F", "#B2912F", "#F15854", "#B276B2"];
 
 	if(data.length > 0) {
+		t="#"+pieChartNome;
+		$(t).html("");
 		for ($i = 0; $i < data.length; $i++) {
 			PieData.push({
 				value: (data[$i].valor) / 100,
@@ -591,7 +593,16 @@ function pieChartCallback(data, pieChart) {
 		pieChart.Doughnut(PieData, pieOptions);
 
 		} else {
-			alert("Nenhum Registro Encontrado.");
+			t="#"+pieChartNome;
+			$(t).html("");
+			var tab_body = document.getElementById(pieChartNome);
+			var tr = document.createElement("tr");
+			var td_categoria = document.createElement("td");
+			td_categoria.colSpan = "5";
+			td_categoria.innerHTML = "Não é possivel gerar gráfico pois não hà movimentação";
+			td_categoria.style.color = "green"; 
+			tr.appendChild(td_categoria);
+			tab_body.appendChild(tr);
 		}
 }
 
@@ -690,7 +701,7 @@ function loadGlobalPieChart(){
 	}).error(function(data){
 		alert("Não foi possível carregar o gráfico de pizza (global).");
 	}).done(function(data) {
-		pieChartCallback(data, loadGlobalPieChart.pieChart)
+		pieChartCallback(data, loadGlobalPieChart.pieChart,"pie1")
 	})
 }
 
@@ -766,7 +777,7 @@ function loadUserPieChart(){
 	}).error(function(data){
 		alert("Não foi possível carregar o gráfico de pizza (user).");
 	}).done(function(data) {
-		pieChartCallback(data, loadUserPieChart.pieChart)
+		pieChartCallback(data, loadUserPieChart.pieChart,"pie2")
 	})
 }
 
