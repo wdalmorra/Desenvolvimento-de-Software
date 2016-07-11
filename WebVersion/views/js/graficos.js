@@ -604,6 +604,9 @@ function loadGlobalPieChart(){
 		txCidade = dCidade.options[dCidade.selectedIndex].value;
 	}
 
+	// Para qual usuario?
+	var email = getCookie("email");
+
 	// Faz a solicitacao dos dados
 	$.ajax({
 		url: "../controllers/graficos.php",
@@ -612,6 +615,7 @@ function loadGlobalPieChart(){
 		data: {
 			isReceita: isReceita,
 			user: "",
+			owner: email,
 			pais: txPais,
 			estado: txEstado,
 			cidade: txCidade
@@ -651,6 +655,7 @@ function loadUserPieChart(){
 		data: {
 			isReceita: isReceita,
 			user: email,
+			owner: email,
 			pais: "Todos",
 			estado: "Todos",
 			cidade: "Todos"

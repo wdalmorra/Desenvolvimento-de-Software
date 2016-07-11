@@ -240,7 +240,9 @@ class Carga {
 	}
     }
 
-	function carregaMediaPie($filtro, $isDespesa, $user) {
+	function carregaMediaPie($filtro, $isDespesa, $user, $owner) {
+		// TODO Alerta de seguranca: num sistema serio, teria que 'desarmar' os parametros pra impedir SQL injection. Nao eh o foco hoje.
+
 		$conexao = $this->conn->abrirConexao();
 
 		$sql_medias = NULL;
@@ -274,7 +276,26 @@ class Carga {
 			$cidade = $filtro->cidade;
 		}	
 
-		$sql_medias = "SELECT c.nome AS categoria, c.idCategoria AS idCategoria, AVG(m.valor) AS valor FROM Movimentacao AS m INNER JOIN Users AS u ON u.email=m.dadosMesUsersEmail INNER JOIN Cidade AS cid ON cid.idCidade=u.cidadeId INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria WHERE tipo='{$tipo}' AND  m.dadosMesUsersEmail LIKE '{$user}' AND cid.nome LIKE '{$cidade}' AND cid.estadoEstado LIKE '{$estado}' AND cid.estadoCC LIKE '{$pais}' GROUP BY categoriaId";
+		$sql_medias =
+				"SELECT " . 
+					"c.nome AS categoria, " .
+					"c.idCategoria AS idCategoria, " .
+					"AVG(m.valor) AS valor " .
+				"FROM " . 
+					"Movimentacao AS m " .
+					"INNER JOIN Users AS u ON u.email=m.dadosMesUsersEmail " .
+					"INNER JOIN Cidade AS cid ON cid.idCidade=u.cidadeId " .
+					"INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria " .
+					"INNER JOIN DadosMes AS dm ON m.dadosMesMes = dm.mes " .
+				"WHERE " .
+					"tipo='{$tipo}' " .
+					"AND  m.dadosMesUsersEmail LIKE '{$user}' " .
+					"AND cid.nome LIKE '{$cidade}' " .
+					"AND cid.estadoEstado LIKE '{$estado}' " .
+					"AND cid.estadoCC LIKE '{$pais}' " .
+					"AND dm.usersEmail = '{$owner}' " .
+				"GROUP BY categoriaId";
+
 		$result_medias = mysqli_query($conexao,$sql_medias);
 
         if(!$result_medias){
