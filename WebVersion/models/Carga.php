@@ -212,67 +212,68 @@ class Carga {
 
     function carregaDespesa($mes, $ano, $email){
 	$conexao = $this->conn->abrirConexao();
-	$logfile = "/var/www/html/WebVersion/log.txt";
+    $logfile = "/var/www/html/WebVersion/log.txt";
 
     $mes = utf8_decode($mes);
 
-	$sql_mes = "SELECT mesNum from Mes WHERE mes='{$mes}';";
-	$result_mes =  mysqli_query($conexao,$sql_mes);
-	if(!$result_mes){
+    $sql_mes = "SELECT mesNum from Mes WHERE mes='{$mes}';";
+    $result_mes =  mysqli_query($conexao,$sql_mes);
+    if(!$result_mes){
             $this->conn->fecharConexao();
             return array();
         } 
-	
- 	$row_mes = mysqli_fetch_assoc($result_mes);
-	$t = $row_mes["mesNum"];
+    
+    $row_mes = mysqli_fetch_assoc($result_mes);
+    $t = $row_mes["mesNum"];
 
 
-	$anoMesDia = $ano."-".$t."-01";
-	$sql_despesa= "SELECT  c.nome AS categoria , m.valor AS valor from Movimentacao AS m INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria WHERE m.dadosMesMes='{$anoMesDia}' AND m.dadosMesUsersEmail='{$email}' AND tipo='despesa';";
-	$result_despesa =  mysqli_query($conexao,$sql_despesa);
+    $anoMesDia = $ano."-".$t."-01";
+    $sql_despesa= "SELECT  c.nome AS categoria , m.valor AS valor from Movimentacao AS m INNER JOIN Categoria AS c ON m.categoriaId=c.IdCategoria WHERE m.dadosMesMes='{$anoMesDia}' AND m.dadosMesUsersEmail='{$email}' AND tipo='despesa';";
+    $result_despesa =  mysqli_query($conexao,$sql_despesa);
         if(!$result_despesa){
             $this->conn->fecharConexao();
             return array();
         } else {
-		$rows = array();
-		while($row = mysqli_fetch_assoc($result_despesa)) {
-		          $row["categoria"] = utf8_encode($row["categoria"]);
-		          $rows[]=$row;
-		}
-		$this->conn->fecharConexao();
-		return $rows;
-	}
+        $rows = array();
+        while($row = mysqli_fetch_assoc($result_despesa)) {
+                  $row["categoria"] = utf8_encode($row["categoria"]);
+                  $rows[]=$row;
+        }
+        $this->conn->fecharConexao();
+        return $rows;
+    }
     }
 
-	function carregaMediaPie($filtro, $isDespesa, $user, $owner) {
-		// TODO Alerta de seguranca: num sistema serio, teria que 'desarmar' os parametros pra impedir SQL injection. Nao eh o foco hoje.
+    function carregaMediaPie($filtro, $isDespesa, $user, $owner) {
+        // TODO Alerta de seguranca: num sistema serio, teria que 'desarmar' os parametros pra impedir SQL injection. Nao eh o foco hoje.
+    	$logfile = "/var/www/html/WebVersion/log2.txt";
 
-		$conexao = $this->conn->abrirConexao();
+        $conexao = $this->conn->abrirConexao();
 
-		$sql_medias = NULL;
-		$tipo = "receita";
+        $sql_medias = NULL;
+        $tipo = "receita";
 
-		if ($isDespesa) {
-			$tipo = "despesa";
-		}
+        if ($isDespesa) {
+            $tipo = "despesa";
+        }
 
-		if ($user == "") {
-			$user = '%';
-		}
+        if ($user == "") {
+            $user = '%';
+        }
 
-		// Acha o country code do pais solicitado, se necessario
-		$pais = '%';
-		if ($filtro->pais != 'Todos') {
-			$sql_aux = "SELECT countryCode FROM Pais WHERE nome='{$filtro->pais}'";
-			$result_aux = mysqli_query($conexao,$sql_aux);
-			$row = mysqli_fetch_assoc($result_aux);
-			$pais = $row['countryCode'];
-			$this->conn->fecharConexao();
-			$conexao = $this->conn->abrirConexao();
-		}
+        // Acha o country code do pais solicitado, se necessario
+        $pais = '%';
+        if ($filtro->pais != 'Todos') {
+            $sql_aux = "SELECT countryCode FROM Pais WHERE nome='{$filtro->pais}'";
+            $result_aux = mysqli_query($conexao,$sql_aux);
+            $row = mysqli_fetch_assoc($result_aux);
+            $pais = $row['countryCode'];
+            $this->conn->fecharConexao();
+            $conexao = $this->conn->abrirConexao();
+        }
 
-		$estado = '%';
-		if ($filtro->estado != 'Todos') {
+        $estado = '%';
+        if ($filtro->estado != 'Todos') {
 				$estado = $filtro->estado;
 		}
 
@@ -311,6 +312,8 @@ class Carga {
 					"INNER JOIN DadosMes AS dm   ON m.dadosMesMes=dm.mes " .
 				"WHERE " .
 					"tipo='{$tipo}' " .
+                    "AND u.nascimento <= STR_TO_DATE('{$filtro->idadeMin}', '%Y-%m-%d') ".
+                    "AND u.nascimento >= STR_TO_DATE('{$filtro->idadeMax}', '%Y-%m-%d') ".
 					"AND m.dadosMesUsersEmail LIKE '{$user}' " .
 					"AND cid.nome LIKE '{$cidade}' " .
 					"AND cid.estadoEstado LIKE '{$estado}' " .
@@ -321,6 +324,7 @@ class Carga {
 					"AND YEAR(m.dadosMesMes) >= '{$filtro->anoMin}' " .
 					"AND YEAR(m.dadosMesMes) <= '{$filtro->anoMax}' " .
 				"GROUP BY categoriaId";
+        exec("echo $sql_medias >> $logfile");
 
 		/*
 			* Nota: a semantica da selecao de datas nao seleciona um intervalo. Ela seleciona:

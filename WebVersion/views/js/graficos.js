@@ -221,14 +221,14 @@ function populaIdadesPie(){
       if(data.length > 0){
         var select = document.getElementById("txIdadeInicialPie");
         var select2 = document.getElementById("txIdadeFinalPie");
-        var el = document.createElement("option");
-        el.textContent = "Todos";
-        el.value = "Todos";
-        select.appendChild(el);
-        var el2 = document.createElement("option");
-        el2.textContent = "Todos";
-        el2.value = "Todos";
-        select2.appendChild(el2);
+        // var el = document.createElement("option");
+        // el.textContent = "Todos";
+        // el.value = "Todos";
+        // select.appendChild(el);
+        // var el2 = document.createElement("option");
+        // el2.textContent = "Todos";
+        // el2.value = "Todos";
+        // select2.appendChild(el2);
         for(var i = 0; i < data.length; i++) {
           var opt = data[i]["idade"];
           el = document.createElement("option");
@@ -240,6 +240,8 @@ function populaIdadesPie(){
           select.appendChild(el);
           select2.appendChild(el2);
         }
+        select.selectedIndex = 0;
+        select2.selectedIndex = data.length - 1;
 
       } else {
         alert("Algo deu errado com as idades!");
@@ -565,7 +567,7 @@ function pieChartCallback(data, pieChart) {
 		pieChart.Doughnut(PieData, pieOptions);
 
 		} else {
-			alert("Erro na geração do gráfico de pizza.");
+			alert("Nenhum Registro Encontrado.");
 		}
 }
 
@@ -611,6 +613,35 @@ function loadGlobalPieChart(){
 	var dAno = document.getElementById("txAnoPie");
 	var txAno = dAno.options[dAno.selectedIndex].value;
 
+  // Qual faixa etária
+  var dIdadeInicial = document.getElementById("txIdadeInicialPie");
+  var txIdadeInicial = dIdadeInicial.options[dIdadeInicial.selectedIndex].value;
+
+  var dIdadeFinal = document.getElementById("txIdadeFinalPie");
+  var txIdadeFinal = dIdadeFinal.options[dIdadeFinal.selectedIndex].value;
+
+  if (txIdadeInicial == "100+") {txIdadeInicial = 100};
+  if (txIdadeFinal == "100+") {txIdadeFinal = 200};
+
+  var today = new Date();
+  var mm = today.getMonth()+1;
+  var yyyy = today.getFullYear();
+  var dd = today.getDate();
+  
+  if (dd < 10) { dd = "0" + dd};
+  if (mm < 10) { mm = "0" + mm};
+
+  var yyyyInicial = yyyy - txIdadeInicial;
+  var yyyyFinal = yyyy - txIdadeFinal;
+
+  var dateInicial = yyyyInicial + "-" + mm + "-" + dd;
+  var dateFinal = yyyyFinal + "-" + mm + "-" + dd;
+
+  // alert(dateInicial);
+  // alert(dateFinal);
+
+
+
 	// Para qual usuario?
 	var email = getCookie("email");
 
@@ -627,7 +658,9 @@ function loadGlobalPieChart(){
 			estado: txEstado,
 			cidade: txCidade,
 			mes: txMes,
-			ano: txAno
+			ano: txAno,
+      idadeMin: dateInicial,
+      idadeMax: dateFinal
 		},
 	}).error(function(data){
 		alert("Não foi possível carregar o gráfico de pizza (global).");
@@ -660,6 +693,30 @@ function loadUserPieChart(){
 	var dAno = document.getElementById("txAnoPie");
 	var txAno = dAno.options[dAno.selectedIndex].value;
 
+  // // Qual faixa etária
+  // var dIdadeInicial = document.getElementById("txIdadeInicialPie");
+  // var txIdadeInicial = dIdadeInicial.options[dIdadeInicial.selectedIndex].value;
+
+  // var dIdadeFinal = document.getElementById("txIdadeFinalPie");
+  // var txIdadeFinal = dIdadeFinal.options[dIdadeFinal.selectedIndex].value;
+
+  // if (txIdadeInicial == "100+") {txIdadeInicial = 100};
+  // if (txIdadeFinal == "100+") {txIdadeFinal = 200};
+
+  // var today = new Date();
+  // var mm = today.getMonth()+1;
+  // var yyyy = today.getFullYear();
+  // var dd = today.getDate();
+  
+  // if (dd < 10) { dd = "0" + dd};
+  // if (mm < 10) { mm = "0" + mm};
+
+  // var yyyyInicial = yyyy - txIdadeInicial;
+  // var yyyyFinal = yyyy - txIdadeFinal;
+
+  // var dateInicial = yyyyInicial + "-" + mm + "-" + dd;
+  // var dateFinal = yyyyFinal + "-" + mm + "-" + dd;
+
 	// Para qual usuario?
 	var email = getCookie("email");
 
@@ -676,7 +733,9 @@ function loadUserPieChart(){
 			estado: "Todos",
 			cidade: "Todos",
 			mes: txMes,
-			ano: txAno
+			ano: txAno,
+      idadeMin: "2200-12-31",
+      idadeMax: "1800-01-01"
 		},
 	}).error(function(data){
 		alert("Não foi possível carregar o gráfico de pizza (user).");

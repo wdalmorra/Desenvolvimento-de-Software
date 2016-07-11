@@ -12,6 +12,8 @@ $filtro = new Filtro();
 $filtro->cidade = $_POST['cidade'];
 $filtro->estado = $_POST['estado'];
 $filtro->pais = $_POST['pais'];
+$filtro->idadeMin = $_POST['idadeMin'];
+$filtro->idadeMax = $_POST['idadeMax'];
 
 $mes = $_POST['mes'];
 $ano = $_POST['ano'];
