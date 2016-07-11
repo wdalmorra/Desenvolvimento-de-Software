@@ -599,7 +599,7 @@ function pieChartCallback(data, pieChart,pieChartNome) {
 			var tr = document.createElement("tr");
 			var td_categoria = document.createElement("td");
 			td_categoria.colSpan = "5";
-			td_categoria.innerHTML = "Não é possoíel gerar gráfico pois não hà movimentação";
+			td_categoria.innerHTML = "Não é possível gerar gráfico pois não hà movimentação";
 			td_categoria.style.color = "green"; 
 			tr.appendChild(td_categoria);
 			tab_body.appendChild(tr);
@@ -796,6 +796,7 @@ function barChartCallback(data, barChart) {
   var dadosGlobais = [];
   var dadosUser = [];
   if(data.length > 0) {
+    $("#bar").html("");
     for(var i = 0; i < data.length; i++) {
       labels.push(data[i].mes + "/" + data[i].ano);
       dadosGlobais.push((data[i].valor) / 100.0);
@@ -861,8 +862,16 @@ function barChartCallback(data, barChart) {
 
       barChart.Bar(barChartData, barChartOptions);
     } else {
-      alert("Nenhum Registro Encontrado.");
-    }
+		$("#bar").html("");
+		var tab_body = document.getElementById("bar");
+		var tr = document.createElement("tr");
+		var td_categoria = document.createElement("td");
+		td_categoria.colSpan = "5";
+		td_categoria.innerHTML = "Não é possível gerar gráfico pois não hà movimentação";
+		td_categoria.style.color = "green"; 
+		tr.appendChild(td_categoria);
+		tab_body.appendChild(tr);
+	}
 }
 
 
